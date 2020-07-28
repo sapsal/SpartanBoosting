@@ -1,48 +1,158 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SpartanBoosting</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - SpartanBoosting</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
-    <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SpartanBoosting</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>*@
-    </header>
-    <div class="">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+<body class="home page-template page-template-elementor_header_footer page page-id-237 wp-custom-logo wp-embed-responsive cookies-not-set customer-area-active oceanwp-theme sidebar-mobile has-transparent-header has-sidebar content-right-sidebar has-topbar page-header-disabled has-breadcrumbs has-fixed-footer elementor-default elementor-template-full-width elementor-kit-133 elementor-page elementor-page-237" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+	<div id="outer-wrap" class="site clr">
+		<a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+		<div id="wrap" class="clr">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - SpartanBoosting - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+			@(await Html.PartialAsync("~/Views/Shared/DiscordAdvertismentPartial.cshtml"))
+			<div id="transparent-header-wrap" class="clr">
+				<header id="site-header" class="transparent-header effect-one clr" data-height="74" itemscope="itemscope" itemtype="https://schema.org/WPHeader" role="banner">
+					<div id="site-header-inner" class="clr ">
+						<div id="site-logo" class="clr" itemscope itemtype="https://schema.org/Brand">
+							<div id="site-logo-inner" class="clr">
+								<a href="https://spartanboosting.com/" class="custom-logo-link" rel="home">
+									<img width="390" height="75" src="~/img/logo.png" class="custom-logo" />
+								</a>
+							</div>
+							<!-- #site-logo-inner -->
+						</div>
+						<!-- #site-logo -->
+						@(await Html.PartialAsync("~/Views/Shared/NavMenuPartial.cshtml"))
+						<!-- #site-navigation-wrap -->
+						<div class="oceanwp-mobile-menu-icon clr mobile-right">
+							<a href="#" class="mobile-menu" aria-label="Mobile Menu">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</a>
+						</div>
+						<!-- #oceanwp-mobile-menu-navbar -->
+					</div>
+					<!-- #site-header-inner -->
+				</header>
+				<!-- #site-header -->
+			</div>
+			<main id="main" class="site-main clr" role="main">
+				<div data-elementor-type="wp-page" data-elementor-id="237" class="elementor elementor-237" data-elementor-settings="[]">
+					<div class="elementor-inner">
+						<div class="elementor-section-wrap">
+							@RenderBody()
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<footer id="footer" class="site-footer" itemscope="itemscope" itemtype="https://schema.org/WPFooter" role="contentinfo">
+			<div id="footer-inner" class="clr">
+				<div id="footer-widgets" class="oceanwp-row clr">
+					<div class="footer-widgets-inner container">
+						<div class="footer-box span_1_of_4 col col-1"></div>
+						<!-- .footer-one-box -->
+						<div class="footer-box span_1_of_4 col col-2"></div>
+						<!-- .footer-one-box -->
+						<div class="footer-box span_1_of_4 col col-3 "></div>
+						<!-- .footer-one-box -->
+						<div class="footer-box span_1_of_4 col col-4"></div>
+						<!-- .footer-box -->
+					</div>
+					<!-- .container -->
+				</div>
+			</div>
+			<!-- #footer-inner -->
+		</footer>
+
+		<a id="scroll-top" class="scroll-top-right" href="#">
+			<span class="fa fa-chevron-up" aria-label="Scroll to the top of the page"></span>
+		</a>
+
+		<script>
+			window.lazyLoadOptions = {
+				elements_selector: "img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",
+				data_src: "lazy-src",
+				data_srcset: "lazy-srcset",
+				data_sizes: "lazy-sizes",
+				class_loading: "lazyloading",
+				class_loaded: "lazyloaded",
+				threshold: 300,
+				callback_loaded: function (element) {
+					if (element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible") {
+						if (element.classList.contains("lazyloaded")) {
+							if (typeof window.jQuery != "undefined") {
+								if (jQuery.fn.fitVids) {
+									jQuery(element).parent().fitVids();
+								}
+							}
+						}
+					}
+				}
+			};
+			window.addEventListener('LazyLoad::Initialized', function (e) {
+				var lazyLoadInstance = e.detail.instance;
+
+				if (window.MutationObserver) {
+					var observer = new MutationObserver(function (mutations) {
+						var image_count = 0;
+						var iframe_count = 0;
+						var rocketlazy_count = 0;
+
+						mutations.forEach(function (mutation) {
+							for (i = 0; i < mutation.addedNodes.length; i++) {
+								if (typeof mutation.addedNodes[i].getElementsByTagName !== 'function') {
+									return;
+								}
+
+								if (typeof mutation.addedNodes[i].getElementsByClassName !== 'function') {
+									return;
+								}
+
+								images = mutation.addedNodes[i].getElementsByTagName('img');
+								is_image = mutation.addedNodes[i].tagName == "IMG";
+								iframes = mutation.addedNodes[i].getElementsByTagName('iframe');
+								is_iframe = mutation.addedNodes[i].tagName == "IFRAME";
+								rocket_lazy = mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');
+
+								image_count += images.length;
+								iframe_count += iframes.length;
+								rocketlazy_count += rocket_lazy.length;
+
+								if (is_image) {
+									image_count += 1;
+								}
+
+								if (is_iframe) {
+									iframe_count += 1;
+								}
+							}
+						});
+
+						if (image_count > 0 || iframe_count > 0 || rocketlazy_count > 0) {
+							lazyLoadInstance.update();
+						}
+					}
+					);
+
+					var b = document.getElementsByTagName("body")[0];
+					var config = {
+						childList: true,
+						subtree: true
+					};
+
+					observer.observe(b, config);
+				}
+			}, false);
+		</script>
+		<script data-no-minify="1" async src="https://spartanboosting.com/wp-content/plugins/rocket-lazy-load/assets/js/12.0/lazyload.min.js"></script>
+		<script src="~/js/site.js"></script>
+		<script src="~/lib/jquery/dist/jquery.min.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="~/js/site.js" asp-append-version="true"></script>
+		@RenderSection("Scripts", required: false)
 </body>
 </html>
