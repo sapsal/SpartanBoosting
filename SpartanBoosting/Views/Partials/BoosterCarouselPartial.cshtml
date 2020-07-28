@@ -4,53 +4,39 @@
 	bool notFirstCase = false;
 }
 
-<div class="container text-center my-3" style="max-width: 100%;">
-	<div class="row mx-auto my-auto">
-		<div id="recipeCarousel" class="carousel slide" data-ride="carousel">
-			<div class="carousel-inner " role="listbox">
-				@foreach (var item in Boosters)
-				{
-					<div class="carousel-item @(notFirstCase ? "" : "active")">
-						<div class="col-lg-2 col-md-6">
-							<div class="item lgx-item">
-								<div class="staff-item">
-									<img class="alignnone size-full wp-image-1017" src="~/img/BoosterIcons/@(item.BoosterIcon).png" alt="" width="120" height="120"/>
-									<div class="staff-meta">
-										<h3>@item.Name</h3>
-										Booster
+<div class="container text-center my-3 slick-carousel" style="max-width: 100%;">
+	<div class='single-item'>
+		@foreach (var item in Boosters)
+		{
+			<div class="item lgx-item">
+				<div class="staff-item">
+					<img class="alignnone size-full wp-image-1017" src="~/img/BoosterIcons/@(item.BoosterIcon).png" alt="" width="120" height="120" />
+					<div class="staff-meta">
+						<h3>@item.Name</h3>
+						Booster
 
 
-									</div>
-									<div class="staff-desc">
-										<div class="staff-desc-row">
-											<b>League/Elo: </b>
-											@item.League
-										</div>
-										<div class="staff-desc-row">
-											<b>Role: </b>
-											@item.Role
-										</div>
-										<div class="staff-desc-row">
-											<b>Champions: </b>
-											@item.Champions
-										</div>
-									</div>
-								</div>
-							</div>
+					</div>
+					<div class="staff-desc">
+						<div class="staff-desc-row">
+							<b>League/Elo: </b>
+							@item.League
+						</div>
+						<div class="staff-desc-row">
+							<b>Role: </b>
+							@item.Role
+						</div>
+						<div class="staff-desc-row">
+							<b>Champions: </b>
+							@item.Champions
 						</div>
 					</div>
-					notFirstCase = true; ;
-				}
+				</div>
 			</div>
-			<a class="carousel-control-prev bg-dark w-auto" href="#recipeCarousel" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="carousel-control-next bg-dark w-auto" href="#recipeCarousel" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
+			notFirstCase = true; ;
+		}
 	</div>
 </div>
+
+
 
