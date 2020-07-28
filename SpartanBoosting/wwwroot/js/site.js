@@ -1,4 +1,6 @@
-﻿$(".booster-carousel").slick({
+﻿var chkBox = $('.single-select-checkbox');
+
+$(".booster-carousel").slick({
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
@@ -46,4 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("scroll", lazyload);
     window.addEventListener("resize", lazyload);
     window.addEventListener("orientationChange", lazyload);
+});
+
+
+//uncheck checkboxes when it is single only
+$(chkBox).on('click', function () {
+    if ($(this).prop("checked")) {
+        chkBox.prop("checked", false);
+        $(this).prop("checked", true);
+    }
 });

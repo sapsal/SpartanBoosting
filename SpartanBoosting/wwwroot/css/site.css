@@ -1105,3 +1105,83 @@ h4 {
 .dark a {
     color: #fff;
 }
+
+select {
+    border: 1px solid #fff;
+    background-color: transparent;
+}
+
+label {
+    line-height: 1.3;
+    clear: both;
+    color: #fff;
+    font-weight: 700;
+}
+.apply-discount-btn {
+    margin-top: 16px !important;
+    margin-left: 0 !important;
+    font-size: 14px !important;
+    width: 25% !important;
+    background-color: rgba(23,152,207,1) !important;
+    border-radius: 10px;
+    font-family: inherit;
+    background-color: #13aff0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 14px 20px;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.proceed-checkout-btn {
+    margin-top: 16px !important;
+    margin-left: 0 !important;
+    font-size: 14px !important;
+    width: 25% !important;
+    background-color: #fd941f;
+    border-radius: 10px;
+    font-family: inherit;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 14px 20px;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.total-label {
+    color: #c3c3c3;
+    font-weight: 600 !important;
+    font-size: 24px !important;
+    display: inline-block;
+    line-height: 1.3;
+    clear: both;
+    margin-bottom: 3px;
+    box-sizing: border-box !important;
+}
+
+.ginput_total.ginput_total_10 {
+    font-weight: 600 !important;
+    font-size: 65px !important;
+    color: #fd941f !important;
+}

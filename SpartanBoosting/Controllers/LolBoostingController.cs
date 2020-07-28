@@ -10,6 +10,34 @@ namespace SpartanBoosting.Controllers
     {
         public IActionResult SoloBoosting()
         {
+            Models.BoostingModel model = new Models.BoostingModel(); 
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken()]
+        [HttpPost]
+        public JsonResult Create(Models.BoostingModel BoostingModel)
+        {
+            return Json(BoostingModel);
+        }
+
+        public IActionResult SoloBoostingSubmit(Models.BoostingModel Model)
+        {
+            Models.BoostingModel model = new Models.BoostingModel();
+            return View(model);
+        }
+        public IActionResult DuoBoosting()
+        {
+            return View();
+        }
+
+        public IActionResult WinBoosting()
+        {
+            return View();
+        }
+
+        public IActionResult PlacementMatches()
+        {
             return View();
         }
     }

@@ -1,10 +1,4 @@
-﻿@using SpartanBoosting.Models
-@using System.Threading.Tasks
-@model BoostingModel
-@{
-	ViewData["Title"] = "SoloBoosting";
-}
-<head>
+﻿<head>
 
 	<meta charset="UTF-8">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
@@ -15,6 +9,7 @@
 	<link href="~/css/PostCopy.css" rel="stylesheet" />
 	<link href="~/css/site.css" rel="stylesheet" />
 </head>
+
 <div data-elementor-type="wp-page" data-elementor-id="3628" class="elementor elementor-3628" data-elementor-settings="[]">
 	<div class="elementor-inner">
 		<div class="elementor-section-wrap">
@@ -33,7 +28,7 @@
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-33c305c elementor-widget elementor-widget-heading animated fadeInDown" data-id="33c305c" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
 										<div class="elementor-widget-container">
-											<h1 class="elementor-heading-title elementor-size-default">Solo Boost</h1>
+											<h1 class="elementor-heading-title elementor-size-default">Duo Boost</h1>
 										</div>
 									</div>
 								</div>
@@ -50,7 +45,14 @@
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-d34f6c6 elementor-widget elementor-widget-text-editor" data-id="d34f6c6" data-element_type="widget" data-widget_type="text-editor.default">
 										<div class="elementor-widget-container">
-											<div class="elementor-text-editor elementor-clearfix"><p style="color: #fff; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">70%+ winrate guaranteed. Account protection with offline mode and VPN. Once purchased, please join our discord to discuss your order.<br>Solo queue boosting involves a&nbsp;<span style="font-size: 14px;">booster logging on to your account and playing games in solo queue until&nbsp; your desired division is reached.</span></p></div>
+											<div class="elementor-text-editor elementor-clearfix">
+												<p style="color: #fff; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
+													70%+ winrate guaranteed. Your assigned booster will attempt to play and adapt to your time schedule. Please bear in mind however that Duo boosting takes on average twice as long as it relies on schedules matching! Once purchased, please join our discord to discuss your order.<br>You will play with one of our boosters in duo queue until we rank your account up to your desired division. Duo&nbsp;<span style="font-family: &quot;Open Sans&quot;, muli; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;">queue boosting involves playing alongside a booster (who will add you in-game) </span>
+													<span style="font-family: &quot;Open Sans&quot;, muli; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;">
+														until&nbsp; your desired division is reached.
+													</span>
+												</p>												</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -71,18 +73,17 @@
 											<div class="eael-contact-form eael-gravity-form title-description-hide eael-contact-form-align-default">
 												<div class="eael-gravity-form-heading">
 													<h3 class="eael-contact-form-title eael-gravity-form-title">
-														SOLO BOOST
+														Duo BOOST
 													</h3>
 												</div>
-												<form asp-action="Create" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
-													  data-ajax-success="Bindgrid"
-													  data-ajax="true"
-													  data-ajax-method="POST">
+
+												@using (Html.BeginForm("", ""))
+												{
 													<div class="row pb-4">
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-																<select name="YourCurrentLeague" asp-for="YourCurrentLeague" id="current-rank" class="medium gfield_select" aria-required="true" aria-invalid="false">
+																<select name="input_277" id="current-rank" class="medium gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="10">Iron</option>
 																	<option value="20">Bronze</option>
 																	<option value="30">Silver</option>
@@ -96,7 +97,7 @@
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
-																<select name="DesiredCurrentLeague" asp-for="DesiredCurrentLeague" id="desired-rank" class="medium gfield_select" aria-required="true" aria-invalid="false">
+																<select name="input_281" id="desired-rank" class="medium gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="10">Iron</option>
 																	<option value="20">Bronze</option>
 																	<option value="30">Silver</option>
@@ -112,7 +113,7 @@
 													<div class="row pb-4">
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
-																<select name="CurrentDivision" asp-for="CurrentDivision" id="current-div" class="medium gfield_select" aria-required="true" aria-invalid="false">
+																<select name="input_278" id="current-div" class="medium gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="1">Division IV</option>
 																	<option value="2">Division III</option>
 																	<option value="3">Division II</option>
@@ -123,7 +124,7 @@
 														<div class="col-md-3"></div>
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
-																<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision"  id="input_10_283" class="medium gfield_select" aria-required="true" aria-invalid="false">
+																<select name="input_283" id="input_10_283" class="medium gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="1">Division IV</option>
 																	<option value="2">Division III</option>
 																	<option value="3">Division II</option>
@@ -136,7 +137,7 @@
 													<div class="row pb-4">
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
-																<select name="CurrentLP" id="input_10_279" asp-for="CurrentLP" class="medium gfield_select" aria-required="true" aria-invalid="false">
+																<select name="input_279" id="input_10_279" class="medium gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="LP 0-20">LP 0-20</option>
 																	<option value="LP 21-40">LP 21-40</option>
 																	<option value="LP 41-60">LP 41-60</option>
@@ -154,7 +155,7 @@
 														<div class="col-md-6">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																<select name="Server" asp-for="Server"  id="your-server" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select name="input_43" id="your-server" class="large gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="Europe West">Europe West</option>
 																	<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																	<option value="North America">North America</option>
@@ -174,7 +175,7 @@
 																<label class="pb-3 gfield_label" for="queue-type">
 																	TYPE OF QUEUE:<span class="gfield_required">*</span>
 																</label>
-																<select name="TypeOfQueue" asp-for="TypeOfQueue"  id="queue-type" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select name="input_45" id="queue-type" class="large gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
 																	<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
 																</select>
@@ -187,78 +188,27 @@
 														<div class="col-12 gfield_description" id="gfield_description_10_93">Extra charge for special offer is 15% (select at least two)</div>
 														<div class="ginput_container row pt-4 pb-4">
 															<div class="col-1"></div>
-															<div class="col-2">
-																<input name="input_93.1" type="checkbox" value="Top" id="choice_10_93_1">
-																<label for="choice_10_93_1" id="label_10_93_1">
-																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png&quot;);" data-was-processed="true">
-																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png"><noscript>
-																			<img src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png" />
-																		</noscript>
-																	</span>
-																	<label style="padding-left: 5rem;" class="image-choices-choice-text">Top</label>
-																</label>
-
-															</div>
-															<div class="col-2">
-																<input name="input_93.2" type="checkbox" value="Jungle" id="choice_10_93_2">
-																<label for="choice_10_93_2" id="label_10_93_2">
-																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png&quot;);" data-was-processed="true">
-																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png"><noscript>
-																			<img src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png" />
-																		</noscript>
-																	</span><label style="padding-left: 5rem;" class="image-choices-choice-text">Jungle</label>
+															<div class="col-4">
+																<input class="single-select-checkbox" name="input_93.2" type="checkbox" value="Jungle" id="choice_10_93_2">
+																<label for="choice_10_93_2" id="label_12_287_0">
+																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png&quot;);" data-was-processed="true">
+																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular.png" /></noscript>
+																	</span><label class="image-choices-choice-text">Regular</label>
 																</label>
 															</div>
-															<div class="col-2">
-																<input name="input_93.3" type="checkbox" value="Middle" id="choice_10_93_3">
-																<label for="choice_10_93_3" id="label_10_93_3">
-																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png&quot;);" data-was-processed="true">
-																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png"><noscript>
-																			<img src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png" />
-																		</noscript>
-																	</span><label style="padding-left: 5rem;" class="image-choices-choice-text">Middle</label>
+															<div class="col-4">
+																<input class="single-select-checkbox" name="input_93.1" type="checkbox" value="Top" id="choice_10_93_1">
+																<label for="choice_10_93_1" id="label_12_287_1">
+																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png&quot;);" data-was-processed="true"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium.png" /></noscript></span>
+																	<label class="image-choices-choice-text">Premium</label>
 																</label>
 															</div>
-															<div class="col-2">
-																<input name="input_93.4" type="checkbox" value="ADC" id="choice_10_93_4">
-																<label for="choice_10_93_4" id="label_10_93_4">
-																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png&quot;);" data-was-processed="true">
-																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png"><noscript>
-																			<img src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png" />
-																		</noscript>
-																	</span><label style="padding-left: 5rem;" class="image-choices-choice-text">ADC</label>
-																</label>
-															</div>
-															<div class="col-2">
-																<input name="input_93.5" type="checkbox" value="Support" id="choice_10_93_5">
-																<label for="choice_10_93_5" id="label_10_93_5">
-																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png&quot;);" data-was-processed="true">
-																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" /></noscript>
-																	</span><label style="padding-left: 5rem;" class="image-choices-choice-text">Support</label>
-																</label>
-															</div>
-															<div class="col-1"></div>
 														</div>
 													</div>
 
-													<div class="form-group">
-														<div class="row pb-4">
-															<label class=" gfield_label" for="specific-champions">SPECIFIC CHAMPIONS:</label>
-															<input class=" large " name="SpecificChampions" id="specific-champions" asp-for="SpecificChampions" type="text">
-														</div>
-													</div>
-													<div class="row pb-4">
-														<label class=" gfield_label" for="vpn-or-not">CHOOSE WHETHER BOOSTER PLAY WITH VPN OR NOT?</label>
-														<select name="VPN" asp-for="VPN" id="vpn-or-not" class=" large gfield_select" aria-invalid="false">
-															<option value="False">No</option>
-															<option value="True">Yes</option>
-														</select>
-														<p>This extra option is free of charge!</p>
-													</div>
-
-													<div class="row  pl-4 pr-4 pb-4">
+													<div class="row pl-4 pr-4  pb-4">
 														<label class=" gfield_label" for="discount-text">DISCOUNT COUPON:</label>
-														<input class=" large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+														<input class=" large " name="input_286" id="discount-text" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 													</div>
 
 													<div class="row pb-4 d-flex justify-content-center">
@@ -278,7 +228,7 @@
 													<div class="row pt-4 d-flex justify-content-center">
 														<button class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
 													</div>
-												</form>
+												}
 
 												<script type="text/javascript" data-eqcss-read="true">jQuery(document).ready(function () { jQuery(document).trigger('gform_post_render', [10, 1]) });</script>
 											</div>
@@ -293,3 +243,4 @@
 		</div>
 	</div>
 </div>
+
