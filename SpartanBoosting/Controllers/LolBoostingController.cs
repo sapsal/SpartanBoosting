@@ -16,29 +16,42 @@ namespace SpartanBoosting.Controllers
 
         [ValidateAntiForgeryToken()]
         [HttpPost]
-        public JsonResult Create(Models.BoostingModel BoostingModel)
+        public JsonResult CreateSolo(Models.BoostingModel BoostingModel)
         {
             return Json(BoostingModel);
         }
 
-        public IActionResult SoloBoostingSubmit(Models.BoostingModel Model)
+        [ValidateAntiForgeryToken()]
+        [HttpPost]
+        public JsonResult CreateDuo(Models.BoostingModel BoostingModel)
+        {
+            return Json(BoostingModel);
+        }
+
+        [ValidateAntiForgeryToken()]
+        [HttpPost]
+        public JsonResult CreatePlacementMatches(Models.PlacementMatchesModel PlacementMatchesModel)
+        {
+            return Json(PlacementMatchesModel);
+        }
+
+
+        public IActionResult DuoBoosting()
         {
             Models.BoostingModel model = new Models.BoostingModel();
             return View(model);
         }
-        public IActionResult DuoBoosting()
-        {
-            return View();
-        }
 
         public IActionResult WinBoosting()
         {
-            return View();
+            Models.BoostingModel model = new Models.BoostingModel();
+            return View(model);
         }
 
         public IActionResult PlacementMatches()
         {
-            return View();
+            Models.PlacementMatchesModel model = new Models.PlacementMatchesModel();
+            return View(model);
         }
     }
 }

@@ -74,7 +74,7 @@
 														SOLO BOOST
 													</h3>
 												</div>
-												<form asp-action="Create" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
+												<form asp-action="CreateSolo" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
 													  data-ajax-success="Bindgrid"
 													  data-ajax="true"
 													  data-ajax-method="POST">
@@ -188,7 +188,7 @@
 														<div class="ginput_container row pt-4 pb-4">
 															<div class="col-1"></div>
 															<div class="col-2">
-																<input name="input_93.1" type="checkbox" value="Top" id="choice_10_93_1">
+																<input asp-for="SpecificRolesTop" name="SpecificRolesTop" type="checkbox" value="Top" id="choice_10_93_1">
 																<label for="choice_10_93_1" id="label_10_93_1">
 																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png&quot;);" data-was-processed="true">
 																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png"><noscript>
@@ -200,7 +200,7 @@
 
 															</div>
 															<div class="col-2">
-																<input name="input_93.2" type="checkbox" value="Jungle" id="choice_10_93_2">
+																<input asp-for="SpecificRolesJungle" name="SpecificRolesJungle" type="checkbox" value="Jungle" id="choice_10_93_2">
 																<label for="choice_10_93_2" id="label_10_93_2">
 																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png&quot;);" data-was-processed="true">
 																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png"><noscript>
@@ -210,7 +210,7 @@
 																</label>
 															</div>
 															<div class="col-2">
-																<input name="input_93.3" type="checkbox" value="Middle" id="choice_10_93_3">
+																<input asp-for="SpecificRolesMiddle" name="SpecificRolesMiddle" type="checkbox" value="Middle" id="choice_10_93_3">
 																<label for="choice_10_93_3" id="label_10_93_3">
 																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png&quot;);" data-was-processed="true">
 																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png"><noscript>
@@ -220,7 +220,7 @@
 																</label>
 															</div>
 															<div class="col-2">
-																<input name="input_93.4" type="checkbox" value="ADC" id="choice_10_93_4">
+																<input asp-for="SpecificRolesADC" name="SpecificRolesADC" type="checkbox" value="ADC" id="choice_10_93_4">
 																<label for="choice_10_93_4" id="label_10_93_4">
 																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png&quot;);" data-was-processed="true">
 																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png"><noscript>
@@ -230,7 +230,7 @@
 																</label>
 															</div>
 															<div class="col-2">
-																<input name="input_93.5" type="checkbox" value="Support" id="choice_10_93_5">
+																<input asp-for="SpecificRolesSupport" name="SpecificRolesSupport" type="checkbox" value="Support" id="choice_10_93_5">
 																<label for="choice_10_93_5" id="label_10_93_5">
 																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png&quot;);" data-was-processed="true">
 																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" /></noscript>
@@ -256,7 +256,7 @@
 														<p>This extra option is free of charge!</p>
 													</div>
 
-													<div class="row  pl-4 pr-4 pb-4">
+													<div class="row pb-4">
 														<label class=" gfield_label" for="discount-text">DISCOUNT COUPON:</label>
 														<input class=" large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 													</div>
