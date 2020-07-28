@@ -1,0 +1,171 @@
+﻿.elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-container {
+	min-height: 420px;
+}
+
+	.elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-container:after {
+		content: "";
+		min-height: inherit;
+	}
+
+.elementor-3628 .elementor-element.elementor-element-440f3f9:not(.elementor-motion-effects-element-type-background), .elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+	background-image: url("https://spartanboosting.com/wp-content/uploads/2020/06/spartan-bg.jpg");
+	background-position: center center;
+	background-size: auto;
+}
+
+.elementor-3628 .elementor-element.elementor-element-440f3f9 {
+	transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+
+	.elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-background-overlay {
+		transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+	}
+
+	.elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-shape-bottom .elementor-shape-fill {
+		fill: #131619;
+	}
+
+	.elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-shape-bottom svg {
+		width: calc(150% + 1.3px);
+		height: 120px;
+	}
+
+.elementor-3628 .elementor-element.elementor-element-33c305c {
+	text-align: center;
+}
+
+	.elementor-3628 .elementor-element.elementor-element-33c305c .elementor-heading-title {
+		color: #FFFFFF;
+		font-family: "Philosopher", muli;
+		font-size: 50px;
+		letter-spacing: 10px;
+		text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+	}
+
+	.elementor-3628 .elementor-element.elementor-element-33c305c > .elementor-widget-container {
+		padding: 200px 0px 0px 0px;
+	}
+
+.elementor-3628 .elementor-element.elementor-element-baabb8d > .elementor-container > .elementor-row > .elementor-column > .elementor-column-wrap > .elementor-widget-wrap {
+	align-content: center;
+	align-items: center;
+}
+
+.elementor-3628 .elementor-element.elementor-element-baabb8d {
+	padding: 20px 0px 20px 0px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-c6f3b69 > .elementor-column-wrap > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute) {
+	margin-bottom: 20px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-d34f6c6 .elementor-text-editor {
+	text-align: center;
+}
+
+.elementor-3628 .elementor-element.elementor-element-d34f6c6 {
+	color: #C3C3C3;
+	font-family: "Open Sans", muli;
+	font-size: 14px;
+	line-height: 1.4em;
+	letter-spacing: 1px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-b3c39ee .elementor-text-editor {
+	text-align: center;
+}
+
+.elementor-3628 .elementor-element.elementor-element-b3c39ee {
+	color: #C3C3C3;
+	font-family: "Open Sans", muli;
+	font-size: 14px;
+	line-height: 1.4em;
+	letter-spacing: 1px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-5d457d5 > .elementor-container {
+	min-height: 500px;
+}
+
+	.elementor-3628 .elementor-element.elementor-element-5d457d5 > .elementor-container:after {
+		content: "";
+		min-height: inherit;
+	}
+
+	.elementor-3628 .elementor-element.elementor-element-5d457d5 > .elementor-container > .elementor-row > .elementor-column > .elementor-column-wrap > .elementor-widget-wrap {
+		align-content: flex-start;
+		align-items: flex-start;
+	}
+
+.elementor-3628 .elementor-element.elementor-element-5d457d5:not(.elementor-motion-effects-element-type-background), .elementor-3628 .elementor-element.elementor-element-5d457d5 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+	background-image: url("https://spartanboosting.com/wp-content/uploads/2020/06/about-bg.jpg");
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.elementor-3628 .elementor-element.elementor-element-5d457d5 > .elementor-background-overlay {
+	background-color: #131619;
+	opacity: 0.3;
+	transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.elementor-3628 .elementor-element.elementor-element-5d457d5 {
+	transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .validation_message {
+	display: block !important;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .validation_error {
+	display: block !important;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .gform_wrapper .gform_title, .elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .eael-gravity-form-title {
+	color: #FD941F;
+	font-family: "Open Sans", muli;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 1.4em;
+	letter-spacing: 1px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .gfield.gsection {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .gform_wrapper .gf_scroll_text {
+	width: 100%;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .gform_footer input[type="submit"] {
+	width: 100px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .gform_body .gform_page_footer input[type="submit"] {
+	width: 100px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .gform_body .gform_page_footer input[type="button"] {
+	width: 100px;
+}
+
+.elementor-3628 .elementor-element.elementor-element-f27e73c .eael-gravity-form .gform_wrapper li.gfield_error input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), .elementor-3628 .elementor-element.elementor-element-f27e73c .gform_wrapper li.gfield_error textarea {
+	border-width: 1px;
+}
+
+@media(max-width: 1024px) {
+	.elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-shape-bottom svg {
+		width: calc(150% + 1.3px);
+		height: 80px;
+	}
+}
+
+@media(max-width: 767px) {
+	.elementor-3628 .elementor-element.elementor-element-440f3f9 > .elementor-shape-bottom svg {
+		width: calc(150% + 1.3px);
+		height: 60px;
+	}
+}
