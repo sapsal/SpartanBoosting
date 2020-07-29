@@ -35,6 +35,13 @@ namespace SpartanBoosting.Controllers
             return Json(PlacementMatchesModel);
         }
 
+        [ValidateAntiForgeryToken()]
+        [HttpPost]
+        public JsonResult CreateWinBoost(Models.WinBoostModel WinBoostModel)
+        {
+            return Json(WinBoostModel);
+        }
+
 
         public IActionResult DuoBoosting()
         {
@@ -44,7 +51,7 @@ namespace SpartanBoosting.Controllers
 
         public IActionResult WinBoosting()
         {
-            Models.BoostingModel model = new Models.BoostingModel();
+            Models.WinBoostModel model = new Models.WinBoostModel();
             return View(model);
         }
 

@@ -37,4 +37,16 @@ namespace SpartanBoosting.Models
 		public string NumOfGames { get; set; }
 		public string Discount { get; set; }
 	}
+
+	public class WinBoostModel
+	{
+		public string YourCurrentLeague { get; set; }	
+		public string CurrentDivision { get; set; }
+		public string Server { get; set; }
+		public string TypeOfService { get; set; }
+		public string TypeOfQueue { get; set; }
+		public string TypeOfDuoRegular { get; set; }
+		public string TypeOfDuoPremium { get; set; }
+		public string Discount { get; set; }
+	}
 }
