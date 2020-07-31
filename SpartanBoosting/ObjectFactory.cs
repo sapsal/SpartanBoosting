@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SpartanBoosting.Models.Pricing;
 using System.IO;
+using System.Reflection;
 
 namespace SpartanBoosting
 {
@@ -16,10 +17,7 @@ namespace SpartanBoosting
 		public static List<WinBoostPricing> PlacementBoostPricing = new List<WinBoostPricing>();//Maybe create own model
 		public static List<WinBoostPricing> TFTPlacementBoostPricing = new List<WinBoostPricing>();//Maybe create own model
 		public static List<TFTSoloBoostPricing> TFTSoloBoostPricing = new List<TFTSoloBoostPricing>();
-		//work computer
-		private static string fileName = @"C:\Users\warder.SGSCO\source\repos\robertwardellSGS\SpartanBoosting\SpartanBoosting\Gameboost_Prices_22062020_-_TFT_Update.xlsx";
-		//my computer
-		// private static string fileName = @"C:\Users\bobby\Source\Repos\SpartanBoosting\SpartanBoosting\Gameboost_Prices_22062020_-_TFT_Update.xlsx";
+		private static string fileName = Path.Combine(Environment.CurrentDirectory, @"Gameboost_Prices_22062020_-_TFT_Update.xlsx");
 		private static FileInfo file = new FileInfo(fileName);
 
 		public static void LoadPricing()

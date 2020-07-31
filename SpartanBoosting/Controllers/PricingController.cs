@@ -70,9 +70,7 @@ namespace SpartanBoosting.Controllers
 				return Json(1.50);
 			else
 			{
-
-				price = decimal.Parse(result.OurPrice);
-				price = (System.Math.Ceiling(price * 100) / 100);
+				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
 				return Json(price);
 			}
 		}
