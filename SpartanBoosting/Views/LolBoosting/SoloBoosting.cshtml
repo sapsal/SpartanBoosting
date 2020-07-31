@@ -77,18 +77,18 @@
 												<form asp-action="CreateSolo" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
 													  data-ajax-success="Bindgrid"
 													  data-ajax="true"
-													  data-ajax-method="POST">
+													  data-ajax-method="POST" data-pricing="SoloPricing">
 													<div class="row pb-4">
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
 																<select name="YourCurrentLeague" asp-for="YourCurrentLeague" id="current-rank" class="medium gfield_select" aria-required="true" aria-invalid="false">
-																	<option value="10">Iron</option>
-																	<option value="20">Bronze</option>
-																	<option value="30">Silver</option>
-																	<option value="40">Gold</option>
-																	<option value="50">Platinum</option>
-																	<option value="60">Diamond</option>
+																	<option value="Iron">Iron</option>
+																	<option value="Bronze">Bronze</option>
+																	<option value="Silver">Silver</option>
+																	<option value="Gold">Gold</option>
+																	<option value="Platinum">Platinum</option>
+																	<option value="Diamond">Diamond</option>
 																</select>
 															</div>
 														</div>
@@ -97,13 +97,13 @@
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
 																<select name="DesiredCurrentLeague" asp-for="DesiredCurrentLeague" id="desired-rank" class="medium gfield_select" aria-required="true" aria-invalid="false">
-																	<option value="10">Iron</option>
-																	<option value="20">Bronze</option>
-																	<option value="30">Silver</option>
-																	<option value="40">Gold</option>
-																	<option value="50">Platinum</option>
-																	<option value="60">Diamond</option>
-																	<option value="70">Master</option>
+																	<option value="Iron">Iron</option>
+																	<option value="Bronze">Bronze</option>
+																	<option value="Silver">Silver</option>
+																	<option value="Gold">Gold</option>
+																	<option value="Platinum">Platinum</option>
+																	<option value="Diamond">Diamond</option>
+																	<option value="Master">Master</option>
 																</select>
 															</div>
 														</div>
@@ -113,21 +113,21 @@
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
 																<select name="CurrentDivision" asp-for="CurrentDivision" id="current-div" class="medium gfield_select" aria-required="true" aria-invalid="false">
-																	<option value="1">Division IV</option>
-																	<option value="2">Division III</option>
-																	<option value="3">Division II</option>
-																	<option value="4">Division I</option>
+																	<option value="IV">Division IV</option>
+																	<option value="III">Division III</option>
+																	<option value="II">Division II</option>
+																	<option value="I">Division I</option>
 																</select>
 															</div>
 														</div>
 														<div class="col-md-3"></div>
 														<div class="col-md-3">
 															<div class="ginput_container ginput_container_select">
-																<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision"  id="input_10_283" class="medium gfield_select" aria-required="true" aria-invalid="false">
-																	<option value="1">Division IV</option>
-																	<option value="2">Division III</option>
-																	<option value="3">Division II</option>
-																	<option value="4">Division I</option>
+																<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision" id="input_10_283" class="medium gfield_select" aria-required="true" aria-invalid="false">
+																	<option value="IV">Division IV</option>
+																	<option value="III">Division III</option>
+																	<option value="II">Division II</option>
+																	<option value="I">Division I</option>
 																</select>
 															</div>
 														</div>
@@ -154,7 +154,7 @@
 														<div class="col-md-6">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																<select name="Server" asp-for="Server"  id="your-server" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select name="Server" asp-for="Server" id="your-server" class="large gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="Europe West">Europe West</option>
 																	<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																	<option value="North America">North America</option>
@@ -174,7 +174,7 @@
 																<label class="pb-3 gfield_label" for="queue-type">
 																	TYPE OF QUEUE:<span class="gfield_required">*</span>
 																</label>
-																<select name="TypeOfQueue" asp-for="TypeOfQueue"  id="queue-type" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select name="TypeOfQueue" asp-for="TypeOfQueue" id="queue-type" class="large gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
 																	<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
 																</select>
@@ -293,3 +293,4 @@
 		</div>
 	</div>
 </div>
+<script src="~/js/LolBoosting.js"></script>

@@ -24,8 +24,7 @@ namespace SpartanBoosting
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
-			ObjectFactory.LoadSoloBoost();
-			ObjectFactory.LoadDuoBoost();
+			ObjectFactory.LoadPricing();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

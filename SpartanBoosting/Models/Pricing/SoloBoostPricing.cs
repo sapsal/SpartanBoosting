@@ -24,4 +24,18 @@ namespace SpartanBoosting.Models.Pricing
 		public string GameboostPremiumPrice { get; set; }
 		public string OurPremiumPrice { get; set; }
 	}
+	public class WinBoostPricing {
+		public string LastSeasonStanding { get; set; }
+		public string NumberOfGames { get; set; }
+		public string GameboostPrice { get; set; }
+		public string OurPrice { get; set; }
+	}
+
+	public class TFTSoloBoostPricing {
+		public string CurrentDivision { get; set; }
+		public string CurrentLP { get; set; }
+		public string RequiredDivision { get; set; }
+		public string GameboostRegularPrice { get; set; }
+		public string OurRegularPrice { get; set; }
+	}
 }
