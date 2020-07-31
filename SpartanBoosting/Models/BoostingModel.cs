@@ -48,5 +48,7 @@ namespace SpartanBoosting.Models
 		public string TypeOfDuoRegular { get; set; }
 		public string TypeOfDuoPremium { get; set; }
 		public string Discount { get; set; }
+
+		public string NumOfGames { get; set; }
 	}
 }

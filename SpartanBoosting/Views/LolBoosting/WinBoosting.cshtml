@@ -86,18 +86,18 @@
 												<form asp-action="CreateWinBoost" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
 													  data-ajax-success="Bindgrid"
 													  data-ajax="true"
-													  data-ajax-method="POST">
+													  data-ajax-method="POST"  data-pricing="WinBoostPricing">
 													<div class="row pb-4">
 														<div class="col-md-12">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
 																<select asp-for="YourCurrentLeague" name="YourCurrentLeague" id="current-rank" class="medium gfield_select" aria-required="true" aria-invalid="false">
-																	<option value="10">Iron</option>
-																	<option value="20">Bronze</option>
-																	<option value="30">Silver</option>
-																	<option value="40">Gold</option>
-																	<option value="50">Platinum</option>
-																	<option value="60">Diamond</option>
+																	<option value="Iron">Iron</option>
+																	<option value="Bronze">Bronze</option>
+																	<option value="Silver">Silver</option>
+																	<option value="Gold">Gold</option>
+																	<option value="Platinum">Platinum</option>
+																	<option value="Diamond">Diamond</option>
 																</select>
 															</div>
 														</div>
@@ -106,10 +106,10 @@
 														<div class="col-md-12">
 															<div class="ginput_container ginput_container_select">
 																<select asp-for="CurrentDivision" name="CurrentDivision" id="current-div" class="medium gfield_select" aria-required="true" aria-invalid="false">
-																	<option value="1">Division IV</option>
-																	<option value="2">Division III</option>
-																	<option value="3">Division II</option>
-																	<option value="4">Division I</option>
+																	<option value="IV">Division IV</option>
+																	<option value="III">Division III</option>
+																	<option value="II">Division II</option>
+																	<option value="I">Division I</option>
 																</select>
 															</div>
 														</div>
@@ -183,6 +183,24 @@
 													</div>
 
 													<div class="row pl-4 pr-4 pb-4">
+														<label class=" gfield_label" for="num-games">NUMBER OF GAMES:</label>
+														<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="large gfield_select" aria-required="true" aria-invalid="false">
+															<option value="1" selected="selected">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
+															<option value="9">9</option>
+															<option value="10">
+																10
+															</option>
+														</select>
+													</div>
+
+													<div class="row pl-4 pr-4 pb-4">
 														<label class=" gfield_label" for="discount-text">DISCOUNT COUPON:</label>
 														<input class=" large " asp-for="Discount" name="Discount" id="discount-text" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 													</div>
@@ -196,7 +214,7 @@
 													</div>
 													<div class="row pb-4 d-flex justify-content-center">
 														<div class="ginput_container ginput_container_total ">
-															<span class="ginput_total ginput_total_10" aria-live="polite">0,00 €</span>
+															<span class="ginput_total ginput_total_10" aria-live="polite">1.50 €</span>
 															<input type="hidden" name="input_95" id="input_10_95" class="gform_hidden">
 														</div>
 													</div>

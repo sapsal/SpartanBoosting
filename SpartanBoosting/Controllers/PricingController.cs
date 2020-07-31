@@ -58,5 +58,24 @@ namespace SpartanBoosting.Controllers
 			}
 		}
 
+		[HttpPost]
+		public ActionResult WinBoostPricing(Models.WinBoostModel Model)
+		{
+			decimal price;
+			string premiumOrRegular = Model.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
+			string lastSeason = Model.TypeOfService == "Duo" ? $"{Model.YourCurrentLeague} {Model.CurrentDivision} ({Model.TypeOfService}) ({premiumOrRegular})"
+			: $"{Model.YourCurrentLeague} {Model.CurrentDivision} ({Model.TypeOfService})";
+			WinBoostPricing result = ObjectFactory.WinBoostPricing.Where(x => x.LastSeasonStanding == lastSeason && x.NumberOfGames == Model.NumOfGames).FirstOrDefault();
+			if (result == null)
+				return Json(1.50);
+			else
+			{
+
+				price = decimal.Parse(result.OurPrice);
+				price = (System.Math.Ceiling(price * 100) / 100);
+				return Json(price);
+			}
+		}
+
 	}
 }
