@@ -1,4 +1,5 @@
-﻿<head>
+﻿@model TFTPlacementModel
+<head>
 
 	<meta charset="UTF-8">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
@@ -74,13 +75,15 @@
 													</h3>
 												</div>
 
-												@using (Html.BeginForm("", ""))
-												{
+												<form asp-action="CreateTFTPlacementBoost" role="form" asp-controller="TFTBoosting" asp-antiforgery="true"
+													  data-ajax-success="Bindgrid"
+													  data-ajax="true"
+													  data-ajax-method="POST" data-pricing="TFTPlacementBoostPricing">
 													<div class="row pb-4">
 														<div class="col-md-12">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="last-season-standing">LAST SEASON STANDING:<span class="gfield_required">*</span></label>
-																<select name="input_14" id="last-season-standing" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="large gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="Unranked">Unranked</option>
 																	<option value="Iron">Iron</option>
 																	<option value="Bronze">Bronze</option>
@@ -99,7 +102,7 @@
 														<div class="col-md-12">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																<select name="input_43" id="your-server" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select asp-for="Server" name="Server" id="your-server" class="large gfield_select" aria-required="true" aria-invalid="false">
 																	<option value="Europe West">Europe West</option>
 																	<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																	<option value="North America">North America</option>
@@ -118,7 +121,7 @@
 
 													<div class="row pl-4 pr-4 pb-4">
 														<label class=" gfield_label" for="num-games">NUMBER OF GAMES:</label>
-														<select name="input_110" id="num-games" class="large gfield_select" aria-required="true" aria-invalid="false">
+														<select asp-for="NumberOfGames" name="NumberOfGames" id="num-games" class="large gfield_select" aria-required="true" aria-invalid="false">
 															<option value="1" selected="selected">1</option>
 															<option value="2">2</option>
 															<option value="3">3</option>
@@ -129,7 +132,7 @@
 
 													<div class="row pl-4 pr-4 pb-4">
 														<label class=" gfield_label" for="discount-text">DISCOUNT COUPON:</label>
-														<input class=" large " name="input_286" id="discount-text" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+														<input class=" large " asp-for="DiscountCode" name="DiscountCode" id="discount-text" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 													</div>
 
 													<div class="row pb-4 d-flex justify-content-center">
@@ -149,7 +152,7 @@
 													<div class="row pt-4 d-flex justify-content-center">
 														<button class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
 													</div>
-												}
+												</form>
 
 												<script type="text/javascript" data-eqcss-read="true">jQuery(document).ready(function () { jQuery(document).trigger('gform_post_render', [10, 1]) });</script>
 											</div>

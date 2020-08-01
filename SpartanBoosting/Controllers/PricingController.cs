@@ -75,5 +75,51 @@ namespace SpartanBoosting.Controllers
 			}
 		}
 
+		[HttpPost]
+		public ActionResult PlacementBoostPricing(Models.PlacementMatchesModel Model)
+		{
+			decimal price;
+			string premiumOrRegular = Model.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
+			string lastSeason = Model.TypeOfService == "Duo" ? $"{Model.LastSeasonStanding} ({Model.TypeOfService}) ({premiumOrRegular})"
+			: $"{Model.LastSeasonStanding} ({Model.TypeOfService})";
+			WinBoostPricing result = ObjectFactory.PlacementBoostPricing.Where(x => x.LastSeasonStanding == lastSeason && x.NumberOfGames == Model.NumOfGames).FirstOrDefault();
+			if (result == null)
+				return Json(1.50);
+			else
+			{
+				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
+				return Json(price);
+			}
+		}
+
+		[HttpPost]
+		public ActionResult TFTSoloBoostPricing(Models.TFTBoostingModel Model)
+		{
+			TFTSoloBoostPricing result = ObjectFactory.TFTSoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
+			&& x.RequiredDivision == $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}").FirstOrDefault();
+			if (result == null)
+				return Json(0);
+			else
+			{
+				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurRegularPrice) * 100) / 100);
+				return Json(price);
+			}
+
+		}
+
+		[HttpPost]
+		public ActionResult TFTPlacementBoostPricing(Models.TFTPlacementModel Model)
+		{
+			WinBoostPricing result = ObjectFactory.TFTPlacementBoostPricing.Where(x => x.LastSeasonStanding == Model.LastSeasonStanding && x.NumberOfGames == Model.NumberOfGames).FirstOrDefault();
+			if (result == null)
+				return Json(0);
+			else
+			{
+				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
+				return Json(price);
+			}
+
+		}
 	}
+
 }

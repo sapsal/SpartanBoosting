@@ -16,5 +16,18 @@ namespace SpartanBoosting.Controllers
         {
             return View();
         }
+
+        [ValidateAntiForgeryToken()]
+        [HttpPost]
+        public JsonResult CreateTFTSoloBoost(Models.TFTBoostingModel BoostingModel)
+        {
+            return Json(BoostingModel);
+        }
+        [ValidateAntiForgeryToken()]
+        [HttpPost]
+        public JsonResult CreateTFTPlacementBoost(Models.TFTPlacementModel BoostingModel)
+        {
+            return Json(BoostingModel);
+        }
     }
 }
