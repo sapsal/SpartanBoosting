@@ -12,8 +12,9 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public ActionResult SoloPricing(Models.BoostingModel Model)
 		{
+			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
 			SoloBoostPricing result = ObjectFactory.SoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
-			&& x.RequiredDivision == $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}").FirstOrDefault();
+			&& x.RequiredDivision == requiredDivision).FirstOrDefault();
 			if (result == null)
 				return Json(0);
 			else
@@ -37,8 +38,9 @@ namespace SpartanBoosting.Controllers
 		public ActionResult DuoPricing(Models.BoostingModel Model)
 		{
 			decimal price;
+			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
 			DuoBoostPricing result = ObjectFactory.DuoBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
-			&& x.RequiredDivision == $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}").FirstOrDefault();
+			&& x.RequiredDivision == requiredDivision).FirstOrDefault();
 			if (result == null)
 				return Json(0);
 			else
@@ -95,8 +97,9 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public ActionResult TFTSoloBoostPricing(Models.TFTBoostingModel Model)
 		{
+			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
 			TFTSoloBoostPricing result = ObjectFactory.TFTSoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
-			&& x.RequiredDivision == $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}").FirstOrDefault();
+			&& x.RequiredDivision == requiredDivision).FirstOrDefault();
 			if (result == null)
 				return Json(0);
 			else
