@@ -90,7 +90,7 @@
 														<div class="col-md-12">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="last-season-standing">LAST SEASON STANDING:<span class="gfield_required">*</span></label>
-																<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
 																	<option value="Unranked">Unranked</option>
 																	<option value="Iron">Iron</option>
 																	<option value="Bronze">Bronze</option>
@@ -109,7 +109,7 @@
 														<div class="col-md-6">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																<select asp-for="Server" name="Server" id="your-server" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
 																	<option value="Europe West">Europe West</option>
 																	<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																	<option value="North America">North America</option>
@@ -129,7 +129,7 @@
 																<label class="pb-3 gfield_label" for="queue-type">
 																	TYPE OF QUEUE:<span class="gfield_required">*</span>
 																</label>
-																<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
 																	<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
 																	<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
 																</select>
@@ -141,7 +141,7 @@
 														<div class="col-md-12">
 															<div class="ginput_container ginput_container_select">
 																<label class="pb-3 gfield_label" for="type-of-service">TYPE OF SERVICE:<span class="gfield_required">*</span></label>
-																<select asp-for="TypeOfService" name="TypeOfService" id="type-of-service" class="large gfield_select" aria-required="true" aria-invalid="false">
+																<select asp-for="TypeOfService" name="TypeOfService" id="type-of-service" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
 																	<option value="Solo">Solo</option>
 																	<option value="Duo">Duo</option>
 																</select>
@@ -156,7 +156,7 @@
 														<div class="ginput_container row pt-4 pb-4">
 															<div class="col-1"></div>
 															<div class="col-4">
-																<input class="single-select-checkbox" asp-for="TypeOfDuoRegular" name="TypeOfDuoRegular" type="checkbox" value="Jungle" id="choice_10_93_2">
+																<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoRegular" name="TypeOfDuoRegular" type="checkbox" value="Jungle" id="choice_10_93_2">
 																<label for="choice_10_93_2" id="label_12_287_0">
 																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png&quot;);" data-was-processed="true">
 																		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular-274x300.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-regular.png" /></noscript>
@@ -164,7 +164,7 @@
 																</label>
 															</div>
 															<div class="col-4">
-																<input class="single-select-checkbox" asp-for="TypeOfDuoPremium" name="TypeOfDuoPremium" type="checkbox" value="Top" id="choice_10_93_1">
+																<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoPremium" name="TypeOfDuoPremium" type="checkbox" value="Top" id="choice_10_93_1">
 																<label for="choice_10_93_1" id="label_12_287_1">
 																	<span data-bg="url(https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url(&quot;https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png&quot;);" data-was-processed="true"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium.png" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium-274x300.png" alt="" class="image-choices-choice-image" data-lightbox-src="https://spartanboosting.com/wp-content/uploads/2020/06/duo-premium.png" /></noscript></span>
 																	<label class="image-choices-choice-text">Premium</label>
@@ -175,7 +175,7 @@
 
 													<div class="row pl-4 pr-4 pb-4">
 														<label class=" gfield_label" for="num-games">NUMBER OF GAMES:</label>
-														<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="large gfield_select" aria-required="true" aria-invalid="false">
+														<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
 															<option value="1" selected="selected">1</option>
 															<option value="2">2</option>
 															<option value="3">3</option>

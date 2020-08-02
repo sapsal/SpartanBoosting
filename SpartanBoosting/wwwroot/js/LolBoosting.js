@@ -11,7 +11,7 @@ $('[name ="DesiredCurrentLeague"]').on('change', function () {
 		$('#master-rank-notification').hide()
 });
 
-$('form').on('keyup change paste', 'input, select, textarea', function () {
+$('.gfield-quote').on('keyup change paste', function () {
 	if (this.name == "DiscountCode") {
 		//ignore for apply button
 		return;
@@ -25,6 +25,18 @@ $('form').on('keyup change paste', 'input, select, textarea', function () {
 			debugger;
 			$('.ginput_total_10').text(dataofconfirm + ' €')
 			// do something with the result
+		}
+	});
+});
+
+$('#submit-quote').on('click', function () {
+	$.ajax({
+		url: '/LolBoosting/DisplayInformationAndPayment',
+		type: 'GET',
+		success: function (dataofconfirm) {
+			$('.gfield-pricing-quote').hide();
+			$('.gfield-pricing-quote-personal-information').html(dataofconfirm)
+			debugger
 		}
 	});
 });
