@@ -12,7 +12,7 @@ namespace SpartanBoosting.Utils
 		{
 			var customerService = new Stripe.CustomerService();
 			var chargeService = new Stripe.ChargeService();
-
+			var priceConverted = decimal.Parse(Price) * 100;
 			var customer = customerService.Create(new Stripe.CustomerCreateOptions
 			{
 				Email = PersonalInformation.Email,
@@ -22,7 +22,7 @@ namespace SpartanBoosting.Utils
 
 			return chargeService.Create(new Stripe.ChargeCreateOptions
 			{
-				Amount = long.Parse(Price),
+				Amount = (long)priceConverted,
 				Description = "Spartand Boosting",
 				Currency = "EUR",
 				Customer = customer.Id

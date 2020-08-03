@@ -16,7 +16,24 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
-			if (PersonalInformation.PaymentMethod == "PayPal")
+			if (PersonalInformation.PaymentMethod == "Paypal")
+			{
+				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
+			}
+			else
+			{
+				var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				return View();
+			}
+		}
+
+		[ValidateAntiForgeryToken()]
+		[HttpPost]
+		public IActionResult CreateDuo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
+		{
+			JsonResult Pricing = PricingController.DuoPricing(BoostingModel);
+
+			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
 			}
@@ -29,44 +46,34 @@ namespace SpartanBoosting.Controllers
 
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
-		public IActionResult CreateDuo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
-		{
-			//if (PersonalInformation.PaymentMethod == "PayPal")
-			//{
-			JsonResult Pricing = PricingController.DuoPricing(BoostingModel);
-			return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
-			//}
-			//else
-			//{ 
-			//}
-		}
-
-		[ValidateAntiForgeryToken()]
-		[HttpPost]
 		public IActionResult CreatePlacementMatches(Models.PlacementMatchesModel PlacementMatchesModel, Models.PersonalInformation PersonalInformation)
 		{
-			//if (PersonalInformation.PaymentMethod == "PayPal")
-			//{
 			JsonResult Pricing = PricingController.PlacementBoostPricing(PlacementMatchesModel);
-			return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
-			//}
-			//else
-			//{ 
-			//}		
+			if (PersonalInformation.PaymentMethod == "Paypal")
+			{
+				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
+			}
+			else
+			{
+				StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				return View();
+			}
 		}
 
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
 		public IActionResult CreateWinBoost(Models.WinBoostModel WinBoostModel, Models.PersonalInformation PersonalInformation)
 		{
-			//if (PersonalInformation.PaymentMethod == "PayPal")
-			//{
 			JsonResult Pricing = PricingController.WinBoostPricing(WinBoostModel);
-			return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
-			//}
-			//else
-			//{ 
-			//}
+			if (PersonalInformation.PaymentMethod == "Paypal")
+			{
+				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
+			}
+			else
+			{
+				StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				return View();
+			}
 		}
 
 		public IActionResult SoloBoosting()
