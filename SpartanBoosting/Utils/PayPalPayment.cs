@@ -33,7 +33,7 @@ namespace SpartanBoosting.Utils
 					},
 				RedirectUrls = new RedirectUrls()
 				{
-					ReturnUrl = "https://www.spartanboosting.co.uk/",
+					ReturnUrl = "https://localhost:44353/Quote/PurchaseQuote",
 					CancelUrl = "https://www.spartanboosting.co.uk"
 				},
 				Payer = new Payer()

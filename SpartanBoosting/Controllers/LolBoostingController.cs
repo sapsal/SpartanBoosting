@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Utils;
 using Stripe;
 
@@ -16,6 +18,8 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString()));
+
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
@@ -23,6 +27,12 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				if (result.Status == "succeeded" && result.Paid)
+				{
+					return RedirectToAction("PurchaseQuote", "Quote");
+				}
+
+				//something went wrong
 				return View();
 			}
 		}
@@ -32,6 +42,7 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateDuo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.DuoPricing(BoostingModel);
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString()));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
@@ -39,7 +50,13 @@ namespace SpartanBoosting.Controllers
 			}
 			else
 			{
-				StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				if (result.Status == "succeeded" && result.Paid)
+				{
+					return RedirectToAction("PurchaseQuote", "Quote");
+				}
+
+				//something went wrong
 				return View();
 			}
 		}
@@ -49,13 +66,21 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreatePlacementMatches(Models.PlacementMatchesModel PlacementMatchesModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.PlacementBoostPricing(PlacementMatchesModel);
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Value.ToString()));
+
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
 			}
 			else
 			{
-				StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				if (result.Status == "succeeded" && result.Paid)
+				{
+					return RedirectToAction("PurchaseQuote", "Quote");
+				}
+
+				//something went wrong
 				return View();
 			}
 		}
@@ -65,13 +90,21 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateWinBoost(Models.WinBoostModel WinBoostModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.WinBoostPricing(WinBoostModel);
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Value.ToString()));
+
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
 			}
 			else
 			{
-				StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+				if (result.Status == "succeeded" && result.Paid)
+				{
+					return RedirectToAction("PurchaseQuote", "Quote");
+				}
+
+				//something went wrong
 				return View();
 			}
 		}

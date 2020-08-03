@@ -9,6 +9,7 @@
 	<style type="text/css"></style>
 	<link href="~/css/PostCopy.css" rel="stylesheet" />
 	<link href="~/css/site.css" rel="stylesheet" />
+	<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 </head>
 
 <div data-elementor-type="wp-page" data-elementor-id="3628" class="elementor elementor-3628" data-elementor-settings="[]">
@@ -45,12 +46,15 @@
 							<div class="elementor-column-wrap  elementor-element-populated">
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-d34f6c6 elementor-widget elementor-widget-text-editor" data-id="d34f6c6" data-element_type="widget" data-widget_type="text-editor.default">
-										<div class="elementor-widget-container">
+										<div class="elementor-widget-container pb-4">
 											<div class="elementor-text-editor elementor-clearfix">
 												<p style="color: #fff; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
 													90% winrate guaranteed. Booster will play and adapt to your time schedule. Boosting starts immediately after your purchase.<br>One of our boosters will play out your placement games for you (10 games from unranked, 90% win rate guaranteed!)
 												</p>
 											</div>
+										</div>
+										<div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e809cc9d39b0d0001af5692" data-style-height="24px" data-style-width="100%" data-theme="dark">
+											<a href="https://uk.trustpilot.com/review/spartanboosting.com" target="_blank" rel="noopener">Trustpilot</a>
 										</div>
 									</div>
 								</div>
@@ -79,78 +83,81 @@
 													  data-ajax-success="Bindgrid"
 													  data-ajax="true"
 													  data-ajax-method="POST" data-pricing="TFTPlacementBoostPricing">
-													<div class="row pb-4">
-														<div class="col-md-12">
-															<div class="ginput_container ginput_container_select">
-																<label class="pb-3 gfield_label" for="last-season-standing">LAST SEASON STANDING:<span class="gfield_required">*</span></label>
-																<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																	<option value="Unranked">Unranked</option>
-																	<option value="Iron">Iron</option>
-																	<option value="Bronze">Bronze</option>
-																	<option value="Silver">Silver</option>
-																	<option value="Gold">Gold</option>
-																	<option value="Platinum">Platinum</option>
-																	<option value="Diamond">Diamond</option>
-																	<option value="Master">Master</option>
-																	<option value="Grand Master">Grand Master</option>
-																	<option value="Challenger">Challenger</option>
-																</select>
+													<div class="gfield-pricing-quote-personal-information"></div>
+													<div class="gfield-pricing-quote">
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="last-season-standing">LAST SEASON STANDING:<span class="gfield_required">*</span></label>
+																	<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																		<option value="Unranked">Unranked</option>
+																		<option value="Iron">Iron</option>
+																		<option value="Bronze">Bronze</option>
+																		<option value="Silver">Silver</option>
+																		<option value="Gold">Gold</option>
+																		<option value="Platinum">Platinum</option>
+																		<option value="Diamond">Diamond</option>
+																		<option value="Master">Master</option>
+																		<option value="Grand Master">Grand Master</option>
+																		<option value="Challenger">Challenger</option>
+																	</select>
+																</div>
 															</div>
 														</div>
-													</div>
-													<div class="row pb-4">
-														<div class="col-md-12">
-															<div class="ginput_container ginput_container_select">
-																<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																	<option value="Europe West">Europe West</option>
-																	<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
-																	<option value="North America">North America</option>
-																	<option value="Oceania">Oceania</option>
-																	<option value="Russia">Russia</option>
-																	<option value="Turkey">Turkey</option>
-																	<option value="Latin America North">Latin America North</option>
-																	<option value="Latin America South">Latin America South</option>
-																	<option value="Brazil">Brazil</option>
-																	<option value="Japan">Japan</option>
-																	<option value="Korea">Korea</option>
-																</select>
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
+																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																		<option value="Europe West">Europe West</option>
+																		<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
+																		<option value="North America">North America</option>
+																		<option value="Oceania">Oceania</option>
+																		<option value="Russia">Russia</option>
+																		<option value="Turkey">Turkey</option>
+																		<option value="Latin America North">Latin America North</option>
+																		<option value="Latin America South">Latin America South</option>
+																		<option value="Brazil">Brazil</option>
+																		<option value="Japan">Japan</option>
+																		<option value="Korea">Korea</option>
+																	</select>
+																</div>
 															</div>
 														</div>
-													</div>
 
-													<div class="row pl-4 pr-4 pb-4">
-														<label class=" gfield_label" for="num-games">NUMBER OF GAMES:</label>
-														<select asp-for="NumberOfGames" name="NumberOfGames" id="num-games" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-															<option value="1" selected="selected">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-														</select>
-													</div>
-
-													<div class="row pl-4 pr-4 pb-4">
-														<label class=" gfield_label" for="discount-text">DISCOUNT COUPON:</label>
-														<input class=" large " asp-for="DiscountCode" name="DiscountCode" id="discount-text" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
-													</div>
-
-													<div class="row pb-4 d-flex justify-content-center">
-														<button class="btn btn-primary apply-discount-btn">APPLY</button>
-													</div>
-
-													<div class="row pb-4 d-flex justify-content-center">
-														<label class="gfield_label total-label" for="input_10_95">TOTAL</label>
-													</div>
-													<div class="row pb-4 d-flex justify-content-center">
-														<div class="ginput_container ginput_container_total ">
-															<span class="ginput_total ginput_total_10" aria-live="polite">0,00 €</span>
-															<input type="hidden" name="input_95" id="input_10_95" class="gform_hidden">
+														<div class="row pl-4 pr-4 pb-4">
+															<label class=" gfield_label" for="num-games">NUMBER OF GAMES:</label>
+															<select asp-for="NumberOfGames" name="NumberOfGames" id="num-games" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																<option value="1" selected="selected">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
 														</div>
-													</div>
 
-													<div class="row pt-4 d-flex justify-content-center">
-														<button class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
+														<div class="row pl-4 pr-4 pb-4">
+															<label class=" gfield_label" for="discount-text">DISCOUNT COUPON:</label>
+															<input class=" large " asp-for="DiscountCode" name="DiscountCode" id="discount-text" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+														</div>
+
+														<div class="row pb-4 d-flex justify-content-center">
+															<button class="btn btn-primary apply-discount-btn">APPLY</button>
+														</div>
+
+														<div class="row pb-4 d-flex justify-content-center">
+															<label class="gfield_label total-label" for="input_10_95">TOTAL</label>
+														</div>
+														<div class="row pb-4 d-flex justify-content-center">
+															<div class="ginput_container ginput_container_total ">
+																<span class="ginput_total ginput_total_10" aria-live="polite">0,00 €</span>
+																<input type="hidden" name="input_95" id="input_10_95" class="gform_hidden">
+															</div>
+														</div>
+
+														<div class="row pt-4 d-flex justify-content-center">
+															<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
+														</div>
 													</div>
 												</form>
 

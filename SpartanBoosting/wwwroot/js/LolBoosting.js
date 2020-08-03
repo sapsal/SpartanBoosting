@@ -4,11 +4,18 @@
 	}
 });
 
-$('[name ="DesiredCurrentLeague"]').on('change', function () {
+$('[name="DesiredCurrentLeague"]').on('change', function () {
 	if (this.value == "Master")
 		$('#master-rank-notification').show()
 	else
 		$('#master-rank-notification').hide()
+});
+
+$(document).on("change", '[name="PaymentMethod"]', function () {
+	if (this.value == "Paypal")
+		$('.stripe-form').hide()
+	else
+		$('.stripe-form').show()
 });
 
 $('.gfield-quote').on('keyup change paste', function () {

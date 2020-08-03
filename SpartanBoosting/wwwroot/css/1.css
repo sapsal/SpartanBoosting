@@ -11,7 +11,7 @@
 	background-image: url("https://spartanboosting.com/wp-content/uploads/2020/07/spirit-blossom-thresh-lol-splash-art-uhdpaper.com-hd-3.2287.jpg");
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
 }
 
 .elementor-237 .elementor-element.elementor-element-ac90c1e > .elementor-background-overlay {
@@ -1051,7 +1051,7 @@
 @media(max-width:1024px) {
 	.elementor-237 .elementor-element.elementor-element-ac90c1e:not(.elementor-motion-effects-element-type-background), .elementor-237 .elementor-element.elementor-element-ac90c1e > .elementor-motion-effects-container > .elementor-motion-effects-layer {
 		background-position: center center;
-		background-size: auto;
+		background-size: 100% 100%;
 	}
 
 	.elementor-237 .elementor-element.elementor-element-04570fe .elementor-heading-title {
@@ -1066,7 +1066,7 @@
 @media(max-width:767px) {
 	.elementor-237 .elementor-element.elementor-element-ac90c1e:not(.elementor-motion-effects-element-type-background), .elementor-237 .elementor-element.elementor-element-ac90c1e > .elementor-motion-effects-container > .elementor-motion-effects-layer {
 		background-position: center center;
-		background-size: auto;
+		background-size: 100% 100%;
 	}
 
 	.elementor-237 .elementor-element.elementor-element-04570fe .elementor-heading-title {
