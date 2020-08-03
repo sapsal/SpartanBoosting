@@ -51,4 +51,16 @@ namespace SpartanBoosting.Models
 
 		public string NumOfGames { get; set; }
 	}
+
+	public class PersonalInformation
+	{
+		public string UserName { get; set; }
+		public string Password { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public string Email { get; set; }
+		public string Discord { get; set; }
+		public string PaymentMethod { get; set; }
+		public string stripeToken { get; set; }
+	}
 }

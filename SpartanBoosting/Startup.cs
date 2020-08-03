@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Stripe;
 
 namespace SpartanBoosting
 {
@@ -40,6 +41,7 @@ namespace SpartanBoosting
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
+
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
@@ -53,6 +55,8 @@ namespace SpartanBoosting
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
+
+			StripeConfiguration.SetApiKey("sk_test_51GuKbWF9YOHhm6ddnekRwwVMKi5X5XxEj5RtIGmemedeWHdMzyczJGRon90eAoj3oVqKsyI1EjLxg77YqCteqIyM00LMyi7RQ1");
 		}
 	}
 }

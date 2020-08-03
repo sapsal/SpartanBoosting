@@ -10,7 +10,7 @@ namespace SpartanBoosting.Controllers
 	public class PricingController : Controller
 	{
 		[HttpPost]
-		public ActionResult SoloPricing(Models.BoostingModel Model)
+		public JsonResult SoloPricing(Models.BoostingModel Model)
 		{
 			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
 			SoloBoostPricing result = ObjectFactory.SoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
@@ -35,7 +35,7 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult DuoPricing(Models.BoostingModel Model)
+		public JsonResult DuoPricing(Models.BoostingModel Model)
 		{
 			decimal price;
 			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
@@ -61,7 +61,7 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult WinBoostPricing(Models.WinBoostModel Model)
+		public JsonResult WinBoostPricing(Models.WinBoostModel Model)
 		{
 			decimal price;
 			string premiumOrRegular = Model.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
@@ -78,7 +78,7 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult PlacementBoostPricing(Models.PlacementMatchesModel Model)
+		public JsonResult PlacementBoostPricing(Models.PlacementMatchesModel Model)
 		{
 			decimal price;
 			string premiumOrRegular = Model.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
@@ -95,7 +95,7 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult TFTSoloBoostPricing(Models.TFTBoostingModel Model)
+		public JsonResult TFTSoloBoostPricing(Models.TFTBoostingModel Model)
 		{
 			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
 			TFTSoloBoostPricing result = ObjectFactory.TFTSoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
@@ -111,7 +111,7 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult TFTPlacementBoostPricing(Models.TFTPlacementModel Model)
+		public JsonResult TFTPlacementBoostPricing(Models.TFTPlacementModel Model)
 		{
 			WinBoostPricing result = ObjectFactory.TFTPlacementBoostPricing.Where(x => x.LastSeasonStanding == Model.LastSeasonStanding && x.NumberOfGames == Model.NumberOfGames).FirstOrDefault();
 			if (result == null)

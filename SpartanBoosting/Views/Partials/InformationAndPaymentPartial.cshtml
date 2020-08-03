@@ -1,6 +1,6 @@
 ﻿@using SpartanBoosting.Models
 @using System.Threading.Tasks
-@model BoostingModel
+@model PersonalInformation
 @{
 	ViewData["Title"] = "Information and Payment";
 }
@@ -20,13 +20,13 @@
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">LEAGUE OF LEGENDS USERNAME:<span class="gfield_required">*</span></label>
-			<input class="large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="large " name="UserName" id="" asp-for="UserName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="desired-rank">LEAGUE OF LEGENDS PASSWORD:<span class="gfield_required">*</span></label>
-			<input class="large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="large " name="Password" id="" asp-for="Password" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 </div>
@@ -35,13 +35,13 @@
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">First Name:<span class="gfield_required">*</span></label>
-			<input class="large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="large " name="FirstName" id="" asp-for="FirstName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="desired-rank">Last Name:<span class="gfield_required">*</span></label>
-			<input class="large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="large " name="LastName" id="" asp-for="LastName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 </div>
@@ -50,13 +50,13 @@
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">Email:<span class="gfield_required">*</span></label>
-			<input class="large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="large " name="Email" id="" asp-for="Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="desired-rank">Discord:<span class="gfield_required">*</span></label>
-			<input class="large " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="large " name="Discord" id="" asp-for="Discord" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 </div>
@@ -65,7 +65,7 @@
 	<div class="col-md-12">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">PAYMENT METHOD:<span class="gfield_required">*</span></label>
-			<select name="input_243" id="input_10_243" class="large gfield_select" aria-required="true" aria-invalid="false">
+			<select asp-for="PaymentMethod" name="PaymentMethod" id="input_10_243" class="large gfield_select" aria-required="true" aria-invalid="false">
 				<option value="Stripe" selected="selected">Stripe</option>
 				<option value="Paypal">Paypal</option>
 			</select>
@@ -73,6 +73,85 @@
 	</div>
 </div>
 
+<div class="stripe-form">
+	<span class="payment-errors"></span>
+
+	<div class="row pb-4">
+		<div class="col-md-12">
+			<div class="ginput_container ginput_container_select">
+				<label class="w-100">
+					<span class="pb-3">Card Number</span>
+					<input type="text" data-stripe="number" value="4242424242424242">
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="row pb-4">
+		<div class="col-md-4">
+			<div class="ginput_container ginput_container_select">
+				<label class="w-100">
+					<span class="pb-3">CVC</span>
+					<input type="text" data-stripe="cvc" value="123">
+				</label>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="ginput_container ginput_container_select">
+				<label class="w-100">
+					<span class="pb-3">Expiration (MM)</span>
+					<input type="text" data-stripe="exp-month" value="12">
+				</label>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="ginput_container ginput_container_select">
+				<label class="w-100">
+					<span class="pb-3">Expiration (YYYY)</span>
+					<input type="text" data-stripe="exp-year" value="2020">
+				</label>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="row pt-4 d-flex justify-content-center">
 	<button class="btn btn-primary proceed-checkout-btn">CHECKOUT</button>
 </div>
+
+<script type="text/javascript">
+	Stripe.setPublishableKey('pk_test_51GuKbWF9YOHhm6ddmQMulOaVFTPHv2yvjMfNLGYO4PDamRQkjScj5GwplBYye8xoVBlHHQTeG47nFxlxcpxDUF9X00oiBGiCO4');
+
+	var stripeResponseHandler = function (status, response) {
+		debugger;
+		var $form = $('.stripe-form');
+
+		if (response.error) {
+			// Show the errors on the form
+			$form.find('.payment-errors').text(response.error.message);
+			$form.find('button').prop('disabled', false);
+		} else {
+			// token contains id, last4, and card type
+			var token = response.id;
+			// Insert the token into the form so it gets submitted to the server
+			$form.append($('<input type="hidden" name="stripeToken" asp-for="stripeToken" />').val(token));
+			// and re-submit
+			$('form').submit();
+		}
+	};
+
+	jQuery(function ($) {
+		$('.proceed-checkout-btn').click(function (e) {
+			debugger;
+			e.preventDefault(); // stop redirection
+			var $form = $('.stripe-form');
+
+			// Disable the submit button to prevent repeated clicks
+			$form.find('button').prop('disabled', true);
+
+			Stripe.card.createToken($form, stripeResponseHandler);
+
+			// Prevent the form from submitting with the default action
+			return false;
+		});
+	});
+</script>
