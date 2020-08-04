@@ -30,16 +30,9 @@ namespace SpartanBoosting.Models
 		{
 			return new PurchaseForm
 			{
-				CurrentDivision = boostingModel.CurrentDivision,
-				CurrentLP = boostingModel.CurrentLP,
-				Price = pricing,
-				DesiredCurrentDivision = boostingModel.DesiredCurrentDivision,
-				DesiredCurrentLeague = boostingModel.DesiredCurrentLeague,
-				DiscountCode = boostingModel.DiscountCode,
-				Server = boostingModel.Server,
-				TypeOfQueue = boostingModel.TypeOfQueue,
-				VPN = boostingModel.VPN,
-				YourCurrentLeague = boostingModel.YourCurrentLeague
+				BoostingModel = boostingModel,
+				Pricing = pricing,
+				PurchaseType = PurchaseType.SoloBoosting
 			};
 		}
 	}
@@ -59,14 +52,9 @@ namespace SpartanBoosting.Models
 		{
 			return new PurchaseForm
 			{
-				Price = pricing,
-				DiscountCode = placementMatchesModel.Discount,
-				Server = placementMatchesModel.Server,
-				TypeOfQueue = placementMatchesModel.TypeOfQueue,
-				LastSeasonStanding = placementMatchesModel.LastSeasonStanding,
-				TypeOfService = placementMatchesModel.TypeOfService,
-				NumOfGames = placementMatchesModel.NumOfGames,
-				PurchaseType = PurchaseType.PlacementMatches
+				PlacementMatchesModel = placementMatchesModel,
+				PurchaseType = PurchaseType.PlacementMatches,
+				Pricing = pricing
 			};
 		}
 	}
@@ -88,15 +76,9 @@ namespace SpartanBoosting.Models
 		{
 			return new PurchaseForm
 			{
-				Price = pricing,
-				DiscountCode = winBoostModel.Discount,
-				Server = winBoostModel.Server,
-				TypeOfQueue = winBoostModel.TypeOfQueue,
-				YourCurrentLeague = winBoostModel.YourCurrentLeague,
-				CurrentDivision = winBoostModel.CurrentDivision,
-				TypeOfService = winBoostModel.TypeOfService,
-				NumOfGames = winBoostModel.NumOfGames,
-				PurchaseType = PurchaseType.WinBoosting
+				WinBoostModel = winBoostModel,
+				PurchaseType = PurchaseType.WinBoosting,
+				Pricing = pricing
 			};
 		}
 	}

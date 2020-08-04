@@ -29,9 +29,7 @@ $('.gfield-quote').on('keyup change paste', function () {
 		data: myform,
 		type: 'POST',
 		success: function (dataofconfirm) {
-			debugger;
 			$('.ginput_total_10').text(dataofconfirm + ' €')
-			// do something with the result
 		}
 	});
 });
@@ -43,7 +41,6 @@ $('#submit-quote').on('click', function () {
 		success: function (dataofconfirm) {
 			$('.gfield-pricing-quote').hide();
 			$('.gfield-pricing-quote-personal-information').html(dataofconfirm)
-			debugger
 		}
 	});
 });

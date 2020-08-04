@@ -21,7 +21,7 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString()).PurchaseType = PurchaseType.SoloBoosting);
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString()));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
@@ -45,7 +45,9 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateDuo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.DuoPricing(BoostingModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString()).PurchaseType = PurchaseType.DuoBoosting);
+			var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString());
+			purchaseFormObject.PurchaseType = PurchaseType.DuoBoosting;
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseFormObject);
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{

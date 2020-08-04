@@ -14,7 +14,8 @@ namespace SpartanBoosting.Utils
             WinBoosting,
             PlacementMatches, 
             TFTPlacement,
-            TFTBoosting
+            TFTBoosting,
+            Coaching
         }
     }
 }

@@ -1123,7 +1123,7 @@ label {
     font-size: 14px !important;
     width: 25% !important;
     background-color: rgba(23,152,207,1) !important;
-    border-radius: 10px;
+    border-radius: 10px !important;
     font-family: inherit;
     background-color: #13aff0;
     color: #fff;
@@ -1131,7 +1131,7 @@ label {
     font-weight: 600;
     text-transform: uppercase;
     margin: 0;
-    padding: 14px 20px;
+    padding: 14px 20px !important;
     border: 0;
     cursor: pointer;
     text-align: center;
@@ -1149,14 +1149,14 @@ label {
     font-size: 14px !important;
     width: 25% !important;
     background-color: #fd941f;
-    border-radius: 10px;
+    border-radius: 10px !important;
     font-family: inherit;
     color: #fff;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     margin: 0;
-    padding: 14px 20px;
+    padding: 14px 20px !important;
     border: 0;
     cursor: pointer;
     text-align: center;
@@ -1167,6 +1167,8 @@ label {
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
 }
 
 .total-label {

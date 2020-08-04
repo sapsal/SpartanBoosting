@@ -17,11 +17,7 @@ namespace SpartanBoosting.Models
 		{
 			return new PurchaseForm
 			{
-				Price = pricing,
-				DiscountCode = TFTPlacementModel.DiscountCode,
-				Server = TFTPlacementModel.Server,
-				LastSeasonStanding = TFTPlacementModel.LastSeasonStanding,
-				NumOfGames = TFTPlacementModel.NumberOfGames,
+				TFTPlacementModel = TFTPlacementModel,
 				PurchaseType = PurchaseType.TFTPlacement
 			};
 		}
@@ -39,14 +35,7 @@ namespace SpartanBoosting.Models
 		{
 			return new PurchaseForm
 			{
-				Price = pricing,
-				DiscountCode = winBoostModel.DiscountCode,
-				Server = winBoostModel.Server,
-				CurrentLP = winBoostModel.CurrentLP,
-				YourCurrentLeague = winBoostModel.YourCurrentLeague,
-				CurrentDivision = winBoostModel.CurrentDivision,
-				DesiredCurrentLeague = winBoostModel.DesiredCurrentLeague,
-				DesiredCurrentDivision = winBoostModel.DesiredCurrentDivision,
+				TFTBoostingModel = winBoostModel,
 				PurchaseType = PurchaseType.TFTPlacement
 			};
 		}

@@ -1,5 +1,6 @@
 ﻿var chkBox = $('.single-select-checkbox');
-
+var chkBoxBorderSingleStyling = $('.checkbox-border-single-styling');
+var chkBoxBorderStyling = $('.checkbox-border-styling');
 $(".booster-carousel").slick({
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -56,5 +57,22 @@ $(chkBox).on('click', function () {
     if ($(this).prop("checked")) {
         chkBox.prop("checked", false);
         $(this).prop("checked", true);
+    }
+});
+
+$(chkBoxBorderSingleStyling).on('click', function () {
+    if ($(this).prop("checked")) {
+        chkBoxBorderSingleStyling.parent().parent().removeClass('wpforms-selected');
+        $(this).parent().parent().addClass('wpforms-selected').fadeIn('slow');
+    }
+});
+
+$(document).on("click", '.checkbox-border-styling', function () {
+    debugger;
+    if ($(this).prop("checked")) {
+        $(this).parent().parent().addClass('wpforms-selected').fadeIn('slow');
+    }
+    else {
+        $(this).parent().parent().removeClass('wpforms-selected');
     }
 });
