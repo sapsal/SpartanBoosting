@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static SpartanBoosting.Utils.PurchaseTypeEnum;
 
 namespace SpartanBoosting.Models
 {
@@ -64,7 +65,8 @@ namespace SpartanBoosting.Models
 				TypeOfQueue = placementMatchesModel.TypeOfQueue,
 				LastSeasonStanding = placementMatchesModel.LastSeasonStanding,
 				TypeOfService = placementMatchesModel.TypeOfService,
-				NumOfGames = placementMatchesModel.NumOfGames
+				NumOfGames = placementMatchesModel.NumOfGames,
+				PurchaseType = PurchaseType.PlacementMatches
 			};
 		}
 	}
@@ -93,7 +95,8 @@ namespace SpartanBoosting.Models
 				YourCurrentLeague = winBoostModel.YourCurrentLeague,
 				CurrentDivision = winBoostModel.CurrentDivision,
 				TypeOfService = winBoostModel.TypeOfService,
-				NumOfGames = winBoostModel.NumOfGames
+				NumOfGames = winBoostModel.NumOfGames,
+				PurchaseType = PurchaseType.WinBoosting
 			};
 		}
 	}
