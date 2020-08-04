@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace SpartanBoosting.Controllers
 {
 	public class PricingController : Controller
 	{
+
+		private readonly ILogger<PricingController> _logger;
+		public PricingController(ILogger<PricingController> logger)
+		{
+			_logger = logger;
+		}
 		[HttpPost]
 		public JsonResult SoloPricing(Models.BoostingModel Model)
 		{
@@ -54,6 +63,14 @@ namespace SpartanBoosting.Controllers
 				{
 					price = decimal.Parse(result.OurRegularPrice);
 				}
+
+				//increase NA by 40%			
+				var ipAddress = HttpContext.Connection.RemoteIpAddress;
+				IpInfo ipInfo = new IpInfo();
+				var ipResult = ipInfo.GetCurrentIpInfo(ipAddress.ToString());
+				if (ipResult.Country == "US")
+					price = price + (price / 100) * 40;
+
 
 				price = (System.Math.Ceiling(price * 100) / 100);
 				return Json(price);

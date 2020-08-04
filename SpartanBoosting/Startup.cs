@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,7 @@ namespace SpartanBoosting
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
+			services.AddApplicationInsightsTelemetry("385ae6ef-e3a5-43b5-84d8-820e4ac8b1e9");
 			ObjectFactory.LoadPricing();
 		}
 
@@ -54,6 +56,12 @@ namespace SpartanBoosting
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
+			});
+
+			app.UseForwardedHeaders(new ForwardedHeadersOptions
+			{
+				ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+		  ForwardedHeaders.XForwardedProto
 			});
 
 			StripeConfiguration.SetApiKey("sk_test_51GuKbWF9YOHhm6ddnekRwwVMKi5X5XxEj5RtIGmemedeWHdMzyczJGRon90eAoj3oVqKsyI1EjLxg77YqCteqIyM00LMyi7RQ1");

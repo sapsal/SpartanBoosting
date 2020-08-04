@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Utils;
@@ -10,9 +11,10 @@ namespace SpartanBoosting.Controllers
 	public class LolBoostingController : Controller
 	{
 		private PricingController PricingController { get; set; }
-		public LolBoostingController()
+		private readonly ILogger<LolBoostingController> _logger;
+		public LolBoostingController(ILogger<PricingController> logger)
 		{
-			this.PricingController = new PricingController();
+			this.PricingController = new PricingController(logger);
 		}
 		[ValidateAntiForgeryToken()]
 		[HttpPost]

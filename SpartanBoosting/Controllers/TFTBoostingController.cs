@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SpartanBoosting.Utils;
 
@@ -11,9 +12,10 @@ namespace SpartanBoosting.Controllers
     public class TFTBoostingController : Controller
     {
         private PricingController PricingController { get; set; }
-        public TFTBoostingController()
+        private readonly ILogger<TFTBoostingController> _logger;
+        public TFTBoostingController(ILogger<PricingController> logger)
         {
-            this.PricingController = new PricingController();
+            this.PricingController = new PricingController(logger);
         }
         public IActionResult TFTPlacementMatches()
         {
