@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SpartanBoosting.Utils;
 using Stripe;
 
 namespace SpartanBoosting
@@ -27,6 +28,7 @@ namespace SpartanBoosting
 		{
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
 			services.AddApplicationInsightsTelemetry("385ae6ef-e3a5-43b5-84d8-820e4ac8b1e9");
+			services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
 			ObjectFactory.LoadPricing();
 		}
 
