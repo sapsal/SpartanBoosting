@@ -37,7 +37,10 @@ namespace SpartanBoosting.Utils
                 message.From = new MailAddress(fromAddress);
                 using (var smtpClient = new SmtpClient(host, port))
                 {
-                    smtpClient.Credentials = new System.Net.NetworkCredential("SpartanBoosting@robertdomain.com", "Tel829988@");
+                    smtpClient.EnableSsl = true;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new System.Net.NetworkCredential("info@spartanboosting.com", "P4yp4lP4ssw0rd-?!");
                     await smtpClient.SendMailAsync(message);
                 }
             } catch (Exception e ) 

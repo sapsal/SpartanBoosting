@@ -29,6 +29,10 @@ namespace SpartanBoosting.Controllers
         {
             return View();
         }
+        public IActionResult JoinTheTeam()
+        {
+            return View();
+        }
 
         public IActionResult ContactUs()
         {
