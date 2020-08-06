@@ -28,7 +28,7 @@ namespace SpartanBoosting.Utils
                 message.Subject = subject;
                 message.Body = htmlMessage;
                 message.IsBodyHtml = true;
-                message.To.Add("bobbywardell@hotmail.com");
+                message.To.Add(email);
 
                 string host = _smtpSettings.Server;
                 int port = _smtpSettings.Port;

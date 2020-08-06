@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using SpartanBoosting.Models.Adhoc;
 using SpartanBoosting.Utils;
 
 namespace SpartanBoosting.Controllers
@@ -39,6 +40,14 @@ namespace SpartanBoosting.Controllers
             EmailSender test = new EmailSender(_smtpSettings);
             test.SendEmailAsync("", "", "");
             return View();
+        }
+
+        public IActionResult SubmitContactUs(ContactUsModel ContactUsModel)
+        {
+            EmailSender test = new EmailSender(_smtpSettings);
+            TempData["Result"] = "Success, Email has been sent";
+            test.SendEmailAsync(ContactUsModel.YourEmail, $"{ContactUsModel.YourName} query", ContactUsModel.Message);
+            return RedirectToAction("ContactUs", "Adhoc");
         }
     }
 }

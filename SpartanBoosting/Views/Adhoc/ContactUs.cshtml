@@ -82,9 +82,12 @@
 													<h3 class="eael-contact-form-title eael-gravity-form-title">
 														CONTACT THE SPARTAN BOOSTING TEAM
 													</h3>
+													<p style="color: green; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
+														@TempData["Result"]
+													</p>
 												</div>
 												<div class="wpforms-container wpforms-container-full wpforms-stripe coaching-form" id="wpforms-931">
-													<form asp-action="ContactUsForm" role="form" asp-controller="Adhoc" asp-antiforgery="true"
+													<form asp-action="SubmitContactUs" role="form" asp-controller="Adhoc" asp-antiforgery="true"
 														  data-ajax-success="Bindgrid"
 														  data-ajax="true"
 														  data-ajax-method="POST" data-pricing="ContactUs" class="wpforms-validate wpforms-form wpforms-ajax-form">
@@ -100,7 +103,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="your-email">Your E-Mail Address:<span class="gfield_required">*</span></label>
-																	<input class=" large " name="YourName" id="your-email" asp-for="YourName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="YourEmail" id="your-email" asp-for="YourEmail" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 																</div>
 															</div>
 														</div>
@@ -113,7 +116,7 @@
 															</div>
 														</div>
 														<div class="row pt-4 d-flex justify-content-center">
-															<button type="button" style="background-color: #fd941f !important;" id="submit-contact-form" class="btn btn-primary proceed-checkout-btn">SEND MESSAGE</button>
+															<button style="background-color: #fd941f !important;" id="submit-contact-form" class="btn btn-primary proceed-checkout-btn">SEND MESSAGE</button>
 														</div>
 
 													</form>
