@@ -49,5 +49,13 @@ namespace SpartanBoosting.Controllers
             test.SendEmailAsync(ContactUsModel.YourEmail, $"{ContactUsModel.YourName} query", ContactUsModel.Message);
             return RedirectToAction("ContactUs", "Adhoc");
         }
+
+        public IActionResult SubmitJoinTheTeam(JoinTheTeamModel JoinTheTeamModel)
+        {
+            //EmailSender test = new EmailSender(_smtpSettings);
+            //TempData["Result"] = "Success, Email has been sent";
+            //test.SendEmailAsync(JoinTheTeamModel.YourEmail, $"{JoinTheTeamModel.YourName} query", JoinTheTeamModel.Message);
+            return RedirectToAction("JoinTheTeam", "Adhoc");
+        }
     }
 }

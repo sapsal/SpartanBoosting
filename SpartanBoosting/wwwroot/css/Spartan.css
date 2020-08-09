@@ -130,3 +130,9 @@ h3 {
 	color: #1798cf;
 	padding: 15px;
 }
+
+.wpforms-required-label, .gfield_required {
+	color: #ff0000;
+	font-weight: 400;
+	font-size: large !important;
+}

@@ -52,9 +52,6 @@
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-d34f6c6 elementor-widget elementor-widget-text-editor" data-id="d34f6c6" data-element_type="widget" data-widget_type="text-editor.default">
 										<div class="elementor-widget-container pb-4">
-											@*<p style="color: #fff; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
-													If you have any questions regarding our service and more. We will gladly help and will reply instantly.
-												</p>*@
 											<div class="elementor-text-editor elementor-clearfix">
 												<h3>We are currently only looking for:</h3><p>–**– Master+ Boosters/Coaches for NA and OCE–**–</p><p>–**– Grandmaster+ Boosters/Coaches for EUW–**–</p>
 												<h3>If you meet the above requirements, please fill out the form below and someone will be in touch within 24 hours.</h3><div>&nbsp;</div>
@@ -84,27 +81,30 @@
 													<h3 class="eael-contact-form-title eael-gravity-form-title">
 														APPLY TO JOIN THE SPARTAN BOOSTING TEAM
 													</h3>
+													<p style="color: green; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
+														@TempData["Result"]
+													</p>
 												</div>
 												<div class="wpforms-container wpforms-container-full wpforms-stripe coaching-form" id="wpforms-931">
-													<form asp-action="ContactUsForm" role="form" asp-controller="Adhoc" asp-antiforgery="true"
+													<form asp-action="SubmitJoinTheTeam" role="form" asp-controller="Adhoc" asp-antiforgery="true"
 														  data-ajax-success="Bindgrid"
 														  data-ajax="true"
-														  data-ajax-method="POST" data-pricing="ContactUs" class="wpforms-validate wpforms-form wpforms-ajax-form">
+														  data-ajax-method="POST" data-pricing="SubmitJoinTheTeam" class="wpforms-validate wpforms-form wpforms-ajax-form">
 														<div class="row pb-4">
 															<div class="col-2">
-																<input class="boosting-type" type="checkbox" id="wpforms-711-field_1_1" name="wpforms[fields][1][]" value="LOL Boosting" required="" checked="checked"><label class="wpforms-field-label-inline" for="wpforms-711-field_1_1">LOL Boosting</label>
+																<input class="boosting-type" type="checkbox" id="wpforms-711-field_1_1" name="wpforms[fields][1][]" value="LOL Boosting"  checked="checked"><label class="wpforms-field-label-inline" for="wpforms-711-field_1_1">LOL Boosting</label>
 															</div>
 															<div class="col-2">
-																<input class="boosting-type" type="checkbox" id="wpforms-711-field_1_2" name="wpforms[fields][1][]" value="Coaching" required=""><label class="wpforms-field-label-inline" for="wpforms-711-field_1_2">Coaching</label>
+																<input class="boosting-type" type="checkbox" id="wpforms-711-field_1_2" name="wpforms[fields][1][]" value="Coaching" ><label class="wpforms-field-label-inline" for="wpforms-711-field_1_2">Coaching</label>
 															</div>
 															<div class="col-2">
-																<input class="boosting-type" type="checkbox" id="wpforms-711-field_1_3" name="wpforms[fields][1][]" value="TFT Boosting" required=""><label class="wpforms-field-label-inline" for="wpforms-711-field_1_3">
+																<input class="boosting-type" type="checkbox" id="wpforms-711-field_1_3" name="wpforms[fields][1][]" value="TFT Boosting" ><label class="wpforms-field-label-inline" for="wpforms-711-field_1_3">
 																	TFT Boosting
 																</label>
 															</div>
 														</div>
 														<div class="row pb-4">
-															<div class="col-md-6">
+															<div class="col-md-6 pr-3">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="age">Age:<span class="gfield_required">*</span></label>
 																	<input class=" large " name="Age" id="age" asp-for="Age" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
@@ -118,7 +118,7 @@
 															</div>
 														</div>
 														<div class="row pb-4">
-															<div class="col-md-6">
+															<div class="col-md-6 pr-3">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="Language">Language:<span class="gfield_required">*</span></label>
 																	<input class=" large " name="Language" id="Language" asp-for="Language" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
@@ -131,16 +131,136 @@
 																</div>
 															</div>
 														</div>
+
+														<div class="row pb-4" id="boosting-servers-container">
+															<label class="pb-3 gfield_label">Server You Can Boost On:</label>
+															<div class="row pb-4">
+																<div class="choice-1 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_1" name="wpforms[fields][8][]" value="Europe West" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_1">Europe West</label>
+																</div>
+																<div class="choice-2 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_2" name="wpforms[fields][8][]" value="Europe Nordic &amp; East" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_2">Europe Nordic &amp; East</label>
+																</div>
+																<div class="choice-3 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_3" name="wpforms[fields][8][]" value="North America" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_3">North America</label>
+																</div>
+																<div class="choice-4 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_4" name="wpforms[fields][8][]" value="Oceania" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_4">Oceania</label>
+																</div>
+																<div class="choice-5 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_5" name="wpforms[fields][8][]" value="Russia" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_5">Russia</label>
+																</div>
+																<div class="choice-6 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_6" name="wpforms[fields][8][]" value="Turkey" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_6">Turkey</label>
+																</div>
+																<div class="choice-7 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_7" name="wpforms[fields][8][]" value="Latin America North" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_7">Latin America North</label>
+																</div>
+																<div class="choice-8 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_8" name="wpforms[fields][8][]" value="Latin America South" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_8">Latin America South</label>
+																</div>
+																<div class="choice-9 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_9" name="wpforms[fields][8][]" value="Brazil" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_9">Brazil</label>
+																</div>
+																<div class="choice-10 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_10" name="wpforms[fields][8][]" value="Japan" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_10">Japan</label>
+																</div>
+																<div class="choice-11 depth-1 col-4">
+																	<input type="checkbox" id="wpforms-711-field_8_11" name="wpforms[fields][8][]" value="Korea" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_11">Korea</label>
+																</div>
+															</div>
+														</div>
+
 														<div class="row pb-4">
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="MainLanes">Main Lanes:<span class="gfield_required">*</span></label>
-																	<textarea asp-for="MainLanes" id="MainLanes" class="wpforms-field-large wpforms-field-required" name="MainLanes" required=""></textarea>
+																	<input class=" large " name="MainLanes" id="MainLanes" asp-for="MainLanes" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 																</div>
 															</div>
 														</div>
+
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="MainChampions">Main Champion(s):<span class="gfield_required">*</span></label>
+																	<input class=" large " name="MainChampions" id="MainChampions" asp-for="MainChampions" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																</div>
+															</div>
+														</div>
+
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="NumberOfHoursAvailable">Number of Hours of Availability Per Day:<span class="gfield_required">*</span></label>
+																	<input class=" large " name="NumberOfHoursAvailable" id="NumberOfHoursAvailable" asp-for="NumberOfHoursAvailable" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																</div>
+															</div>
+														</div>
+
+														<div class="grid pb-4">
+															<label class="pb-3 gfield_label" for="NumberOfHoursAvailable">Are You Willing To Duo Boost?<span class="gfield_required">*</span></label>
+															<div class="row">
+																<div class="choice-1 depth-1 col-1">
+																	<input type="radio" id="wpforms-711-field_8_1" name="DuoBoost" asp-for="DuoBoost" value="Yes" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_1">Yes</label>
+																</div>
+																<div class="choice-2 depth-1 col-1">
+																	<input type="radio" id="wpforms-711-field_8_2" name="DuoBoost" asp-for="DuoBoost" value="No" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_2">No</label>
+																</div>
+															</div>
+														</div>
+
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="DiscordName">Your Discord Name (Or Best Way To Contact You):<span class="gfield_required">*</span></label>
+																	<input class=" large " name="DiscordName" id="DiscordName" asp-for="DiscordName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																</div>
+															</div>
+														</div>
+
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="Email">Your E-Mail Address:<span class="gfield_required">*</span></label>
+																	<input class=" large " name="Email" id="Email" asp-for="Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																</div>
+															</div>
+														</div>
+
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="Background">Have You Ever Boosted/Coached Before? (If So, Give Details):</label>
+																	<textarea asp-for="Background" id="Background" class="wpforms-field-large" name="Background"></textarea>
+																</div>
+															</div>
+														</div>
+
+														<div class="row pb-4">
+															<div class="col-md-12">
+																<div class="ginput_container ginput_container_select">
+																	<label class="pb-3 gfield_label" for="Email">What Percentage of Boosting Fee Are You Used To/Expecting? (This Won't Affect Our Hiring Decision And Is For Market Research Only):<span class="gfield_required">*</span></label>
+																	<input class=" large " name="BoostingFeePrevious" id="BoostingFeePrevious" asp-for="BoostingFeePrevious" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																</div>
+															</div>
+														</div>
+
 														<div class="row pt-4 d-flex justify-content-center">
-															<button type="button" style="background-color: #fd941f !important;" id="submit-contact-form" class="btn btn-primary proceed-checkout-btn">SEND MESSAGE</button>
+															<button type="submit" style="background-color: #fd941f !important;" id="submit-contact-form" class="btn btn-primary proceed-checkout-btn">SEND MESSAGE</button>
 														</div>
 
 													</form>
