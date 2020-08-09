@@ -1,21 +1,6 @@
 ﻿@using SpartanBoosting.Models
 @using System.Threading.Tasks
 @model PersonalInformation
-@{
-	ViewData["Title"] = "Information and Payment";
-}
-<head>
-
-	<meta charset="UTF-8">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<title>Spartan Boosting &#8211;Boosting and Coaching Service for League of Legends</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<style type="text/css"></style>
-	<link href="~/css/PostCopy.css" rel="stylesheet" />
-	<link href="~/css/site.css" rel="stylesheet" />
-</head>
-
 <div class="row pb-4">
 	<div class="col-md-6 pr-3">
 		<div class="ginput_container ginput_container_select">
@@ -122,9 +107,8 @@
 	Stripe.setPublishableKey('pk_test_51GuKbWF9YOHhm6ddmQMulOaVFTPHv2yvjMfNLGYO4PDamRQkjScj5GwplBYye8xoVBlHHQTeG47nFxlxcpxDUF9X00oiBGiCO4');
 
 	var stripeResponseHandler = function (status, response) {
-		debugger;
 		var $form = $('.stripe-form');
-
+		$('form').validate();
 		if (response.error) {
 			// Show the errors on the form
 			$form.find('.payment-errors').text(response.error.message);
@@ -141,7 +125,6 @@
 
 	jQuery(function ($) {
 		$('.proceed-checkout-btn').click(function (e) {
-			debugger;
 			e.preventDefault(); // stop redirection
 			var $form = $('.stripe-form');
 
