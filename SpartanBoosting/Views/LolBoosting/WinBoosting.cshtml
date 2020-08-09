@@ -97,7 +97,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-																	<select asp-for="YourCurrentLeague" name="YourCurrentLeague" id="current-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="YourCurrentLeague" name="YourCurrentLeague" id="current-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Iron">Iron</option>
 																		<option value="Bronze">Bronze</option>
 																		<option value="Silver">Silver</option>
@@ -124,7 +124,7 @@
 															<div class="col-md-6 pr-3">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Europe West">Europe West</option>
 																		<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																		<option value="North America">North America</option>
@@ -144,7 +144,7 @@
 																	<label class="pb-3 gfield_label" for="queue-type">
 																		TYPE OF QUEUE:<span class="gfield_required">*</span>
 																	</label>
-																	<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
 																		<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
 																	</select>
@@ -156,7 +156,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="type-of-service">TYPE OF SERVICE:<span class="gfield_required">*</span></label>
-																	<select asp-for="TypeOfService" name="TypeOfService" id="type-of-service" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="TypeOfService" name="TypeOfService" id="type-of-service" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Solo">Solo</option>
 																		<option value="Duo">Duo</option>
 																	</select>
@@ -189,8 +189,8 @@
 														</div>
 
 														<div class="row pl-4 pr-4 pb-4">
-															<label class=" gfield_label" for="num-games">NUMBER OF GAMES:</label>
-															<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+															<label class=" gfield_label" for="num-games">NUMBER OF GAMES:<span class="gfield_required">*</span></label>
+															<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																<option value="1" selected="selected">1</option>
 																<option value="2">2</option>
 																<option value="3">3</option>
@@ -212,7 +212,7 @@
 														</div>
 
 														<div class="row pb-4 d-flex justify-content-center">
-															<button class="btn btn-primary apply-discount-btn">APPLY</button>
+															<button type="button"  class="btn btn-primary apply-discount-btn">APPLY</button>
 														</div>
 
 														<div class="row pb-4 d-flex justify-content-center">

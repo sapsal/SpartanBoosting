@@ -90,15 +90,16 @@
 														  data-ajax-method="POST" data-pricing="CoachingPricing" class="wpforms-validate wpforms-form wpforms-ajax-form">
 														<div class="gfield-pricing-quote-personal-information"></div>
 														<div class="gfield-pricing-quote">
-															<div class="ginput_container row w-100 pt-4 pb-4">
-																<ul id="wpforms-931-field_3" class="wpforms-field-required wpforms-image-choices wpforms-image-choices-modern w-100 row">
+															<div class="ginput_container row w-100 pt-4 pb-4 row">
+																<label class="pb-3 gfield_label" for="your-server">YOUR ROLES:<span class="gfield_required">*</span></label>
+																<ul id="wpforms-931-field_3" class="wpforms-field-required wpforms-image-choices wpforms-image-choices-modern w-100 row one-checkbox-minimum">
 																	<li class="choice-1 depth-1 wpforms-image-choices-item" style="width:20%">
 																		<label class="wpforms-field-label-inline" for="wpforms-931-field_3_1" tabindex="0">
 																			<span class="wpforms-image-choices-image">
 																				<img src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png" alt="Top" title="Top" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png" class="lazyloaded" data-was-processed="true">
 																				<noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/top-role.png" alt="Top" title="Top"></noscript>
 																			</span>
-																			<input asp-for="SpecificRolesTop" name="SpecificRolesTop" type="checkbox" id="wpforms-931-field_3_1" class="wpforms-screen-reader-element checkbox-border-styling" value="Top" tabindex="-1" ><span class="wpforms-image-choices-label">Top</span>
+																			<input asp-for="SpecificRolesTop" name="SpecificRolesTop" type="checkbox" id="wpforms-931-field_3_1" class="wpforms-screen-reader-element checkbox-border-styling" value="Top" tabindex="-1" required=""><span class="wpforms-image-choices-label">Top</span>
 																		</label>
 																	</li>
 																	<li class="choice-2 depth-1 wpforms-image-choices-item" style="width:20%">
@@ -107,7 +108,7 @@
 																				<img src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png" alt="Jungle" title="Jungle" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png" class="lazyloaded" data-was-processed="true">
 																				<noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/jungle-role.png" alt="Jungle" title="Jungle"></noscript>
 																			</span>
-																			<input asp-for="SpecificRolesJungle" name="SpecificRolesJungle" type="checkbox" id="wpforms-931-field_3_2" class="wpforms-screen-reader-element checkbox-border-styling" value="Jungle" tabindex="-1" ><span class="wpforms-image-choices-label">Jungle</span>
+																			<input required="" asp-for="SpecificRolesJungle" name="SpecificRolesJungle" type="checkbox" id="wpforms-931-field_3_2" class="wpforms-screen-reader-element checkbox-border-styling" value="Jungle" tabindex="-1"><span class="wpforms-image-choices-label">Jungle</span>
 																		</label>
 																	</li>
 																	<li class="choice-3 depth-1 wpforms-image-choices-item" style="width:20%">
@@ -116,7 +117,7 @@
 																				<img src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png" alt="Middle" title="Middle" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png" class="lazyloaded" data-was-processed="true">
 																				<noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/mid-role.png" alt="Middle" title="Middle"></noscript>
 																			</span>
-																			<input asp-for="SpecificRolesMiddle" name="SpecificRolesMiddle" type="checkbox" id="wpforms-931-field_3_3" class="wpforms-screen-reader-element checkbox-border-styling" value="Middle" tabindex="-1" ><span class="wpforms-image-choices-label">Middle</span>
+																			<input required="" asp-for="SpecificRolesMiddle" name="SpecificRolesMiddle" type="checkbox" id="wpforms-931-field_3_3" class="wpforms-screen-reader-element checkbox-border-styling" value="Middle" tabindex="-1"><span class="wpforms-image-choices-label">Middle</span>
 																		</label>
 																	</li>
 																	<li class="choice-4 depth-1 wpforms-image-choices-item" style="width:20%">
@@ -125,7 +126,7 @@
 																				<img src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png" alt="ADC" title="ADC" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png" class="lazyloaded" data-was-processed="true">
 																				<noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/bottom-role.png" alt="ADC" title="ADC"></noscript>
 																			</span>
-																			<input asp-for="SpecificRolesADC" name="SpecificRolesADC" type="checkbox" id="wpforms-931-field_3_4" class="wpforms-screen-reader-element checkbox-border-styling" value="ADC" tabindex="-1" ><span class="wpforms-image-choices-label">ADC</span>
+																			<input required="" asp-for="SpecificRolesADC" name="SpecificRolesADC" type="checkbox" id="wpforms-931-field_3_4" class="wpforms-screen-reader-element checkbox-border-styling" value="ADC" tabindex="-1"><span class="wpforms-image-choices-label">ADC</span>
 																		</label>
 																	</li>
 																	<li class="choice-6 depth-1 wpforms-image-choices-item" style="width:20%">
@@ -134,7 +135,7 @@
 																				<img src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" alt="Support" title="Support" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" class="lazyloaded" data-was-processed="true">
 																				<noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/support-role.png" alt="Support" title="Support"></noscript>
 																			</span>
-																			<input asp-for="SpecificRolesSupport" name="SpecificRolesSupport" type="checkbox" id="wpforms-931-field_3_6" class="wpforms-screen-reader-element checkbox-border-styling" value="Support" tabindex="-1" ><span class="wpforms-image-choices-label">Support</span>
+																			<input required="" asp-for="SpecificRolesSupport" name="SpecificRolesSupport" type="checkbox" id="wpforms-931-field_3_6" class="wpforms-screen-reader-element checkbox-border-styling" value="Support" tabindex="-1"><span class="wpforms-image-choices-label">Support</span>
 																		</label>
 																	</li>
 																</ul>
@@ -144,13 +145,13 @@
 																<div class="col-md-12">
 																	<div class="ginput_container ginput_container_select row">
 																		<label class="pb-3 gfield_label" for="your-server">YOUR RANK:<span class="gfield_required">*</span></label>
-																		<ul id="current-rank-ul" class="wpforms-field-required wpforms-image-choices wpforms-image-choices-modern row">
+																		<ul id="current-rank-ul" class="wpforms-field-required wpforms-image-choices wpforms-image-choices-modern row one-checkbox-minimum">
 																			<li class="choice-1 depth-1 wpforms-image-choices-item col-3">
 																				<label class="wpforms-field-label-inline" for="wpforms-931-field_23_1" tabindex="0">
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/iron-rank.png" alt="Iron" title="Iron" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/iron-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/iron-rank.png" alt="Iron" title="Iron"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_1" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Iron" tabindex="-1" ><span class="wpforms-image-choices-label">Iron</span>
+																					<input required="" type="radio" id="wpforms-931-field_23_1" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Iron" tabindex="-1" ><span class="wpforms-image-choices-label">Iron</span>
 																				</label>
 																			</li>
 																			<li class="choice-2 depth-1 wpforms-image-choices-item col-3">
@@ -158,7 +159,7 @@
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/bronze-rank.png" alt="Bronze" title="Bronze" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/bronze-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/bronze-rank.png" alt="Bronze" title="Bronze"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_2" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Bronze" tabindex="-1" ><span class="wpforms-image-choices-label">Bronze</span>
+																					<input required="" type="radio" id="wpforms-931-field_23_2" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Bronze" tabindex="-1" ><span class="wpforms-image-choices-label">Bronze</span>
 																				</label>
 																			</li>
 																			<li class="choice-3 depth-1 wpforms-image-choices-item col-3">
@@ -166,7 +167,7 @@
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/silver-rank.png" alt="Silver" title="Silver" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/silver-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/silver-rank.png" alt="Silver" title="Silver"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_3" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Silver" tabindex="-1" ><span class="wpforms-image-choices-label">Silver</span>
+																					<input required="" type="radio" id="wpforms-931-field_23_3" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Silver" tabindex="-1" ><span class="wpforms-image-choices-label">Silver</span>
 																				</label>
 																			</li>
 																			<li class="choice-4 depth-1 wpforms-image-choices-item col-3">
@@ -174,7 +175,7 @@
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/gold-rank.png" alt="Gold" title="Gold" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/gold-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/gold-rank.png" alt="Gold" title="Gold"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_4" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Gold" tabindex="-1" ><span class="wpforms-image-choices-label">Gold</span>
+																					<input required="" type="radio" id="wpforms-931-field_23_4" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Gold" tabindex="-1" ><span class="wpforms-image-choices-label">Gold</span>
 																				</label>
 																			</li>
 																			<li class="choice-5 depth-1 wpforms-image-choices-item col-3">
@@ -182,7 +183,7 @@
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/platinum-rank.png" alt="Platinum" title="Platinum" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/platinum-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/platinum-rank.png" alt="Platinum" title="Platinum"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_5" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Platinum" tabindex="-1"  aria-invalid="false"><span class="wpforms-image-choices-label">Platinum</span>
+																					<input required="" type="radio" id="wpforms-931-field_23_5" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Platinum" tabindex="-1"  aria-invalid="false"><span class="wpforms-image-choices-label">Platinum</span>
 																				</label>
 																			</li>
 																			<li class="choice-6 depth-1 wpforms-image-choices-item  col-3">
@@ -190,7 +191,7 @@
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/diamond-rank.png" alt="Diamond" title="Diamond" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/diamond-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/diamond-rank.png" alt="Diamond" title="Diamond"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_6" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Diamond" tabindex="-1"  aria-invalid="false"><span class="wpforms-image-choices-label">Diamond</span>
+																					<input required="" type="radio" id="wpforms-931-field_23_6" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Diamond" tabindex="-1"  aria-invalid="false"><span class="wpforms-image-choices-label">Diamond</span>
 																				</label>
 																			</li>
 																			<li class="choice-7 depth-1 wpforms-image-choices-item col-3">
@@ -198,7 +199,7 @@
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/master-rank.png" alt="Master" title="Master" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/master-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/master-rank.png" alt="Master" title="Master"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_7" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Master" tabindex="-1" ><span class="wpforms-image-choices-label">Master</span>
+																					<input required="" type="radio" id="wpforms-931-field_23_7" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Master" tabindex="-1" ><span class="wpforms-image-choices-label">Master</span>
 																				</label>
 																			</li>
 																			<li class="choice-8 depth-1 wpforms-image-choices-item col-3">
@@ -206,7 +207,7 @@
 																					<span class="wpforms-image-choices-image">
 																						<img src="https://spartanboosting.com/wp-content/uploads/2020/06/grand-master-rank.png" alt="Grand Master" title="Grand Master" data-lazy-src="https://spartanboosting.com/wp-content/uploads/2020/06/grand-master-rank.png" class="lazyloaded" data-was-processed="true"><noscript><img src="https://spartanboosting.com/wp-content/uploads/2020/06/grand-master-rank.png" alt="Grand Master" title="Grand Master"></noscript>
 																					</span>
-																					<input type="radio" id="wpforms-931-field_23_8" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Grand Master" tabindex="-1" ><span class="wpforms-image-choices-label">
+																					<input required="" type="radio" id="wpforms-931-field_23_8" class="wpforms-screen-reader-element single-select-checkbox checkbox-border-single-styling wpforms-valid" name="wpforms[fields][23]" value="Grand Master" tabindex="-1" ><span class="wpforms-image-choices-label">
 																						Grand Master
 																					</span>
 																				</label>
@@ -224,7 +225,7 @@
 																<div class="col-md-12">
 																	<div class="ginput_container ginput_container_select">
 																		<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																		<select name="Server" asp-for="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																		<select name="Server" asp-for="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																			<option value="Europe West">Europe West</option>
 																			<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																			<option value="North America">North America</option>
@@ -243,8 +244,8 @@
 
 
 															<div class="row pb-4">
-																<label class=" gfield_label" for="num-games">NUMBER OF HOURS / YEAR PACKAGE: </label>
-																<select asp-for="CoachingPackage" name="CoachingPackage" id="coaching-package" class="wpforms-payment-price wpforms-field-large wpforms-field-required wpforms-valid" required="required" aria-invalid="false">
+																<label class=" gfield_label" for="num-games">NUMBER OF HOURS / YEAR PACKAGE:<span class="gfield_required">*</span> </label>
+																<select asp-for="CoachingPackage" name="CoachingPackage" id="coaching-package" class="wpforms-payment-price wpforms-field-large wpforms-field-required wpforms-valid" aria-invalid="false" required="">
 																	<option value="1" data-amount="10,00">1 HOUR</option>
 																	<option value="2" data-amount="15,00">2 HOURS</option>
 																	<option value="3" data-amount="25,00">3 HOURS</option>

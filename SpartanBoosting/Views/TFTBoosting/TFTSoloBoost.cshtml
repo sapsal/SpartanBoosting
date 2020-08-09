@@ -91,7 +91,7 @@
 															<div class="col-md-3">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-																	<select asp-for="YourCurrentLeague" name="YourCurrentLeague" id="current-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="YourCurrentLeague" name="YourCurrentLeague" id="current-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Iron">Iron</option>
 																		<option value="Bronze">Bronze</option>
 																		<option value="Silver">Silver</option>
@@ -105,7 +105,7 @@
 															<div class="col-md-3">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
-																	<select asp-for="DesiredCurrentLeague" name="DesiredCurrentLeague" id="desired-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="DesiredCurrentLeague" name="DesiredCurrentLeague" id="desired-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Iron">Iron</option>
 																		<option value="Bronze">Bronze</option>
 																		<option value="Silver">Silver</option>
@@ -164,7 +164,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Europe West">Europe West</option>
 																		<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																		<option value="North America">North America</option>
@@ -187,7 +187,7 @@
 														</div>
 
 														<div class="row pb-4 d-flex justify-content-center">
-															<button class="btn btn-primary apply-discount-btn">APPLY</button>
+															<button type="button"  class="btn btn-primary apply-discount-btn">APPLY</button>
 														</div>
 
 														<div class="row pb-4 d-flex justify-content-center">

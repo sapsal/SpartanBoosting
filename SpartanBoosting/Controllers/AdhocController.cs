@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using SpartanBoosting.Models.Adhoc;
 using SpartanBoosting.Utils;
 
@@ -52,9 +53,9 @@ namespace SpartanBoosting.Controllers
 
         public IActionResult SubmitJoinTheTeam(JoinTheTeamModel JoinTheTeamModel)
         {
-            //EmailSender test = new EmailSender(_smtpSettings);
-            //TempData["Result"] = "Success, Email has been sent";
-            //test.SendEmailAsync(JoinTheTeamModel.YourEmail, $"{JoinTheTeamModel.YourName} query", JoinTheTeamModel.Message);
+            EmailSender email = new EmailSender(_smtpSettings);
+            TempData["Result"] = "Success, Email has been sent";
+            email.SendEmailAsync(JoinTheTeamModel.Email, $"Join The Team Request", JsonConvert.SerializeObject(JoinTheTeamModel));
             return RedirectToAction("JoinTheTeam", "Adhoc");
         }
     }

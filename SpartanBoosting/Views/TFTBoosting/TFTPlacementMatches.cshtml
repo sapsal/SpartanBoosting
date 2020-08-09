@@ -89,7 +89,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="last-season-standing">LAST SEASON STANDING:<span class="gfield_required">*</span></label>
-																	<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Unranked">Unranked</option>
 																		<option value="Iron">Iron</option>
 																		<option value="Bronze">Bronze</option>
@@ -108,7 +108,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																		<option value="Europe West">Europe West</option>
 																		<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 																		<option value="North America">North America</option>
@@ -126,8 +126,8 @@
 														</div>
 
 														<div class="row pl-4 pr-4 pb-4">
-															<label class=" gfield_label" for="num-games">NUMBER OF GAMES:</label>
-															<select asp-for="NumberOfGames" name="NumberOfGames" id="num-games" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+															<label class=" gfield_label" for="num-games">NUMBER OF GAMES:<span class="gfield_required">*</span></label>
+															<select asp-for="NumberOfGames" name="NumberOfGames" id="num-games" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
 																<option value="1" selected="selected">1</option>
 																<option value="2">2</option>
 																<option value="3">3</option>
@@ -142,7 +142,7 @@
 														</div>
 
 														<div class="row pb-4 d-flex justify-content-center">
-															<button class="btn btn-primary apply-discount-btn">APPLY</button>
+															<button type="button"  class="btn btn-primary apply-discount-btn">APPLY</button>
 														</div>
 
 														<div class="row pb-4 d-flex justify-content-center">

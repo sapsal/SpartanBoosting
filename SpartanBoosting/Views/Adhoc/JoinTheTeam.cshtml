@@ -107,13 +107,13 @@
 															<div class="col-md-6 pr-3">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="age">Age:<span class="gfield_required">*</span></label>
-																	<input class=" large " name="Age" id="age" asp-for="Age" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="Age" id="age" asp-for="Age" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="Country">Country:<span class="gfield_required">*</span></label>
-																	<input class=" large " name="Country" id="Country" asp-for="Country" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="Country" id="Country" asp-for="Country" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 																</div>
 															</div>
 														</div>
@@ -121,62 +121,62 @@
 															<div class="col-md-6 pr-3">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="Language">Language:<span class="gfield_required">*</span></label>
-																	<input class=" large " name="Language" id="Language" asp-for="Language" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="Language" id="Language" asp-for="Language" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="Country">Current Rank:<span class="gfield_required">*</span></label>
-																	<input class=" large " name="CurrentRank" id="CurrentRank" asp-for="CurrentRank" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="CurrentRank" id="CurrentRank" asp-for="CurrentRank" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 																</div>
 															</div>
 														</div>
 
-														<div class="row pb-4" id="boosting-servers-container">
-															<label class="pb-3 gfield_label">Server You Can Boost On:</label>
+														<div class="row pb-4 one-checkbox-minimum" id="boosting-servers-container">
+															<label class="pb-3 gfield_label">Server You Can Boost On:<span class="gfield_required">*</span></label>
 															<div class="row pb-4">
 																<div class="choice-1 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_1" name="wpforms[fields][8][]" value="Europe West" >
+																	<input type="checkbox" id="wpforms-711-field_8_1" name="wpforms[fields][8][]" required="" value="Europe West" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_1">Europe West</label>
 																</div>
 																<div class="choice-2 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_2" name="wpforms[fields][8][]" value="Europe Nordic &amp; East" >
+																	<input type="checkbox" id="wpforms-711-field_8_2" name="wpforms[fields][8][]" required="" value="Europe Nordic &amp; East" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_2">Europe Nordic &amp; East</label>
 																</div>
 																<div class="choice-3 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_3" name="wpforms[fields][8][]" value="North America" >
+																	<input type="checkbox" id="wpforms-711-field_8_3" name="wpforms[fields][8][]" required="" value="North America" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_3">North America</label>
 																</div>
 																<div class="choice-4 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_4" name="wpforms[fields][8][]" value="Oceania" >
+																	<input type="checkbox" id="wpforms-711-field_8_4" name="wpforms[fields][8][]" required="" value="Oceania" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_4">Oceania</label>
 																</div>
 																<div class="choice-5 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_5" name="wpforms[fields][8][]" value="Russia" >
+																	<input type="checkbox" id="wpforms-711-field_8_5" name="wpforms[fields][8][]" required="" value="Russia" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_5">Russia</label>
 																</div>
 																<div class="choice-6 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_6" name="wpforms[fields][8][]" value="Turkey" >
+																	<input type="checkbox" id="wpforms-711-field_8_6" name="wpforms[fields][8][]" required="" value="Turkey" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_6">Turkey</label>
 																</div>
 																<div class="choice-7 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_7" name="wpforms[fields][8][]" value="Latin America North" >
+																	<input type="checkbox" id="wpforms-711-field_8_7" name="wpforms[fields][8][]" required="" value="Latin America North" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_7">Latin America North</label>
 																</div>
 																<div class="choice-8 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_8" name="wpforms[fields][8][]" value="Latin America South" >
+																	<input type="checkbox" id="wpforms-711-field_8_8" name="wpforms[fields][8][]" required="" value="Latin America South" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_8">Latin America South</label>
 																</div>
 																<div class="choice-9 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_9" name="wpforms[fields][8][]" value="Brazil" >
+																	<input type="checkbox" id="wpforms-711-field_8_9" name="wpforms[fields][8][]" required="" value="Brazil" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_9">Brazil</label>
 																</div>
 																<div class="choice-10 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_10" name="wpforms[fields][8][]" value="Japan" >
+																	<input type="checkbox" id="wpforms-711-field_8_10" name="wpforms[fields][8][]" required="" value="Japan" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_10">Japan</label>
 																</div>
 																<div class="choice-11 depth-1 col-4">
-																	<input type="checkbox" id="wpforms-711-field_8_11" name="wpforms[fields][8][]" value="Korea" >
+																	<input type="checkbox" id="wpforms-711-field_8_11" name="wpforms[fields][8][]" required="" value="Korea" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_11">Korea</label>
 																</div>
 															</div>
@@ -185,7 +185,7 @@
 														<div class="row pb-4">
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
-																	<label class="pb-3 gfield_label" for="MainLanes">Main Lanes:<span class="gfield_required">*</span></label>
+																	<label class="pb-3 gfield_label" for="MainLanes">Main Lanes:</label>
 																	<input class=" large " name="MainLanes" id="MainLanes" asp-for="MainLanes" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 																</div>
 															</div>
@@ -194,7 +194,7 @@
 														<div class="row pb-4">
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
-																	<label class="pb-3 gfield_label" for="MainChampions">Main Champion(s):<span class="gfield_required">*</span></label>
+																	<label class="pb-3 gfield_label" for="MainChampions">Main Champion(s):</label>
 																	<input class=" large " name="MainChampions" id="MainChampions" asp-for="MainChampions" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 																</div>
 															</div>
@@ -204,7 +204,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="NumberOfHoursAvailable">Number of Hours of Availability Per Day:<span class="gfield_required">*</span></label>
-																	<input class=" large " name="NumberOfHoursAvailable" id="NumberOfHoursAvailable" asp-for="NumberOfHoursAvailable" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="NumberOfHoursAvailable" id="NumberOfHoursAvailable" asp-for="NumberOfHoursAvailable" type="text" value="" required="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 																</div>
 															</div>
 														</div>
@@ -213,11 +213,11 @@
 															<label class="pb-3 gfield_label" for="NumberOfHoursAvailable">Are You Willing To Duo Boost?<span class="gfield_required">*</span></label>
 															<div class="row">
 																<div class="choice-1 depth-1 col-1">
-																	<input type="radio" id="wpforms-711-field_8_1" name="DuoBoost" asp-for="DuoBoost" value="Yes" >
-																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_1">Yes</label>
+																	<input type="radio" id="wpforms-711-field_8_1" name="DuoBoost" required="" asp-for="DuoBoost" value="Yes" >
+																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_1" >Yes</label>
 																</div>
 																<div class="choice-2 depth-1 col-1">
-																	<input type="radio" id="wpforms-711-field_8_2" name="DuoBoost" asp-for="DuoBoost" value="No" >
+																	<input type="radio" id="wpforms-711-field_8_2" name="DuoBoost" required="" asp-for="DuoBoost" value="No" >
 																	<label class="wpforms-field-label-inline" for="wpforms-711-field_8_2">No</label>
 																</div>
 															</div>
@@ -227,7 +227,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="DiscordName">Your Discord Name (Or Best Way To Contact You):<span class="gfield_required">*</span></label>
-																	<input class=" large " name="DiscordName" id="DiscordName" asp-for="DiscordName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="DiscordName" id="DiscordName" asp-for="DiscordName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 																</div>
 															</div>
 														</div>
@@ -236,7 +236,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="Email">Your E-Mail Address:<span class="gfield_required">*</span></label>
-																	<input class=" large " name="Email" id="Email" asp-for="Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="Email" id="Email" asp-for="Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 																</div>
 															</div>
 														</div>
@@ -254,7 +254,7 @@
 															<div class="col-md-12">
 																<div class="ginput_container ginput_container_select">
 																	<label class="pb-3 gfield_label" for="Email">What Percentage of Boosting Fee Are You Used To/Expecting? (This Won't Affect Our Hiring Decision And Is For Market Research Only):<span class="gfield_required">*</span></label>
-																	<input class=" large " name="BoostingFeePrevious" id="BoostingFeePrevious" asp-for="BoostingFeePrevious" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+																	<input class=" large " name="BoostingFeePrevious" id="BoostingFeePrevious" asp-for="BoostingFeePrevious" type="text" required="" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 																</div>
 															</div>
 														</div>

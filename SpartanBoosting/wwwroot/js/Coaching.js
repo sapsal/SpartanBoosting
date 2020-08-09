@@ -3,6 +3,19 @@
 });
 
 $('#submit-quote').on('click', function () {
+	$('[required]:visible').each(function () {
+		if (!$(this)[0].checkValidity()) {
+			$(this).addClass('field-validation-error')
+			$('.toast').toast('show');
+		}
+		else {
+			$(this).removeClass('field-validation-error')
+		}
+	});
+	if (!$("form")[0].checkValidity()) {
+		return;
+	}
+
 	var specificChampions = $.map($('#specific-champions-ul').find(':checkbox:checked'), function (n, i) {
 		return n.value;
 	}).join(',');

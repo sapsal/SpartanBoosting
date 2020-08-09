@@ -21,6 +21,10 @@ $(".slick-carousel").slick({
     nextArrow: false
 });
 
+$('.toast').toast({
+    delay: 2000
+})
+
 document.addEventListener("DOMContentLoaded", function () {
     var lazyloadImages = document.querySelectorAll("img.lazy");
     var lazyloadThrottleTimeout;
@@ -75,4 +79,15 @@ $(document).on("click", '.checkbox-border-styling', function () {
     else {
         $(this).parent().parent().removeClass('wpforms-selected');
     }
+});
+
+$(function () {
+    var requiredCheckboxes = $('.one-checkbox-minimum :checkbox[required]');
+    requiredCheckboxes.change(function () {
+        if (requiredCheckboxes.is(':checked')) {
+            requiredCheckboxes.removeAttr('required');
+        } else {
+            requiredCheckboxes.attr('required', 'required');
+        }
+    });
 });

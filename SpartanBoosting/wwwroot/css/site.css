@@ -1117,3 +1117,17 @@ label {
 	color: #fff;
 	font-weight: 700;
 }
+
+.field-validation-error {
+	border-color: red !important;
+}
+
+.toastr-dot {
+	color: red;
+	background-color: red !important;
+	height: 15px;
+	width: 15px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+}

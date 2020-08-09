@@ -35,6 +35,18 @@ $('.gfield-quote').on('keyup change paste', function () {
 });
 
 $('#submit-quote').on('click', function () {
+	$('[required]:visible').each(function () {
+		if (!$(this)[0].checkValidity()) {
+			$('.toast').toast('show');
+			$(this).addClass('field-validation-error')
+		}
+		else {
+			$(this).removeClass('field-validation-error')
+		}
+	});
+	if (!$("form")[0].checkValidity()) {
+		return;
+	}
 	$.ajax({
 		url: '/LolBoosting/DisplayInformationAndPayment',
 		type: 'GET',
