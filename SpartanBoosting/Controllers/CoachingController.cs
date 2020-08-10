@@ -33,8 +33,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing);
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						return RedirectToAction("Index", "Home");
-						//return RedirectToAction("PurchaseQuote", "Quote");
+						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
 				catch (Exception e)

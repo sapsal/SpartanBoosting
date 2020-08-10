@@ -35,14 +35,14 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						return RedirectToAction("Index", "Home");
-						//return RedirectToAction("PurchaseQuote", "Quote");
+						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
-				catch (Exception e) {
+				catch (Exception e)
+				{
 					TempData["StripePayment"] = "Stripe Payment has failed, please check your details and try again";
 					return RedirectToAction("soloboosting", "lolboosting");
-				} 
+				}
 				//something went wrong
 				return View();
 			}
@@ -68,8 +68,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						return RedirectToAction("Index", "Home");
-						//return RedirectToAction("PurchaseQuote", "Quote");
+						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
 				catch (Exception e)
@@ -101,8 +100,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						return RedirectToAction("Index", "Home");
-						//return RedirectToAction("PurchaseQuote", "Quote");
+						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
 				catch (Exception e)
@@ -134,8 +132,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						return RedirectToAction("Index", "Home");
-						//return RedirectToAction("PurchaseQuote", "Quote");
+						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
 				catch (Exception e)

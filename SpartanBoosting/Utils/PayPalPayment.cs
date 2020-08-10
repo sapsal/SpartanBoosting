@@ -48,7 +48,7 @@ namespace SpartanBoosting.Utils
 				RedirectUrls = new RedirectUrls()
 				{
 					//ReturnUrl = "https://localhost:44353/Quote/PurchaseQuote",
-					ReturnUrl = "https://www.spartanboosting.com",
+					ReturnUrl = "https://www.spartanboosting.com/Quote/PurchaseQuote",
 					CancelUrl = "https://www.spartanboosting.com"
 				},
 				Payer = new Payer()
