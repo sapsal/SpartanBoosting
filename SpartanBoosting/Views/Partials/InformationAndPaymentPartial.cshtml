@@ -50,7 +50,7 @@
 	<div class="col-md-12">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">PAYMENT METHOD:<span class="gfield_required">*</span></label>
-			<select asp-for="PaymentMethod" name="PaymentMethod" id="input_10_243" class="large gfield_select" aria-required="true" aria-invalid="false"  required="">
+			<select asp-for="PaymentMethod" name="PaymentMethod" id="input_10_243" class="large gfield_select" aria-required="true" aria-invalid="false" required="">
 				<option value="Stripe" selected="selected">Stripe</option>
 				<option value="Paypal">Paypal</option>
 			</select>
@@ -126,15 +126,29 @@
 	jQuery(function ($) {
 		$('.proceed-checkout-btn').click(function (e) {
 			e.preventDefault(); // stop redirection
-			var $form = $('.stripe-form');
 
-			// Disable the submit button to prevent repeated clicks
-			$form.find('button').prop('disabled', true);
+			$('[required]:visible').each(function () {
+				if (!$(this)[0].checkValidity()) {
+					$('.toast').toast('show');
+					$(this).addClass('field-validation-error')
+				}
+				else {
+					$(this).removeClass('field-validation-error')
+				}
+			});
+			if (!$("form")[0].checkValidity()) {
+				return;
+			}
+		})
 
-			Stripe.card.createToken($form, stripeResponseHandler);
+		var $form = $('.stripe-form');
 
-			// Prevent the form from submitting with the default action
-			return false;
-		});
+		// Disable the submit button to prevent repeated clicks
+		$form.find('button').prop('disabled', true);
+
+		Stripe.card.createToken($form, stripeResponseHandler);
+
+		// Prevent the form from submitting with the default action
+		return false;
 	});
 </script>
