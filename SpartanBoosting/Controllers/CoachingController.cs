@@ -8,17 +8,17 @@ using SpartanBoosting.Utils;
 
 namespace SpartanBoosting.Controllers
 {
-    public class CoachingController : Controller
-    {
-        public IActionResult Coaching()
-        {
-            return View();
-        }
+	public class CoachingController : Controller
+	{
+		public IActionResult Coaching()
+		{
+			return View();
+		}
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
 		public IActionResult CreateCoaching(Models.CoachingModel CoachingModel, Models.PersonalInformation PersonalInformation)
 		{
-			var Pricing = CoachingModel.CoachingPrices[int.Parse(CoachingModel.CoachingPackage)-1].Price;
+			var Pricing = CoachingModel.CoachingPrices[int.Parse(CoachingModel.CoachingPackage) - 1].Price;
 			//JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
 			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing));
 
@@ -28,10 +28,19 @@ namespace SpartanBoosting.Controllers
 			}
 			else
 			{
-				var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing);
-				if (result.Status == "succeeded" && result.Paid)
+				try
 				{
-					return RedirectToAction("PurchaseQuote", "Quote");
+					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing);
+					if (result.Status == "succeeded" && result.Paid)
+					{
+						return RedirectToAction("Index", "Home");
+						//return RedirectToAction("PurchaseQuote", "Quote");
+					}
+				}
+				catch (Exception e)
+				{
+					TempData["StripePayment"] = "Stripe Payment has failed, please check your details and try again";
+					return RedirectToAction("Coaching", "Coaching");
 				}
 
 				//something went wrong

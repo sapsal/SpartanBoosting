@@ -11,7 +11,7 @@
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="desired-rank">LEAGUE OF LEGENDS PASSWORD:<span class="gfield_required">*</span></label>
-			<input class="large " name="Password" id="" asp-for="Password" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+			<input class="large " name="Password" id="" asp-for="Password" type="password" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 		</div>
 	</div>
 </div>
@@ -66,7 +66,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">Card Number</span>
-					<input type="text" data-stripe="number" value="4242424242424242">
+					<input type="text" data-stripe="number" >
 				</label>
 			</div>
 		</div>
@@ -77,7 +77,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">CVC</span>
-					<input type="text" data-stripe="cvc" value="123">
+					<input type="text" data-stripe="cvc" >
 				</label>
 			</div>
 		</div>
@@ -85,7 +85,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">Expiration (MM)</span>
-					<input type="text" data-stripe="exp-month" value="12">
+					<input type="text" data-stripe="exp-month" >
 				</label>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">Expiration (YYYY)</span>
-					<input type="text" data-stripe="exp-year" value="2020">
+					<input type="text" data-stripe="exp-year" >
 				</label>
 			</div>
 		</div>
@@ -104,7 +104,7 @@
 </div>
 
 <script type="text/javascript">
-	Stripe.setPublishableKey('pk_test_51GuKbWF9YOHhm6ddmQMulOaVFTPHv2yvjMfNLGYO4PDamRQkjScj5GwplBYye8xoVBlHHQTeG47nFxlxcpxDUF9X00oiBGiCO4');
+	Stripe.setPublishableKey('pk_live_u9ZDiEA4MATglICKYobFNb0S00v6iolLzi');
 
 	var stripeResponseHandler = function (status, response) {
 		var $form = $('.stripe-form');
@@ -125,6 +125,7 @@
 
 	jQuery(function ($) {
 		$('.proceed-checkout-btn').click(function (e) {
+			debugger;
 			e.preventDefault(); // stop redirection
 
 			$('[required]:visible').each(function () {
@@ -139,7 +140,6 @@
 			if (!$("form")[0].checkValidity()) {
 				return;
 			}
-		})
 
 		var $form = $('.stripe-form');
 

@@ -23,7 +23,7 @@ namespace SpartanBoosting.Utils
 			return chargeService.Create(new Stripe.ChargeCreateOptions
 			{
 				Amount = (long)priceConverted,
-				Description = "Spartand Boosting",
+				Description = "Spartan Boosting",
 				Currency = "EUR",
 				Customer = customer.Id
 			});

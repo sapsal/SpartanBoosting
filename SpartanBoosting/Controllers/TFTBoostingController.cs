@@ -39,10 +39,19 @@ namespace SpartanBoosting.Controllers
             }
             else
             {
-                var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
-                if (result.Status == "succeeded" && result.Paid)
+                try
                 {
-                    return RedirectToAction("PurchaseQuote", "Quote");
+                    var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+                    if (result.Status == "succeeded" && result.Paid)
+                    {
+                        return RedirectToAction("Index", "Home");
+                        //return RedirectToAction("PurchaseQuote", "Quote");
+                    }
+                }
+                catch (Exception e)
+                {
+                    TempData["StripePayment"] = "Stripe Payment has failed, please check your details and try again";
+                    return RedirectToAction("TFTSoloBoost", "TFTBoosting");
                 }
 
                 //something went wrong
@@ -62,10 +71,19 @@ namespace SpartanBoosting.Controllers
             }
             else
             {
-                var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
-                if (result.Status == "succeeded" && result.Paid)
+                try
                 {
-                    return RedirectToAction("PurchaseQuote", "Quote");
+                    var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+                    if (result.Status == "succeeded" && result.Paid)
+                    {
+                        return RedirectToAction("Index", "Home");
+                        //return RedirectToAction("PurchaseQuote", "Quote");
+                    }
+                }
+                catch (Exception e)
+                {
+                    TempData["StripePayment"] = "Stripe Payment has failed, please check your details and try again";
+                    return RedirectToAction("TFTPlacementBoost", "TFTBoosting");
                 }
 
                 //something went wrong
