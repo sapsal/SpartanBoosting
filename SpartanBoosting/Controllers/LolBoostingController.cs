@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Utils;
 using Stripe;
@@ -19,10 +20,10 @@ namespace SpartanBoosting.Controllers
 		}
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
-		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
+		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString()));
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
@@ -53,7 +54,7 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateDuo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.DuoPricing(BoostingModel);
-			var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString());
+			var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation);
 			purchaseFormObject.PurchaseType = PurchaseType.DuoBoosting;
 			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseFormObject);
 
@@ -87,7 +88,7 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreatePlacementMatches(Models.PlacementMatchesModel PlacementMatchesModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.PlacementBoostPricing(PlacementMatchesModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Value.ToString()));
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Value.ToString(), PersonalInformation));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
@@ -119,7 +120,7 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateWinBoost(Models.WinBoostModel WinBoostModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.WinBoostPricing(WinBoostModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Value.ToString()));
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Value.ToString(), PersonalInformation));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{

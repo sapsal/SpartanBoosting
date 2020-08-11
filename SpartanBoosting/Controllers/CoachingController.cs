@@ -20,7 +20,7 @@ namespace SpartanBoosting.Controllers
 		{
 			var Pricing = CoachingModel.CoachingPrices[int.Parse(CoachingModel.CoachingPackage) - 1].Price;
 			//JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing));
+			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing, PersonalInformation));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
