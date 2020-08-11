@@ -44,8 +44,11 @@ namespace SpartanBoosting.Controllers
         public IActionResult SubmitContactUs(ContactUsModel ContactUsModel)
         {
             EmailSender test = new EmailSender(_smtpSettings);
-            TempData["Result"] = "Success, Email has been sent";
-            test.SendEmailAsync(ContactUsModel.YourEmail, $"{ContactUsModel.YourName} query", ContactUsModel.Message);
+            if (!string.IsNullOrEmpty(ContactUsModel.YourEmail) && !string.IsNullOrEmpty(ContactUsModel.Message))
+            {
+                TempData["Result"] = "Success, Email has been sent";
+                test.SendEmailAsync(ContactUsModel.YourEmail, $"{ContactUsModel.YourName} query", ContactUsModel.Message);
+            }
             return RedirectToAction("ContactUs", "Adhoc");
         }
 
