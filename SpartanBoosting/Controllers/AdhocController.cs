@@ -38,8 +38,6 @@ namespace SpartanBoosting.Controllers
 
         public IActionResult ContactUs()
         {
-            EmailSender test = new EmailSender(_smtpSettings);
-            test.SendEmailAsync("", "", "");
             return View();
         }
 

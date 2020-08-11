@@ -25,7 +25,7 @@ namespace SpartanBoosting.Controllers
 			var bot = new DiscordBot();
 			bot.RunAsync(purchaseForm).GetAwaiter().GetResult();
 			EmailSender email = new EmailSender(_smtpSettings);
-			email.SendEmailAsync("Purchase Request", $"Join The Team Request", TempData["purchaseFormlData"].ToString());
+			email.SendEmailAsync("Purchase Request", $"Purchase Request", TempData["purchaseFormlData"].ToString());
 			return RedirectToAction("Index", "Home");
 		}
 	}
