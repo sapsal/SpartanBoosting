@@ -64,6 +64,7 @@ namespace SpartanBoosting.Controllers
 				{
 					case PurchaseTypeEnum.PurchaseType.SoloBoosting:
 						emailbody = RenderPartialViewToString("Templates/PurchaseOrderSoloEmail", purchaseForm).Result;
+
 						break;
 					case PurchaseTypeEnum.PurchaseType.DuoBoosting:
 						emailbody = RenderPartialViewToString("Templates/PurchaseOrderDuoEmail", purchaseForm).Result;

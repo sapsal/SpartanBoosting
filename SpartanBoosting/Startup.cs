@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SpartanBoosting.Models.Data;
+using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Utils;
 using Stripe;
 
@@ -30,6 +33,10 @@ namespace SpartanBoosting
 			//services.AddApplicationInsightsTelemetry("385ae6ef-e3a5-43b5-84d8-820e4ac8b1e9");
 			services.AddSingleton<IEmailSender, EmailSender>();
 			services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
+			services.AddDbContextPool<AppDbContext>(options =>
+			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddScoped<IPurchaseOrderRepository, SqlPurchaseOrderRepository>();
 
 			ObjectFactory.LoadPricing();
 		}
