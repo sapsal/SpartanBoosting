@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace SpartanBoosting.Models
 {
 	public class BoosterInformation
 	{
+		[Key]
+		public int Id { get; set; }
 		public string Name { get; set; }
 		public string League { get; set; }
 		public string Role { get; set; }

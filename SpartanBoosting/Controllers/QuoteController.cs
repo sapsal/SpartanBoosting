@@ -82,7 +82,6 @@ namespace SpartanBoosting.Controllers
 						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderTFTSoloBoostEmail", purchaseForm).Result;
 						break;
 					//	var emailbody = RenderPartialViewToString("Templates/PurchaseOrderEmail", purchaseForm).Result;
-					//	var emailbody = RenderPartialViewToString("Templates/PurchaseOrderEmail", purchaseForm).Result;
 					//	break;
 					default:
 						emailbody = JsonConvert.SerializeObject(purchaseForm);

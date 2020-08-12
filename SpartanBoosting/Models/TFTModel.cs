@@ -2,6 +2,7 @@
 using Stripe;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using static SpartanBoosting.Utils.PurchaseTypeEnum;
@@ -10,6 +11,8 @@ namespace SpartanBoosting.Models
 {
 	public class TFTPlacementModel
 	{
+		[Key]
+		public int Id { get; set; }
 		public string LastSeasonStanding { get; set; }
 		public string Server { get; set; }
 		public string NumberOfGames { get; set; }
@@ -27,6 +30,8 @@ namespace SpartanBoosting.Models
 	}
 	public class TFTBoostingModel
 	{
+		[Key]
+		public int Id { get; set; }
 		public string YourCurrentLeague { get; set; }
 		public string DesiredCurrentLeague { get; set; }
 		public string CurrentDivision { get; set; }

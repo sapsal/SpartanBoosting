@@ -1,6 +1,7 @@
 ﻿using SpartanBoosting.Models.Pricing;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using static SpartanBoosting.Utils.PurchaseTypeEnum;
@@ -9,6 +10,8 @@ namespace SpartanBoosting.Models
 {
 	public class BoostingModel
 	{
+		[Key]
+		public int Id { get; set; }
 		public string YourCurrentLeague { get; set; }
 		public string DesiredCurrentLeague { get; set; }
 		public string CurrentDivision { get; set; }
@@ -40,6 +43,8 @@ namespace SpartanBoosting.Models
 
 	public class PlacementMatchesModel
 	{
+		[Key]
+		public int Id { get; set; }
 		public string LastSeasonStanding { get; set; }
 		public string Server { get; set; }
 		public string TypeOfQueue { get; set; }
@@ -63,6 +68,8 @@ namespace SpartanBoosting.Models
 
 	public class WinBoostModel
 	{
+		[Key]
+		public int Id { get; set; }
 		public string YourCurrentLeague { get; set; }
 		public string CurrentDivision { get; set; }
 		public string Server { get; set; }
@@ -88,6 +95,8 @@ namespace SpartanBoosting.Models
 
 	public class PersonalInformation
 	{
+		[Key]
+		public int Id { get; set; }
 		public string UserName { get; set; }
 		public string Password { get; set; }
 		public string FirstName { get; set; }
