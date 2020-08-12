@@ -21,13 +21,14 @@ namespace SpartanBoosting.Models
 		public string Server { get; set; }
 		public string CoachingPackage { get; set; }
 		public string CurrentRank { get; set; }
-		public static PurchaseForm CoachingModelToPurchaseForm(CoachingModel coachingModel, string pricing)
+		public static PurchaseForm CoachingModelToPurchaseForm(CoachingModel coachingModel, string pricing, PersonalInformation PersonalInformation)
 		{
 			return new PurchaseForm
 			{
 				PurchaseType = Utils.PurchaseTypeEnum.PurchaseType.Coaching,
 				CoachingModel = coachingModel,
-				Pricing = pricing
+				Pricing = pricing,
+				PersonalInformation = PersonalInformation
 			};
 		}
 	}

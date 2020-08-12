@@ -26,13 +26,14 @@ namespace SpartanBoosting.Models
 		public string SpecificChampions { get; set; }
 		public bool VPN { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm BoostingModelToPurchaseForm(BoostingModel boostingModel, string pricing)
+		public static PurchaseForm BoostingModelToPurchaseForm(BoostingModel boostingModel, string pricing, PersonalInformation PersonalInformation)
 		{
 			return new PurchaseForm
 			{
 				BoostingModel = boostingModel,
 				Pricing = pricing,
-				PurchaseType = PurchaseType.SoloBoosting
+				PurchaseType = PurchaseType.SoloBoosting,
+				PersonalInformation = PersonalInformation
 			};
 		}
 	}
@@ -48,13 +49,14 @@ namespace SpartanBoosting.Models
 		public string NumOfGames { get; set; }
 		public string Discount { get; set; }
 
-		public static PurchaseForm PlacementMatchesModelToPurchaseForm(PlacementMatchesModel placementMatchesModel, string pricing)
+		public static PurchaseForm PlacementMatchesModelToPurchaseForm(PlacementMatchesModel placementMatchesModel, string pricing, PersonalInformation PersonalInformation)
 		{
 			return new PurchaseForm
 			{
 				PlacementMatchesModel = placementMatchesModel,
 				PurchaseType = PurchaseType.PlacementMatches,
-				Pricing = pricing
+				Pricing = pricing,
+				PersonalInformation = PersonalInformation
 			};
 		}
 	}
@@ -72,13 +74,14 @@ namespace SpartanBoosting.Models
 
 		public string NumOfGames { get; set; }
 
-		public static PurchaseForm WinBoostModelToPurchaseForm(WinBoostModel winBoostModel, string pricing)
+		public static PurchaseForm WinBoostModelToPurchaseForm(WinBoostModel winBoostModel, string pricing, PersonalInformation PersonalInformation)
 		{
 			return new PurchaseForm
 			{
 				WinBoostModel = winBoostModel,
 				PurchaseType = PurchaseType.WinBoosting,
-				Pricing = pricing
+				Pricing = pricing,
+				PersonalInformation = PersonalInformation
 			};
 		}
 	}

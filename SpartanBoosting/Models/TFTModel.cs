@@ -1,4 +1,5 @@
 ﻿using SpartanBoosting.Models.Pricing;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,14 @@ namespace SpartanBoosting.Models
 		public string Server { get; set; }
 		public string NumberOfGames { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm TFTPlacementModelPurchaseForm(TFTPlacementModel TFTPlacementModel, string pricing)
+		public static PurchaseForm TFTPlacementModelPurchaseForm(TFTPlacementModel TFTPlacementModel, string pricing, PersonalInformation PersonalInformation)
 		{
 			return new PurchaseForm
 			{
 				TFTPlacementModel = TFTPlacementModel,
-				PurchaseType = PurchaseType.TFTPlacement
+				PurchaseType = PurchaseType.TFTPlacement,
+				Pricing = pricing, 
+				PersonalInformation = PersonalInformation
 			};
 		}
 	}
@@ -31,12 +34,14 @@ namespace SpartanBoosting.Models
 		public string CurrentLP { get; set; }
 		public string Server { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm TFTBoostingModelToPurchaseForm(TFTBoostingModel winBoostModel, string pricing)
+		public static PurchaseForm TFTBoostingModelToPurchaseForm(TFTBoostingModel winBoostModel, string pricing, PersonalInformation PersonalInformation)
 		{
 			return new PurchaseForm
 			{
 				TFTBoostingModel = winBoostModel,
-				PurchaseType = PurchaseType.TFTPlacement
+				PurchaseType = PurchaseType.TFTPlacement,
+				Pricing = pricing,
+				PersonalInformation = PersonalInformation
 			};
 		}
 	}

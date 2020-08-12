@@ -26,8 +26,8 @@ namespace SpartanBoosting.Utils
 	{
 		public static string CreatePaymentRequest(string price)
 		{
-			var environment = new LiveEnvironment("AbsLlwBzsLwTvG-6awsiklgFPeDNWlGctQ9MukFQl-VimUpPwBtTLpR5SX8Wyu0U_R8pg6mGxgrpzYiA", "EIFw-teU8tWyH7UBXgI7UftSXuJoB1aG51jkZMiRb23x39OaTd9kLOcKSVtb6FWK5vj1sSypW1kC9xUB");
-			//var environment = new SandboxEnvironment("ARXuDzN7ArL3ZiTG0_ebn-4u53kqetWWQSkM5UoVk5KZ_ClhTjSueiVJTnDuFvYtf4TnPxxJDRSJryWJ", "EL6FuAA6ocMA6rFtSWg7Ck-mZYMCq4W-G-huZPVsiOIT9zyI9z2Wh_-_Elv9GiiWP00S8fn28I5G-NFm");
+			//var environment = new LiveEnvironment("AbsLlwBzsLwTvG-6awsiklgFPeDNWlGctQ9MukFQl-VimUpPwBtTLpR5SX8Wyu0U_R8pg6mGxgrpzYiA", "EIFw-teU8tWyH7UBXgI7UftSXuJoB1aG51jkZMiRb23x39OaTd9kLOcKSVtb6FWK5vj1sSypW1kC9xUB");
+			var environment = new SandboxEnvironment("ARXuDzN7ArL3ZiTG0_ebn-4u53kqetWWQSkM5UoVk5KZ_ClhTjSueiVJTnDuFvYtf4TnPxxJDRSJryWJ", "EL6FuAA6ocMA6rFtSWg7Ck-mZYMCq4W-G-huZPVsiOIT9zyI9z2Wh_-_Elv9GiiWP00S8fn28I5G-NFm");
 
 			var client = new PayPalHttpClient(environment);
 
@@ -47,8 +47,8 @@ namespace SpartanBoosting.Utils
 					},
 				RedirectUrls = new RedirectUrls()
 				{
-					//ReturnUrl = "https://localhost:44353/Quote/PurchaseQuote",
-					ReturnUrl = "https://www.spartanboosting.com/Quote/PurchaseQuote",
+					ReturnUrl = "https://localhost:44353/Quote/PurchaseQuote",
+					//ReturnUrl = "https://www.spartanboosting.com/Quote/PurchaseQuote",
 					CancelUrl = "https://www.spartanboosting.com"
 				},
 				Payer = new Payer()
