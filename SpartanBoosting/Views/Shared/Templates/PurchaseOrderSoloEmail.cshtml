@@ -1,0 +1,209 @@
+﻿@model SpartanBoosting.Models.Pricing.PurchaseForm
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!DOCTYPE html>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF">
+	<tbody>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>ORDER ID:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">SBD-TBC</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>TYPE OF ORDER:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">Solo</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>YOUR CURRENT LEAGUE:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.BoostingModel.YourCurrentLeague</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>YOUR CURRENT DIVISION:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.BoostingModel.CurrentDivision</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>YOUR CURRENT POINTS:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.BoostingModel.CurrentLP</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>YOUR DESIRED LEAGUE:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.BoostingModel.DesiredCurrentLeague</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>YOUR DESIRED DIVISION:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.BoostingModel.DesiredCurrentDivision</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>YOUR SERVER:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.BoostingModel.Server</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>TYPE OF SERVICE:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">Solo</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>TYPE OF QUEUE:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.BoostingModel.TypeOfQueue</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>TYPE OF DUO:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@(Model.BoostingModel.TypeOfDuoRegular != "false" ? @Model.BoostingModel.TypeOfDuoRegular : @Model.BoostingModel.TypeOfDuoPremium)</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>NAME:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.PersonalInformation.FirstName @Model.PersonalInformation.LastName</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>EMAIL:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px"><a href="mailto:lawrencep96@hotmail.com" target="_blank">@Model.PersonalInformation.Email</a></font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>DISCORD:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.PersonalInformation.Discord</font>
+			</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+			<td colspan="2">
+				<font style="font-family:sans-serif;font-size:12px"><strong>PAYMENT METHOD:</strong></font>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td width="20">&nbsp;</td>
+			<td>
+				<font style="font-family:sans-serif;font-size:12px">@Model.PersonalInformation.PaymentMethod</font>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="2">Order</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+
+				<table cellspacing="0" width="100%" style="margin:0;border:1px solid #dfdfdf;border-right:none">
+					<thead>
+						<tr>
+							<th scope="col" style="border-right:1px solid #dfdfdf;text-align:left;padding:8px 10px;font-weight:normal;font-size:14px;background-color:#f4f4f4;width:50%">Product</th>
+							<th scope="col" style="border-right:1px solid #dfdfdf;text-align:center;padding:8px 10px;font-weight:normal;font-size:14px;background-color:#f4f4f4">Qty</th>
+							<th scope="col" style="border-right:1px solid #dfdfdf;text-align:right;padding:8px 10px;font-weight:normal;font-size:14px;background-color:#f4f4f4">Unit Price</th>
+							<th scope="col" style="border-right:1px solid #dfdfdf;text-align:right;padding:8px 10px;font-weight:normal;font-size:14px;background-color:#f4f4f4">Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-right:1px solid #dfdfdf;vertical-align:top;padding:8px 10px;width:50%">
+								<div style="font-weight:bold;color:#bf461e;font-size:13px;margin-bottom:5px">
+									@($"{Model.BoostingModel.YourCurrentLeague} {Model.BoostingModel.CurrentDivision} {Model.BoostingModel.CurrentLP} to {Model.BoostingModel.DesiredCurrentLeague} {Model.BoostingModel.DesiredCurrentDivision}")
+								</div>
+								<ul style="padding-left:0;margin:0">
+								</ul>
+							</td>
+							<td style="border-right:1px solid #dfdfdf;vertical-align:top;padding:8px 10px;text-align:center">1</td>
+							<td style="border-right:1px solid #dfdfdf;vertical-align:top;padding:8px 10px;text-align:right">@Model.Pricing €</td>
+							<td style="border-right:1px solid #dfdfdf;vertical-align:top;padding:8px 10px;text-align:right">@Model.Pricing €</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</td>
+		</tr>
+
+	</tbody>
+</table>

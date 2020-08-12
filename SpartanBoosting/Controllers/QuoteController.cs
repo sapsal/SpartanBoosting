@@ -59,7 +59,34 @@ namespace SpartanBoosting.Controllers
 
 				//var bot = new DiscordBot();
 				//bot.RunAsync(purchaseForm).GetAwaiter().GetResult();
-				var emailbody = RenderPartialViewToString("Templates/PurchaseOrderEmail", purchaseForm).Result;
+				string emailbody = string.Empty;
+				switch (purchaseForm.PurchaseType)
+				{
+					case PurchaseTypeEnum.PurchaseType.SoloBoosting:
+						emailbody = RenderPartialViewToString("Templates/PurchaseOrderSoloEmail", purchaseForm).Result;
+						break;
+					case PurchaseTypeEnum.PurchaseType.DuoBoosting:
+						emailbody = RenderPartialViewToString("Templates/PurchaseOrderDuoEmail", purchaseForm).Result;
+						break;
+					case PurchaseTypeEnum.PurchaseType.WinBoosting:
+						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderWinBoostEmail", purchaseForm).Result;
+						break;
+					case PurchaseTypeEnum.PurchaseType.PlacementMatches:
+						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderPlacementMatchesEmail", purchaseForm).Result;
+						break;
+					case PurchaseTypeEnum.PurchaseType.TFTPlacement:
+						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderTFTPlacementMatchesEmail", purchaseForm).Result;
+						break;
+					case PurchaseTypeEnum.PurchaseType.TFTBoosting:
+						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderTFTSoloBoostEmail", purchaseForm).Result;
+						break;
+					//	var emailbody = RenderPartialViewToString("Templates/PurchaseOrderEmail", purchaseForm).Result;
+					//	var emailbody = RenderPartialViewToString("Templates/PurchaseOrderEmail", purchaseForm).Result;
+					//	break;
+					default:
+						emailbody = JsonConvert.SerializeObject(purchaseForm);
+						break;
+				}
 				email.SendEmailAsync("Purchase Request", $"Purchase Request", emailbody);
 			}
 			catch (Exception e)
