@@ -5,10 +5,14 @@
 });
 
 $('[name="DesiredCurrentLeague"]').on('change', function () {
-	if (this.value == "Master")
+	if (this.value == "Master") {
 		$('#master-rank-notification').show()
-	else
+		$('[name="DesiredCurrentDivision"]').hide()
+	}
+	else {
 		$('#master-rank-notification').hide()
+		$('[name="DesiredCurrentDivision"]').show()
+	}
 });
 
 $(document).on("change", '[name="PaymentMethod"]', function () {
