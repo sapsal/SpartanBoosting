@@ -1,4 +1,4 @@
-﻿using SpartanBoosting.Models.Data;
+﻿using SpartanBoosting.Data;
 using SpartanBoosting.Models.Pricing;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ namespace SpartanBoosting.Models.Repositorys
 {
 	public class SqlPurchaseOrderRepository: IPurchaseOrderRepository
 	{
-		private readonly AppDbContext context;
+		private readonly ApplicationDbContext context;
 
-		public SqlPurchaseOrderRepository(AppDbContext context)
+		public SqlPurchaseOrderRepository(ApplicationDbContext context)
 		{
 			this.context = context;
 		}

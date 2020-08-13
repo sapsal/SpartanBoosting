@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SpartanBoosting.Models.Data;
+using SpartanBoosting.Data;
 using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Utils;
 using Stripe;
@@ -33,7 +33,7 @@ namespace SpartanBoosting
 			//services.AddApplicationInsightsTelemetry("385ae6ef-e3a5-43b5-84d8-820e4ac8b1e9");
 			services.AddSingleton<IEmailSender, EmailSender>();
 			services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
-			services.AddDbContextPool<AppDbContext>(options =>
+			services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddScoped<IPurchaseOrderRepository, SqlPurchaseOrderRepository>();
@@ -47,19 +47,19 @@ namespace SpartanBoosting
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseDatabaseErrorPage();
 			}
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
 			app.UseRouting();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
@@ -67,6 +67,7 @@ namespace SpartanBoosting
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapRazorPages();
 			});
 
 			app.UseForwardedHeaders(new ForwardedHeadersOptions
