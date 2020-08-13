@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SpartanBoosting.Models;
 using SpartanBoosting.Models.Data;
 using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Utils;
@@ -35,6 +37,9 @@ namespace SpartanBoosting
 			services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
 			services.AddDbContextPool<AppDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddIdentity<ApplicationUser, IdentityRole>()
+	.AddEntityFrameworkStores<AppDbContext>()
+	.AddDefaultTokenProviders();
 
 			services.AddScoped<IPurchaseOrderRepository, SqlPurchaseOrderRepository>();
 
