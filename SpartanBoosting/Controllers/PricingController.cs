@@ -68,7 +68,7 @@ namespace SpartanBoosting.Controllers
 				var ipAddress = HttpContext.Connection.RemoteIpAddress;
 				IpInfo ipInfo = new IpInfo();
 				var ipResult = ipInfo.GetCurrentIpInfo(ipAddress.ToString());
-				if (ipResult.Country == "US")
+				if (ipResult.Country == "US" || ipResult.Country == "CA")
 					price = price + (price / 100) * 40;
 
 
