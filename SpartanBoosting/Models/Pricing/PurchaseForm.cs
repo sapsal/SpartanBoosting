@@ -18,7 +18,7 @@ namespace SpartanBoosting.Models.Pricing
 		public TFTPlacementModel TFTPlacementModel { get; set; }
 		public TFTBoostingModel TFTBoostingModel { get; set; }
 		public string Pricing { get; set; }
-
+		public bool JobAvailable { get; set; } = true;
 		public PurchaseTypeEnum.PurchaseType PurchaseType { get; set; }
 	}
 }

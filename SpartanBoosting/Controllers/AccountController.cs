@@ -37,16 +37,16 @@ namespace SpartanBoosting.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Login(string returnUrl = null)
-        //{
-        //    // Clear the existing external cookie to ensure a clean login process
-        //    await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(string returnUrl = null)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-        //    ViewData["ReturnUrl"] = returnUrl;
-        //    return View();
-        //}
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
 
         [HttpPost]
         [AllowAnonymous]
@@ -201,13 +201,13 @@ namespace SpartanBoosting.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public IActionResult Register(string returnUrl = null)
-        //{
-        //    ViewData["ReturnUrl"] = returnUrl;
-        //    return View();
-        //}
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
 
         [HttpPost]
         [AllowAnonymous]

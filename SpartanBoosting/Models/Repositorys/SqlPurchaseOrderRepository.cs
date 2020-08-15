@@ -23,24 +23,34 @@ namespace SpartanBoosting.Models.Repositorys
 			return purchaseForm;
 		}
 
-		public PurchaseForm Delete(int Id)
+		public void Delete(PurchaseForm purchaseForm)
 		{
-			throw new NotImplementedException();
+			context.PurchaseForm.Remove(purchaseForm);
 		}
 
-		public IEnumerable<PurchaseForm> GetAllEmployee()
+		public IEnumerable<PurchaseForm> GetAllPurchaseOrder()
 		{
-			throw new NotImplementedException();
+			return context.PurchaseForm;
 		}
 
 		public PurchaseForm GetPurchaseForm(int Id)
 		{
-			throw new NotImplementedException();
+			return context.PurchaseForm.FirstOrDefault(item => item.Id == Id);
 		}
 
 		public PurchaseForm Update(PurchaseForm purchaseFormChanges)
 		{
-			throw new NotImplementedException();
+			var entity = context.PurchaseForm.FirstOrDefault(item => item.Id == purchaseFormChanges.Id);
+
+			// Validate entity is not null
+			if (entity != null)
+			{
+				entity = purchaseFormChanges;
+
+				// Save changes in database
+				context.SaveChanges();
+			}
+			return purchaseFormChanges;
 		}
 	}
 }

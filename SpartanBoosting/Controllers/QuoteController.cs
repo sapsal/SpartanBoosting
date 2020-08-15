@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Threading.Tasks;
 using System;
+using SpartanBoosting.Models.Repositorys;
 
 namespace SpartanBoosting.Controllers
 {
@@ -16,11 +17,12 @@ namespace SpartanBoosting.Controllers
 	{
 		private readonly IOptions<SmtpSettings> _smtpSettings;
 		private ICompositeViewEngine _viewEngine;
-
-		public QuoteController(IOptions<SmtpSettings> smtpSettings, ICompositeViewEngine viewEngine)
+		private IPurchaseOrderRepository PurchaseOrderRepository;
+		public QuoteController(IOptions<SmtpSettings> smtpSettings, ICompositeViewEngine viewEngine, IPurchaseOrderRepository purchaseOrderRepository)
 		{
 			_smtpSettings = smtpSettings;
 			_viewEngine = viewEngine;
+			PurchaseOrderRepository = purchaseOrderRepository;
 		}
 
 		public async Task<string> RenderPartialViewToString(string viewName, object model)
@@ -81,13 +83,13 @@ namespace SpartanBoosting.Controllers
 					case PurchaseTypeEnum.PurchaseType.TFTBoosting:
 						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderTFTSoloBoostEmail", purchaseForm).Result;
 						break;
-					//	var emailbody = RenderPartialViewToString("Templates/PurchaseOrderEmail", purchaseForm).Result;
-					//	break;
 					default:
 						emailbody = JsonConvert.SerializeObject(purchaseForm);
 						break;
 				}
 				email.SendEmailAsync("Purchase Request", $"Purchase Request", emailbody);
+
+				PurchaseOrderRepository.Add(purchaseForm);
 			}
 			catch (Exception e)
 			{

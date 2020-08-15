@@ -21,7 +21,7 @@
 <body class="home page-template page-template-elementor_header_footer page page-id-237 wp-custom-logo wp-embed-responsive cookies-not-set customer-area-active oceanwp-theme sidebar-mobile has-transparent-header has-sidebar content-right-sidebar has-topbar page-header-disabled has-breadcrumbs has-fixed-footer elementor-default elementor-template-full-width elementor-kit-133 elementor-page elementor-page-237" itemscope="itemscope" itemtype="https://schema.org/WebPage">
 	<div id="outer-wrap" class="site clr">
 		<a class="skip-link screen-reader-text" href="#main">Skip to content</a>
-		<div id="wrap" class="clr">
+		<div id="" class="clr">
 
 			@(await Html.PartialAsync("~/Views/Shared/DiscordAdvertismentPartial.cshtml"))
 			<div id="transparent-header-wrap" class="clr">
@@ -49,7 +49,7 @@
 				</header>
 				<!-- #site-header -->
 			</div>
-			<main id="main" class="site-main clr" role="main">
+			<main id="" class="site-main clr" role="main">
 				<div aria-live="polite" aria-atomic="true" style="position: relative;">
 					<div class="toast" style="display: block;z-index: 9999;width: 400px;font-size: large;position: fixed;top: 1em;right: 1em;border-color: red;">
 						<div class="toast-header">
@@ -67,97 +67,97 @@
 				@RenderBody()
 			</main>
 		</div>
+	</div>
+	<a id="scroll-top" class="scroll-top-right" href="#">
+		<span class="fa fa-chevron-up" aria-label="Scroll to the top of the page"></span>
+	</a>
 
-		<a id="scroll-top" class="scroll-top-right" href="#">
-			<span class="fa fa-chevron-up" aria-label="Scroll to the top of the page"></span>
-		</a>
-
-		<script>
-			window.lazyLoadOptions = {
-				elements_selector: "img[src],.rocket-lazyload,iframe[src]",
-				data_src: "lazy-src",
-				data_srcset: "lazy-srcset",
-				data_sizes: "lazy-sizes",
-				class_loading: "lazyloading",
-				class_loaded: "lazyloaded",
-				threshold: 300,
-				callback_loaded: function (element) {
-					if (element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible") {
-						if (element.classList.contains("lazyloaded")) {
-							if (typeof window.jQuery != "undefined") {
-								if (jQuery.fn.fitVids) {
-									jQuery(element).parent().fitVids();
-								}
+	<script>
+		window.lazyLoadOptions = {
+			elements_selector: "img[src],.rocket-lazyload,iframe[src]",
+			data_src: "lazy-src",
+			data_srcset: "lazy-srcset",
+			data_sizes: "lazy-sizes",
+			class_loading: "lazyloading",
+			class_loaded: "lazyloaded",
+			threshold: 300,
+			callback_loaded: function (element) {
+				if (element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible") {
+					if (element.classList.contains("lazyloaded")) {
+						if (typeof window.jQuery != "undefined") {
+							if (jQuery.fn.fitVids) {
+								jQuery(element).parent().fitVids();
 							}
 						}
 					}
 				}
-			};
-			window.addEventListener('LazyLoad::Initialized', function (e) {
-				var lazyLoadInstance = e.detail.instance;
+			}
+		};
+		window.addEventListener('LazyLoad::Initialized', function (e) {
+			var lazyLoadInstance = e.detail.instance;
 
-				if (window.MutationObserver) {
-					var observer = new MutationObserver(function (mutations) {
-						var image_count = 0;
-						var iframe_count = 0;
-						var rocketlazy_count = 0;
+			if (window.MutationObserver) {
+				var observer = new MutationObserver(function (mutations) {
+					var image_count = 0;
+					var iframe_count = 0;
+					var rocketlazy_count = 0;
 
-						mutations.forEach(function (mutation) {
-							for (i = 0; i < mutation.addedNodes.length; i++) {
-								if (typeof mutation.addedNodes[i].getElementsByTagName !== 'function') {
-									return;
-								}
-
-								if (typeof mutation.addedNodes[i].getElementsByClassName !== 'function') {
-									return;
-								}
-
-								images = mutation.addedNodes[i].getElementsByTagName('img');
-								is_image = mutation.addedNodes[i].tagName == "IMG";
-								iframes = mutation.addedNodes[i].getElementsByTagName('iframe');
-								is_iframe = mutation.addedNodes[i].tagName == "IFRAME";
-								rocket_lazy = mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');
-
-								image_count += images.length;
-								iframe_count += iframes.length;
-								rocketlazy_count += rocket_lazy.length;
-
-								if (is_image) {
-									image_count += 1;
-								}
-
-								if (is_iframe) {
-									iframe_count += 1;
-								}
+					mutations.forEach(function (mutation) {
+						for (i = 0; i < mutation.addedNodes.length; i++) {
+							if (typeof mutation.addedNodes[i].getElementsByTagName !== 'function') {
+								return;
 							}
-						});
 
-						if (image_count > 0 || iframe_count > 0 || rocketlazy_count > 0) {
-							lazyLoadInstance.update();
+							if (typeof mutation.addedNodes[i].getElementsByClassName !== 'function') {
+								return;
+							}
+
+							images = mutation.addedNodes[i].getElementsByTagName('img');
+							is_image = mutation.addedNodes[i].tagName == "IMG";
+							iframes = mutation.addedNodes[i].getElementsByTagName('iframe');
+							is_iframe = mutation.addedNodes[i].tagName == "IFRAME";
+							rocket_lazy = mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');
+
+							image_count += images.length;
+							iframe_count += iframes.length;
+							rocketlazy_count += rocket_lazy.length;
+
+							if (is_image) {
+								image_count += 1;
+							}
+
+							if (is_iframe) {
+								iframe_count += 1;
+							}
 						}
+					});
+
+					if (image_count > 0 || iframe_count > 0 || rocketlazy_count > 0) {
+						lazyLoadInstance.update();
 					}
-					);
-
-					var b = document.getElementsByTagName("body")[0];
-					var config = {
-						childList: true,
-						subtree: true
-					};
-
-					observer.observe(b, config);
 				}
-			}, false);
-		</script>
-		<script data-no-minify="1" async src="https://spartanboosting.com/wp-content/plugins/rocket-lazy-load/assets/js/12.0/lazyload.min.js"></script>
-		<script src="~/lib/jquery/dist/jquery.min.js"></script>
-		<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-		<script src="~/js/site.js"></script>
-		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
-		@RenderSection("Scripts", required: false)
+				);
+
+				var b = document.getElementsByTagName("body")[0];
+				var config = {
+					childList: true,
+					subtree: true
+				};
+
+				observer.observe(b, config);
+			}
+		}, false);
+	</script>
+	<script data-no-minify="1" async src="https://spartanboosting.com/wp-content/plugins/rocket-lazy-load/assets/js/12.0/lazyload.min.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script src="~/js/site.js"></script>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
+	@RenderSection("Scripts", required: false)
 
 </body>
 </html>

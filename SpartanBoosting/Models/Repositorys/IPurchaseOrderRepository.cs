@@ -9,9 +9,9 @@ namespace SpartanBoosting.Models.Repositorys
 	public interface IPurchaseOrderRepository
 	{
 		PurchaseForm GetPurchaseForm(int Id);
-		IEnumerable<PurchaseForm> GetAllEmployee();
+		IEnumerable<PurchaseForm> GetAllPurchaseOrder();
 		PurchaseForm Add(PurchaseForm purchaseForm);
 		PurchaseForm Update(PurchaseForm purchaseFormChanges);
-		PurchaseForm Delete(int Id);
+		void Delete(PurchaseForm purchaseForm);
 	}
 }
