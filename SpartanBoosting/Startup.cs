@@ -37,7 +37,7 @@ namespace SpartanBoosting
 			services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
 			services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+			ObjectFactory.BoosterPercentage = Configuration.GetValue<int>("BoosterPercentage");
 			services.Configure<IdentityOptions>(options =>
 			{
 				// Password settings.

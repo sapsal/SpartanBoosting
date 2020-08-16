@@ -65,23 +65,23 @@ namespace SpartanBoosting.Controllers
 				switch (purchaseForm.PurchaseType)
 				{
 					case PurchaseTypeEnum.PurchaseType.SoloBoosting:
-						emailbody = RenderPartialViewToString("Templates/PurchaseOrderSoloEmail", purchaseForm).Result;
+						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderSoloEmail", purchaseForm).Result;
 
 						break;
 					case PurchaseTypeEnum.PurchaseType.DuoBoosting:
-						emailbody = RenderPartialViewToString("Templates/PurchaseOrderDuoEmail", purchaseForm).Result;
+						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderDuoEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.WinBoosting:
-						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderWinBoostEmail", purchaseForm).Result;
+						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderWinBoostEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.PlacementMatches:
-						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderPlacementMatchesEmail", purchaseForm).Result;
+						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderPlacementMatchesEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.TFTPlacement:
-						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderTFTPlacementMatchesEmail", purchaseForm).Result;
+						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderTFTPlacementMatchesEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.TFTBoosting:
-						 emailbody = RenderPartialViewToString("Templates/PurchaseOrderTFTSoloBoostEmail", purchaseForm).Result;
+						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderTFTSoloBoostEmail", purchaseForm).Result;
 						break;
 					default:
 						emailbody = JsonConvert.SerializeObject(purchaseForm);

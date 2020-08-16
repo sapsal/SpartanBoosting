@@ -29,4 +29,8 @@
     <PackageReference Include="System.Data.OleDb" Version="4.7.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\BoosterArea\BoosterAreaPartial\" />
+  </ItemGroup>
+
 </Project>
