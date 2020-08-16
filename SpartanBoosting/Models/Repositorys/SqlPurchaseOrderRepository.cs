@@ -1,4 +1,5 @@
-﻿using SpartanBoosting.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SpartanBoosting.Data;
 using SpartanBoosting.Models.Pricing;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpartanBoosting.Models.Repositorys
 {
-	public class SqlPurchaseOrderRepository: IPurchaseOrderRepository
+	public class SqlPurchaseOrderRepository : IPurchaseOrderRepository
 	{
 		private readonly ApplicationDbContext context;
 
@@ -31,6 +32,17 @@ namespace SpartanBoosting.Models.Repositorys
 		public IEnumerable<PurchaseForm> GetAllPurchaseOrder()
 		{
 			return context.PurchaseForm;
+		}
+
+		public IEnumerable<PurchaseForm> GetAllPurchaseOrderAvailable()
+		{
+			return context.PurchaseForm.Where(x => x.JobAvailable)
+			.Include(p => p.BoostingModel)
+			.Include(p => p.CoachingModel)
+			.Include(p => p.PlacementMatchesModel)
+			.Include(p => p.TFTBoostingModel)
+			.Include(p => p.TFTPlacementModel)
+			.Include(p => p.WinBoostModel);
 		}
 
 		public PurchaseForm GetPurchaseForm(int Id)
