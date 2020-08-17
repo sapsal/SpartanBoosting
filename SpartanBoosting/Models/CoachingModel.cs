@@ -1,4 +1,5 @@
 ﻿using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,14 +25,16 @@ namespace SpartanBoosting.Models
 		public string Server { get; set; }
 		public string CoachingPackage { get; set; }
 		public string CurrentRank { get; set; }
-		public static PurchaseForm CoachingModelToPurchaseForm(CoachingModel coachingModel, string pricing, PersonalInformation PersonalInformation)
+		public static PurchaseForm CoachingModelToPurchaseForm(CoachingModel coachingModel, string pricing, PersonalInformation PersonalInformation, string ApprovalURL = null, string CaptureURL = null)
 		{
 			return new PurchaseForm
 			{
 				PurchaseType = Utils.PurchaseTypeEnum.PurchaseType.Coaching,
 				CoachingModel = coachingModel,
 				Pricing = pricing,
-				PersonalInformation = PersonalInformation
+				PersonalInformation = PersonalInformation,
+				PayPalApproval = ApprovalURL,
+				PayPalCapture = CaptureURL
 			};
 		}
 	}

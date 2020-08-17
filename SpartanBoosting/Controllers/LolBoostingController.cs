@@ -23,11 +23,13 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation));
+
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
-				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
+				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
 			{
@@ -36,6 +38,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation));
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
@@ -54,13 +57,14 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateDuo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.DuoPricing(BoostingModel);
-			var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation);
-			purchaseFormObject.PurchaseType = PurchaseType.DuoBoosting;
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseFormObject);
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
-				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
+				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
+				var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL);
+				purchaseFormObject.PurchaseType = PurchaseType.DuoBoosting;
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseFormObject);
+				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
 			{
@@ -69,6 +73,9 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
+						var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation);
+						purchaseFormObject.PurchaseType = PurchaseType.DuoBoosting;
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseFormObject);
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
@@ -88,11 +95,12 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreatePlacementMatches(Models.PlacementMatchesModel PlacementMatchesModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.PlacementBoostPricing(PlacementMatchesModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Value.ToString(), PersonalInformation));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
-				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
+				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
 			{
@@ -101,6 +109,8 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Value.ToString(), PersonalInformation));
+
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
@@ -120,11 +130,12 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateWinBoost(Models.WinBoostModel WinBoostModel, Models.PersonalInformation PersonalInformation)
 		{
 			JsonResult Pricing = PricingController.WinBoostPricing(WinBoostModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Value.ToString(), PersonalInformation));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
-				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing.Value.ToString()));
+				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
 			{
@@ -133,6 +144,8 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Value.ToString(), PersonalInformation));
+
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
