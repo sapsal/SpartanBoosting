@@ -114,7 +114,7 @@ namespace SpartanBoosting
 		  ForwardedHeaders.XForwardedProto
 			});
 
-			StripeConfiguration.SetApiKey("sk_test_51GuKbWF9YOHhm6ddnekRwwVMKi5X5XxEj5RtIGmemedeWHdMzyczJGRon90eAoj3oVqKsyI1EjLxg77YqCteqIyM00LMyi7RQ1");
+			StripeConfiguration.SetApiKey("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");
 		}
 	}
 }
