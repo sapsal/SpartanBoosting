@@ -35,7 +35,7 @@ namespace SpartanBoosting.Controllers
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTBoostingModel.TFTBoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult));
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTBoostingModel.TFTBoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -45,6 +45,8 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTBoostingModel.TFTBoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation));
+
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
@@ -67,7 +69,7 @@ namespace SpartanBoosting.Controllers
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTPlacementModel.TFTPlacementModelPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult));
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTPlacementModel.TFTPlacementModelPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -77,6 +79,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTPlacementModel.TFTPlacementModelPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation));
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}

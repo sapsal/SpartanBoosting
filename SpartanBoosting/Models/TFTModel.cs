@@ -18,7 +18,7 @@ namespace SpartanBoosting.Models
 		public string Server { get; set; }
 		public string NumberOfGames { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm TFTPlacementModelPurchaseForm(TFTPlacementModel TFTPlacementModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
+		public static PurchaseForm TFTPlacementModelPurchaseForm(TFTPlacementModel TFTPlacementModel, string pricing, PersonalInformation PersonalInformation, string ApprovalURL = null, string CaptureURL = null)
 		{
 			return new PurchaseForm
 			{
@@ -26,8 +26,8 @@ namespace SpartanBoosting.Models
 				PurchaseType = PurchaseType.TFTPlacement,
 				Pricing = pricing, 
 				PersonalInformation = PersonalInformation,
-				PayPalApproval = paypalResponse.ApprovalURL,
-				PayPalCapture = paypalResponse.CaptureURL
+				PayPalApproval = ApprovalURL,
+				PayPalCapture = CaptureURL
 			};
 		}
 	}
@@ -42,7 +42,7 @@ namespace SpartanBoosting.Models
 		public string CurrentLP { get; set; }
 		public string Server { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm TFTBoostingModelToPurchaseForm(TFTBoostingModel winBoostModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
+		public static PurchaseForm TFTBoostingModelToPurchaseForm(TFTBoostingModel winBoostModel, string pricing, PersonalInformation PersonalInformation, string ApprovalURL = null, string CaptureURL = null)
 		{
 			return new PurchaseForm
 			{
@@ -50,8 +50,8 @@ namespace SpartanBoosting.Models
 				PurchaseType = PurchaseType.TFTPlacement,
 				Pricing = pricing,
 				PersonalInformation = PersonalInformation,
-				PayPalApproval = paypalResponse.ApprovalURL,
-				PayPalCapture = paypalResponse.CaptureURL
+				PayPalApproval = ApprovalURL,
+				PayPalCapture = CaptureURL
 			};
 		}
 	}

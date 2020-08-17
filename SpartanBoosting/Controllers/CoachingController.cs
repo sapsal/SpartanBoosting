@@ -23,7 +23,7 @@ namespace SpartanBoosting.Controllers
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing);
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing, PersonalInformation, paypalResult));
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing, PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -33,6 +33,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing);
 					if (result.Status == "succeeded" && result.Paid)
 					{
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing, PersonalInformation));
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}

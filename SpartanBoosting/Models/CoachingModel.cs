@@ -25,7 +25,7 @@ namespace SpartanBoosting.Models
 		public string Server { get; set; }
 		public string CoachingPackage { get; set; }
 		public string CurrentRank { get; set; }
-		public static PurchaseForm CoachingModelToPurchaseForm(CoachingModel coachingModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
+		public static PurchaseForm CoachingModelToPurchaseForm(CoachingModel coachingModel, string pricing, PersonalInformation PersonalInformation, string ApprovalURL = null, string CaptureURL = null)
 		{
 			return new PurchaseForm
 			{
@@ -33,8 +33,8 @@ namespace SpartanBoosting.Models
 				CoachingModel = coachingModel,
 				Pricing = pricing,
 				PersonalInformation = PersonalInformation,
-				PayPalApproval = paypalResponse.ApprovalURL,
-				PayPalCapture = paypalResponse.CaptureURL
+				PayPalApproval = ApprovalURL,
+				PayPalCapture = CaptureURL
 			};
 		}
 	}

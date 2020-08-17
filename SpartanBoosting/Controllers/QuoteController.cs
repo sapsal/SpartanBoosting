@@ -72,23 +72,26 @@ namespace SpartanBoosting.Controllers
 						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderDuoEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.WinBoosting:
-						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderWinBoostEmail", purchaseForm).Result;
+						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderWinBoostEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.PlacementMatches:
-						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderPlacementMatchesEmail", purchaseForm).Result;
+						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderPlacementMatchesEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.TFTPlacement:
-						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderTFTPlacementMatchesEmail", purchaseForm).Result;
+						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderTFTPlacementMatchesEmail", purchaseForm).Result;
 						break;
 					case PurchaseTypeEnum.PurchaseType.TFTBoosting:
-						 emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderTFTSoloBoostEmail", purchaseForm).Result;
+						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderTFTSoloBoostEmail", purchaseForm).Result;
 						break;
 					default:
 						emailbody = JsonConvert.SerializeObject(purchaseForm);
 						break;
 				}
 				email.SendEmailAsync("Purchase Request", $"Purchase Request", emailbody);
-				PayPalV2.captureOrder(purchaseForm.PayPalCapture);
+				if (purchaseForm.PersonalInformation.PaymentMethod == "Paypal")
+				{
+					PayPalV2.captureOrder(purchaseForm.PayPalCapture);
+				}
 				PurchaseOrderRepository.Add(purchaseForm);
 			}
 			catch (Exception e)
