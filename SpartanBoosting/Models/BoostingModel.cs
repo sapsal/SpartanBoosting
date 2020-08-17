@@ -1,4 +1,5 @@
 ﻿using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -29,14 +30,16 @@ namespace SpartanBoosting.Models
 		public string SpecificChampions { get; set; }
 		public bool VPN { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm BoostingModelToPurchaseForm(BoostingModel boostingModel, string pricing, PersonalInformation PersonalInformation)
+		public static PurchaseForm BoostingModelToPurchaseForm(BoostingModel boostingModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
 		{
 			return new PurchaseForm
 			{
 				BoostingModel = boostingModel,
 				Pricing = pricing,
 				PurchaseType = PurchaseType.SoloBoosting,
-				PersonalInformation = PersonalInformation
+				PersonalInformation = PersonalInformation,
+				PayPalApproval = paypalResponse.ApprovalURL,
+				PayPalCapture = paypalResponse.CaptureURL
 			};
 		}
 	}
@@ -54,14 +57,16 @@ namespace SpartanBoosting.Models
 		public string NumOfGames { get; set; }
 		public string Discount { get; set; }
 
-		public static PurchaseForm PlacementMatchesModelToPurchaseForm(PlacementMatchesModel placementMatchesModel, string pricing, PersonalInformation PersonalInformation)
+		public static PurchaseForm PlacementMatchesModelToPurchaseForm(PlacementMatchesModel placementMatchesModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
 		{
 			return new PurchaseForm
 			{
 				PlacementMatchesModel = placementMatchesModel,
 				PurchaseType = PurchaseType.PlacementMatches,
 				Pricing = pricing,
-				PersonalInformation = PersonalInformation
+				PersonalInformation = PersonalInformation,
+				PayPalApproval = paypalResponse.ApprovalURL,
+				PayPalCapture = paypalResponse.CaptureURL
 			};
 		}
 	}
@@ -81,14 +86,16 @@ namespace SpartanBoosting.Models
 
 		public string NumOfGames { get; set; }
 
-		public static PurchaseForm WinBoostModelToPurchaseForm(WinBoostModel winBoostModel, string pricing, PersonalInformation PersonalInformation)
+		public static PurchaseForm WinBoostModelToPurchaseForm(WinBoostModel winBoostModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
 		{
 			return new PurchaseForm
 			{
 				WinBoostModel = winBoostModel,
 				PurchaseType = PurchaseType.WinBoosting,
 				Pricing = pricing,
-				PersonalInformation = PersonalInformation
+				PersonalInformation = PersonalInformation,
+				PayPalApproval = paypalResponse.ApprovalURL,
+				PayPalCapture = paypalResponse.CaptureURL
 			};
 		}
 	}

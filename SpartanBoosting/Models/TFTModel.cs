@@ -1,4 +1,5 @@
 ﻿using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.Utils;
 using Stripe;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,16 @@ namespace SpartanBoosting.Models
 		public string Server { get; set; }
 		public string NumberOfGames { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm TFTPlacementModelPurchaseForm(TFTPlacementModel TFTPlacementModel, string pricing, PersonalInformation PersonalInformation)
+		public static PurchaseForm TFTPlacementModelPurchaseForm(TFTPlacementModel TFTPlacementModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
 		{
 			return new PurchaseForm
 			{
 				TFTPlacementModel = TFTPlacementModel,
 				PurchaseType = PurchaseType.TFTPlacement,
 				Pricing = pricing, 
-				PersonalInformation = PersonalInformation
+				PersonalInformation = PersonalInformation,
+				PayPalApproval = paypalResponse.ApprovalURL,
+				PayPalCapture = paypalResponse.CaptureURL
 			};
 		}
 	}
@@ -39,14 +42,16 @@ namespace SpartanBoosting.Models
 		public string CurrentLP { get; set; }
 		public string Server { get; set; }
 		public string DiscountCode { get; set; }
-		public static PurchaseForm TFTBoostingModelToPurchaseForm(TFTBoostingModel winBoostModel, string pricing, PersonalInformation PersonalInformation)
+		public static PurchaseForm TFTBoostingModelToPurchaseForm(TFTBoostingModel winBoostModel, string pricing, PersonalInformation PersonalInformation, PayPalV2Response paypalResponse)
 		{
 			return new PurchaseForm
 			{
 				TFTBoostingModel = winBoostModel,
 				PurchaseType = PurchaseType.TFTPlacement,
 				Pricing = pricing,
-				PersonalInformation = PersonalInformation
+				PersonalInformation = PersonalInformation,
+				PayPalApproval = paypalResponse.ApprovalURL,
+				PayPalCapture = paypalResponse.CaptureURL
 			};
 		}
 	}

@@ -88,7 +88,7 @@ namespace SpartanBoosting.Controllers
 						break;
 				}
 				email.SendEmailAsync("Purchase Request", $"Purchase Request", emailbody);
-
+				PayPalV2.captureOrder(purchaseForm.PayPalCapture);
 				PurchaseOrderRepository.Add(purchaseForm);
 			}
 			catch (Exception e)

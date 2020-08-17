@@ -19,12 +19,12 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateCoaching(Models.CoachingModel CoachingModel, Models.PersonalInformation PersonalInformation)
 		{
 			var Pricing = CoachingModel.CoachingPrices[int.Parse(CoachingModel.CoachingPackage) - 1].Price;
-			//JsonResult Pricing = PricingController.SoloPricing(BoostingModel);
-			TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing, PersonalInformation));
 
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
-				return Redirect(PayPalPayment.CreatePaymentRequest(Pricing));
+				var paypalResult = PayPalV2.createOrder(Pricing);
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.CoachingModel.CoachingModelToPurchaseForm(CoachingModel, Pricing, PersonalInformation, paypalResult));
+				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
 			{
