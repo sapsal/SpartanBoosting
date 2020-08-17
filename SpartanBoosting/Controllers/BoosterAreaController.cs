@@ -1,9 +1,11 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.ViewModel;
 namespace SpartanBoosting.Controllers
 {
+    [Authorize(Roles = "Superuser")]
     public class BoosterAreaController : Controller
     {
         private IPurchaseOrderRepository PurchaseOrderRepository;

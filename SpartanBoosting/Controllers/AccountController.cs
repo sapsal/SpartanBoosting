@@ -62,7 +62,7 @@ namespace SpartanBoosting.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Dashboard","BoosterArea");
                 }
                 if (result.RequiresTwoFactor)
                 {
