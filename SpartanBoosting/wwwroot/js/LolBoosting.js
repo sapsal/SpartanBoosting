@@ -2,6 +2,9 @@
 	if (this.value == "Duo") {
 		$('#specific-roles-content').show();
 	}
+	else {
+		$('#specific-roles-content').hide();
+	}
 });
 
 $('[name="DesiredCurrentLeague"]').on('change', function () {
