@@ -48,7 +48,6 @@
 										<tr>
 											<th scope="col">Order Id</th>
 											<th scope="col">Server</th>
-											<th scope="col">Queue Tyoe</th>
 											<th scope="col">Priority</th>
 											<th scope="col">Boost Details</th>
 											<th scope="col">Actions</th>
@@ -56,12 +55,11 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach (var item in Model.PurchaseForm.Where(x => x.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches))
+										@foreach (var item in Model.PurchaseForm.Where(x => x.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement))
 										{
 											<tr>
 												<th scope="row">1</th>
-												<td>@(item.WinBoostModel.Server)</td>
-												<td>@(item.WinBoostModel.TypeOfQueue)</td>
+												<td>@(item.TFTPlacementModel.Server)</td>
 												<td>Normal</td>
 												<td>@($"{item.TFTPlacementModel.LastSeasonStanding} With {item.TFTPlacementModel.NumberOfGames} Games")</td>
 												<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
@@ -79,7 +77,6 @@
 										<tr>
 											<th scope="col">Order Id</th>
 											<th scope="col">Server</th>
-											<th scope="col">Queue Tyoe</th>
 											<th scope="col">Priority</th>
 											<th scope="col">Boost Details</th>
 											<th scope="col">Actions</th>
@@ -87,12 +84,11 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach (var item in Model.PurchaseForm.Where(x => x.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches))
+										@foreach (var item in Model.PurchaseForm.Where(x => x.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting))
 										{
 											<tr>
 												<th scope="row">1</th>
-												<td>@(item.WinBoostModel.Server)</td>
-												<td>@(item.WinBoostModel.TypeOfQueue)</td>
+												<td>@(item.TFTBoostingModel.Server)</td>
 												<td>Normal</td>
 												<td>@($"{item.TFTBoostingModel.YourCurrentLeague} {item.TFTBoostingModel.CurrentDivision} {item.TFTBoostingModel.CurrentLP} to {item.TFTBoostingModel.DesiredCurrentLeague} {item.TFTBoostingModel.DesiredCurrentDivision}")</td>
 												<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
