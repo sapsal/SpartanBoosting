@@ -59,8 +59,8 @@ namespace SpartanBoosting.Controllers
 				PurchaseForm purchaseForm = JsonConvert.DeserializeObject<PurchaseForm>(TempData["purchaseFormlData"].ToString());
 				EmailSender email = new EmailSender(_smtpSettings);
 
-				//var bot = new DiscordBot();
-				//bot.RunAsync(purchaseForm).GetAwaiter().GetResult();
+				var bot = new DiscordBot();
+				bot.RunAsync(purchaseForm).GetAwaiter().GetResult();
 				string emailbody = string.Empty;
 				switch (purchaseForm.PurchaseType)
 				{

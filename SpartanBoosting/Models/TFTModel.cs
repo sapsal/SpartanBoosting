@@ -47,7 +47,7 @@ namespace SpartanBoosting.Models
 			return new PurchaseForm
 			{
 				TFTBoostingModel = winBoostModel,
-				PurchaseType = PurchaseType.TFTPlacement,
+				PurchaseType = PurchaseType.TFTBoosting,
 				Pricing = pricing,
 				PersonalInformation = PersonalInformation,
 				PayPalApproval = ApprovalURL,
