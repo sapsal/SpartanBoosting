@@ -58,7 +58,7 @@
 										@foreach (var item in Model.PurchaseForm.Where(x => x.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement))
 										{
 											<tr>
-												<th scope="row">1</th>
+												<th scope="row">@item.Id</th>
 												<td>@(item.TFTPlacementModel.Server)</td>
 												<td>Normal</td>
 												<td>@($"{item.TFTPlacementModel.LastSeasonStanding} With {item.TFTPlacementModel.NumberOfGames} Games")</td>
@@ -87,7 +87,7 @@
 										@foreach (var item in Model.PurchaseForm.Where(x => x.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting))
 										{
 											<tr>
-												<th scope="row">1</th>
+												<th scope="row">@item.Id</th>
 												<td>@(item.TFTBoostingModel.Server)</td>
 												<td>Normal</td>
 												<td>@($"{item.TFTBoostingModel.YourCurrentLeague} {item.TFTBoostingModel.CurrentDivision} {item.TFTBoostingModel.CurrentLP} to {item.TFTBoostingModel.DesiredCurrentLeague} {item.TFTBoostingModel.DesiredCurrentDivision}")</td>
@@ -129,13 +129,12 @@
 				"bInfo": false,
 				"bAutoWidth": false,
 				// Order settings
-				order: [[0, 'desc']],
+				order: [[0, 'asc']],
 				scrollX: true,
 				"bLengthChange": false,
 			});
 		}
 		$(document).on("click", '.active-jobs-nav-link', function () {
-			debugger;
 			$('.table').DataTable().destroy();
 			RenderDT($('.table'))
 		});

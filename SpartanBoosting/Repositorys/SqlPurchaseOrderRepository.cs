@@ -47,7 +47,7 @@ namespace SpartanBoosting.Models.Repositorys
 
 		public PurchaseForm GetPurchaseForm(int Id)
 		{
-			return context.PurchaseForm.FirstOrDefault(item => item.Id == Id);
+			return context.PurchaseForm.Include(p => p.PersonalInformation).FirstOrDefault(item => item.Id == Id);
 		}
 
 		public PurchaseForm Update(PurchaseForm purchaseFormChanges)

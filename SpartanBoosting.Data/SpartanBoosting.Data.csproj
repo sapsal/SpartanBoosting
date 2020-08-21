@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SqlScripts\Default Data\" />
+  </ItemGroup>
+
 </Project>
