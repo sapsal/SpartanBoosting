@@ -104,7 +104,7 @@
 													<td>@($"{item.BoostingModel.YourCurrentLeague} {item.BoostingModel.CurrentDivision} {item.BoostingModel.CurrentLP} to {item.BoostingModel.DesiredCurrentLeague} {item.BoostingModel.DesiredCurrentDivision}")</td>
 													<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
 													<td>
-														<button class="btn-success btn ">Accept</button>
+														<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Accept</button>
 													</td>
 												</tr>
 											}
@@ -136,7 +136,7 @@
 													<td>@($"{item.WinBoostModel.YourCurrentLeague} {item.WinBoostModel.CurrentDivision} With {item.WinBoostModel.NumOfGames} Games")</td>
 													<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
 													<td>
-														<button class="btn-success btn ">Accept</button>
+														<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Accept</button>
 													</td>
 												</tr>
 											}
@@ -167,7 +167,7 @@
 													<td>@($"{item.PlacementMatchesModel.LastSeasonStanding} With {item.PlacementMatchesModel.NumOfGames} Games")</td>
 													<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
 													<td>
-														<button class="btn-success btn ">Accept</button>
+														<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Accept</button>
 													</td>
 												</tr>
 											}
