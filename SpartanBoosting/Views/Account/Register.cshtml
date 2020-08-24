@@ -1,36 +1,67 @@
 ﻿@model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
+	ViewData["Title"] = "Register";
+	Layout = null;
 }
+<link href="~/css/Login.css" rel="stylesheet" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<h2>@ViewData["Title"]</h2>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Include the above in your HEAD tag -->
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-default">Register</button>
-        </form>
-    </div>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="main" class="d-flex align-items-center">
+
+
+	<div class="container">
+		<center>
+			<div class="middle">
+				<div id="login">
+
+					<form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+						<fieldset class="clearfix">
+							<div asp-validation-summary="All" class="text-danger"></div>
+							<div class="form-group">
+								<label asp-for="Email"></label>
+								<input asp-for="Email" class="form-control" />
+								<span asp-validation-for="Email" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="Password"></label>
+								<input asp-for="Password" class="form-control w-100" />
+								<span asp-validation-for="Password" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="ConfirmPassword"></label>
+								<input asp-for="ConfirmPassword" class="form-control w-100" />
+								<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+							</div>
+							<div>
+								<span style="width:100%; text-align:center;  display: inline-block;"><input type="submit" value="Register"></span>
+							</div>
+						</fieldset>
+					</form>
+
+					<div class="clearfix"></div>
+
+				</div> <!-- end login -->
+				<div class="logo d-flex align-items-center pl-5">
+					<img src="~/img/LoginLogo.png" />
+
+					<div class="clearfix"></div>
+				</div>
+
+			</div>
+		</center>
+	</div>
+
 </div>
 
 @section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
+	@await Html.PartialAsync("_ValidationScriptsPartial")
 }
