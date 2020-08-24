@@ -2486,6 +2486,24 @@
 	<!--begin::Page Scripts(used by this page)-->
 	<script src="~/assets/js/pages/widgets.js"></script>
 	<script src="~/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			debugger;
+			// this will get the full URL at the address bar
+			var url = window.location.href;
+
+			// passes on every "a" tag
+			$("#kt_aside_menu a").each(function () {
+			debugger
+				// checks if its the same on the address bar
+				if (url == (this.href)) {
+					$(this).closest("li").addClass("menu-item-active");
+					//for making parent of submenu active
+					$(this).closest("li").parent().parent().addClass("menu-item-active");
+				}
+			});
+		});
+	</script>
 	<!--end::Page Scripts-->
 </body>
 <!--end::Body-->
