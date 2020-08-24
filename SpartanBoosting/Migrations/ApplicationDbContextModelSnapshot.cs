@@ -159,6 +159,9 @@ namespace SpartanBoosting.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -397,11 +400,23 @@ namespace SpartanBoosting.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("BoosterAssignedToId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("BoosterCompletionConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BoosterPricing")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("BoostingModelId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CoachingModelId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("CustomerCompletionConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("JobAvailable")
                         .HasColumnType("bit");
@@ -434,6 +449,8 @@ namespace SpartanBoosting.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BoosterAssignedToId");
 
                     b.HasIndex("BoostingModelId");
 
@@ -601,6 +618,10 @@ namespace SpartanBoosting.Migrations
 
             modelBuilder.Entity("SpartanBoosting.Models.Pricing.PurchaseForm", b =>
                 {
+                    b.HasOne("SpartanBoosting.Models.ApplicationUser", "BoosterAssignedTo")
+                        .WithMany()
+                        .HasForeignKey("BoosterAssignedToId");
+
                     b.HasOne("SpartanBoosting.Models.BoostingModel", "BoostingModel")
                         .WithMany()
                         .HasForeignKey("BoostingModelId");
