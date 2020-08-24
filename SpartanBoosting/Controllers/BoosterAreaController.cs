@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,9 @@ namespace SpartanBoosting.Controllers
 
 		public IActionResult Dashboard()
 		{
+			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
+			BoosterDashboardViewModel BoosterDashboardViewModel = new BoosterDashboardViewModel();
+			BoosterDashboardViewModel.PurchaseForm = PurchaseOrderRepository.GetAllPurchaseOrdersByUser(user).ToList();
 			return View();
 		}
 		public IActionResult LolOrdersPanel()

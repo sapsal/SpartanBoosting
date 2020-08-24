@@ -18,6 +18,8 @@ namespace SpartanBoosting.Models.Pricing
 		public TFTPlacementModel TFTPlacementModel { get; set; }
 		public TFTBoostingModel TFTBoostingModel { get; set; }
 		public ApplicationUser BoosterAssignedTo { get; set; }
+		public bool BoosterCompletionConfirmed { get; set; }
+		public bool CustomerCompletionConfirmed { get; set; }
 		public string Pricing { get; set; }
 		public bool JobAvailable { get; set; } = true;
 		public string PayPalApproval { get; set; }

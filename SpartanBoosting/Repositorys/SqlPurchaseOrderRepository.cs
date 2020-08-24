@@ -45,6 +45,17 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.WinBoostModel);
 		}
 
+		public IEnumerable<PurchaseForm> GetAllPurchaseOrdersByUser(ApplicationUser applicationUser)
+		{
+			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser)
+			.Include(p => p.BoostingModel)
+			.Include(p => p.CoachingModel)
+			.Include(p => p.PlacementMatchesModel)
+			.Include(p => p.TFTBoostingModel)
+			.Include(p => p.TFTPlacementModel)
+			.Include(p => p.WinBoostModel);
+		}
+
 		public PurchaseForm GetPurchaseForm(int Id)
 		{
 			return context.PurchaseForm.Include(p => p.PersonalInformation).FirstOrDefault(item => item.Id == Id);

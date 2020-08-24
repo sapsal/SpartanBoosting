@@ -13,6 +13,7 @@ namespace SpartanBoosting.Models.Repositorys
 		IEnumerable<PurchaseForm> GetAllPurchaseOrderAvailable();
 		PurchaseForm Add(PurchaseForm purchaseForm);
 		PurchaseForm Update(PurchaseForm purchaseFormChanges);
+		IEnumerable<PurchaseForm> GetAllPurchaseOrdersByUser(ApplicationUser applicationUser);
 		void Delete(PurchaseForm purchaseForm);
 	}
 }
