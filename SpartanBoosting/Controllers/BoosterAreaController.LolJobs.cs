@@ -24,7 +24,8 @@ namespace SpartanBoosting.Controllers
 				var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 				var user = _userManager.FindByIdAsync(id).Result;
 				result.BoosterAssignedTo = user;
-				//PurchaseOrderRepository.Update(result);
+				result.JobAvailable = false;
+				PurchaseOrderRepository.Update(result);
 				return Json(new Dictionary<string, string> { { "Username", result.PersonalInformation.UserName }, { "Password", result.PersonalInformation.Password } });
 			}
 

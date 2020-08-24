@@ -18,5 +18,29 @@ namespace SpartanBoosting.Extensions
 			price = (price / 100) * ObjectFactory.BoosterPercentage;
 			return RoundUp((double)price, 2);
 		}
+
+		public static string DisplayLolTFTBoostJobDescription(SpartanBoosting.Models.Pricing.PurchaseForm purchaseForm)
+		{
+			switch (purchaseForm.PurchaseType)
+			{
+				case Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
+					return $"{purchaseForm.BoostingModel.YourCurrentLeague} {purchaseForm.BoostingModel.CurrentDivision} {purchaseForm.BoostingModel.CurrentLP} to {purchaseForm.BoostingModel.DesiredCurrentLeague} {purchaseForm.BoostingModel.DesiredCurrentDivision}";
+				case Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
+					return $"{purchaseForm.BoostingModel.YourCurrentLeague} {purchaseForm.BoostingModel.CurrentDivision} {purchaseForm.BoostingModel.CurrentLP} to {purchaseForm.BoostingModel.DesiredCurrentLeague} {purchaseForm.BoostingModel.DesiredCurrentDivision}";
+				case Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
+					return $"{purchaseForm.WinBoostModel.YourCurrentLeague} {purchaseForm.WinBoostModel.CurrentDivision} With {purchaseForm.WinBoostModel.NumOfGames} Games";
+				case Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
+					return $"{purchaseForm.PlacementMatchesModel.LastSeasonStanding} With {purchaseForm.PlacementMatchesModel.NumOfGames} Games";
+				case Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
+					return $"{purchaseForm.TFTPlacementModel.LastSeasonStanding} With {purchaseForm.TFTPlacementModel.NumberOfGames} Games";
+				case Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting:
+					return $"{purchaseForm.TFTBoostingModel.YourCurrentLeague} {purchaseForm.TFTBoostingModel.CurrentDivision} {purchaseForm.TFTBoostingModel.CurrentLP} to {purchaseForm.TFTBoostingModel.DesiredCurrentLeague} {purchaseForm.TFTBoostingModel.DesiredCurrentDivision}";
+				case Utils.PurchaseTypeEnum.PurchaseType.Coaching:
+					break;
+				default:
+					break;
+			}
+			return "";
+		}
 	}
 }

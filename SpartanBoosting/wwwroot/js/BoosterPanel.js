@@ -1,15 +1,18 @@
 ﻿var dataTable;
 $(document).on("click", '.accept-job', function () {
 	var data = $(this).data('booster-information')
+	var element = $(this);
 	$.ajax({
 		url: '/BoosterArea/AcceptBoosterJob',
 		data: data,
+		context: this,
 		type: 'POST',
 		success: function (dataofconfirm) {
 			debugger;
 			$('#lol-username').text(dataofconfirm.Username)
 			$('#lol-password').text(dataofconfirm.Password)
 			$('#lol-details-modal').modal('show');
+			$(this).parent().parent().remove()
 		}
 	});
 });

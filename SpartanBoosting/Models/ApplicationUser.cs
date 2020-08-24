@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace SpartanBoosting.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
-    public class ApplicationUser : IdentityUser<long>
-    {
-    }
+	// Add profile data for application users by adding properties to the ApplicationUser class
+	public class ApplicationUser : IdentityUser<long>
+	{
+		public decimal Balance { get; set; }
+	}
 }
