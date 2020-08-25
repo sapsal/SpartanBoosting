@@ -26,7 +26,7 @@ namespace SpartanBoosting.Controllers
 				result.BoosterAssignedTo = user;
 				result.JobAvailable = false;
 				PurchaseOrderRepository.Update(result);
-				return Json(new Dictionary<string, string> { { "Username", result.PersonalInformation.UserName }, { "Password", result.PersonalInformation.Password } });
+				return Json(new Dictionary<string, string> { { "Username", result.PersonalInformation.UserName }, { "Password", result.PersonalInformation.Password }, { "Discord", result.PersonalInformation.Discord } });
 			}
 
 			return Json(null);

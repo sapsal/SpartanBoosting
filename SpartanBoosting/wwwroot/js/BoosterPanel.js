@@ -11,6 +11,7 @@ $(document).on("click", '.accept-job', function () {
 			debugger;
 			$('#lol-username').text(dataofconfirm.Username)
 			$('#lol-password').text(dataofconfirm.Password)
+			$('#lol-discord').text(dataofconfirm.Discord)
 			$('#lol-details-modal').modal('show');
 			$(this).parent().parent().remove()
 		}
