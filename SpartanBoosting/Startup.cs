@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using SpartanBoosting.Data;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Repositorys;
+using SpartanBoosting.Repositorys;
 using SpartanBoosting.Utils;
 using Stripe;
 
@@ -74,6 +75,7 @@ namespace SpartanBoosting
 			services.AddTransient<SpartanBoosting.Services.IEmailSender, SpartanBoosting.Services.EmailSender>();
 
 			services.AddScoped<IPurchaseOrderRepository, SqlPurchaseOrderRepository>();
+			services.AddScoped<IUserRolesRepository, SqlUserRolesRepository>();
 
 			ObjectFactory.LoadPricing();
 		}

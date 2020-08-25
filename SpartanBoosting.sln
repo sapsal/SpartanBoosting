@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpartanBoosting", "SpartanBoosting\SpartanBoosting.csproj", "{3FAA6DF9-BFAC-4423-BFEF-079997294BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartanBoosting.Data", "SpartanBoosting.Data\SpartanBoosting.Data.csproj", "{7B425D18-EB49-4E25-AE45-9FEC3452BFB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpartanBoosting.Data", "SpartanBoosting.Data\SpartanBoosting.Data.csproj", "{7B425D18-EB49-4E25-AE45-9FEC3452BFB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartanBoosting.BuisnessLogic", "SpartanBoosting.BuisnessLogic\SpartanBoosting.BuisnessLogic.csproj", "{6E0E4D17-59F9-4C9F-B98A-24B82978509E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7B425D18-EB49-4E25-AE45-9FEC3452BFB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B425D18-EB49-4E25-AE45-9FEC3452BFB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B425D18-EB49-4E25-AE45-9FEC3452BFB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0E4D17-59F9-4C9F-B98A-24B82978509E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0E4D17-59F9-4C9F-B98A-24B82978509E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0E4D17-59F9-4C9F-B98A-24B82978509E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0E4D17-59F9-4C9F-B98A-24B82978509E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

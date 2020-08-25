@@ -35,6 +35,10 @@
     <Folder Include="Views\BoosterArea\BoosterAreaPartial\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpartanBoosting.BuisnessLogic\SpartanBoosting.BuisnessLogic.csproj" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
