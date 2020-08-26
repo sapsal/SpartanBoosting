@@ -79,7 +79,6 @@
 													<th class="p-0 min-w-110px"></th>
 													<th class="p-0 min-w-110px"></th>
 													<th class="p-0 min-w-110px"></th>
-													<th class="p-0 min-w-110px"></th>
 												</tr>
 											</thead>
 
@@ -110,10 +109,9 @@
 													</td>
 													<td class="text-right">
 														<button class="btn btn-success btn-completed-job" data-booster-information="@item.Id">Completed</button>
+														<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
 													</td>
-													<td class="text-right">
-														<button class="btn btn-fanger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
-													</td>
+													
 												</tr>
 												}
 											</tbody>
@@ -160,7 +158,8 @@
 															</span>
 														</td>
 														<td class="text-right">
-															<span class="label label-lg label-light-warning label-inline">In Progress</span>
+															<span class="label label-lg label-light-primary label-inline">Success</span>
+															@*<span class="label label-lg label-light-info label-inline">Approved</span>*@
 														</td>
 
 													</tr>

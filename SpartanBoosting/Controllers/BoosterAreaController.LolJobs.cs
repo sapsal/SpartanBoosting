@@ -57,8 +57,8 @@ namespace SpartanBoosting.Controllers
 			{
 				result.BoosterCompletionConfirmed = false;
 				result.BoosterAssignedTo = null;
-				result.JobAvailable = false;
-				//PurchaseOrderRepository.Update(result);
+				result.JobAvailable = true;
+				PurchaseOrderRepository.Update(result);
 				return Json(true);
 			}
 
