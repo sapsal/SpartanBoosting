@@ -32,6 +32,7 @@ namespace SpartanBoosting.Controllers
 			BoosterDashboardViewModel.PurchaseForm = PurchaseOrderRepository.GetAllPurchaseOrderAvailable().ToList();
 			return View(BoosterDashboardViewModel);
 		}
+		
 		public IActionResult TFTOrdersPanel()
 		{
 			BoosterDashboardViewModel BoosterDashboardViewModel = new BoosterDashboardViewModel();

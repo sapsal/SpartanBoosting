@@ -15,9 +15,9 @@ namespace SpartanBoosting.Controllers
 	{
 
 		[HttpPost]
-		public IActionResult AcceptBoosterJob(PurchaseForm purchaseForm)
+		public IActionResult AcceptBoosterJob(int Id)
 		{
-			var result = PurchaseOrderRepository.GetPurchaseForm(purchaseForm.Id);
+			var result = PurchaseOrderRepository.GetPurchaseForm(Id);
 
 			if (result.JobAvailable == true)
 			{
@@ -31,5 +31,39 @@ namespace SpartanBoosting.Controllers
 
 			return Json(null);
 		}
+		[HttpPost]
+		public IActionResult CompleteBoosterJob(int Id)
+		{
+			var result = PurchaseOrderRepository.GetPurchaseForm(Id);
+			var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+			var user = _userManager.FindByIdAsync(id).Result;
+			if (result.JobAvailable != true && !result.BoosterCompletionConfirmed && result.BoosterAssignedTo == user)
+			{
+				result.BoosterCompletionConfirmed = true;
+				PurchaseOrderRepository.Update(result);
+				return Json(true);
+			}
+
+			return Json(false);
+		}
+
+		[HttpPost]
+		public IActionResult CancellBoosterJob(int Id)
+		{
+			var result = PurchaseOrderRepository.GetPurchaseForm(Id);
+			var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+			var user = _userManager.FindByIdAsync(id).Result;
+			if (result.JobAvailable != true && !result.BoosterCompletionConfirmed && result.BoosterAssignedTo == user)
+			{
+				result.BoosterCompletionConfirmed = false;
+				result.BoosterAssignedTo = null;
+				result.JobAvailable = false;
+				//PurchaseOrderRepository.Update(result);
+				return Json(true);
+			}
+
+			return Json(false);
+		}
+
 	}
 }

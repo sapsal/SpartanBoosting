@@ -4,7 +4,7 @@ $(document).on("click", '.accept-job', function () {
 	var element = $(this);
 	$.ajax({
 		url: '/BoosterArea/AcceptBoosterJob',
-		data: data,
+		data: { id: data },
 		context: this,
 		type: 'POST',
 		success: function (dataofconfirm) {
@@ -17,8 +17,34 @@ $(document).on("click", '.accept-job', function () {
 		}
 	});
 });
+$(document).on("click", '.btn-completed-job', function () {
+	var data = $(this).data('booster-information')
+	var element = $(this);
+	$.ajax({
+		url: '/BoosterArea/CompleteBoosterJob',
+		data: { id: data },
+		context: this,
+		type: 'POST',
+		success: function (dataofconfirm) {
+			debugger;
+		}
+	});
+});
+$(document).on("click", '.btn-cancel-job', function () {
+	var data = $(this).data('booster-information')
+	var element = $(this);
+	$.ajax({
+		url: '/BoosterArea/CancellBoosterJob',
+		data: { id: data },
+		context: this,
+		type: 'POST',
+		success: function (dataofconfirm) {
+			debugger;
+		}
+	});
+});
 $(document).ready(function () {
-	RenderDT($('.table'))
+	RenderDT($('.lol-datatable'))
 	function RenderDT(element) {
 		dataTable = $(element).DataTable({
 			lengthMenu: [5, 10, 25, 50],

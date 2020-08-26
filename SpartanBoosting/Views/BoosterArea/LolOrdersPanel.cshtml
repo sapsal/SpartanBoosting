@@ -56,7 +56,7 @@
 			</ul>
 			<div class="tab-content mt-5" id="myTabContent">
 				<div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel" aria-labelledby="kt_tab_pane_2">
-					<table class="table ">
+					<table class="table lol-datatable ">
 						<thead>
 							<tr>
 								<th scope="col">Order Id</th>
@@ -79,7 +79,7 @@
 									<td>@($"{item.BoostingModel.YourCurrentLeague} {item.BoostingModel.CurrentDivision} {item.BoostingModel.CurrentLP} to {item.BoostingModel.DesiredCurrentLeague} {item.BoostingModel.DesiredCurrentDivision}")</td>
 									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
 									<td>
-										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Accept</button>
+										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
 								</tr>
 							}
@@ -87,7 +87,7 @@
 					</table>
 				</div>
 				<div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel" aria-labelledby="kt_tab_pane_2">
-					<table class="table w-100">
+					<table class="table lol-datatable w-100">
 						<thead>
 							<tr>
 								<th scope="col">Order Id</th>
@@ -110,7 +110,7 @@
 									<td>@($"{item.BoostingModel.YourCurrentLeague} {item.BoostingModel.CurrentDivision} {item.BoostingModel.CurrentLP} to {item.BoostingModel.DesiredCurrentLeague} {item.BoostingModel.DesiredCurrentDivision}")</td>
 									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
 									<td>
-										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Accept</button>
+										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
 								</tr>
 							}
@@ -118,7 +118,7 @@
 					</table>
 				</div>
 				<div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel" aria-labelledby="kt_tab_pane_3">
-					<table class="table ">
+					<table class="table lol-datatable ">
 						<thead>
 							<tr>
 								<th scope="col">Order Id</th>
@@ -141,7 +141,7 @@
 									<td>@($"{item.WinBoostModel.YourCurrentLeague} {item.WinBoostModel.CurrentDivision} With {item.WinBoostModel.NumOfGames} Games")</td>
 									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
 									<td>
-										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Accept</button>
+										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
 								</tr>
 							}
@@ -149,7 +149,7 @@
 					</table>
 				</div>
 				<div class="tab-pane fade" id="kt_tab_pane_4" role="tabpanel" aria-labelledby="kt_tab_pane_4">
-					<table class="table ">
+					<table class="table lol-datatable ">
 						<thead>
 							<tr>
 								<th scope="col">Order Id</th>
@@ -172,7 +172,7 @@
 									<td>@($"{item.PlacementMatchesModel.LastSeasonStanding} With {item.PlacementMatchesModel.NumOfGames} Games")</td>
 									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
 									<td>
-										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Accept</button>
+										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
 								</tr>
 							}
@@ -210,7 +210,6 @@
 		</div>
 	</div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <!--end::Page Vendors-->
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="~/js/BoosterPanel.js"></script>
