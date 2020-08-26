@@ -8,7 +8,7 @@ using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.ViewModel;
 namespace SpartanBoosting.Controllers
 {
-	[Authorize(Roles = "Superuser")]
+	[Authorize(Roles = "Superuser,Booster")]
 	public partial class BoosterAreaController : Controller
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
