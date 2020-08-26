@@ -48,13 +48,16 @@
 						<!--begin::Header-->
 						<div class="card-header border-0 pt-7">
 							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Active Jobs</span>
-								<span class="text-muted mt-3 font-weight-bold font-size-lg">@Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed).Count() Acual Jobs</span>
+								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Jobs:</span>
+								<span class="text-muted mt-3 font-weight-bold font-size-lg">@Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed).Count() Active Jobs</span>
 							</h3>
 							<div class="card-toolbar">
 								<ul class="nav nav-pills nav-pills-sm nav-dark">
 									<li class="nav-item ml-0">
 										<a class="nav-link py-2 px-4 font-weight-bolder font-size-sm active" data-toggle="tab" href="#kt_tab_table_1_1">Active</a>
+									</li>
+									<li class="nav-item ml-0">
+										<a class="nav-link py-2 px-4 font-weight-bolder font-size-sm" data-toggle="tab" href="#kt_tab_table_completed">Completed</a>
 									</li>
 								</ul>
 							</div>
@@ -83,7 +86,6 @@
 												{
 													<tr>
 														<td class="py-5 pl-0">
-															
 														</td>
 														<td class="pl-0">
 															<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
@@ -104,7 +106,56 @@
 														<td class="text-right">
 															<span class="label label-lg label-light-warning label-inline">In Progress</span>
 														</td>
-													
+
+													</tr>
+												}
+											</tbody>
+										</table>
+									</div>
+									<!--end::Tablet-->
+								</div>
+								<!--end::Tap pane-->
+								<!--begin::Tap pane-->
+								<div class="tab-pane fade " id="kt_tab_table_completed" role="tabpanel" aria-labelledby="kt_tab_table_completed">
+									<!--begin::Table-->
+									<div class="table-responsive">
+										<table class="table table-borderless table-vertical-center">
+											<thead>
+												<tr>
+													<th class="p-0 w-50px"></th>
+													<th class="p-0 min-w-150px"></th>
+													<th class="p-0 min-w-140px"></th>
+													<th class="p-0 min-w-110px"></th>
+													<th class="p-0 min-w-110px"></th>
+												</tr>
+											</thead>
+
+											<tbody>
+												@foreach (var item in Model.PurchaseForm.Where(x => x.BoosterCompletionConfirmed))
+												{
+													<tr>
+														<td class="py-5 pl-0">
+														</td>
+														<td class="pl-0">
+															<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+														</td>
+														<td class="text-right">
+															<span class="text-muted font-weight-bold d-block">
+																Price
+															</span>
+															<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+																€@PricingExtensions.BoosterPay(item.Pricing)
+															</span>
+														</td>
+														<td class="text-right">
+															<span class="text-muted font-weight-500">
+																@item.PurchaseType.ToString()
+															</span>
+														</td>
+														<td class="text-right">
+															<span class="label label-lg label-light-warning label-inline">In Progress</span>
+														</td>
+
 													</tr>
 												}
 											</tbody>
