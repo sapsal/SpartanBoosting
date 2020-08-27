@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SpartanBoosting.BuisnessLogic.Models.AggregateDatabaseModels;
 using SpartanBoosting.Models;
 using System;
@@ -12,5 +13,6 @@ namespace SpartanBoosting.Repositorys
 	{
 		List<IdentityUserRole<long>> GetUserRoles();
 		List<UsersWithRolesAggregate> GetUsersWithRoles();
+		EntityEntry<IdentityUserRole<long>> AddUserRoles(int roleId, int userId);
 	}
 }

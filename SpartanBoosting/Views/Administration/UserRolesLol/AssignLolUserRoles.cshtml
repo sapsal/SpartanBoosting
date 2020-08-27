@@ -50,7 +50,7 @@
 						<!--begin::Header-->
 						<div class="card-header border-0 pt-7">
 							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Active Jobs</span>
+								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Users</span>
 								<span class="text-muted mt-3 font-weight-bold font-size-lg">Assign Lol Roles</span>
 							</h3>
 							<div class="card-toolbar">
@@ -68,14 +68,14 @@
 								<!--begin::Tap pane-->
 								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
 									<!--begin::Table-->
-									<div class="table-responsive">
-										<table class="table table-borderless table-vertical-center">
+									<div class="">
+										<table class="table table-borderless table-vertical-center users-table">
 											<thead>
 												<tr>
-													<th class="p-0 w-50px"></th>
-													<th class="p-0 min-w-150px"></th>
-													<th class="p-0 min-w-140px"></th>
-													<th class="p-0 min-w-110px"></th>
+													<th class="p-0"></th>
+													<th class="p-0"></th>
+													<th class="p-0"></th>
+													<th class="p-0"></th>
 												</tr>
 											</thead>
 
@@ -88,11 +88,14 @@
 														<td class="pl-0">
 															<span class="text-muted font-weight-bold d-block">@item.UserId</span>
 														</td>
-														<td class="text-right">
+														<td class="">
 															<span class="text-muted font-weight-bold d-block">@item.UserName</span>
 														</td>
-														<td class="text-right">
-															<button class="btn btn-success btn-booster-permission" data-booster-id="@item.UserId">Booster</button>
+														<td class="">
+															@if (item.RoleId == null)
+															{
+																<button class="btn btn-success btn-booster-permission" data-booster-id="@item.UserId">Booster</button>
+															}
 														</td>
 
 													</tr>

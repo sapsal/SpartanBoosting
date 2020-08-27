@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpartanBoosting.Repositorys;
+using SpartanBoosting.Utils.Enums;
 
 namespace SpartanBoosting.Controllers
 {
@@ -26,9 +27,9 @@ namespace SpartanBoosting.Controllers
             return View("UserRolesLol/AssignLolUserRoles", result);
         }
         [HttpPost]
-        public IActionResult AssignUserRole(int Id)
+        public IActionResult AssignUserBoosterRole(int Id)
         {
-
+            UserRolesRepository.AddUserRoles((int)RolesEnum.Roles.Booster, Id);
             return Json(null);
         }
     }

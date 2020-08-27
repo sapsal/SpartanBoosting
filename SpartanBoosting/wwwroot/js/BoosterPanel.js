@@ -56,9 +56,9 @@ $(document).ready(function () {
 			lengthMenu: [5, 10, 25, 50],
 			"oLanguage": { "sZeroRecords": "", "sEmptyTable": "" },
 			pageLength: 10,
-			"bFilter": false,
-			"bInfo": false,
-			"bAutoWidth": false,
+			"bFilter": true,
+			"bInfo": true,
+			"bAutoWidth": true,
 			// Order settings
 			order: [[0, 'asc']],
 			scrollX: true,

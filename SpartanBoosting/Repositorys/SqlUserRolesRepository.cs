@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SpartanBoosting.BuisnessLogic.Models.AggregateDatabaseModels;
 using SpartanBoosting.Data;
 using SpartanBoosting.Models.Pricing;
@@ -24,6 +25,13 @@ namespace SpartanBoosting.Models.Repositorys
 		public List<IdentityUserRole<long>> GetUserRoles()
 		{
 			return context.UserRoles.ToList();
+		}
+
+		public EntityEntry<IdentityUserRole<long>> AddUserRoles(int roleId, int userId)
+		{
+			var result = context.UserRoles.Add(new IdentityUserRole<long>{ RoleId  = roleId , UserId = userId });
+			context.SaveChanges();
+			return result;
 		}
 		public List<UsersWithRolesAggregate> GetUsersWithRoles()
 		{
