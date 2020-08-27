@@ -26,7 +26,11 @@ $(document).on("click", '.btn-completed-job', function () {
 		context: this,
 		type: 'POST',
 		success: function (dataofconfirm) {
-			debugger;
+			if (dataofconfirm) {
+				$(this).parent().parent().remove()
+				var numOfJobs = parseInt($("#number_of_active_jobs").text())
+				$("#number_of_active_jobs").text(numOfJobs - 1)
+			}
 		}
 	});
 });
@@ -39,7 +43,9 @@ $(document).on("click", '.btn-cancel-job', function () {
 		context: this,
 		type: 'POST',
 		success: function (dataofconfirm) {
-			debugger;
+			if (dataofconfirm) {
+				$(this).parent().parent().remove()
+			}
 		}
 	});
 });

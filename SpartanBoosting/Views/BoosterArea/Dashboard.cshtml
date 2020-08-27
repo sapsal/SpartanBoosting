@@ -49,7 +49,7 @@
 						<div class="card-header border-0 pt-7">
 							<h3 class="card-title align-items-start flex-column">
 								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Jobs:</span>
-								<span class="text-muted mt-3 font-weight-bold font-size-lg">@Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed).Count() Active Jobs</span>
+								<span class="text-muted mt-3 font-weight-bold font-size-lg"><span id="number_of_active_jobs">@Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed).Count()</span> Active Jobs</span>
 							</h3>
 							<div class="card-toolbar">
 								<ul class="nav nav-pills nav-pills-sm nav-dark">

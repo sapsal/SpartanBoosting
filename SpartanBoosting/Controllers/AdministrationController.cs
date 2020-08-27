@@ -23,7 +23,13 @@ namespace SpartanBoosting.Controllers
         public IActionResult AssignLolUserRoles()
         {
            var result =  UserRolesRepository.GetUsersWithRoles();
-            return View("UserRolesLol/AssignLolUserRoles");
+            return View("UserRolesLol/AssignLolUserRoles", result);
+        }
+        [HttpPost]
+        public IActionResult AssignUserRole(int Id)
+        {
+
+            return Json(null);
         }
     }
 }
