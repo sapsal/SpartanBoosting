@@ -72,7 +72,6 @@ $(chkBoxBorderSingleStyling).on('click', function () {
 });
 
 $(document).on("click", '.checkbox-border-styling', function () {
-    debugger;
     if ($(this).prop("checked")) {
         $(this).parent().parent().addClass('wpforms-selected').fadeIn('slow');
     }

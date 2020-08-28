@@ -14,6 +14,11 @@ namespace SpartanBoosting.Controllers
 	public partial class BoosterAreaController : Controller
 	{
 
+		public IActionResult OrderDetails()
+		{
+			return View();
+		}
+
 		[HttpPost]
 		public IActionResult AcceptBoosterJob(int Id)
 		{

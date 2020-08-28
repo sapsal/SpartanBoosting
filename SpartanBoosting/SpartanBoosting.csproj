@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Views\BoosterArea\BoosterAreaPartial\" />
+    <Folder Include="wwwroot\img\Lol Ranks\" />
   </ItemGroup>
 
   <ItemGroup>

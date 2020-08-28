@@ -8,7 +8,6 @@ $(document).on("click", '.accept-job', function () {
 		context: this,
 		type: 'POST',
 		success: function (dataofconfirm) {
-			debugger;
 			$('#lol-username').text(dataofconfirm.Username)
 			$('#lol-password').text(dataofconfirm.Password)
 			$('#lol-discord').text(dataofconfirm.Discord)

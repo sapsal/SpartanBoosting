@@ -7,7 +7,6 @@
 		type: 'POST',
 		success: function (dataofconfirm) {
 			$(this).hide();
-			debugger;
 		}
 	});
 });
