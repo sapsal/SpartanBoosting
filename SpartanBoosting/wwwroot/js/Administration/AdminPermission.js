@@ -18,7 +18,7 @@ $(document).ready(function () {
 			lengthMenu: [5, 10, 25, 50],
 			"oLanguage": { "sZeroRecords": "", "sEmptyTable": "" },
 			pageLength: 10,
-			"bFilter": false,
+			"bFilter": true,
 			"bInfo": false,
 			"bAutoWidth": false,
 			// Order settings

@@ -30,14 +30,14 @@ namespace SpartanBoosting.Controllers
 		{
 			BoosterDashboardViewModel BoosterDashboardViewModel = new BoosterDashboardViewModel();
 			BoosterDashboardViewModel.PurchaseForm = PurchaseOrderRepository.GetAllPurchaseOrderAvailable().ToList();
-			return View(BoosterDashboardViewModel);
+			return View("LOL/LolOrdersPanel", BoosterDashboardViewModel);
 		}
 		
 		public IActionResult TFTOrdersPanel()
 		{
 			BoosterDashboardViewModel BoosterDashboardViewModel = new BoosterDashboardViewModel();
 			BoosterDashboardViewModel.PurchaseForm = PurchaseOrderRepository.GetAllPurchaseOrderAvailable().ToList();
-			return View(BoosterDashboardViewModel);
+			return View("LOL/TFTOrdersPanel", BoosterDashboardViewModel);
 		}
 	}
 }

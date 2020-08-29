@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SpartanBoosting.Extensions;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Models.Repositorys;
@@ -14,9 +15,12 @@ namespace SpartanBoosting.Controllers
 	public partial class BoosterAreaController : Controller
 	{
 
-		public IActionResult OrderDetails()
+		public IActionResult OrderDetails([FromQuery(Name = "hash")] string hash)
 		{
-			return View();
+			hash = EncryptionHelper.Encrypt("2");
+
+			var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedById(int.Parse(EncryptionHelper.Decrypt(hash)));
+			return View(model);
 		}
 
 		[HttpPost]

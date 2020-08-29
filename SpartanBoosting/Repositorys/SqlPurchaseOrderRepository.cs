@@ -61,6 +61,18 @@ namespace SpartanBoosting.Models.Repositorys
 			return context.PurchaseForm.Include(p => p.PersonalInformation).FirstOrDefault(item => item.Id == Id);
 		}
 
+		public PurchaseForm GetPurchaseFormModelsIncludedById(int Id)
+		{
+			return context.PurchaseForm.Include(p => p.PersonalInformation)
+						.Include(p => p.BoostingModel)
+						.Include(p => p.CoachingModel)
+						.Include(p => p.PlacementMatchesModel)
+						.Include(p => p.TFTBoostingModel)
+						.Include(p => p.TFTPlacementModel)
+						.Include(p => p.WinBoostModel)
+						.FirstOrDefault(item => item.Id == Id);
+		}
+
 		public PurchaseForm Update(PurchaseForm purchaseFormChanges)
 		{
 			var entity = context.PurchaseForm.FirstOrDefault(item => item.Id == purchaseFormChanges.Id);
