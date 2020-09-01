@@ -50,6 +50,7 @@
 			<!--begin::Dashboard-->
 			<!--begin::Row-->
 			<div class="row">
+				<!--rank-->
 				<div class="col-lg-6">
 					<!--begin::Tables Widget 1-->
 					<div class="card card-custom card-stretch gutter-b">
@@ -86,9 +87,9 @@
 														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
 													</div>
 													@*<div class="rank current">
-												<span class="card-title pr-title font-weight-bolder">Current</span><br>
-												<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
-											</div>*@
+															<span class="card-title pr-title font-weight-bolder">Current</span><br>
+															<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
+														</div>*@
 													<div class="rank col-6">
 														<span class="card-title pr-title font-weight-bolder">Desired</span><br>
 														<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@DesiredDivisionImage" data-original-title="" title="">
@@ -126,13 +127,14 @@
 					</div>
 					<!--end::Tables Widget 1-->
 				</div>
+				<!--Chat-->
 				<div class="col-lg-6">
 					<!--begin::Tables Widget 1-->
 					<div class="card card-custom card-stretch gutter-b">
 						<!--begin::Header-->
 						<div class="card-header border-0 pt-7">
 							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Account Informations:</span>
+								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Chat:</span>
 							</h3>
 							<div class="card-toolbar">
 
@@ -146,7 +148,7 @@
 								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
 									<!--begin::Table-->
 									<div class="card-body pr-body">
-										
+
 									</div>
 									<!--end::Tablet-->
 								</div>
@@ -159,9 +161,10 @@
 				</div>
 			</div>
 			<div class="row">
+				<!--boost info-->
 				<div class="col-lg-6">
 					<!--begin::Tables Widget 1-->
-					<div class="card card-custom card-stretch gutter-b">
+					<div class="card card-custom gutter-b">
 						<!--begin::Header-->
 						<div class="card-header border-0 pt-7">
 							<h3 class="card-title align-items-start flex-column">
@@ -201,12 +204,8 @@
 											</p>
 										}
 										<p class="card-title pr-title font-weight-bolder">
-											Boost Priority :
-											<span class="card-title pr-title font-weight-bold-900">Priority</span>
-										</p>
-										<p class="card-title pr-title font-weight-bolder">
 											Duo Type :
-											<span class="card-title pr-title font-weight-bold-900">Premium</span>
+											<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
 										</p>
 									</div>
 									<!--end::Tablet-->
@@ -217,6 +216,57 @@
 						<!--end::Body-->
 					</div>
 					<!--end::Tables Widget 1-->
+					<div class="card card-custom gutter-b">
+						<!--begin::Header-->
+						<div class="card-header border-0 pt-7">
+							<h3 class="card-title align-items-start flex-column">
+								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Account Informations:</span>
+							</h3>
+							<div class="card-toolbar">
+
+							</div>
+						</div>
+						<!--end::Header-->
+						<!--begin::Body-->
+						<div class="card-body pt-1 pb-4">
+							<div class="tab-content mt-5" id="myTabTable1">
+								<!--begin::Tap pane-->
+								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+									<!--begin::Table-->
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Summoner Name</label>
+												<input type="text" class="form-control" placeholder="Summoner Name" name="summoner_name" value="@Model.PersonalInformation.UserName">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Server</label>
+												@*<select class="form-control" asp-for="@Region">
+													<option value="euw">Europe West</option>
+													<option value="eune">Europe Nordic &amp; East</option>
+													<option value="na">North America</option>
+													<option value="oce">Oceania</option>
+													<option value="ru">Russia</option>
+													<option value="tr">Turkey</option>
+													<option value="lan">Latin America North</option>
+													<option value="las">Latin America South</option>
+													<option value="br">Brazil</option>
+													<option value="jp">Japan</option>
+													<option value="kr">Korea</option>
+												</select>*@
+											<label class="form-control">@Region</label>
+											</div>
+										</div>
+									</div>
+									<!--end::Tablet-->
+								</div>
+								<!--end::Tap pane-->
+							</div>
+						</div>
+						<!--end::Body-->
+					</div>
 				</div>
 			</div>
 			<!--end::Row-->
