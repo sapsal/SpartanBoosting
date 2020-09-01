@@ -22,7 +22,7 @@
 				<div class="d-flex align-items-baseline flex-wrap mr-5">
 					<!--begin::Page Title-->
 					<h5 class="text-dark font-weight-bold my-1 mr-5">
-						Order #ORDERNUMBER
+						Order #LOL@(Model.Id)
 					</h5>
 					<!--end::Page Title-->
 
@@ -53,7 +53,7 @@
 				<!--rank-->
 				<div class="col-lg-6">
 					<!--begin::Tables Widget 1-->
-					<div class="card card-custom card-stretch gutter-b">
+					<div class="card card-custom card-stretch gutter-b" style="height: 40vh;">
 						<!--begin::Header-->
 						<div class="card-header border-0 pt-7">
 							<h3 class="card-title align-items-start flex-column">
@@ -142,23 +142,50 @@
 						</div>
 						<!--end::Header-->
 						<!--begin::Body-->
-						<div class="card-body pt-1 pb-4">
+						<div class="card-body p-0">
 							<div class="tab-content mt-5" id="myTabTable1">
 								<!--begin::Tap pane-->
 								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
 									<!--begin::Table-->
-									<div class="card-body pr-body">
-
+									<div class="card-body pr-body p-3" style="height:40vh">
+										<div class="messaging row h-100">
+											<div class="inbox_msg h-100 w-100">
+												<div class="mesgs h-100 w-100">
+													<div class="msg_history h-100">
+														<div class="incoming_msg">
+															<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+															<div class="received_msg">
+																<div class="received_withd_msg">
+																	<p>
+																		Coming Soon!
+																	</p>
+																	<span class="time_date">    Today</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="input-group">
+														<input type="text" onkeypress="submitOnEnter(event)" placeholder="Type a message" id="msg_content" name="msg_content" class="form-control rounded-0 border-0 py-4" style="background-color: #17172e;">
+														<input id="order_hash" hidden="" type="text" value="LOL-4208CA644B6" name="order_hash">
+														<input id="client_id" hidden="" type="text" value="160" name="client_id">
+														<input id="booster_id" hidden="" type="text" value="64" name="booster_id">
+														<div class="input-group-append" style="background-color: #17172e;">
+															<button type="button" style="background-color: #17172e;" name="msg_send" onclick="msgSend()" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
-									<!--end::Tablet-->
 								</div>
-								<!--end::Tap pane-->
+								<!--end::Tablet-->
 							</div>
+							<!--end::Tap pane-->
 						</div>
-						<!--end::Body-->
 					</div>
-					<!--end::Tables Widget 1-->
+					<!--end::Body-->
 				</div>
+				<!--end::Tables Widget 1-->
 			</div>
 			<div class="row">
 				<!--boost info-->
@@ -216,6 +243,8 @@
 						<!--end::Body-->
 					</div>
 					<!--end::Tables Widget 1-->
+				</div>
+				<div class="col-lg-6">
 					<div class="card card-custom gutter-b">
 						<!--begin::Header-->
 						<div class="card-header border-0 pt-7">
@@ -242,21 +271,27 @@
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
+												<label>Summoner Name</label>
+												<input type="text" class="form-control" value="@Model.PersonalInformation.Discord">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
 												<label>Server</label>
 												@*<select class="form-control" asp-for="@Region">
-													<option value="euw">Europe West</option>
-													<option value="eune">Europe Nordic &amp; East</option>
-													<option value="na">North America</option>
-													<option value="oce">Oceania</option>
-													<option value="ru">Russia</option>
-													<option value="tr">Turkey</option>
-													<option value="lan">Latin America North</option>
-													<option value="las">Latin America South</option>
-													<option value="br">Brazil</option>
-													<option value="jp">Japan</option>
-													<option value="kr">Korea</option>
-												</select>*@
-											<label class="form-control">@Region</label>
+														<option value="euw">Europe West</option>
+														<option value="eune">Europe Nordic &amp; East</option>
+														<option value="na">North America</option>
+														<option value="oce">Oceania</option>
+														<option value="ru">Russia</option>
+														<option value="tr">Turkey</option>
+														<option value="lan">Latin America North</option>
+														<option value="las">Latin America South</option>
+														<option value="br">Brazil</option>
+														<option value="jp">Japan</option>
+														<option value="kr">Korea</option>
+													</select>*@
+												<label class="form-control">@Region</label>
 											</div>
 										</div>
 									</div>
@@ -269,10 +304,10 @@
 					</div>
 				</div>
 			</div>
-			<!--end::Row-->
 		</div>
-		<!--end::Container-->
-	</div>
-	<!--end::Entry-->
-</div>
 
+		<!--end::Row-->
+	</div>
+	<!--end::Container-->
+</div>
+<!--end::Entry-->
