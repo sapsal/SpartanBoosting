@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
 using Microsoft.AspNetCore.HttpOverrides;
+using SpartanBoosting.Extensions;
 
 namespace SpartanBoosting.Controllers
 {
@@ -64,19 +65,7 @@ namespace SpartanBoosting.Controllers
 					price = decimal.Parse(result.OurRegularPrice);
 				}
 
-				try
-				{
-					//increase NA by 40%			
-					var ipAddress = HttpContext.Connection.RemoteIpAddress;
-					IpInfo ipInfo = new IpInfo();
-					var ipResult = ipInfo.GetCurrentIpInfo(ipAddress.ToString());
-					if (ipResult.Country == "US" || ipResult.Country == "CA")
-						price = price + (price / 100) * 40;
-				}
-				catch (Exception e)
-				{
-					// Todo filter by server
-				}
+				price = PricingExtensions.PriceIncreaseLolNA(Model.Server, price);
 
 				price = (System.Math.Ceiling(price * 100) / 100);
 				return Json(price);

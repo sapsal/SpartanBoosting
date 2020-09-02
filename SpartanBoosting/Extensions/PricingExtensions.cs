@@ -19,6 +19,19 @@ namespace SpartanBoosting.Extensions
 			return RoundUp((double)price, 2);
 		}
 
+		public static decimal PriceIncreaseLolNA(string Server, decimal Pricing)
+		{
+			if (Server == "Europe West" || Server == "Europe Nordic &amp; East" || Server == "Russia" || Server == "Turkey")
+			{
+				return Pricing;
+			}
+			else if (Server == "North America" || Server == "Oceania" || Server == "Latin America North" || Server == "Latin America South" || Server == "Brazil")
+			{
+				return Pricing = Pricing + (Pricing / 100) * 40;
+			}
+			return Pricing;
+		}
+
 		public static string DisplayLolTFTBoostJobDescription(SpartanBoosting.Models.Pricing.PurchaseForm purchaseForm)
 		{
 			switch (purchaseForm.PurchaseType)
