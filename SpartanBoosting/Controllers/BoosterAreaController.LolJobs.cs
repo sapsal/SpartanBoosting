@@ -17,8 +17,6 @@ namespace SpartanBoosting.Controllers
 
 		public IActionResult OrderDetails([FromQuery(Name = "hash")] string hash)
 		{
-			hash = EncryptionHelper.Encrypt("2");
-
 			var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedById(int.Parse(EncryptionHelper.Decrypt(hash)));
 			return View(model);
 		}

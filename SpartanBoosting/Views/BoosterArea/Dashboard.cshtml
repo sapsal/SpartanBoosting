@@ -84,34 +84,37 @@
 										<tbody>
 											@foreach (var item in Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed))
 											{
-												<tr>
-													<td class="py-5 pl-0">
-													</td>
-													<td class="pl-0">
-														<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
-													</td>
-													<td class="text-right">
-														<span class="text-muted font-weight-bold d-block">
-															Price
-														</span>
-														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-															€@PricingExtensions.BoosterPay(item.Pricing)
-														</span>
-													</td>
-													<td class="text-right">
-														<span class="text-muted font-weight-500">
-															@item.PurchaseType.ToString()
-														</span>
-													</td>
-													<td class="text-right">
-														<span class="label label-lg label-light-warning label-inline">In Progress</span>
-													</td>
-													<td class="text-right">
-														<button class="btn btn-success btn-completed-job" data-booster-information="@item.Id">Completed</button>
-														<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
-													</td>
+											<tr>
+												<td class="py-5 pl-0">
+													<span class="text-muted font-weight-bold d-block text-nowrap">
+														<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+													</span>
+												</td>
+												<td class="pl-0">
+													<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+												</td>
+												<td class="text-right">
+													<span class="text-muted font-weight-bold d-block">
+														Price
+													</span>
+													<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+														€@PricingExtensions.BoosterPay(item.Pricing)
+													</span>
+												</td>
+												<td class="text-right">
+													<span class="text-muted font-weight-500">
+														@item.PurchaseType.ToString()
+													</span>
+												</td>
+												<td class="text-right">
+													<span class="label label-lg label-light-warning label-inline">In Progress</span>
+												</td>
+												<td class="text-right">
+													<button class="btn btn-success btn-completed-job" data-booster-information="@item.Id">Completed</button>
+													<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
+												</td>
 
-												</tr>
+											</tr>
 											}
 										</tbody>
 									</table>
@@ -137,31 +140,33 @@
 										<tbody>
 											@foreach (var item in Model.PurchaseForm.Where(x => x.BoosterCompletionConfirmed))
 											{
-												<tr>
-													<td class="py-5 pl-0">
-													</td>
-													<td class="pl-0">
-														<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
-													</td>
-													<td class="text-right">
-														<span class="text-muted font-weight-bold d-block">
-															Price
-														</span>
-														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-															€@PricingExtensions.BoosterPay(item.Pricing)
-														</span>
-													</td>
-													<td class="text-right">
-														<span class="text-muted font-weight-500">
-															@item.PurchaseType.ToString()
-														</span>
-													</td>
-													<td class="text-right">
-														<span class="label label-lg label-light-primary label-inline">Success</span>
-														@*<span class="label label-lg label-light-info label-inline">Approved</span>*@
-													</td>
-
-												</tr>
+											<tr>
+												<td class="py-5 pl-0">
+													<span class="text-muted font-weight-bold d-block text-nowrap">
+														<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+													</span>
+												</td>
+												<td class="pl-0">
+													<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+												</td>
+												<td class="text-right">
+													<span class="text-muted font-weight-bold d-block">
+														Price
+													</span>
+													<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+														€@PricingExtensions.BoosterPay(item.Pricing)
+													</span>
+												</td>
+												<td class="text-right">
+													<span class="text-muted font-weight-500">
+														@item.PurchaseType.ToString()
+													</span>
+												</td>
+												<td class="text-right">
+													<span class="label label-lg label-light-primary label-inline">Success</span>
+													@*<span class="label label-lg label-light-info label-inline">Approved</span>*@
+												</td>
+											</tr>
 											}
 										</tbody>
 									</table>
