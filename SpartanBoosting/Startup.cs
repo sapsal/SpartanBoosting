@@ -33,7 +33,7 @@ namespace SpartanBoosting
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
-			//services.AddApplicationInsightsTelemetry("385ae6ef-e3a5-43b5-84d8-820e4ac8b1e9");
+			services.AddApplicationInsightsTelemetry("e0c40fca-f517-4cc4-92a6-6a8a3923cdae");
 			services.AddSingleton<IEmailSender, EmailSender>();
 			services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
 			services.AddDbContext<ApplicationDbContext>(options =>

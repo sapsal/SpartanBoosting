@@ -64,13 +64,19 @@ namespace SpartanBoosting.Controllers
 					price = decimal.Parse(result.OurRegularPrice);
 				}
 
-				//increase NA by 40%			
-				var ipAddress = HttpContext.Connection.RemoteIpAddress;
-				IpInfo ipInfo = new IpInfo();
-				var ipResult = ipInfo.GetCurrentIpInfo(ipAddress.ToString());
-				if (ipResult.Country == "US" || ipResult.Country == "CA")
-					price = price + (price / 100) * 40;
-
+				try
+				{
+					//increase NA by 40%			
+					var ipAddress = HttpContext.Connection.RemoteIpAddress;
+					IpInfo ipInfo = new IpInfo();
+					var ipResult = ipInfo.GetCurrentIpInfo(ipAddress.ToString());
+					if (ipResult.Country == "US" || ipResult.Country == "CA")
+						price = price + (price / 100) * 40;
+				}
+				catch (Exception e)
+				{
+					// Todo filter by server
+				}
 
 				price = (System.Math.Ceiling(price * 100) / 100);
 				return Json(price);
