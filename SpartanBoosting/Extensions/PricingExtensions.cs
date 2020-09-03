@@ -7,6 +7,8 @@ namespace SpartanBoosting.Extensions
 {
 	public static class PricingExtensions
 	{
+		private static Dictionary<string, int> DiscountCodes = new Dictionary<string, int> { { "SiteLaunch15", 15 } };
+		public static bool DiscountApplied = false;
 		public static double RoundUp(double input, int places)
 		{
 			double multiplier = Math.Pow(10, Convert.ToDouble(places));
@@ -17,6 +19,18 @@ namespace SpartanBoosting.Extensions
 			decimal price = decimal.Parse(Pricing);
 			price = (price / 100) * ObjectFactory.BoosterPercentage;
 			return RoundUp((double)price, 2);
+		}
+
+		public static decimal PriceDiscount(string discountCode, decimal Pricing)
+		{
+			var discountCodeValue = DiscountCodes.Where(x => x.Key == discountCode).SingleOrDefault();
+			if (!discountCodeValue.Equals(new KeyValuePair<string, int>()))
+			{
+				DiscountApplied = true;
+				return Pricing = Pricing - (Pricing * discountCodeValue.Value / 100);
+			}
+			else
+				return Pricing;
 		}
 
 		public static decimal PriceIncreaseLolNA(string Server, decimal Pricing)

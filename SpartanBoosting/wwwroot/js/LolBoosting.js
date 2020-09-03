@@ -63,3 +63,16 @@ $('#submit-quote').on('click', function () {
 		}
 	});
 });
+$('.apply-discount-btn').on('click', function () {
+	$.ajax({
+		url: '/Pricing/ApplyDiscountCode',
+		data: {
+			DiscountCode: $('#discount-text').val(),
+			Price: $('.ginput_total_10').text()
+		},
+		type: 'POST',
+		success: function (dataofconfirm) {
+			$('.ginput_total_10').text(dataofconfirm + ' €')
+		}
+	});
+});
