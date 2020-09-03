@@ -8,7 +8,6 @@ namespace SpartanBoosting.Extensions
 	public static class PricingExtensions
 	{
 		private static Dictionary<string, int> DiscountCodes = new Dictionary<string, int> { { "SiteLaunch15", 15 } };
-		public static bool DiscountApplied = false;
 		public static double RoundUp(double input, int places)
 		{
 			double multiplier = Math.Pow(10, Convert.ToDouble(places));
@@ -25,10 +24,7 @@ namespace SpartanBoosting.Extensions
 		{
 			var discountCodeValue = DiscountCodes.Where(x => x.Key == discountCode).SingleOrDefault();
 			if (!discountCodeValue.Equals(new KeyValuePair<string, int>()))
-			{
-				DiscountApplied = true;
 				return Pricing = Pricing - (Pricing * discountCodeValue.Value / 100);
-			}
 			else
 				return Pricing;
 		}

@@ -23,12 +23,8 @@ namespace SpartanBoosting.Controllers
 		public JsonResult ApplyDiscountCode(string DiscountCode, string Price)
 		{
 			decimal price = decimal.Parse(Price.Replace(" €", ""));
-			if (!PricingExtensions.DiscountApplied)
-			{
-				price = PricingExtensions.PriceDiscount(DiscountCode, price);
-				price = (System.Math.Ceiling(price * 100) / 100);
-				PricingExtensions.DiscountApplied = true;
-			}
+			price = PricingExtensions.PriceDiscount(DiscountCode, price);
+			price = (System.Math.Ceiling(price * 100) / 100);
 			return Json(price);
 		}
 

@@ -9,6 +9,8 @@
 	string Region = string.Empty;
 	string Queue = string.Empty;
 	string DuoType = string.Empty;
+	string Champions = string.Empty;
+	string SpecificRoles = string.Empty;
 }
 <link href="~/css/BoosterPanel.css" rel="stylesheet" />
 <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
@@ -82,6 +84,10 @@
 													Region = Model.BoostingModel.Server;
 													Queue = Model.BoostingModel.TypeOfQueue;
 													DuoType = Model.BoostingModel.TypeOfDuoPremium != null ? Model.BoostingModel.TypeOfDuoPremium : "Regular";
+													Champions = Model.BoostingModel.SpecificChampions;
+													SpecificRoles = Model.BoostingModel.SpecificRolesTop == "false" ? "" : Model.BoostingModel.SpecificRolesTop + "," + Model.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.BoostingModel.SpecificRolesSupport + ","
+													+ Model.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.BoostingModel.SpecificRolesMiddle + "," + Model.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.BoostingModel.SpecificRolesJungle + ","
+													 + Model.BoostingModel.SpecificRolesADC == "false" ? "" : Model.BoostingModel.SpecificRolesADC;
 													<div class="rank col-6">
 														<span class="card-title pr-title font-weight-bolder">Start</span><br>
 														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
@@ -97,6 +103,11 @@
 													break;
 												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
 													StartDivisionImage = $"{Model.WinBoostModel.YourCurrentLeague}{Model.WinBoostModel.CurrentDivision}";
+													//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+													DivisionBoost = $"{Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} <span> <i class='fas fa-angle-right'></i> </span> {Model.WinBoostModel.NumOfGames} ";
+													Region = Model.WinBoostModel.Server;
+													Queue = Model.WinBoostModel.TypeOfQueue;
+													DuoType = Model.WinBoostModel.TypeOfDuoPremium != null ? Model.WinBoostModel.TypeOfDuoPremium : "Regular";
 													break;
 												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
 													break;
@@ -234,6 +245,21 @@
 											Duo Type :
 											<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
 										</p>
+										@if (!string.IsNullOrEmpty(Champions))
+										{
+											<p class="card-title pr-title font-weight-bolder">
+												Champions :
+												<span class="card-title pr-title font-weight-bold-900">@Champions</span>
+											</p>
+										}
+										@if (!string.IsNullOrEmpty(SpecificRoles))
+										{
+											<p class="card-title pr-title font-weight-bolder">
+												Specific Roles :
+												<span class="card-title pr-title font-weight-bold-900">@SpecificRoles.TrimEnd(',')</span>
+											</p>
+										}
+
 									</div>
 									<!--end::Tablet-->
 								</div>

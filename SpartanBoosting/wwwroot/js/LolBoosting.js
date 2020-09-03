@@ -73,6 +73,7 @@ $('.apply-discount-btn').on('click', function () {
 		type: 'POST',
 		success: function (dataofconfirm) {
 			$('.ginput_total_10').text(dataofconfirm + ' €')
+			$('.apply-discount-btn').prop('disabled', true);
 		}
 	});
 });
