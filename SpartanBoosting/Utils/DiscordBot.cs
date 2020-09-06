@@ -57,7 +57,7 @@ namespace SpartanBoosting.Utils
 							$"**Type : {(Model.BoostingModel.TypeOfDuoRegular != "false" ? Model.BoostingModel.TypeOfDuoRegular : Model.BoostingModel.TypeOfDuoPremium)}**\n" +
 							$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
 				case PurchaseTypeEnum.PurchaseType.WinBoosting:
-					if (Model.WinBoostModel.TypeOfDuoRegular != "false" && Model.WinBoostModel.TypeOfDuoPremium != "false")
+					if (Model.WinBoostModel.TypeOfService == "Duo")
 						return DiscordServerTagMessage(Model.WinBoostModel.Server) + "**Win Boosting**\n" +
 							$"**Job : {Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} with {Model.WinBoostModel.NumOfGames} games**\n" +
 							$"**Queue : {Model.WinBoostModel.TypeOfQueue}**\n" +
@@ -71,7 +71,7 @@ namespace SpartanBoosting.Utils
 								$"**Type : Solo**\n" +
 								$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
 				case PurchaseTypeEnum.PurchaseType.PlacementMatches:
-					if (Model.PlacementMatchesModel.TypeOfDuoRegular != "false" && Model.PlacementMatchesModel.TypeOfDuoPremium != "false")
+					if (Model.PlacementMatchesModel.TypeOfService == "Duo")
 						return DiscordServerTagMessage(Model.PlacementMatchesModel.Server) + "**Placement Matches**\n" +
 								$"**Job : {Model.PlacementMatchesModel.LastSeasonStanding} with {Model.PlacementMatchesModel.NumOfGames} games**\n" +
 								$"**Queue : {Model.PlacementMatchesModel.TypeOfQueue}**\n" +

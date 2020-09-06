@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Repositorys;
 using SpartanBoosting.Utils.Enums;
 
@@ -13,9 +14,11 @@ namespace SpartanBoosting.Controllers
     public class AdministrationController : Controller
     {
         private IUserRolesRepository UserRolesRepository;
-        public AdministrationController(IUserRolesRepository userRolesRepository)
+        private IPurchaseOrderRepository PurchaseOrderRepository;
+        public AdministrationController(IUserRolesRepository userRolesRepository, IPurchaseOrderRepository purchaseOrderRepository)
         {
             UserRolesRepository = userRolesRepository;
+            PurchaseOrderRepository = purchaseOrderRepository;
         }
         public IActionResult Index()
         {
@@ -25,6 +28,12 @@ namespace SpartanBoosting.Controllers
         {
            var result =  UserRolesRepository.GetUsersWithRoles();
             return View("UserRolesLol/AssignLolUserRoles", result);
+        }
+
+        public IActionResult OrdersOverview()
+        {
+            var result = PurchaseOrderRepository.GetAllPurchaseOrder().ToList();
+            return View("OrdersLol/OrdersOverview", result);
         }
         [HttpPost]
         public IActionResult AssignUserBoosterRole(int Id)

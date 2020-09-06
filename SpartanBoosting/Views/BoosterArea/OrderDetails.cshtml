@@ -93,9 +93,9 @@
 														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
 													</div>
 													@*<div class="rank current">
-															<span class="card-title pr-title font-weight-bolder">Current</span><br>
-															<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
-														</div>*@
+					<span class="card-title pr-title font-weight-bolder">Current</span><br>
+					<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
+				</div>*@
 													<div class="rank col-6">
 														<span class="card-title pr-title font-weight-bolder">Desired</span><br>
 														<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@DesiredDivisionImage" data-original-title="" title="">
@@ -108,8 +108,30 @@
 													Region = Model.WinBoostModel.Server;
 													Queue = Model.WinBoostModel.TypeOfQueue;
 													DuoType = Model.WinBoostModel.TypeOfDuoPremium != null ? Model.WinBoostModel.TypeOfDuoPremium : "Regular";
+													<div class="rank col-6">
+														<span class="card-title pr-title font-weight-bolder">Start</span><br>
+														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+													</div>
+													<div class="rank col-6">
+														<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
+														<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.WinBoostModel.NumOfGames</span></h1>
+													</div>
 													break;
 												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
+													StartDivisionImage = $"{Model.PlacementMatchesModel.LastSeasonStanding}";
+													//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+													DivisionBoost = $"{Model.PlacementMatchesModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {Model.PlacementMatchesModel.NumOfGames}";
+													Region = Model.PlacementMatchesModel.Server;
+													Queue = Model.PlacementMatchesModel.TypeOfQueue;
+													DuoType = Model.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
+													<div class="rank col-6">
+														<span class="card-title pr-title font-weight-bolder">Start</span><br>
+														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+													</div>
+													<div class="rank col-6">
+														<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
+														<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PlacementMatchesModel.NumOfGames</span></h1>
+													</div>
 													break;
 												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
 													break;
