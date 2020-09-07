@@ -95,6 +95,7 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
+				price = PricingExtensions.PriceIncreaseLolNA(Model.Server, price);
 				price = PricingExtensions.PriceDiscount(Model.Discount, price);
 				return Json(price);
 			}
@@ -113,6 +114,7 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
+				price = PricingExtensions.PriceIncreaseLolNA(Model.Server, price);
 				price = PricingExtensions.PriceDiscount(Model.Discount, price);
 				return Json(price);
 			}
