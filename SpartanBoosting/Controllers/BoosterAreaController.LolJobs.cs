@@ -18,8 +18,15 @@ namespace SpartanBoosting.Controllers
 		public IActionResult OrderDetails([FromQuery(Name = "hash")] string hash)
 		{
 			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-			var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
-			return View(model);
+			if (User.IsInRole("Superuser")) {
+				var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedById(int.Parse(EncryptionHelper.Decrypt(hash)));
+				return View(model);
+			}
+			else
+			{
+				var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
+				return View(model);
+			}
 		}
 
 		[HttpPost]

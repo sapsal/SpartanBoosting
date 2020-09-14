@@ -12,277 +12,207 @@
 	string Champions = string.Empty;
 	string SpecificRoles = string.Empty;
 }
-<link href="~/css/BoosterPanel.css" rel="stylesheet" />
-<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-	<!--begin::Subheader-->
-	<div class="subheader py-6 py-lg-8  subheader-transparent " id="kt_subheader">
-		<div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-			<!--begin::Info-->
-			<div class="d-flex align-items-center flex-wrap mr-1">
+@if (Model != null)
+{
+	<link href="~/css/BoosterPanel.css" rel="stylesheet" />
+	<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+		<!--begin::Subheader-->
+		<div class="subheader py-6 py-lg-8  subheader-transparent " id="kt_subheader">
+			<div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+				<!--begin::Info-->
+				<div class="d-flex align-items-center flex-wrap mr-1">
 
-				<!--begin::Page Heading-->
-				<div class="d-flex align-items-baseline flex-wrap mr-5">
-					<!--begin::Page Title-->
-					<h5 class="text-dark font-weight-bold my-1 mr-5">
-						Order #LOL-@(Model.Id)
-					</h5>
-					<!--end::Page Title-->
+					<!--begin::Page Heading-->
+					<div class="d-flex align-items-baseline flex-wrap mr-5">
+						<!--begin::Page Title-->
+						<h5 class="text-dark font-weight-bold my-1 mr-5">
+							Order #LOL-@(Model.Id)
+						</h5>
+						<!--end::Page Title-->
 
+					</div>
+					<!--end::Page Heading-->
 				</div>
-				<!--end::Page Heading-->
+				<!--end::Info-->
+				<!--begin::Toolbar-->
+				<div class="d-flex align-items-center">
+					<!--begin::Daterange-->
+					<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+						<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+						<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+					</a>
+					<!--end::Daterange-->
+				</div>
+				<!--end::Toolbar-->
 			</div>
-			<!--end::Info-->
-			<!--begin::Toolbar-->
-			<div class="d-flex align-items-center">
-				<!--begin::Daterange-->
-				<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
-					<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
-					<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
-				</a>
-				<!--end::Daterange-->
-			</div>
-			<!--end::Toolbar-->
 		</div>
-	</div>
-	<!--end::Subheader-->
-	<!--begin::Entry-->
-	<div class="d-flex flex-column-fluid">
-		<!--begin::Container-->
-		<div class=" container ">
-			<!--begin::Dashboard-->
-			<!--begin::Row-->
-			<div class="row">
-				<!--rank-->
-				<div class="col-lg-6">
-					<!--begin::Tables Widget 1-->
-					<div class="card card-custom card-stretch gutter-b" style="height: 40vh;">
-						<!--begin::Header-->
-						<div class="card-header border-0 pt-7">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Progress:</span>
-							</h3>
-							<div class="card-toolbar">
+		<!--end::Subheader-->
+		<!--begin::Entry-->
+		<div class="d-flex flex-column-fluid">
+			<!--begin::Container-->
+			<div class=" container ">
+				<!--begin::Dashboard-->
+				<!--begin::Row-->
+				<div class="row">
+					<!--rank-->
+					<div class="col-lg-6">
+						<!--begin::Tables Widget 1-->
+						<div class="card card-custom card-stretch gutter-b" style="height: 40vh;">
+							<!--begin::Header-->
+							<div class="card-header border-0 pt-7">
+								<h3 class="card-title align-items-start flex-column">
+									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Progress:</span>
+								</h3>
+								<div class="card-toolbar">
 
+								</div>
 							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-1 pb-4">
-							<div class="tab-content mt-5" id="myTabTable1">
-								<!--begin::Tap pane-->
-								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-									<!--begin::Table-->
-									<div class="text-center">
-										<div class="row">
-											@switch (Model.PurchaseType)
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body pt-1 pb-4">
+								<div class="tab-content mt-5" id="myTabTable1">
+									<!--begin::Tap pane-->
+									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+										<!--begin::Table-->
+										<div class="text-center">
+											<div class="row">
+												@switch (Model.PurchaseType)
+												{
+													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
+													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
+														StartDivisionImage = $"{Model.BoostingModel.YourCurrentLeague}{Model.BoostingModel.CurrentDivision}";
+														DesiredDivisionImage = $"{Model.BoostingModel.DesiredCurrentLeague}{Model.BoostingModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+														DivisionBoost = $"{Model.BoostingModel.YourCurrentLeague} {Model.BoostingModel.CurrentDivision} ({Model.BoostingModel.CurrentLP}) <span> <i class='fas fa-angle-right'></i> </span> {Model.BoostingModel.DesiredCurrentLeague} {Model.BoostingModel.DesiredCurrentDivision}";
+														Region = Model.BoostingModel.Server;
+														Queue = Model.BoostingModel.TypeOfQueue;
+														DuoType = Model.BoostingModel.TypeOfDuoPremium != null ? Model.BoostingModel.TypeOfDuoPremium : "Regular";
+														Champions = Model.BoostingModel.SpecificChampions;
+														SpecificRoles = Model.BoostingModel.SpecificRolesTop == "false" ? "" : Model.BoostingModel.SpecificRolesTop + "," + Model.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.BoostingModel.SpecificRolesSupport + ","
+														+ Model.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.BoostingModel.SpecificRolesMiddle + "," + Model.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.BoostingModel.SpecificRolesJungle + ","
+														 + Model.BoostingModel.SpecificRolesADC == "false" ? "" : Model.BoostingModel.SpecificRolesADC;
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Start</span><br>
+															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+														</div>
+														@*<div class="rank current">
+																<span class="card-title pr-title font-weight-bolder">Current</span><br>
+																<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
+															</div>*@
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Desired</span><br>
+															<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@DesiredDivisionImage" data-original-title="" title="">
+														</div>
+														break;
+													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
+														StartDivisionImage = $"{Model.WinBoostModel.YourCurrentLeague}{Model.WinBoostModel.CurrentDivision}";
+														//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+														DivisionBoost = $"{Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} <span> <i class='fas fa-angle-right'></i> </span> {Model.WinBoostModel.NumOfGames} ";
+														Region = Model.WinBoostModel.Server;
+														Queue = Model.WinBoostModel.TypeOfQueue;
+														DuoType = Model.WinBoostModel.TypeOfDuoPremium != null ? Model.WinBoostModel.TypeOfDuoPremium : "Regular";
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Start</span><br>
+															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+														</div>
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
+															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.WinBoostModel.NumOfGames</span></h1>
+														</div>
+														break;
+													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
+														StartDivisionImage = $"{Model.PlacementMatchesModel.LastSeasonStanding}";
+														//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+														DivisionBoost = $"{Model.PlacementMatchesModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {Model.PlacementMatchesModel.NumOfGames}";
+														Region = Model.PlacementMatchesModel.Server;
+														Queue = Model.PlacementMatchesModel.TypeOfQueue;
+														DuoType = Model.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Start</span><br>
+															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+														</div>
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
+															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PlacementMatchesModel.NumOfGames</span></h1>
+														</div>
+														break;
+													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
+														break;
+													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting:
+														break;
+													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.Coaching:
+														break;
+													default:
+														break;
+												}
+											</div>
+											<hr>
+											@if (!Model.BoosterCompletionConfirmed)
 											{
-												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
-												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
-													StartDivisionImage = $"{Model.BoostingModel.YourCurrentLeague}{Model.BoostingModel.CurrentDivision}";
-													DesiredDivisionImage = $"{Model.BoostingModel.DesiredCurrentLeague}{Model.BoostingModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
-													DivisionBoost = $"{Model.BoostingModel.YourCurrentLeague} {Model.BoostingModel.CurrentDivision} ({Model.BoostingModel.CurrentLP}) <span> <i class='fas fa-angle-right'></i> </span> {Model.BoostingModel.DesiredCurrentLeague} {Model.BoostingModel.DesiredCurrentDivision}";
-													Region = Model.BoostingModel.Server;
-													Queue = Model.BoostingModel.TypeOfQueue;
-													DuoType = Model.BoostingModel.TypeOfDuoPremium != null ? Model.BoostingModel.TypeOfDuoPremium : "Regular";
-													Champions = Model.BoostingModel.SpecificChampions;
-													SpecificRoles = Model.BoostingModel.SpecificRolesTop == "false" ? "" : Model.BoostingModel.SpecificRolesTop + "," + Model.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.BoostingModel.SpecificRolesSupport + ","
-													+ Model.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.BoostingModel.SpecificRolesMiddle + "," + Model.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.BoostingModel.SpecificRolesJungle + ","
-													 + Model.BoostingModel.SpecificRolesADC == "false" ? "" : Model.BoostingModel.SpecificRolesADC;
-													<div class="rank col-6">
-														<span class="card-title pr-title font-weight-bolder">Start</span><br>
-														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
-													</div>
-													@*<div class="rank current">
-					<span class="card-title pr-title font-weight-bolder">Current</span><br>
-					<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
-				</div>*@
-													<div class="rank col-6">
-														<span class="card-title pr-title font-weight-bolder">Desired</span><br>
-														<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@DesiredDivisionImage" data-original-title="" title="">
-													</div>
-													break;
-												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
-													StartDivisionImage = $"{Model.WinBoostModel.YourCurrentLeague}{Model.WinBoostModel.CurrentDivision}";
-													//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
-													DivisionBoost = $"{Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} <span> <i class='fas fa-angle-right'></i> </span> {Model.WinBoostModel.NumOfGames} ";
-													Region = Model.WinBoostModel.Server;
-													Queue = Model.WinBoostModel.TypeOfQueue;
-													DuoType = Model.WinBoostModel.TypeOfDuoPremium != null ? Model.WinBoostModel.TypeOfDuoPremium : "Regular";
-													<div class="rank col-6">
-														<span class="card-title pr-title font-weight-bolder">Start</span><br>
-														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
-													</div>
-													<div class="rank col-6">
-														<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
-														<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.WinBoostModel.NumOfGames</span></h1>
-													</div>
-													break;
-												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
-													StartDivisionImage = $"{Model.PlacementMatchesModel.LastSeasonStanding}";
-													//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
-													DivisionBoost = $"{Model.PlacementMatchesModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {Model.PlacementMatchesModel.NumOfGames}";
-													Region = Model.PlacementMatchesModel.Server;
-													Queue = Model.PlacementMatchesModel.TypeOfQueue;
-													DuoType = Model.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
-													<div class="rank col-6">
-														<span class="card-title pr-title font-weight-bolder">Start</span><br>
-														<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
-													</div>
-													<div class="rank col-6">
-														<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
-														<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PlacementMatchesModel.NumOfGames</span></h1>
-													</div>
-													break;
-												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
-													break;
-												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting:
-													break;
-												case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.Coaching:
-													break;
-												default:
-													break;
+												<div class="text-center">
+													<p class="card-text card-label">Boost Is Being Completed By The Booster</p>
+												</div>
 											}
 										</div>
-										<hr>
-										@if (!Model.BoosterCompletionConfirmed)
-										{
-											<div class="text-center">
-												<p class="card-text card-label">Boost Is Being Completed By The Booster</p>
-											</div>
-										}
+										<!--end::Tablet-->
 									</div>
-									<!--end::Tablet-->
+									<!--end::Tap pane-->
 								</div>
-								<!--end::Tap pane-->
 							</div>
+							<!--end::Body-->
 						</div>
-						<!--end::Body-->
+						<!--end::Tables Widget 1-->
 					</div>
-					<!--end::Tables Widget 1-->
-				</div>
-				<!--Chat-->
-				<div class="col-lg-6">
-					<!--begin::Tables Widget 1-->
-					<div class="card card-custom card-stretch gutter-b">
-						<!--begin::Header-->
-						<div class="card-header border-0 pt-7">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Chat:</span>
-							</h3>
-							<div class="card-toolbar">
+					<!--Chat-->
+					<div class="col-lg-6">
+						<!--begin::Tables Widget 1-->
+						<div class="card card-custom card-stretch gutter-b">
+							<!--begin::Header-->
+							<div class="card-header border-0 pt-7">
+								<h3 class="card-title align-items-start flex-column">
+									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Chat:</span>
+								</h3>
+								<div class="card-toolbar">
 
+								</div>
 							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body p-0">
-							<div class="tab-content mt-5" id="myTabTable1">
-								<!--begin::Tap pane-->
-								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-									<!--begin::Table-->
-									<div class="card-body pr-body p-3" style="height:40vh">
-										<div class="messaging row h-100">
-											<div class="inbox_msg h-100 w-100">
-												<div class="mesgs h-100 w-100">
-													<div class="msg_history h-100">
-														<div class="incoming_msg">
-															<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-															<div class="received_msg">
-																<div class="received_withd_msg">
-																	<p>
-																		Coming Soon!
-																	</p>
-																	<span class="time_date">    Today</span>
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body p-0">
+								<div class="tab-content mt-5" id="myTabTable1">
+									<!--begin::Tap pane-->
+									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+										<!--begin::Table-->
+										<div class="card-body pr-body p-3" style="height:40vh">
+											<div class="messaging row h-100">
+												<div class="inbox_msg h-100 w-100">
+													<div class="mesgs h-100 w-100">
+														<div class="msg_history h-100">
+															<div class="incoming_msg">
+																<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+																<div class="received_msg">
+																	<div class="received_withd_msg">
+																		<p>
+																			Coming Soon!
+																		</p>
+																		<span class="time_date">    Today</span>
+																	</div>
 																</div>
 															</div>
 														</div>
-													</div>
-													<div class="input-group">
-														<input type="text" onkeypress="submitOnEnter(event)" placeholder="Type a message" id="msg_content" name="msg_content" class="form-control rounded-0 border-0 py-4" style="background-color: #17172e;">
-														<input id="order_hash" hidden="" type="text" value="LOL-4208CA644B6" name="order_hash">
-														<input id="client_id" hidden="" type="text" value="160" name="client_id">
-														<input id="booster_id" hidden="" type="text" value="64" name="booster_id">
-														<div class="input-group-append" style="background-color: #17172e;">
-															<button type="button" style="background-color: #17172e;" name="msg_send" onclick="msgSend()" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
+														<div class="input-group">
+															<input type="text" onkeypress="submitOnEnter(event)" placeholder="Type a message" id="msg_content" name="msg_content" class="form-control rounded-0 border-0 py-4" style="background-color: #17172e;">
+															<input id="order_hash" hidden="" type="text" value="LOL-4208CA644B6" name="order_hash">
+															<input id="client_id" hidden="" type="text" value="160" name="client_id">
+															<input id="booster_id" hidden="" type="text" value="64" name="booster_id">
+															<div class="input-group-append" style="background-color: #17172e;">
+																<button type="button" style="background-color: #17172e;" name="msg_send" onclick="msgSend()" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<!--end::Tablet-->
-							</div>
-							<!--end::Tap pane-->
-						</div>
-					</div>
-					<!--end::Body-->
-				</div>
-				<!--end::Tables Widget 1-->
-			</div>
-			<div class="row">
-				<!--boost info-->
-				<div class="col-lg-6">
-					<!--begin::Tables Widget 1-->
-					<div class="card card-custom gutter-b">
-						<!--begin::Header-->
-						<div class="card-header border-0 pt-7">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Informations:</span>
-							</h3>
-							<div class="card-toolbar">
-
-							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-1 pb-4">
-							<div class="tab-content mt-5" id="myTabTable1">
-								<!--begin::Tap pane-->
-								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-									<!--begin::Table-->
-									<div class="card-body pr-body">
-										@if (!string.IsNullOrEmpty(DivisionBoost))
-										{
-											<p class="card-title pr-title font-weight-bolder">
-												Division Boost :
-												<span class="card-title pr-title font-weight-bold-900">@Html.Raw(DivisionBoost)</span>
-											</p>
-										}
-										@if (!string.IsNullOrEmpty(Region))
-										{
-											<p class="card-title pr-title font-weight-bolder">
-												Region :
-												<span class="card-title pr-title font-weight-bold-900">@Region</span>
-											</p>
-										}
-										@if (!string.IsNullOrEmpty(Queue))
-										{
-											<p class="card-title pr-title font-weight-bolder">
-												Queue :
-												<span class="card-title pr-title font-weight-bold-900">@Queue</span>
-											</p>
-										}
-										<p class="card-title pr-title font-weight-bolder">
-											Duo Type :
-											<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
-										</p>
-										@if (!string.IsNullOrEmpty(Champions))
-										{
-											<p class="card-title pr-title font-weight-bolder">
-												Champions :
-												<span class="card-title pr-title font-weight-bold-900">@Champions</span>
-											</p>
-										}
-										@if (!string.IsNullOrEmpty(SpecificRoles))
-										{
-											<p class="card-title pr-title font-weight-bolder">
-												Specific Roles :
-												<span class="card-title pr-title font-weight-bold-900">@SpecificRoles.TrimEnd(',')</span>
-											</p>
-										}
-
-									</div>
 									<!--end::Tablet-->
 								</div>
 								<!--end::Tap pane-->
@@ -292,76 +222,149 @@
 					</div>
 					<!--end::Tables Widget 1-->
 				</div>
-				<div class="col-lg-6">
-					<div class="card card-custom gutter-b">
-						<!--begin::Header-->
-						<div class="card-header border-0 pt-7">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Account Informations:</span>
-							</h3>
-							<div class="card-toolbar">
+				<div class="row">
+					<!--boost info-->
+					<div class="col-lg-6">
+						<!--begin::Tables Widget 1-->
+						<div class="card card-custom gutter-b">
+							<!--begin::Header-->
+							<div class="card-header border-0 pt-7">
+								<h3 class="card-title align-items-start flex-column">
+									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Informations:</span>
+								</h3>
+								<div class="card-toolbar">
 
-							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-1 pb-4">
-							<div class="tab-content mt-5" id="myTabTable1">
-								<!--begin::Tap pane-->
-								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-									<!--begin::Table-->
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Summoner Name</label>
-												<input type="text" class="form-control" placeholder="Summoner Name" name="summoner_name" value="@Model.PersonalInformation.UserName">
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Discord Name</label>
-												<input type="text" class="form-control" value="@Model.PersonalInformation.Discord">
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Password</label>
-												<label class="form-control">@Model.PersonalInformation.Password</label>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Server</label>
-												@*<select class="form-control" asp-for="@Region">
-					<option value="euw">Europe West</option>
-					<option value="eune">Europe Nordic &amp; East</option>
-					<option value="na">North America</option>
-					<option value="oce">Oceania</option>
-					<option value="ru">Russia</option>
-					<option value="tr">Turkey</option>
-					<option value="lan">Latin America North</option>
-					<option value="las">Latin America South</option>
-					<option value="br">Brazil</option>
-					<option value="jp">Japan</option>
-					<option value="kr">Korea</option>
-				</select>*@
-												<label class="form-control">@Region</label>
-											</div>
-										</div>
-									</div>
-									<!--end::Tablet-->
 								</div>
-								<!--end::Tap pane-->
 							</div>
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body pt-1 pb-4">
+								<div class="tab-content mt-5" id="myTabTable1">
+									<!--begin::Tap pane-->
+									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+										<!--begin::Table-->
+										<div class="card-body pr-body">
+											@if (!string.IsNullOrEmpty(DivisionBoost))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Division Boost :
+													<span class="card-title pr-title font-weight-bold-900">@Html.Raw(DivisionBoost)</span>
+												</p>
+											}
+											@if (!string.IsNullOrEmpty(Region))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Region :
+													<span class="card-title pr-title font-weight-bold-900">@Region</span>
+												</p>
+											}
+											@if (!string.IsNullOrEmpty(Queue))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Queue :
+													<span class="card-title pr-title font-weight-bold-900">@Queue</span>
+												</p>
+											}
+											<p class="card-title pr-title font-weight-bolder">
+												Duo Type :
+												<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
+											</p>
+											@if (!string.IsNullOrEmpty(Champions))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Champions :
+													<span class="card-title pr-title font-weight-bold-900">@Champions</span>
+												</p>
+											}
+											@if (!string.IsNullOrEmpty(SpecificRoles))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Specific Roles :
+													<span class="card-title pr-title font-weight-bold-900">@SpecificRoles.TrimEnd(',')</span>
+												</p>
+											}
+
+										</div>
+										<!--end::Tablet-->
+									</div>
+									<!--end::Tap pane-->
+								</div>
+							</div>
+							<!--end::Body-->
 						</div>
-						<!--end::Body-->
+						<!--end::Tables Widget 1-->
+					</div>
+					<div class="col-lg-6">
+						<div class="card card-custom gutter-b">
+							<!--begin::Header-->
+							<div class="card-header border-0 pt-7">
+								<h3 class="card-title align-items-start flex-column">
+									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Account Informations:</span>
+								</h3>
+								<div class="card-toolbar">
+
+								</div>
+							</div>
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body pt-1 pb-4">
+								<div class="tab-content mt-5" id="myTabTable1">
+									<!--begin::Tap pane-->
+									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+										<!--begin::Table-->
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Summoner Name</label>
+													<input type="text" class="form-control" placeholder="Summoner Name" name="summoner_name" value="@Model.PersonalInformation.UserName">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Discord Name</label>
+													<input type="text" class="form-control" value="@Model.PersonalInformation.Discord">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Password</label>
+													<label class="form-control">@Model.PersonalInformation.Password</label>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Server</label>
+													@*<select class="form-control" asp-for="@Region">
+															<option value="euw">Europe West</option>
+															<option value="eune">Europe Nordic &amp; East</option>
+															<option value="na">North America</option>
+															<option value="oce">Oceania</option>
+															<option value="ru">Russia</option>
+															<option value="tr">Turkey</option>
+															<option value="lan">Latin America North</option>
+															<option value="las">Latin America South</option>
+															<option value="br">Brazil</option>
+															<option value="jp">Japan</option>
+															<option value="kr">Korea</option>
+														</select>*@
+													<label class="form-control">@Region</label>
+												</div>
+											</div>
+										</div>
+										<!--end::Tablet-->
+									</div>
+									<!--end::Tap pane-->
+								</div>
+							</div>
+							<!--end::Body-->
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<!--end::Row-->
+			<!--end::Row-->
+		</div>
+		<!--end::Container-->
 	</div>
-	<!--end::Container-->
-</div>
-<!--end::Entry-->
+	<!--end::Entry-->
+}
