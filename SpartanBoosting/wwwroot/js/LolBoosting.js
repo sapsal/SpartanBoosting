@@ -11,10 +11,12 @@ $('[name="DesiredCurrentLeague"]').on('change', function () {
 	if (this.value == "Master") {
 		$('#master-rank-notification').show()
 		$('[name="DesiredCurrentDivision"]').hide()
+		$('#desired-rank-logo').hide()
 	}
 	else {
 		$('#master-rank-notification').hide()
 		$('[name="DesiredCurrentDivision"]').show()
+		$('#desired-rank-logo').show()
 	}
 });
 
@@ -26,6 +28,10 @@ $(document).on("change", '[name="PaymentMethod"]', function () {
 });
 
 $('.gfield-quote').on('keyup change paste', function () {
+	var imageCurrentRank = "/img/Lol Ranks/" + $('#current-rank').val() + $('#current-div').val() + ".png"
+	var imageDesiredRank = "/img/Lol Ranks/" + $('#desired-rank').val() + $('#desired-div').val() + ".png"
+	$('#current-rank-logo').attr('src', imageCurrentRank);
+	$('#desired-rank-logo').attr('src', imageDesiredRank);
 	if (this.name == "DiscountCode") {
 		//ignore for apply button
 		return;
