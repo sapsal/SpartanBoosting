@@ -135,3 +135,7 @@ h3 {
 	font-weight: 400;
 	font-size: large !important;
 }
+
+.btn {
+	white-space: normal;
+}
