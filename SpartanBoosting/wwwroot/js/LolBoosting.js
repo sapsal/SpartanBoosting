@@ -27,11 +27,13 @@ $(document).on("change", '[name="PaymentMethod"]', function () {
 		$('.stripe-form').show()
 });
 
-$('.gfield-quote').on('keyup change paste', function () {
+$('.gfield-quote').on('change', function () {
 	var imageCurrentRank = "/img/Lol Ranks/" + $('#current-rank').val() + $('#current-div').val() + ".png"
 	var imageDesiredRank = "/img/Lol Ranks/" + $('#desired-rank').val() + $('#desired-div').val() + ".png"
 	$('#current-rank-logo').attr('src', imageCurrentRank);
 	$('#desired-rank-logo').attr('src', imageDesiredRank);
+});
+$('.gfield-quote').on('keyup change paste', function () {
 	if (this.name == "DiscountCode") {
 		//ignore for apply button
 		return;
