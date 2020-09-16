@@ -30,7 +30,6 @@
 	margin-top: 16px !important;
 	margin-left: 0 !important;
 	font-size: 14px !important;
-	width: 25% !important;
 	background-color: #fd941f;
 	border-radius: 10px !important;
 	font-family: inherit;
@@ -135,4 +134,8 @@ h3 {
 	color: #ff0000;
 	font-weight: 400;
 	font-size: large !important;
+}
+
+.btn {
+	white-space: normal;
 }

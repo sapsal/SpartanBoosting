@@ -4,19 +4,19 @@
 @{
 	ViewData["Title"] = "SoloBoosting";
 }
-	<head>
+<head>
 
-		<meta charset="UTF-8">
-		<link rel="profile" href="https://gmpg.org/xfn/11">
-		<title>Spartan Boosting &#8211;Boosting and Coaching Service for League of Legends</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<style type="text/css"></style>
-		<link href="~/css/PostCopy.css" rel="stylesheet" />
-		<link href="~/css/wpforms-full.css.css" rel="stylesheet" />
-		<link href="~/css/site.css" rel="stylesheet" />
-		<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-	</head>
+	<meta charset="UTF-8">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<title>Spartan Boosting &#8211;Boosting and Coaching Service for League of Legends</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style type="text/css"></style>
+	<link href="~/css/PostCopy.css" rel="stylesheet" />
+	<link href="~/css/wpforms-full.css.css" rel="stylesheet" />
+	<link href="~/css/site.css" rel="stylesheet" />
+	<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+</head>
 <div data-elementor-type="wp-page" data-elementor-id="3628" class="elementor elementor-3628" data-elementor-settings="[]">
 	<div class="elementor-inner">
 		<div class="elementor-section-wrap">
@@ -89,78 +89,73 @@
 														  data-ajax-method="POST" data-pricing="SoloPricing" class="wpforms-validate wpforms-form wpforms-ajax-form">
 														<div class="gfield-pricing-quote-personal-information"></div>
 														<div class="gfield-pricing-quote">
-															<div class="row pb-4">
+
+															<div class="row">
 																<div class="col-md-3">
-																	<div class="ginput_container ginput_container_select">
-																		<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-																		<select name="YourCurrentLeague" asp-for="YourCurrentLeague" id="current-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
-																			<option value="Iron">Iron</option>
-																			<option value="Bronze">Bronze</option>
-																			<option value="Silver">Silver</option>
-																			<option value="Gold">Gold</option>
-																			<option value="Platinum">Platinum</option>
-																			<option value="Diamond">Diamond</option>
-																		</select>
+																	<div class="pb-4">
+																		<div class="ginput_container ginput_container_select">
+																			<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
+																			<select name="YourCurrentLeague" asp-for="YourCurrentLeague" id="current-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
+																				<option value="Iron">Iron</option>
+																				<option value="Bronze">Bronze</option>
+																				<option value="Silver">Silver</option>
+																				<option value="Gold">Gold</option>
+																				<option value="Platinum">Platinum</option>
+																				<option value="Diamond">Diamond</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="pb-4">
+																		<div class="ginput_container ginput_container_select">
+																			<select name="CurrentDivision" asp-for="CurrentDivision" id="current-div" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																				<option value="IV">Division IV</option>
+																				<option value="III">Division III</option>
+																				<option value="II">Division II</option>
+																				<option value="I">Division I</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="pb-4">
+																		<div class="ginput_container ginput_container_select">
+																			<select name="CurrentLP" id="input_10_279" asp-for="CurrentLP" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																				<option value="LP 0-20">LP 0-20</option>
+																				<option value="LP 21-40">LP 21-40</option>
+																				<option value="LP 41-60">LP 41-60</option>
+																				<option value="LP 61-80">LP 61-80</option>
+																				<option value="LP 81-100">LP 81-100</option>
+																			</select>
+																		</div>
 																	</div>
 																</div>
-																<div class="col-md-3"></div>
+																<div class="col-md-3"><img id="current-rank-logo" style="padding-left: 6rem;height: 18rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
 																<div class="col-md-3">
-																	<div class="ginput_container ginput_container_select">
-																		<label class="pb-3 gfield_label" for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
-																		<select name="DesiredCurrentLeague" asp-for="DesiredCurrentLeague" id="desired-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
-																			<option value="Iron">Iron</option>
-																			<option value="Bronze">Bronze</option>
-																			<option value="Silver">Silver</option>
-																			<option value="Gold">Gold</option>
-																			<option value="Platinum">Platinum</option>
-																			<option value="Diamond">Diamond</option>
-																			<option value="Master">Master</option>
-																		</select>
-																		<label id="master-rank-notification" style="display:none" for="desired-rank" class="gfield note gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible font-weight-normal">For divisions higher than Master please contact us!</label>
+																	<div class="pb-4">
+																		<div class="ginput_container ginput_container_select">
+																			<label class="pb-3 gfield_label" for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
+																			<select name="DesiredCurrentLeague" asp-for="DesiredCurrentLeague" id="desired-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
+																				<option value="Iron">Iron</option>
+																				<option value="Bronze">Bronze</option>
+																				<option value="Silver">Silver</option>
+																				<option value="Gold">Gold</option>
+																				<option value="Platinum">Platinum</option>
+																				<option value="Diamond">Diamond</option>
+																				<option value="Master">Master</option>
+																			</select>
+																			<label id="master-rank-notification" style="display:none" for="desired-rank" class="gfield note gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible font-weight-normal">For divisions higher than Master please contact us!</label>
+																		</div>
+																	</div>
+																	<div class="pb-4">
+																		<div class="ginput_container ginput_container_select">
+																			<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision" id="desired-div" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
+																				<option value="IV">Division IV</option>
+																				<option value="III">Division III</option>
+																				<option value="II">Division II</option>
+																				<option value="I">Division I</option>
+																			</select>
+																		</div>
 																	</div>
 																</div>
-																<div class="col-md-3"></div>
-															</div>
-															<div class="row pb-4">
-																<div class="col-md-3">
-																	<div class="ginput_container ginput_container_select">
-																		<select name="CurrentDivision" asp-for="CurrentDivision" id="current-div" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																			<option value="IV">Division IV</option>
-																			<option value="III">Division III</option>
-																			<option value="II">Division II</option>
-																			<option value="I">Division I</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="col-md-3"></div>
-																<div class="col-md-3">
-																	<div class="ginput_container ginput_container_select">
-																		<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision" id="input_10_283" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																			<option value="IV">Division IV</option>
-																			<option value="III">Division III</option>
-																			<option value="II">Division II</option>
-																			<option value="I">Division I</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="col-md-3"></div>
-															</div>
-															<div class="row pb-4">
-																<div class="col-md-3">
-																	<div class="ginput_container ginput_container_select">
-																		<select name="CurrentLP" id="input_10_279" asp-for="CurrentLP" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																			<option value="LP 0-20">LP 0-20</option>
-																			<option value="LP 21-40">LP 21-40</option>
-																			<option value="LP 41-60">LP 41-60</option>
-																			<option value="LP 61-80">LP 61-80</option>
-																			<option value="LP 81-100">LP 81-100</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="col-md-3"></div>
-																<div class="col-md-3">
-																</div>
-																<div class="col-md-3"></div>
+																<div class="col-md-3"><img id="desired-rank-logo" style="padding-left: 6rem;height: 18rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
 															</div>
 															<div class="row pb-4">
 																<div class="col-md-6 pr-3">
@@ -205,7 +200,7 @@
 																					<img src="~/img/Wordpress Icons/top-role.png" alt="Top" title="Top" src="~/img/Wordpress Icons/top-role.png" class="lazyloaded" data-was-processed="true">
 																					<noscript><img src="~/img/Wordpress Icons/top-role.png" alt="Top" title="Top"></noscript>
 																				</span>
-																				<input asp-for="SpecificRolesTop" name="SpecificRolesTop" type="checkbox" id="wpforms-931-field_3_1" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Top" tabindex="-1" ><span class="wpforms-image-choices-label">Top</span>
+																				<input asp-for="SpecificRolesTop" name="SpecificRolesTop" type="checkbox" id="wpforms-931-field_3_1" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Top" tabindex="-1"><span class="wpforms-image-choices-label">Top</span>
 																			</label>
 																		</li>
 																		<li class="choice-2 depth-1 wpforms-image-choices-item" style="width:20%">
@@ -214,7 +209,7 @@
 																					<img src="~/img/Wordpress Icons/jungle-role.png" alt="Jungle" title="Jungle" src="~/img/Wordpress Icons/jungle-role.png" class="lazyloaded" data-was-processed="true">
 																					<noscript><img src="~/img/Wordpress Icons/jungle-role.png" alt="Jungle" title="Jungle"></noscript>
 																				</span>
-																				<input asp-for="SpecificRolesJungle" name="SpecificRolesJungle" type="checkbox" id="wpforms-931-field_3_2" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Jungle" tabindex="-1" ><span class="wpforms-image-choices-label">Jungle</span>
+																				<input asp-for="SpecificRolesJungle" name="SpecificRolesJungle" type="checkbox" id="wpforms-931-field_3_2" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Jungle" tabindex="-1"><span class="wpforms-image-choices-label">Jungle</span>
 																			</label>
 																		</li>
 																		<li class="choice-3 depth-1 wpforms-image-choices-item" style="width:20%">
@@ -223,7 +218,7 @@
 																					<img src="~/img/Wordpress Icons/mid-role.png" alt="Middle" title="Middle" src="~/img/Wordpress Icons/mid-role.png" class="lazyloaded" data-was-processed="true">
 																					<noscript><img src="~/img/Wordpress Icons/mid-role.png" alt="Middle" title="Middle"></noscript>
 																				</span>
-																				<input asp-for="SpecificRolesMiddle" name="SpecificRolesMiddle" type="checkbox" id="wpforms-931-field_3_3" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Middle" tabindex="-1" ><span class="wpforms-image-choices-label">Middle</span>
+																				<input asp-for="SpecificRolesMiddle" name="SpecificRolesMiddle" type="checkbox" id="wpforms-931-field_3_3" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Middle" tabindex="-1"><span class="wpforms-image-choices-label">Middle</span>
 																			</label>
 																		</li>
 																		<li class="choice-4 depth-1 wpforms-image-choices-item" style="width:20%">
@@ -232,16 +227,16 @@
 																					<img src="~/img/Wordpress Icons/bottom-role.png" alt="ADC" title="ADC" src="~/img/Wordpress Icons/bottom-role.png" class="lazyloaded" data-was-processed="true">
 																					<noscript><img src="~/img/Wordpress Icons/bottom-role.png" alt="ADC" title="ADC"></noscript>
 																				</span>
-																				<input asp-for="SpecificRolesADC" name="SpecificRolesADC" type="checkbox" id="wpforms-931-field_3_4" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="ADC" tabindex="-1" ><span class="wpforms-image-choices-label">ADC</span>
+																				<input asp-for="SpecificRolesADC" name="SpecificRolesADC" type="checkbox" id="wpforms-931-field_3_4" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="ADC" tabindex="-1"><span class="wpforms-image-choices-label">ADC</span>
 																			</label>
 																		</li>
-																		<li class="choice-6 depth-1 wpforms-image-choices-item" style="width:20%"> 
+																		<li class="choice-6 depth-1 wpforms-image-choices-item" style="width:20%">
 																			<label class="wpforms-field-label-inline" for="wpforms-931-field_3_6" tabindex="0">
 																				<span class="wpforms-image-choices-image">
 																					<img src="~/img/Wordpress Icons/support-role.png" alt="Support" title="Support" src="~/img/Wordpress Icons/support-role.png" class="lazyloaded" data-was-processed="true">
 																					<noscript><img src="~/img/Wordpress Icons/support-role.png" alt="Support" title="Support"></noscript>
 																				</span>
-																				<input asp-for="SpecificRolesSupport" name="SpecificRolesSupport" type="checkbox" id="wpforms-931-field_3_6" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Support" tabindex="-1" ><span class="wpforms-image-choices-label">Support</span>
+																				<input asp-for="SpecificRolesSupport" name="SpecificRolesSupport" type="checkbox" id="wpforms-931-field_3_6" class="wpforms-screen-reader-element checkbox-border-styling gfield-quote" value="Support" tabindex="-1"><span class="wpforms-image-choices-label">Support</span>
 																			</label>
 																		</li>
 																	</ul>
@@ -269,7 +264,7 @@
 															</div>
 
 															<div class="row pb-4 d-flex justify-content-center">
-																<button type="button"  class="btn btn-primary apply-discount-btn">APPLY</button>
+																<button type="button" class="btn btn-primary apply-discount-btn">APPLY</button>
 															</div>
 
 															<div class="row pb-4 d-flex justify-content-center">
