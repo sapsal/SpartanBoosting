@@ -156,3 +156,14 @@
 		});
 	})
 </script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		if (window.location.href.indexOf("duoboosting") > -1) {
+			debugger;
+			$('[name ="UserName"]').parent().find('.gfield_required').remove();
+			$('[name ="UserName"]').removeAttr('required');
+			$('[name ="Password"]').parent().find('.gfield_required').remove();
+			$('[name ="Password"]').removeAttr('required');
+		}
+	});
+</script>
