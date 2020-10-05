@@ -59,6 +59,12 @@ namespace SpartanBoosting.Controllers
 				PurchaseForm purchaseForm = JsonConvert.DeserializeObject<PurchaseForm>(TempData["purchaseFormlData"].ToString());
 				EmailSender email = new EmailSender(_smtpSettings);
 
+				if (purchaseForm.PersonalInformation.PaymentMethod == "Paypal")
+				{
+					PayPalV2.captureOrder(purchaseForm.PayPalCapture);
+				}
+				PurchaseOrderRepository.Add(purchaseForm);
+
 				var bot = new DiscordBot();
 				bot.RunAsync(purchaseForm).GetAwaiter().GetResult();
 				string emailbody = string.Empty;
@@ -88,11 +94,6 @@ namespace SpartanBoosting.Controllers
 						break;
 				}
 				email.SendEmailAsync("Purchase Request", $"Purchase Request", emailbody);
-				if (purchaseForm.PersonalInformation.PaymentMethod == "Paypal")
-				{
-					PayPalV2.captureOrder(purchaseForm.PayPalCapture);
-				}
-				PurchaseOrderRepository.Add(purchaseForm);
 			}
 			catch (Exception e)
 			{

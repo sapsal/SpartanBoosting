@@ -35,7 +35,7 @@ namespace SpartanBoosting.Utils
 
 			commands = client.UseCommandsNext(commandsConfig);
 			await client.ConnectAsync();
-			var channel = await client.GetChannelAsync(719589162432593970);
+			var channel = await client.GetChannelAsync(753571987825360998);
 			await client.SendMessageAsync(channel, DiscordMessage(model));
 		}
 
