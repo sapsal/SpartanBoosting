@@ -74,46 +74,52 @@
 												<th class="p-0 min-w-140px"></th>
 												<th class="p-0 min-w-110px"></th>
 												<th class="p-0 min-w-110px"></th>
+												<th class="p-0 min-w-110px"></th>
 											</tr>
 										</thead>
 
 										<tbody>
 											@foreach (var item in Model)
 											{
-												<tr>
-													<td class="py-5 pl-0">
-														<span class="text-muted font-weight-bold d-block text-nowrap">
-															<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
-														</span>
-													</td>
-													<td class="pl-0">
-														<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
-													</td>
-													<td class="text-right">
-														<span class="text-muted font-weight-bold d-block">
-															Price
-														</span>
-														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-															€@PricingExtensions.BoosterPay(item.Pricing)
-														</span>
-													</td>
-													<td class="text-right">
-														<span class="text-muted font-weight-500">
-															@item.PurchaseType.ToString()
-														</span>
-													</td>
-													<td class="text-right">
-														@if (item.BoosterCompletionConfirmed)
-														{
-															<span class="label label-lg label-light-primary label-inline">Completed</span>
-														}
-														else
-														{
-															<span class="label label-lg label-light-warning label-inline">In Progress</span>
-														}
-													</td>
+											<tr>
+												<td class="py-5 pl-0">
+													<span class="text-muted font-weight-bold d-block text-nowrap">
+														<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+													</span>
+												</td>
+												<td class="pl-0">
+													<span class="text-muted font-weight-bold d-block">@PricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+												</td>
+												<td class="text-right">
+													<span class="text-muted font-weight-bold d-block">
+														Price
+													</span>
+													<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+														€@PricingExtensions.BoosterPay(item.Pricing)
+													</span>
+												</td>
+												<td class="text-right">
+													<span class="text-muted font-weight-500">
+														@item.PurchaseType.ToString()
+													</span>
+												</td>
+												<td class="text-right">
+													<span class="text-muted font-weight-500">
+														@(item.BoosterAssignedTo != null ? item.BoosterAssignedTo?.UserName : "")
+													</span>
+												</td>
+												<td class="text-right">
+													@if (item.BoosterCompletionConfirmed)
+													{
+														<span class="label label-lg label-light-primary label-inline">Completed</span>
+													}
+													else
+													{
+														<span class="label label-lg label-light-warning label-inline">In Progress</span>
+													}
+												</td>
 
-												</tr>
+											</tr>
 											}
 										</tbody>
 									</table>

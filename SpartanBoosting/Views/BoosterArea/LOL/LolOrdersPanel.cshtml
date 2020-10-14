@@ -42,7 +42,10 @@
 			<!--begin::Dashboard-->
 			<ul class="nav nav-tabs nav-tabs-line">
 				<li class="nav-item">
-					<a class="nav-link active-jobs-nav-link active" data-toggle="tab" href="#kt_tab_pane_1">Solo</a>
+					<a class="nav-link active-jobs-nav-link active" data-toggle="tab" href="#kt_tab_pane_all">All</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active-jobs-nav-link" data-toggle="tab" href="#kt_tab_pane_1">Solo</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active-jobs-nav-link" data-toggle="tab" href="#kt_tab_pane_2">Duo</a>
@@ -55,7 +58,7 @@
 				</li>
 			</ul>
 			<div class="tab-content mt-5" id="myTabContent">
-				<div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel" aria-labelledby="kt_tab_pane_2">
+				<div class="tab-pane fade show active" id="kt_tab_pane_all" role="tabpanel" aria-labelledby="kt_tab_pane_all">
 					<table class="table lol-datatable ">
 						<thead>
 							<tr>
@@ -64,8 +67,77 @@
 								<th scope="col">Queue Tyoe</th>
 								<th scope="col">Priority</th>
 								<th scope="col">Boost Details</th>
-								<th scope="col">Actions</th>
+								<th scope="col">Type</th>
 								<th>Pay</th>
+								<th scope="col">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model.PurchaseForm)
+							{
+								@switch (item.PurchaseType)
+								{
+									case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
+									case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
+										<tr title="@item.PurchaseType">
+											<th scope="row">@item.Id</th>
+											<td>@(item.BoostingModel.Server)</td>
+											<td>@(item.BoostingModel.TypeOfQueue)</td>
+											<td>Normal</td>
+											<td>@($"{item.BoostingModel.YourCurrentLeague} {item.BoostingModel.CurrentDivision} {item.BoostingModel.CurrentLP} to {item.BoostingModel.DesiredCurrentLeague} {item.BoostingModel.DesiredCurrentDivision}")</td>
+											<td>@item.PurchaseType</td>
+											<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+											<td>
+												<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
+											</td>
+										</tr>
+										break;
+									case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
+										<tr title="@item.PurchaseType">
+											<th scope="row">@item.Id</th>
+											<td>@(item.WinBoostModel.Server)</td>
+											<td>@(item.WinBoostModel.TypeOfQueue)</td>
+											<td>Normal</td>
+											<td>@($"{item.WinBoostModel.YourCurrentLeague} {item.WinBoostModel.CurrentDivision} With {item.WinBoostModel.NumOfGames} Games")</td>
+											<td>@item.PurchaseType</td>
+											<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+											<td>
+												<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
+											</td>
+										</tr>
+										break;
+									case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
+										<tr title="@item.PurchaseType">
+											<th scope="row">@item.Id</th>
+											<td>@(item.PlacementMatchesModel.Server)</td>
+											<td>@(item.PlacementMatchesModel.TypeOfQueue)</td>
+											<td>Normal</td>
+											<td>@($"{item.PlacementMatchesModel.LastSeasonStanding} With {item.PlacementMatchesModel.NumOfGames} Games")</td>
+											<td>@item.PurchaseType</td>
+											<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+											<td>
+												<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
+											</td>
+										</tr>
+										break;
+									default:
+										break;
+								}
+							}
+						</tbody>
+					</table>
+				</div>
+				<div class="tab-pane fade show" id="kt_tab_pane_1" role="tabpanel" aria-labelledby="kt_tab_pane_2">
+					<table class="table lol-datatable ">
+						<thead>
+							<tr>
+								<th scope="col">Order Id</th>
+								<th scope="col">Server</th>
+								<th scope="col">Queue Tyoe</th>
+								<th scope="col">Priority</th>
+								<th scope="col">Boost Details</th>
+								<th>Pay</th>
+								<th scope="col">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -95,8 +167,8 @@
 								<th scope="col">Queue Tyoe</th>
 								<th scope="col">Priority</th>
 								<th scope="col">Boost Details</th>
-								<th scope="col">Actions</th>
 								<th>Pay</th>
+								<th scope="col">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -126,8 +198,8 @@
 								<th scope="col">Queue Tyoe</th>
 								<th scope="col">Priority</th>
 								<th scope="col">Boost Details</th>
-								<th scope="col">Actions</th>
 								<th>Pay</th>
+								<th scope="col">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -157,8 +229,8 @@
 								<th scope="col">Queue Tyoe</th>
 								<th scope="col">Priority</th>
 								<th scope="col">Boost Details</th>
-								<th scope="col">Actions</th>
 								<th>Pay</th>
+								<th scope="col">Actions</th>
 							</tr>
 						</thead>
 						<tbody>

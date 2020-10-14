@@ -36,7 +36,17 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.PlacementMatchesModel)
 			.Include(p => p.TFTBoostingModel)
 			.Include(p => p.TFTPlacementModel)
-			.Include(p => p.WinBoostModel); ;
+			.Include(p => p.WinBoostModel); 
+		}
+
+		public IEnumerable<PurchaseForm> GetAllPurchaseOrderWithBooster()
+		{
+			return context.PurchaseForm.Include(p => p.BoostingModel)
+			.Include(p => p.CoachingModel)
+			.Include(p => p.PlacementMatchesModel)
+			.Include(p => p.TFTBoostingModel)
+			.Include(p => p.TFTPlacementModel)
+			.Include(p => p.WinBoostModel).Include(p => p.BoosterAssignedTo);
 		}
 
 		public IEnumerable<PurchaseForm> GetAllPurchaseOrderAvailable()

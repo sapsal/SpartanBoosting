@@ -32,7 +32,7 @@ namespace SpartanBoosting.Controllers
 
         public IActionResult OrdersOverview()
         {
-            var result = PurchaseOrderRepository.GetAllPurchaseOrder().ToList();
+            var result = PurchaseOrderRepository.GetAllPurchaseOrderWithBooster().ToList();
             return View("OrdersLol/OrdersOverview", result);
         }
         [HttpPost]
