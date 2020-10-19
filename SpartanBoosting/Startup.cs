@@ -15,6 +15,7 @@ using SpartanBoosting.Data;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Repositorys;
+using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.Utils;
 using Stripe;
 
@@ -76,6 +77,7 @@ namespace SpartanBoosting
 
 			services.AddScoped<IPurchaseOrderRepository, SqlPurchaseOrderRepository>();
 			services.AddScoped<IUserRolesRepository, SqlUserRolesRepository>();
+			services.AddScoped<IChatModelRepository, SqlChatModelRepository>();
 
 			ObjectFactory.LoadPricing();
 		}
