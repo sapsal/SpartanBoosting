@@ -99,7 +99,7 @@ namespace SpartanBoosting.Controllers
 			{
 			}
 
-			return RedirectToAction("Index", "Home");
+			return View();
 		}
 	}
 }
