@@ -165,58 +165,73 @@
 					<!--Chat-->
 					<div class="col-lg-6">
 						<!--begin::Tables Widget 1-->
-						<div class="card card-custom card-stretch gutter-b">
+						<div class="card card-custom card-stretch gutter-b "id="kt_chat_modal">
 							<!--begin::Header-->
-							<div class="card-header border-0 pt-7">
-								<h3 class="card-title align-items-start flex-column">
-									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Chat:</span>
-								</h3>
-								<div class="card-toolbar">
-
+							<div class="card-header align-items-center px-4 py-3">
+								<div class="text-left flex-grow-1">
+								</div>
+								<div class="text-center flex-grow-1">
+									<div class="text-dark-75 font-weight-bold font-size-h5">Chat</div>
 								</div>
 							</div>
 							<!--end::Header-->
 							<!--begin::Body-->
-							<div class="card-body p-0">
-								<div class="tab-content mt-5" id="myTabTable1">
-									<!--begin::Tap pane-->
-									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-										<!--begin::Table-->
-										<div class="card-body pr-body p-3" style="height:40vh">
-											<div class="messaging row h-100">
-												<div class="inbox_msg h-100 w-100">
-													<div class="mesgs h-100 w-100">
-														<div class="msg_history h-100">
-															<div class="incoming_msg">
-																<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-																<div class="received_msg">
-																	<div class="received_withd_msg">
-																		<p>
-																			Coming Soon!
-																		</p>
-																		<span class="time_date">    Today</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="input-group">
-															<input type="text" onkeypress="submitOnEnter(event)" placeholder="Type a message" id="msg_content" name="msg_content" class="form-control rounded-0 border-0 py-4" style="background-color: #17172e;">
-															<input id="order_hash" hidden="" type="text" value="LOL-4208CA644B6" name="order_hash">
-															<input id="client_id" hidden="" type="text" value="160" name="client_id">
-															<input id="booster_id" hidden="" type="text" value="64" name="booster_id">
-															<div class="input-group-append" style="background-color: #17172e;">
-																<button type="button" style="background-color: #17172e;" name="msg_send" onclick="msgSend()" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
-															</div>
-														</div>
-													</div>
+							<div class="card-body">
+								<!--begin::Scroll-->
+								<div class="scroll scroll-pull" data-height="375" data-mobile-height="300">
+									<!--begin::Messages-->
+									<div class="messages">
+										<!--begin::Message In-->
+										<div class="d-flex flex-column mb-5 align-items-start">
+											<div class="d-flex align-items-center">
+												<div class="symbol symbol-circle symbol-40 mr-3">
+													<img alt="Pic" src="~/assets/media/users/300_12.jpg" />
 												</div>
+												<div>
+													<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
+													<span class="text-muted font-size-sm">2 Hours</span>
+												</div>
+											</div>
+											<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
+												How likely are you to recommend our company
+												to your friends and family?
+											</div>
+										</div>
+										<!--end::Message In-->
+										<!--begin::Message Out-->
+										<div class="d-flex flex-column mb-5 align-items-end">
+											<div class="d-flex align-items-center">
+												<div>
+													<span class="text-muted font-size-sm">3 minutes</span>
+													<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+												</div>
+												<div class="symbol symbol-circle symbol-40 ml-3">
+													<img alt="Pic" src="~/assets/media/users/300_21.jpg" />
+												</div>
+											</div>
+											<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
+												Hey there, we’re just writing to let you know
+												that you’ve been subscribed to a repository on GitHub.
 											</div>
 										</div>
 									</div>
-									<!--end::Tablet-->
+									<!--end::Messages-->
 								</div>
-								<!--end::Tap pane-->
+								<!--end::Scroll-->
 							</div>
+							<!--end::Body-->
+							<!--begin::Footer-->
+							<div class="card-footer align-items-center">
+								<!--begin::Compose-->
+								<textarea class="form-control border-0 p-0" rows="2" placeholder="Type a message"></textarea>
+								<div class="d-flex align-items-end justify-content-end mt-5">
+									<div class="d-flex align-items-end">
+										<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
+									</div>
+								</div>
+								<!--begin::Compose-->
+							</div>
+							<!--end::Footer-->
 						</div>
 						<!--end::Body-->
 					</div>

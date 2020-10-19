@@ -30,6 +30,13 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
+		public IActionResult AddChatModel(ChatModel chatModel)
+		{
+			var result = ChatModelRepository.Add(chatModel);
+			return Json(true);
+		}
+
+		[HttpPost]
 		public IActionResult AcceptBoosterJob(int Id)
 		{
 			var result = PurchaseOrderRepository.GetPurchaseForm(Id);
