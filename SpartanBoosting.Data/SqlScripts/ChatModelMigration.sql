@@ -1,5 +1,5 @@
 CREATE TABLE [ChatModel] (
-    [Id] int NOT NULL IDENTITY,
+    [Id] int NOT NULL IDENTITY (1,1),
     [SenderId] bigint NULL,
     [RecieverId] bigint NULL,
     [Message] nvarchar(max) NULL,

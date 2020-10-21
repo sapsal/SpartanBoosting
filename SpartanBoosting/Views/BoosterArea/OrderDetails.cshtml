@@ -14,69 +14,69 @@
 }
 @if (Model != null)
 {
-<link href="~/css/BoosterPanel.css" rel="stylesheet" />
-<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-	<!--begin::Subheader-->
-	<div class="subheader py-6 py-lg-8  subheader-transparent " id="kt_subheader">
-		<div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-			<!--begin::Info-->
-			<div class="d-flex align-items-center flex-wrap mr-1">
+	<link href="~/css/BoosterPanel.css" rel="stylesheet" />
+	<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+		<!--begin::Subheader-->
+		<div class="subheader py-6 py-lg-8  subheader-transparent " id="kt_subheader">
+			<div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+				<!--begin::Info-->
+				<div class="d-flex align-items-center flex-wrap mr-1">
 
-				<!--begin::Page Heading-->
-				<div class="d-flex align-items-baseline flex-wrap mr-5">
-					<!--begin::Page Title-->
-					<h5 class="text-dark font-weight-bold my-1 mr-5">
-						Order #LOL-@(Model.Id)
-					</h5>
-					<!--end::Page Title-->
+					<!--begin::Page Heading-->
+					<div class="d-flex align-items-baseline flex-wrap mr-5">
+						<!--begin::Page Title-->
+						<h5 class="text-dark font-weight-bold my-1 mr-5">
+							Order #LOL-@(Model.Id)
+						</h5>
+						<!--end::Page Title-->
 
+					</div>
+					<!--end::Page Heading-->
 				</div>
-				<!--end::Page Heading-->
+				<!--end::Info-->
+				<!--begin::Toolbar-->
+				<div class="d-flex align-items-center">
+					<!--begin::Daterange-->
+					<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+						<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+						<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+					</a>
+					<!--end::Daterange-->
+				</div>
+				<!--end::Toolbar-->
 			</div>
-			<!--end::Info-->
-			<!--begin::Toolbar-->
-			<div class="d-flex align-items-center">
-				<!--begin::Daterange-->
-				<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
-					<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
-					<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
-				</a>
-				<!--end::Daterange-->
-			</div>
-			<!--end::Toolbar-->
 		</div>
-	</div>
-	<!--end::Subheader-->
-	<!--begin::Entry-->
-	<div class="d-flex flex-column-fluid">
-		<!--begin::Container-->
-		<div class=" container ">
-			<!--begin::Dashboard-->
-			<!--begin::Row-->
-			<div class="row">
-				<!--rank-->
-				<div class="col-lg-6">
-					<!--begin::Tables Widget 1-->
-					<div class="card card-custom card-stretch gutter-b" style="height: 40vh;">
-						<!--begin::Header-->
-						<div class="card-header border-0 pt-7">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Progress:</span>
-							</h3>
-							<div class="card-toolbar">
+		<!--end::Subheader-->
+		<!--begin::Entry-->
+		<div class="d-flex flex-column-fluid">
+			<!--begin::Container-->
+			<div class=" container ">
+				<!--begin::Dashboard-->
+				<!--begin::Row-->
+				<div class="row">
+					<!--rank-->
+					<div class="col-lg-6">
+						<!--begin::Tables Widget 1-->
+						<div class="card card-custom card-stretch gutter-b" style="height: 40vh;">
+							<!--begin::Header-->
+							<div class="card-header border-0 pt-7">
+								<h3 class="card-title align-items-start flex-column">
+									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Progress:</span>
+								</h3>
+								<div class="card-toolbar">
 
+								</div>
 							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-1 pb-4">
-							<div class="tab-content mt-5" id="myTabTable1">
-								<!--begin::Tap pane-->
-								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-									<!--begin::Table-->
-									<div class="text-center">
-										<div class="row">
-											@switch (Model.PurchaseType)
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body pt-1 pb-4">
+								<div class="tab-content mt-5" id="myTabTable1">
+									<!--begin::Tap pane-->
+									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+										<!--begin::Table-->
+										<div class="text-center">
+											<div class="row">
+												@switch (Model.PurchaseType)
 												{
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
@@ -90,18 +90,18 @@
 														SpecificRoles = Model.BoostingModel.SpecificRolesTop == "false" ? "" : Model.BoostingModel.SpecificRolesTop + "," + Model.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.BoostingModel.SpecificRolesSupport + ","
 														+ Model.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.BoostingModel.SpecificRolesMiddle + "," + Model.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.BoostingModel.SpecificRolesJungle + ","
 														 + Model.BoostingModel.SpecificRolesADC == "false" ? "" : Model.BoostingModel.SpecificRolesADC;
-											<div class="rank col-6">
-												<span class="card-title pr-title font-weight-bolder">Start</span><br>
-												<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
-											</div>
-											@*<div class="rank current">
-													<span class="card-title pr-title font-weight-bolder">Current</span><br>
-													<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
-												</div>*@
-											<div class="rank col-6">
-												<span class="card-title pr-title font-weight-bolder">Desired</span><br>
-												<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@DesiredDivisionImage" data-original-title="" title="">
-											</div>
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Start</span><br>
+															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+														</div>
+														@*<div class="rank current">
+																<span class="card-title pr-title font-weight-bolder">Current</span><br>
+																<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
+															</div>*@
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Desired</span><br>
+															<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@DesiredDivisionImage" data-original-title="" title="">
+														</div>
 														break;
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
 														StartDivisionImage = $"{Model.WinBoostModel.YourCurrentLeague}{Model.WinBoostModel.CurrentDivision}";
@@ -110,14 +110,14 @@
 														Region = Model.WinBoostModel.Server;
 														Queue = Model.WinBoostModel.TypeOfQueue;
 														DuoType = Model.WinBoostModel.TypeOfDuoPremium != null ? Model.WinBoostModel.TypeOfDuoPremium : "Regular";
-											<div class="rank col-6">
-												<span class="card-title pr-title font-weight-bolder">Start</span><br>
-												<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
-											</div>
-											<div class="rank col-6">
-												<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
-												<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.WinBoostModel.NumOfGames</span></h1>
-											</div>
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Start</span><br>
+															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+														</div>
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
+															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.WinBoostModel.NumOfGames</span></h1>
+														</div>
 														break;
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
 														StartDivisionImage = $"{Model.PlacementMatchesModel.LastSeasonStanding}";
@@ -126,14 +126,14 @@
 														Region = Model.PlacementMatchesModel.Server;
 														Queue = Model.PlacementMatchesModel.TypeOfQueue;
 														DuoType = Model.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
-											<div class="rank col-6">
-												<span class="card-title pr-title font-weight-bolder">Start</span><br>
-												<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
-											</div>
-											<div class="rank col-6">
-												<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
-												<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PlacementMatchesModel.NumOfGames</span></h1>
-											</div>
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Start</span><br>
+															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
+														</div>
+														<div class="rank col-6">
+															<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
+															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PlacementMatchesModel.NumOfGames</span></h1>
+														</div>
 														break;
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
 														break;
@@ -144,244 +144,226 @@
 													default:
 														break;
 												}
-										</div>
-										<hr>
-										@if (!Model.BoosterCompletionConfirmed)
+											</div>
+											<hr>
+											@if (!Model.BoosterCompletionConfirmed)
 											{
-										<div class="text-center">
-											<p class="card-text card-label">Boost Is Being Completed By The Booster</p>
-										</div>
+												<div class="text-center">
+													<p class="card-text card-label">Boost Is Being Completed By The Booster</p>
+												</div>
 											}
+										</div>
+										<!--end::Tablet-->
 									</div>
-									<!--end::Tablet-->
+									<!--end::Tap pane-->
 								</div>
-								<!--end::Tap pane-->
 							</div>
+							<!--end::Body-->
+						</div>
+						<!--end::Tables Widget 1-->
+					</div>
+					<!--Chat-->
+					<div class="col-lg-6">
+						<!--begin::Tables Widget 1-->
+						<div class="card card-custom card-stretch gutter-b " id="kt_chat">
+							<!--begin::Header-->
+							<div class="card-header align-items-center px-4 py-3">
+								<div class="text-left flex-grow-1">
+								</div>
+								<div class="flex-grow-1">
+									<div class="text-dark-75 font-weight-bold font-size-h5">Chat</div>
+								</div>
+							</div>
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body">
+								<!--begin::Scroll-->
+								<div class="scroll scroll-pull" data-height="375" data-mobile-height="300">
+									<!--begin::Messages-->
+									<div class="messages">
+										<!--begin::Message In-->
+										<div class="d-flex flex-column mb-5 align-items-start">
+											<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
+												How likely are you to recommend our company
+												to your friends and family?
+											</div>
+										</div>
+										<!--end::Message In-->
+										<!--begin::Message Out-->
+										<div class="d-flex flex-column mb-5 align-items-end">
+											<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
+												Hey there, we’re just writing to let you know
+												that you’ve been subscribed to a repository on GitHub.
+											</div>
+										</div>
+									</div>
+									<!--end::Messages-->
+								</div>
+								<!--end::Scroll-->
+							</div>
+							<!--end::Body-->
+							<!--begin::Footer-->
+							<div class="card-footer align-items-center">
+								<!--begin::Compose-->
+								<textarea class="form-control border-0 p-0 chat-message" rows="2" placeholder="Type a message"></textarea>
+								<div class="d-flex align-items-end justify-content-end mt-5">
+									<div class="d-flex align-items-end">
+										<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6" data-model="@EncryptionHelper.Encrypt(Model)">Send</button>
+									</div>
+								</div>
+								<!--begin::Compose-->
+							</div>
+							<!--end::Footer-->
 						</div>
 						<!--end::Body-->
 					</div>
 					<!--end::Tables Widget 1-->
 				</div>
-				<!--Chat-->
-				<div class="col-lg-6">
-					<!--begin::Tables Widget 1-->
-					<div class="card card-custom card-stretch gutter-b " id="kt_chat_modal">
-						<!--begin::Header-->
-						<div class="card-header align-items-center px-4 py-3">
-							<div class="text-left flex-grow-1">
-							</div>
-							<div class="text-center flex-grow-1">
-								<div class="text-dark-75 font-weight-bold font-size-h5">Chat</div>
-							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body">
-							<!--begin::Scroll-->
-							<div class="scroll scroll-pull" data-height="375" data-mobile-height="300">
-								<!--begin::Messages-->
-								<div class="messages">
-									<!--begin::Message In-->
-									<div class="d-flex flex-column mb-5 align-items-start">
-										<div class="d-flex align-items-center">
-											<div class="symbol symbol-circle symbol-40 mr-3">
-												<img alt="Pic" src="~/assets/media/users/300_12.jpg" />
-											</div>
-											<div>
-												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
-												<span class="text-muted font-size-sm">2 Hours</span>
-											</div>
-										</div>
-										<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
-											How likely are you to recommend our company
-											to your friends and family?
-										</div>
-									</div>
-									<!--end::Message In-->
-									<!--begin::Message Out-->
-									<div class="d-flex flex-column mb-5 align-items-end">
-										<div class="d-flex align-items-center">
-											<div>
-												<span class="text-muted font-size-sm">3 minutes</span>
-												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
-											</div>
-											<div class="symbol symbol-circle symbol-40 ml-3">
-												<img alt="Pic" src="~/assets/media/users/300_21.jpg" />
-											</div>
-										</div>
-										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
-											Hey there, we’re just writing to let you know
-											that you’ve been subscribed to a repository on GitHub.
-										</div>
-									</div>
-								</div>
-								<!--end::Messages-->
-							</div>
-							<!--end::Scroll-->
-						</div>
-						<!--end::Body-->
-						<!--begin::Footer-->
-						<div class="card-footer align-items-center">
-							<!--begin::Compose-->
-							<textarea class="form-control border-0 p-0 chat-message" rows="2" placeholder="Type a message"></textarea>
-							<div class="d-flex align-items-end justify-content-end mt-5">
-								<div class="d-flex align-items-end">
-									<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6">Send</button>
+				<div class="row">
+					<!--boost info-->
+					<div class="col-lg-6">
+						<!--begin::Tables Widget 1-->
+						<div class="card card-custom gutter-b">
+							<!--begin::Header-->
+							<div class="card-header border-0 pt-7">
+								<h3 class="card-title align-items-start flex-column">
+									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Informations:</span>
+								</h3>
+								<div class="card-toolbar">
+
 								</div>
 							</div>
-							<!--begin::Compose-->
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body pt-1 pb-4">
+								<div class="tab-content mt-5" id="myTabTable1">
+									<!--begin::Tap pane-->
+									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+										<!--begin::Table-->
+										<div class="card-body pr-body">
+											@if (!string.IsNullOrEmpty(DivisionBoost))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Division Boost :
+													<span class="card-title pr-title font-weight-bold-900">@Html.Raw(DivisionBoost)</span>
+												</p>
+											}
+											@if (!string.IsNullOrEmpty(Region))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Region :
+													<span class="card-title pr-title font-weight-bold-900">@Region</span>
+												</p>
+											}
+											@if (!string.IsNullOrEmpty(Queue))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Queue :
+													<span class="card-title pr-title font-weight-bold-900">@Queue</span>
+												</p>
+											}
+											<p class="card-title pr-title font-weight-bolder">
+												Duo Type :
+												<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
+											</p>
+											@if (!string.IsNullOrEmpty(Champions))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Champions :
+													<span class="card-title pr-title font-weight-bold-900">@Champions</span>
+												</p>
+											}
+											@if (!string.IsNullOrEmpty(SpecificRoles))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Specific Roles :
+													<span class="card-title pr-title font-weight-bold-900">@SpecificRoles.TrimEnd(',')</span>
+												</p>
+											}
+
+										</div>
+										<!--end::Tablet-->
+									</div>
+									<!--end::Tap pane-->
+								</div>
+							</div>
+							<!--end::Body-->
 						</div>
-						<!--end::Footer-->
+						<!--end::Tables Widget 1-->
 					</div>
-					<!--end::Body-->
-				</div>
-				<!--end::Tables Widget 1-->
-			</div>
-			<div class="row">
-				<!--boost info-->
-				<div class="col-lg-6">
-					<!--begin::Tables Widget 1-->
-					<div class="card card-custom gutter-b">
-						<!--begin::Header-->
-						<div class="card-header border-0 pt-7">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Boost Informations:</span>
-							</h3>
-							<div class="card-toolbar">
+					<div class="col-lg-6">
+						<div class="card card-custom gutter-b">
+							<!--begin::Header-->
+							<div class="card-header border-0 pt-7">
+								<h3 class="card-title align-items-start flex-column">
+									<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Account Informations:</span>
+								</h3>
+								<div class="card-toolbar">
 
-							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-1 pb-4">
-							<div class="tab-content mt-5" id="myTabTable1">
-								<!--begin::Tap pane-->
-								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-									<!--begin::Table-->
-									<div class="card-body pr-body">
-										@if (!string.IsNullOrEmpty(DivisionBoost))
-											{
-										<p class="card-title pr-title font-weight-bolder">
-											Division Boost :
-											<span class="card-title pr-title font-weight-bold-900">@Html.Raw(DivisionBoost)</span>
-										</p>
-											}
-										@if (!string.IsNullOrEmpty(Region))
-											{
-										<p class="card-title pr-title font-weight-bolder">
-											Region :
-											<span class="card-title pr-title font-weight-bold-900">@Region</span>
-										</p>
-											}
-										@if (!string.IsNullOrEmpty(Queue))
-											{
-										<p class="card-title pr-title font-weight-bolder">
-											Queue :
-											<span class="card-title pr-title font-weight-bold-900">@Queue</span>
-										</p>
-											}
-										<p class="card-title pr-title font-weight-bolder">
-											Duo Type :
-											<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
-										</p>
-										@if (!string.IsNullOrEmpty(Champions))
-											{
-										<p class="card-title pr-title font-weight-bolder">
-											Champions :
-											<span class="card-title pr-title font-weight-bold-900">@Champions</span>
-										</p>
-											}
-										@if (!string.IsNullOrEmpty(SpecificRoles))
-											{
-										<p class="card-title pr-title font-weight-bolder">
-											Specific Roles :
-											<span class="card-title pr-title font-weight-bold-900">@SpecificRoles.TrimEnd(',')</span>
-										</p>
-											}
-
-									</div>
-									<!--end::Tablet-->
 								</div>
-								<!--end::Tap pane-->
 							</div>
-						</div>
-						<!--end::Body-->
-					</div>
-					<!--end::Tables Widget 1-->
-				</div>
-				<div class="col-lg-6">
-					<div class="card card-custom gutter-b">
-						<!--begin::Header-->
-						<div class="card-header border-0 pt-7">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Account Informations:</span>
-							</h3>
-							<div class="card-toolbar">
-
-							</div>
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-1 pb-4">
-							<div class="tab-content mt-5" id="myTabTable1">
-								<!--begin::Tap pane-->
-								<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
-									<!--begin::Table-->
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Summoner Name</label>
-												<input type="text" class="form-control" placeholder="Summoner Name" name="summoner_name" value="@Model.PersonalInformation.UserName">
+							<!--end::Header-->
+							<!--begin::Body-->
+							<div class="card-body pt-1 pb-4">
+								<div class="tab-content mt-5" id="myTabTable1">
+									<!--begin::Tap pane-->
+									<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+										<!--begin::Table-->
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Summoner Name</label>
+													<input type="text" class="form-control" placeholder="Summoner Name" name="summoner_name" value="@Model.PersonalInformation.UserName">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Discord Name</label>
+													<input type="text" class="form-control" value="@Model.PersonalInformation.Discord">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Password</label>
+													<label class="form-control">@Model.PersonalInformation.Password</label>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Server</label>
+													@*<select class="form-control" asp-for="@Region">
+															<option value="euw">Europe West</option>
+															<option value="eune">Europe Nordic &amp; East</option>
+															<option value="na">North America</option>
+															<option value="oce">Oceania</option>
+															<option value="ru">Russia</option>
+															<option value="tr">Turkey</option>
+															<option value="lan">Latin America North</option>
+															<option value="las">Latin America South</option>
+															<option value="br">Brazil</option>
+															<option value="jp">Japan</option>
+															<option value="kr">Korea</option>
+														</select>*@
+													<label class="form-control">@Region</label>
+												</div>
 											</div>
 										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Discord Name</label>
-												<input type="text" class="form-control" value="@Model.PersonalInformation.Discord">
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Password</label>
-												<label class="form-control">@Model.PersonalInformation.Password</label>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Server</label>
-												@*<select class="form-control" asp-for="@Region">
-														<option value="euw">Europe West</option>
-														<option value="eune">Europe Nordic &amp; East</option>
-														<option value="na">North America</option>
-														<option value="oce">Oceania</option>
-														<option value="ru">Russia</option>
-														<option value="tr">Turkey</option>
-														<option value="lan">Latin America North</option>
-														<option value="las">Latin America South</option>
-														<option value="br">Brazil</option>
-														<option value="jp">Japan</option>
-														<option value="kr">Korea</option>
-													</select>*@
-												<label class="form-control">@Region</label>
-											</div>
-										</div>
+										<!--end::Tablet-->
 									</div>
-									<!--end::Tablet-->
+									<!--end::Tap pane-->
 								</div>
-								<!--end::Tap pane-->
 							</div>
+							<!--end::Body-->
 						</div>
-						<!--end::Body-->
 					</div>
 				</div>
 			</div>
+
+			<!--end::Row-->
 		</div>
-
-		<!--end::Row-->
+		<!--end::Container-->
 	</div>
-	<!--end::Container-->
-</div>
- <!--end::Entry-->
+	<!--end::Entry-->
 }
 
 <script type="text/javascript">
@@ -391,41 +373,31 @@
 	$(document).on("click", '.chat-send-message', function (e) {
 		element = e;
 		var message = $('.chat-message').val();
-		var messagesEl = $('#kt_chat_modal .messages');
-		var scrollEl = $('#kt_chat_modal .scroll');
-		var textarea = $('#kt_chat_modal textarea');
-		debugger;
-		if (textarea.val().length === 0) {
-			return;
-		}
+		var messagesEl = $('#kt_chat .messages');
+		var scrollEl = $('#kt_chat .scroll');
+		var textarea = $('#kt_chat textarea');
+		$.ajax({
+			url: '/BoosterArea/AddChatModel',
+			data: { message: textarea.val(), purchaseForm : $(this).data('model') },
+			type: 'POST',
+			success: function (dataofconfirm) {
+				debugger;
+				if (textarea.val().length === 0) {
+					return;
+				}
 
-		var node = document.createElement("DIV");
-		KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
+				var node = document.createElement("DIV");
+				KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
 
-		var html = '';
-		html += '<div class="d-flex align-items-center">';
-		html += '	<div>';
-		html += '		<span class="text-muted font-size-sm">2 Hours</span>';
-		html += '		<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>';
-		html += '	</div>';
-		html += '	<div class="symbol symbol-circle symbol-40 ml-3">';
-		html += '		<img alt="Pic" src="assets/media/users/300_12.jpg"/>';
-		html += '	</div>';
-		html += '</div>';
-		html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + textarea.value + '</div>';
+				var html = '';
+				html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + textarea.val() + '</div>';
 
-		KTUtil.setHTML(node, html);
-		messagesEl.append(node);
-		textarea.val('');
-		scrollEl.scrollTop = parseInt(KTUtil.css(messagesEl, 'height'));
-		//$.ajax({
-		//	url: '/Pricing/' + $(this.closest('form')).data('pricing'),
-		//	data: myform,
-		//	type: 'POST',
-		//	success: function (dataofconfirm) {
-		//		$('.ginput_total_10').text(dataofconfirm + ' €')
-		//	}
-		//});
+				KTUtil.setHTML(node, html);
+				messagesEl.append(node);
+				textarea.val('');
+				scrollEl.scrollTop = parseInt($(messagesEl).parent().height());
+			}
+		});
 		debugger;
 	});
 </script>

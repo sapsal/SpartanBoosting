@@ -27,6 +27,11 @@ namespace SpartanBoosting.Models.Repositorys
 			return context.UserRoles.ToList();
 		}
 
+		public ApplicationUser GetUserById(long id )
+		{
+			return context.Users.Where(x => x.Id == id).AsNoTracking().FirstOrDefault();
+		}
+
 		public EntityEntry<IdentityUserRole<long>> AddUserRoles(int roleId, int userId)
 		{
 			var result = context.UserRoles.Add(new IdentityUserRole<long>{ RoleId  = roleId , UserId = userId });

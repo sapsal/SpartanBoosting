@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SpartanBoosting.Extensions;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
@@ -17,21 +18,34 @@ namespace SpartanBoosting.Controllers
 
 		public IActionResult OrderDetails([FromQuery(Name = "hash")] string hash)
 		{
-			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-			if (User.IsInRole("Superuser")) {
+			if (User.IsInRole("Superuser"))
+			{
 				var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedById(int.Parse(EncryptionHelper.Decrypt(hash)));
 				return View(model);
 			}
 			else
 			{
+				var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
 				var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
 				return View(model);
 			}
 		}
 
 		[HttpPost]
-		public IActionResult AddChatModel(ChatModel chatModel)
+		public IActionResult AddChatModel(string message, string purchaseForm)
 		{
+			var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+			var user = _userManager.FindByIdAsync(id).Result;
+			PurchaseForm PurchaseFormOrder = new PurchaseForm() { Id = JsonConvert.DeserializeObject<PurchaseForm>(EncryptionHelper.Decrypt(purchaseForm)).Id };
+
+			ChatModel chatModel = new ChatModel()
+			{
+				Sender = user,
+				DateTimeSent = DateTime.UtcNow,
+				Message = message,
+				purchaseForm = PurchaseFormOrder
+			};
+
 			var result = ChatModelRepository.Add(chatModel);
 			return Json(true);
 		}
