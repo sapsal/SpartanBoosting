@@ -36,14 +36,14 @@ namespace SpartanBoosting.Controllers
 		{
 			var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 			var user = _userManager.FindByIdAsync(id).Result;
-			PurchaseForm PurchaseFormOrder = new PurchaseForm() { Id = JsonConvert.DeserializeObject<PurchaseForm>(EncryptionHelper.Decrypt(purchaseForm)).Id };
+			int PurchaseFormOrder = JsonConvert.DeserializeObject<PurchaseForm>(EncryptionHelper.Decrypt(purchaseForm)).Id;
 
 			ChatModel chatModel = new ChatModel()
 			{
 				Sender = user,
 				DateTimeSent = DateTime.UtcNow,
 				Message = message,
-				purchaseForm = PurchaseFormOrder
+				purchaseFormId = PurchaseFormOrder
 			};
 
 			var result = ChatModelRepository.Add(chatModel);
