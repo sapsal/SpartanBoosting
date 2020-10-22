@@ -17,9 +17,9 @@ namespace SpartanBoosting.Repositorys
 		{
 			this.context = context;
 		}
-		public List<ChatModel> GetChatModelByPurchaseOrder(PurchaseForm PurchaseForm)
+		public List<ChatModel> GetChatModelByPurchaseOrder(int PurchaseFormid)
 		{
-			return context.ChatModel.Where(x => x.purchaseFormId == PurchaseForm.Id).ToList();
+			return context.ChatModel.Where(x => x.purchaseFormId == PurchaseFormid).ToList();
 		}
 		public ChatModel GetChatModel(int Id)
 		{

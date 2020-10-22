@@ -1,5 +1,5 @@
-﻿@using SpartanBoosting.Models.Pricing
-@model PurchaseForm
+﻿@using SpartanBoosting.ViewModel
+@model LolOrderDetailsViewModel
 @{
 	ViewData["Title"] = "OrderDetails";
 	Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
@@ -26,7 +26,7 @@
 					<div class="d-flex align-items-baseline flex-wrap mr-5">
 						<!--begin::Page Title-->
 						<h5 class="text-dark font-weight-bold my-1 mr-5">
-							Order #LOL-@(Model.Id)
+							Order #LOL-@(Model.PurchaseForm.Id)
 						</h5>
 						<!--end::Page Title-->
 
@@ -76,20 +76,20 @@
 										<!--begin::Table-->
 										<div class="text-center">
 											<div class="row">
-												@switch (Model.PurchaseType)
+												@switch (Model.PurchaseForm.PurchaseType)
 												{
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
-														StartDivisionImage = $"{Model.BoostingModel.YourCurrentLeague}{Model.BoostingModel.CurrentDivision}";
-														DesiredDivisionImage = $"{Model.BoostingModel.DesiredCurrentLeague}{Model.BoostingModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
-														DivisionBoost = $"{Model.BoostingModel.YourCurrentLeague} {Model.BoostingModel.CurrentDivision} ({Model.BoostingModel.CurrentLP}) <span> <i class='fas fa-angle-right'></i> </span> {Model.BoostingModel.DesiredCurrentLeague} {Model.BoostingModel.DesiredCurrentDivision}";
-														Region = Model.BoostingModel.Server;
-														Queue = Model.BoostingModel.TypeOfQueue;
-														DuoType = Model.BoostingModel.TypeOfDuoPremium != null ? Model.BoostingModel.TypeOfDuoPremium : "Regular";
-														Champions = Model.BoostingModel.SpecificChampions;
-														SpecificRoles = Model.BoostingModel.SpecificRolesTop == "false" ? "" : Model.BoostingModel.SpecificRolesTop + "," + Model.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.BoostingModel.SpecificRolesSupport + ","
-														+ Model.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.BoostingModel.SpecificRolesMiddle + "," + Model.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.BoostingModel.SpecificRolesJungle + ","
-														 + Model.BoostingModel.SpecificRolesADC == "false" ? "" : Model.BoostingModel.SpecificRolesADC;
+														StartDivisionImage = $"{Model.PurchaseForm.BoostingModel.YourCurrentLeague}{Model.PurchaseForm.BoostingModel.CurrentDivision}";
+														DesiredDivisionImage = $"{Model.PurchaseForm.BoostingModel.DesiredCurrentLeague}{Model.PurchaseForm.BoostingModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+														DivisionBoost = $"{Model.PurchaseForm.BoostingModel.YourCurrentLeague} {Model.PurchaseForm.BoostingModel.CurrentDivision} ({Model.PurchaseForm.BoostingModel.CurrentLP}) <span> <i class='fas fa-angle-right'></i> </span> {Model.PurchaseForm.BoostingModel.DesiredCurrentLeague} {Model.PurchaseForm.BoostingModel.DesiredCurrentDivision}";
+														Region = Model.PurchaseForm.BoostingModel.Server;
+														Queue = Model.PurchaseForm.BoostingModel.TypeOfQueue;
+														DuoType = Model.PurchaseForm.BoostingModel.TypeOfDuoPremium != null ? Model.PurchaseForm.BoostingModel.TypeOfDuoPremium : "Regular";
+														Champions = Model.PurchaseForm.BoostingModel.SpecificChampions;
+														SpecificRoles = Model.PurchaseForm.BoostingModel.SpecificRolesTop == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesTop + "," + Model.PurchaseForm.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesSupport + ","
+														+ Model.PurchaseForm.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesMiddle + "," + Model.PurchaseForm.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesJungle + ","
+														 + Model.PurchaseForm.BoostingModel.SpecificRolesADC == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesADC;
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Start</span><br>
 															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
@@ -104,35 +104,35 @@
 														</div>
 														break;
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
-														StartDivisionImage = $"{Model.WinBoostModel.YourCurrentLeague}{Model.WinBoostModel.CurrentDivision}";
-														//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
-														DivisionBoost = $"{Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} <span> <i class='fas fa-angle-right'></i> </span> {Model.WinBoostModel.NumOfGames} ";
-														Region = Model.WinBoostModel.Server;
-														Queue = Model.WinBoostModel.TypeOfQueue;
-														DuoType = Model.WinBoostModel.TypeOfDuoPremium != null ? Model.WinBoostModel.TypeOfDuoPremium : "Regular";
+														StartDivisionImage = $"{Model.PurchaseForm.WinBoostModel.YourCurrentLeague}{Model.PurchaseForm.WinBoostModel.CurrentDivision}";
+														//DesiredDivisionImage = $"{Model.PurchaseForm.WinBoostModel.DesiredCurrentLeague}{Model.PurchaseForm.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+														DivisionBoost = $"{Model.PurchaseForm.WinBoostModel.YourCurrentLeague} {Model.PurchaseForm.WinBoostModel.CurrentDivision} <span> <i class='fas fa-angle-right'></i> </span> {Model.PurchaseForm.WinBoostModel.NumOfGames} ";
+														Region = Model.PurchaseForm.WinBoostModel.Server;
+														Queue = Model.PurchaseForm.WinBoostModel.TypeOfQueue;
+														DuoType = Model.PurchaseForm.WinBoostModel.TypeOfDuoPremium != null ? Model.PurchaseForm.WinBoostModel.TypeOfDuoPremium : "Regular";
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Start</span><br>
 															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
 														</div>
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
-															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.WinBoostModel.NumOfGames</span></h1>
+															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PurchaseForm.WinBoostModel.NumOfGames</span></h1>
 														</div>
 														break;
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
-														StartDivisionImage = $"{Model.PlacementMatchesModel.LastSeasonStanding}";
-														//DesiredDivisionImage = $"{Model.WinBoostModel.DesiredCurrentLeague}{Model.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
-														DivisionBoost = $"{Model.PlacementMatchesModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {Model.PlacementMatchesModel.NumOfGames}";
-														Region = Model.PlacementMatchesModel.Server;
-														Queue = Model.PlacementMatchesModel.TypeOfQueue;
-														DuoType = Model.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
+														StartDivisionImage = $"{Model.PurchaseForm.PlacementMatchesModel.LastSeasonStanding}";
+														//DesiredDivisionImage = $"{Model.PurchaseForm.WinBoostModel.PurchaseForm.DesiredCurrentLeague}{Model.PurchaseForm.WinBoostModel.PurchaseForm.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+														DivisionBoost = $"{Model.PurchaseForm.PlacementMatchesModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {Model.PurchaseForm.PlacementMatchesModel.NumOfGames}";
+														Region = Model.PurchaseForm.PlacementMatchesModel.Server;
+														Queue = Model.PurchaseForm.PlacementMatchesModel.TypeOfQueue;
+														DuoType = Model.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Start</span><br>
 															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
 														</div>
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Number Of Games</span><br>
-															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PlacementMatchesModel.NumOfGames</span></h1>
+															<h1 style="font-size: 5rem;margin-top: 45px"><span class="text-primary">@Model.PurchaseForm.PlacementMatchesModel.NumOfGames</span></h1>
 														</div>
 														break;
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
@@ -146,7 +146,7 @@
 												}
 											</div>
 											<hr>
-											@if (!Model.BoosterCompletionConfirmed)
+											@if (!Model.PurchaseForm.BoosterCompletionConfirmed)
 											{
 												<div class="text-center">
 													<p class="card-text card-label">Boost Is Being Completed By The Booster</p>
@@ -181,21 +181,25 @@
 								<div class="scroll scroll-pull" data-height="375" data-mobile-height="300">
 									<!--begin::Messages-->
 									<div class="messages">
-										<!--begin::Message In-->
-										<div class="d-flex flex-column mb-5 align-items-start">
-											<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
-												How likely are you to recommend our company
-												to your friends and family?
-											</div>
-										</div>
-										<!--end::Message In-->
-										<!--begin::Message Out-->
-										<div class="d-flex flex-column mb-5 align-items-end">
-											<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
-												Hey there, we’re just writing to let you know
-												that you’ve been subscribed to a repository on GitHub.
-											</div>
-										</div>
+										@foreach (var item in Model.ChatModel)
+										{
+											if (item.Sender == Model.CurrentUser)
+											{
+												<div class="d-flex flex-column mb-5 align-items-end">
+													<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
+														@item.Message
+													</div>
+												</div>
+											}
+											else
+											{
+												<div class="d-flex flex-column mb-5 align-items-start">
+													<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
+														@item.Message
+													</div>
+												</div>
+											}
+										}
 									</div>
 									<!--end::Messages-->
 								</div>
@@ -208,7 +212,7 @@
 								<textarea class="form-control border-0 p-0 chat-message" rows="2" placeholder="Type a message"></textarea>
 								<div class="d-flex align-items-end justify-content-end mt-5">
 									<div class="d-flex align-items-end">
-										<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6" data-model="@EncryptionHelper.Encrypt(Model)">Send</button>
+										<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6" data-Model.PurchaseForm="@EncryptionHelper.Encrypt(Model.PurchaseForm)">Send</button>
 									</div>
 								</div>
 								<!--begin::Compose-->
@@ -313,19 +317,19 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Summoner Name</label>
-													<input type="text" class="form-control" placeholder="Summoner Name" name="summoner_name" value="@Model.PersonalInformation.UserName">
+													<input type="text" class="form-control" placeholder="Summoner Name" name="summoner_name" value="@Model.PurchaseForm.PersonalInformation.UserName">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Discord Name</label>
-													<input type="text" class="form-control" value="@Model.PersonalInformation.Discord">
+													<input type="text" class="form-control" value="@Model.PurchaseForm.PersonalInformation.Discord">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Password</label>
-													<label class="form-control">@Model.PersonalInformation.Password</label>
+													<label class="form-control">@Model.PurchaseForm.PersonalInformation.Password</label>
 												</div>
 											</div>
 											<div class="col-md-12">
@@ -378,24 +382,26 @@
 		var textarea = $('#kt_chat textarea');
 		$.ajax({
 			url: '/BoosterArea/AddChatModel',
-			data: { message: textarea.val(), purchaseForm : $(this).data('model') },
+			data: { message: textarea.val(), purchaseForm: $(this).data('model') },
 			type: 'POST',
 			success: function (dataofconfirm) {
 				debugger;
-				if (textarea.val().length === 0) {
-					return;
+				if (dataofconfirm) {
+					if (textarea.val().length === 0) {
+						return;
+					}
+
+					var node = document.createElement("DIV");
+					KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
+
+					var html = '';
+					html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + textarea.val() + '</div>';
+
+					KTUtil.setHTML(node, html);
+					messagesEl.append(node);
+					textarea.val('');
+					scrollEl.scrollTop = parseInt($(messagesEl).parent().height());
 				}
-
-				var node = document.createElement("DIV");
-				KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
-
-				var html = '';
-				html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + textarea.val() + '</div>';
-
-				KTUtil.setHTML(node, html);
-				messagesEl.append(node);
-				textarea.val('');
-				scrollEl.scrollTop = parseInt($(messagesEl).parent().height());
 			}
 		});
 		debugger;

@@ -10,7 +10,7 @@ namespace SpartanBoosting.Repositorys.Interfaces
 	public interface IChatModelRepository
 	{
 		ChatModel GetChatModel(int Id);
-		List<ChatModel> GetChatModelByPurchaseOrder(PurchaseForm PurchaseForm);
+		List<ChatModel> GetChatModelByPurchaseOrder(int PurchaseFormid);
 		ChatModel Add(ChatModel chatModel);
 	}
 }
