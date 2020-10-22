@@ -19,7 +19,7 @@ namespace SpartanBoosting.Repositorys
 		}
 		public List<ChatModel> GetChatModelByPurchaseOrder(PurchaseForm PurchaseForm)
 		{
-			return context.ChatModel.Where(x => x.purchaseForm == PurchaseForm).ToList();
+			return context.ChatModel.Where(x => x.purchaseFormId == PurchaseForm.Id).ToList();
 		}
 		public ChatModel GetChatModel(int Id)
 		{
