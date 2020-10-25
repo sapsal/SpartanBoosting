@@ -18,7 +18,8 @@ namespace SpartanBoosting.Controllers
 		public IActionResult OrderDetails([FromQuery(Name = "hash")] string hash)
 		{
 			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-			if (User.IsInRole("Superuser")) {
+			if (User.IsInRole("Superuser"))
+			{
 				var model = PurchaseOrderRepository.GetPurchaseFormModelsIncludedById(int.Parse(EncryptionHelper.Decrypt(hash)));
 				return View(model);
 			}
@@ -77,6 +78,21 @@ namespace SpartanBoosting.Controllers
 				return Json(true);
 			}
 
+			return Json(false);
+		}
+
+		[HttpPost]
+		public IActionResult CancellBoosterJobSuperUser(int Id)
+		{
+			if (User.IsInRole("Superuser"))
+			{
+				var result = PurchaseOrderRepository.GetPurchaseForm(Id);
+				result.BoosterCompletionConfirmed = false;
+				result.BoosterAssignedTo = null;
+				result.JobAvailable = true;
+				PurchaseOrderRepository.Update(result);
+				return Json(true);
+			}
 			return Json(false);
 		}
 
