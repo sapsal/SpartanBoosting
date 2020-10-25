@@ -1,4 +1,7 @@
-﻿$('#type-of-service').on('change', function () {
+﻿$(document).ready(function () {
+	$('[data-toggle="tooltip"]').tooltip({ html: true });
+});
+$('#type-of-service').on('change', function () {
 	if (this.value == "Duo") {
 		$('#specific-roles-content').show();
 	}

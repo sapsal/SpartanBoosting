@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Repositorys;
+using SpartanBoosting.Repositorys;
+using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.ViewModel;
 namespace SpartanBoosting.Controllers
 {
@@ -13,10 +15,14 @@ namespace SpartanBoosting.Controllers
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 		private IPurchaseOrderRepository PurchaseOrderRepository;
-		public BoosterAreaController(IPurchaseOrderRepository purchaseOrderRepository, UserManager<ApplicationUser> userManager)
+		private IChatModelRepository ChatModelRepository;
+		private IUserRolesRepository UserRolesRepository;
+		public BoosterAreaController(IPurchaseOrderRepository purchaseOrderRepository, IChatModelRepository chatModelRepository, UserManager<ApplicationUser> userManager, IUserRolesRepository userRolesRepository)
 		{
 			PurchaseOrderRepository = purchaseOrderRepository;
+			ChatModelRepository = chatModelRepository;
 			_userManager = userManager;
+			UserRolesRepository = userRolesRepository;
 		}
 
 		public IActionResult Dashboard()

@@ -7,7 +7,7 @@ namespace SpartanBoosting.Extensions
 {
 	public static class PricingExtensions
 	{
-		private static Dictionary<string, int> DiscountCodes = new Dictionary<string, int> { { "SiteLaunch15", 15 } };
+		private static Dictionary<string, int> DiscountCodes = new Dictionary<string, int> { { "SiteLaunch15", 15 }, { "ByeS10", 20 } };
 		public static double RoundUp(double input, int places)
 		{
 			double multiplier = Math.Pow(10, Convert.ToDouble(places));
