@@ -164,6 +164,10 @@
 			$('[name ="UserName"]').removeAttr('required');
 			$('[name ="Password"]').parent().find('.gfield_required').remove();
 			$('[name ="Password"]').removeAttr('required');
+			$('[name ="Password"]').hide();
+			$('[name ="UserName"]').hide();
+			$('[name ="Password"]').parent().hide();
+			$('[name ="UserName"]').parent().hide();
 		}
 	});
 </script>
