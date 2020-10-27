@@ -23,6 +23,11 @@
 			<div id="transparent-header-wrap" class="clr">
 				<header id="site-header" class="transparent-header effect-one clr" data-height="74" itemscope="itemscope" itemtype="https://schema.org/WPHeader" role="banner">
 					<div id="site-header-inner" class="clr ">
+						<div class="oceanwp-mobile-menu-icon clr mobile-right">
+							<a href="#" onclick="$('#site-navigation-wrap').toggle();" class="mobile-menu" aria-label="Mobile Menu">
+								<i class="fa fa-2x fa-bars" aria-hidden="true"></i>
+							</a>
+						</div>
 						<div id="site-logo" class="clr" itemscope itemtype="https://schema.org/Brand">
 							<div id="site-logo-inner" class="clr">
 								<a href="https://spartanboosting.com/" class="custom-logo-link" rel="home">
@@ -34,11 +39,6 @@
 						<!-- #site-logo -->
 						@(await Html.PartialAsync("~/Views/Shared/UnAuthenticatedNavMenuPartial.cshtml"))
 						<!-- #site-navigation-wrap -->
-						<div class="oceanwp-mobile-menu-icon clr mobile-right">
-							<a href="#" class="mobile-menu" aria-label="Mobile Menu">
-								<i class="fa fa-2x fa-bars" aria-hidden="true"></i>
-							</a>
-						</div>
 						<!-- #oceanwp-mobile-menu-navbar -->
 					</div>
 					<!-- #site-header-inner -->
