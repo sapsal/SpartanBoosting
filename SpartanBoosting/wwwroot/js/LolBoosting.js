@@ -31,8 +31,14 @@ $(document).on("change", '[name="PaymentMethod"]', function () {
 });
 
 $('.gfield-quote').on('change', function () {
-	var imageCurrentRank = "/img/Lol Ranks/" + $('#current-rank').val() + $('#current-div').val() + ".png"
-	var imageDesiredRank = "/img/Lol Ranks/" + $('#desired-rank').val() + $('#desired-div').val() + ".png"
+	if ($('#current-rank').val() == "Master" || $('#current-rank').val() == "Grandmaster" || $('#current-rank').val() == "Challenger") {
+		var imageCurrentRank = "/img/Lol Ranks/" + $('#current-rank').val() + ".png"
+		var imageDesiredRank = "/img/Lol Ranks/" + $('#desired-rank').val() + ".png"
+	}
+	else {
+		var imageCurrentRank = "/img/Lol Ranks/" + $('#current-rank').val() + $('#current-div').val() + ".png"
+		var imageDesiredRank = "/img/Lol Ranks/" + $('#desired-rank').val() + $('#desired-div').val() + ".png"
+	}
 	$('#current-rank-logo').attr('src', imageCurrentRank);
 	$('#desired-rank-logo').attr('src', imageDesiredRank);
 });

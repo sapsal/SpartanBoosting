@@ -107,6 +107,9 @@
 																		<option value="Gold">Gold</option>
 																		<option value="Platinum">Platinum</option>
 																		<option value="Diamond">Diamond</option>
+																		<option value="Master">Master</option>
+																		<option value="Grandmaster">Grandmaster</option>
+																		<option value="Challenger">Challenger</option>
 																	</select>
 																</div>
 															</div>
@@ -251,4 +254,14 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$('#current-rank').on('change', function () {
+	if (this.value == "Master" || this.value == "Grandmaster" || this.value == "Challenger") {
+		$('#current-div').hide()
+	}
+	else {
+		$('#current-div').show()
+	}
+});
+</script>
 <script src="~/js/LolBoosting.js"></script>
