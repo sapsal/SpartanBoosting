@@ -89,6 +89,13 @@ namespace SpartanBoosting.Controllers
 			string premiumOrRegular = Model.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
 			string lastSeason = Model.TypeOfService == "Duo" ? $"{Model.YourCurrentLeague} {Model.CurrentDivision} ({Model.TypeOfService}) ({premiumOrRegular})"
 			: $"{Model.YourCurrentLeague} {Model.CurrentDivision} ({Model.TypeOfService})";
+
+			if (Model.YourCurrentLeague == "Master" || Model.YourCurrentLeague == "Grandmaster" || Model.YourCurrentLeague == "Challenger")
+			{
+				lastSeason = Model.TypeOfService == "Duo" ? $"{Model.YourCurrentLeague} ({Model.TypeOfService}) ({premiumOrRegular})"
+				: $"{Model.YourCurrentLeague} ({Model.TypeOfService})";
+			}
+
 			WinBoostPricing result = ObjectFactory.WinBoostPricing.Where(x => x.LastSeasonStanding == lastSeason && x.NumberOfGames == Model.NumOfGames).FirstOrDefault();
 			if (result == null)
 				return Json(1.50);
