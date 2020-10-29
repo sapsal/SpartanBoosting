@@ -32,6 +32,13 @@ namespace SpartanBoosting.Models.Repositorys
 			return context.Users.Where(x => x.Id == id).AsNoTracking().FirstOrDefault();
 		}
 
+		public ApplicationUser UpdateUser(ApplicationUser user) {
+			var result = context.Users.Where(x => x.Id == user.Id).FirstOrDefault();
+			result = user;
+			context.SaveChanges();
+			return result;
+		}
+
 		public List<ApplicationUser> GetUsers() {
 			return context.Users.ToList();
 		}

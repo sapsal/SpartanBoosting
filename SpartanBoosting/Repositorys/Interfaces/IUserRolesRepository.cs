@@ -12,6 +12,7 @@ namespace SpartanBoosting.Repositorys
 	public interface IUserRolesRepository
 	{
 		ApplicationUser GetUserById(long id);
+		ApplicationUser UpdateUser(ApplicationUser user);
 		List<ApplicationUser> GetUsers();
 		List<IdentityUserRole<long>> GetUserRoles();
 		List<UsersWithRolesAggregate> GetUsersWithRoles();

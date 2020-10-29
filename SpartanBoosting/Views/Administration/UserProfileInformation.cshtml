@@ -93,10 +93,10 @@
 															<span class="text-muted font-weight-bold d-block">@item.UserName</span>
 														</td>
 														<td class="">
-															<span class="text-muted font-weight-bold d-block">@item.DiscordId</span>
+															<span class="text-muted font-weight-bold d-block"><input class="form-control discord-id-text" value="@item.DiscordId" /></span>
 														</td>
 														<td class="">
-															<button class="btn btn-success btn-booster-permission" data-booster-id="@item.Id">Save User Details</button>
+															<button class="btn btn-success btn-booster-details" data-booster-id="@item.Id">Save User Details</button>
 														</td>
 
 													</tr>
@@ -120,4 +120,37 @@
 	</div>
 	<!--end::Entry-->
 </div>
-<script src="~/js/Administration/AdminPermission.js"></script>
+<script type="text/javascript">
+	$(document).on("click", '.btn-booster-details', function () {
+		debugger;
+		var data = $(this).data('booster-id')
+		var discordId = $(this).closest('tr').find('.discord-id-text').val()
+		$.ajax({
+			url: '/Administration/UpdateUserProfileDiscordId',
+			data: { discordId: discordId, id: data },
+			context: this,
+			type: 'POST',
+			success: function (dataofconfirm) {
+				$(this).hide();
+			}
+		});
+	});
+
+	$(document).ready(function () {
+		RenderDT($('.users-table'))
+		function RenderDT(element) {
+			dataTable = $(element).DataTable({
+				lengthMenu: [5, 10, 25, 50],
+				"oLanguage": { "sZeroRecords": "", "sEmptyTable": "" },
+				pageLength: 10,
+				"bFilter": true,
+				"bInfo": false,
+				"bAutoWidth": false,
+				// Order settings
+				order: [[0, 'asc']],
+				scrollX: false,
+				"bLengthChange": false,
+			});
+		}
+	});
+</script>
