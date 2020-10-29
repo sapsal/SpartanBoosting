@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SpartanBoosting.Models;
+using SpartanBoosting.Models.LeagueOfLegends_Models;
 using SpartanBoosting.Models.Pricing;
 
 namespace SpartanBoosting.Data
@@ -18,6 +19,7 @@ namespace SpartanBoosting.Data
         }
         public DbSet<PurchaseForm> PurchaseForm { get; set; }
         public DbSet<ChatModel> ChatModel { get; set; }
+        public DbSet<LeagueOfLegendsAuditModel> LeagueOfLegendsAuditModel { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

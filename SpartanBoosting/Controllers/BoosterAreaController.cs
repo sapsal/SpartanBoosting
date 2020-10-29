@@ -17,8 +17,10 @@ namespace SpartanBoosting.Controllers
 		private IPurchaseOrderRepository PurchaseOrderRepository;
 		private IChatModelRepository ChatModelRepository;
 		private IUserRolesRepository UserRolesRepository;
-		public BoosterAreaController(IPurchaseOrderRepository purchaseOrderRepository, IChatModelRepository chatModelRepository, UserManager<ApplicationUser> userManager, IUserRolesRepository userRolesRepository)
+		private IAuditRepository AuditRepository;
+		public BoosterAreaController(IAuditRepository auditRepository, IPurchaseOrderRepository purchaseOrderRepository, IChatModelRepository chatModelRepository, UserManager<ApplicationUser> userManager, IUserRolesRepository userRolesRepository)
 		{
+			AuditRepository = auditRepository;
 			PurchaseOrderRepository = purchaseOrderRepository;
 			ChatModelRepository = chatModelRepository;
 			_userManager = userManager;
@@ -38,7 +40,7 @@ namespace SpartanBoosting.Controllers
 			BoosterDashboardViewModel.PurchaseForm = PurchaseOrderRepository.GetAllPurchaseOrderAvailable().ToList();
 			return View("LOL/LolOrdersPanel", BoosterDashboardViewModel);
 		}
-		
+
 		public IActionResult TFTOrdersPanel()
 		{
 			BoosterDashboardViewModel BoosterDashboardViewModel = new BoosterDashboardViewModel();

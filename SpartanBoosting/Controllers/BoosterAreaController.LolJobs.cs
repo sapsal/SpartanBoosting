@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using SpartanBoosting.ViewModel;
+using SpartanBoosting.Models.LeagueOfLegends_Models;
 
 namespace SpartanBoosting.Controllers
 {
@@ -79,6 +80,7 @@ namespace SpartanBoosting.Controllers
 				result.BoosterAssignedTo = user;
 				result.JobAvailable = false;
 				PurchaseOrderRepository.Update(result);
+				AuditRepository.Add(new LeagueOfLegendsAuditModel { User = user, DateTime = DateTime.UtcNow, Action = $"Accepted Job By Booster [{JsonConvert.SerializeObject(result)}]" });
 				return Json(new Dictionary<string, string> { { "Username", result.PersonalInformation.UserName }, { "Password", result.PersonalInformation.Password }, { "Discord", result.PersonalInformation.Discord } });
 			}
 
@@ -94,6 +96,7 @@ namespace SpartanBoosting.Controllers
 			{
 				result.BoosterCompletionConfirmed = true;
 				PurchaseOrderRepository.Update(result);
+				AuditRepository.Add(new LeagueOfLegendsAuditModel { User = user, DateTime = DateTime.UtcNow, Action = $"Completed Job By Booster [{JsonConvert.SerializeObject(result)}]" });
 				return Json(true);
 			}
 
@@ -112,24 +115,10 @@ namespace SpartanBoosting.Controllers
 				result.BoosterAssignedTo = null;
 				result.JobAvailable = true;
 				PurchaseOrderRepository.Update(result);
+				AuditRepository.Add(new LeagueOfLegendsAuditModel { User = user, DateTime = DateTime.UtcNow, Action = $"Cancelled Job By Booster [{JsonConvert.SerializeObject(result)}]" });
 				return Json(true);
 			}
 
-			return Json(false);
-		}
-
-		[HttpPost]
-		public IActionResult CancellBoosterJobSuperUser(int Id)
-		{
-			if (User.IsInRole("Superuser"))
-			{
-				var result = PurchaseOrderRepository.GetPurchaseForm(Id);
-				result.BoosterCompletionConfirmed = false;
-				result.BoosterAssignedTo = null;
-				result.JobAvailable = true;
-				PurchaseOrderRepository.Update(result);
-				return Json(true);
-			}
 			return Json(false);
 		}
 

@@ -76,6 +76,11 @@ namespace SpartanBoosting.Models.Repositorys
 			return context.PurchaseForm.Include(p => p.PersonalInformation).FirstOrDefault(item => item.Id == Id);
 		}
 
+		public PurchaseForm GetPurchaseFormWithBooster(int Id)
+		{
+			return context.PurchaseForm.Include(x => x.BoosterAssignedTo).FirstOrDefault(item => item.Id == Id);
+		}
+
 		public PurchaseForm GetPurchaseFormModelsIncludedByIdAndUser(int Id, ApplicationUser applicationUser)
 		{
 			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser).Include(p => p.PersonalInformation)
@@ -102,7 +107,7 @@ namespace SpartanBoosting.Models.Repositorys
 
 		public PurchaseForm Update(PurchaseForm purchaseFormChanges)
 		{
-			var entity = context.PurchaseForm.FirstOrDefault(item => item.Id == purchaseFormChanges.Id);
+			var entity = context.PurchaseForm.Include(x => x.BoosterAssignedTo).FirstOrDefault(item => item.Id == purchaseFormChanges.Id);
 
 			// Validate entity is not null
 			if (entity != null)

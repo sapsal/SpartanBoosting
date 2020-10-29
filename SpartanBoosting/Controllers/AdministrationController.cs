@@ -12,53 +12,65 @@ using SpartanBoosting.Utils.Enums;
 
 namespace SpartanBoosting.Controllers
 {
-    [Authorize(Roles = "Superuser")]
-    public class AdministrationController : Controller
-    {
-        private IUserRolesRepository UserRolesRepository;
-        private IPurchaseOrderRepository PurchaseOrderRepository;
-        private readonly UserManager<ApplicationUser> _userManager;
-        public AdministrationController(IUserRolesRepository userRolesRepository, IPurchaseOrderRepository purchaseOrderRepository, UserManager<ApplicationUser> userManager)
-        {
-            UserRolesRepository = userRolesRepository;
-            PurchaseOrderRepository = purchaseOrderRepository;
-            _userManager = userManager;
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult AssignLolUserRoles()
-        {
-           var result =  UserRolesRepository.GetUsersWithRoles();
-            return View("UserRolesLol/AssignLolUserRoles", result);
-        }
+	[Authorize(Roles = "Superuser")]
+	public class AdministrationController : Controller
+	{
+		private IUserRolesRepository UserRolesRepository;
+		private IPurchaseOrderRepository PurchaseOrderRepository;
+		private readonly UserManager<ApplicationUser> _userManager;
+		public AdministrationController(IUserRolesRepository userRolesRepository, IPurchaseOrderRepository purchaseOrderRepository, UserManager<ApplicationUser> userManager)
+		{
+			UserRolesRepository = userRolesRepository;
+			PurchaseOrderRepository = purchaseOrderRepository;
+			_userManager = userManager;
+		}
+		public IActionResult Index()
+		{
+			return View();
+		}
+		public IActionResult AssignLolUserRoles()
+		{
+			var result = UserRolesRepository.GetUsersWithRoles();
+			return View("UserRolesLol/AssignLolUserRoles", result);
+		}
 
-        public IActionResult UpdateUserProfilesAdmin()
-        {
-            var result = UserRolesRepository.GetUsers();
-            return View("Views/Administration/UserProfileInformation.cshtml", result);
-        }
+		public IActionResult UpdateUserProfilesAdmin()
+		{
+			var result = UserRolesRepository.GetUsers();
+			return View("Views/Administration/UserProfileInformation.cshtml", result);
+		}
 
-        public IActionResult OrdersOverview()
-        {
-            var result = PurchaseOrderRepository.GetAllPurchaseOrderWithBooster().ToList();
-            return View("OrdersLol/OrdersOverview", result);
-        }
-        [HttpPost]
-        public IActionResult AssignUserBoosterRole(int Id)
-        {
-            UserRolesRepository.AddUserRoles((int)RolesEnum.Roles.Booster, Id);
-            return Json(null);
-        }
+		public IActionResult OrdersOverview()
+		{
+			var result = PurchaseOrderRepository.GetAllPurchaseOrderWithBooster().ToList();
+			return View("OrdersLol/OrdersOverview", result);
+		}
+		[HttpPost]
+		public IActionResult AssignUserBoosterRole(int Id)
+		{
+			UserRolesRepository.AddUserRoles((int)RolesEnum.Roles.Booster, Id);
+			return Json(null);
+		}
 
-        [HttpPost]
-        public IActionResult UpdateUserProfileDiscordId(string discordId, int Id)
-        {
-            var user =  _userManager.FindByIdAsync(Id.ToString()).Result;
-            user.DiscordId = discordId;
-            UserRolesRepository.UpdateUser(user);
-            return Json(true);
-        }
-    }
+		[HttpPost]
+		public IActionResult UpdateUserProfileDiscordId(string discordId, int Id)
+		{
+			var user = _userManager.FindByIdAsync(Id.ToString()).Result;
+			user.DiscordId = discordId;
+			UserRolesRepository.UpdateUser(user);
+			return Json(true);
+		}
+
+
+		[HttpPost]
+		public IActionResult CancellBoosterJobSuperUser(int Id)
+		{
+			var result = PurchaseOrderRepository.GetPurchaseFormWithBooster(Id);
+			result.BoosterCompletionConfirmed = false;
+			result.BoosterAssignedTo = null;
+			result.JobAvailable = true;
+			PurchaseOrderRepository.Update(result);
+			return Json(true);
+		}
+	}
 }
