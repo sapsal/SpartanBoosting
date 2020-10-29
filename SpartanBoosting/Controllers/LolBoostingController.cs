@@ -187,7 +187,7 @@ namespace SpartanBoosting.Controllers
 
 		public ActionResult DisplayInformationAndPayment()
 		{
-			return PartialView("~/Views/Partials/InformationAndPaymentPartial.cshtml");
+			return PartialView("~/Views/Partials/Lol/InformationAndPaymentPartial.cshtml");
 		}
 	}
 }
