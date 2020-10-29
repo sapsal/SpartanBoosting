@@ -10,5 +10,6 @@ namespace SpartanBoosting.Models
 	public class ApplicationUser : IdentityUser<long>
 	{
 		public decimal Balance { get; set; }
+		public string DiscordId { get; set; }
 	}
 }

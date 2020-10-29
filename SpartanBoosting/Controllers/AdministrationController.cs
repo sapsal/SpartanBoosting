@@ -30,6 +30,12 @@ namespace SpartanBoosting.Controllers
             return View("UserRolesLol/AssignLolUserRoles", result);
         }
 
+        public IActionResult UpdateUserProfilesAdmin()
+        {
+            var result = UserRolesRepository.GetUsersWithRoles();
+            return View("UpdateUserProfilesAdmin", result);
+        }
+
         public IActionResult OrdersOverview()
         {
             var result = PurchaseOrderRepository.GetAllPurchaseOrderWithBooster().ToList();
