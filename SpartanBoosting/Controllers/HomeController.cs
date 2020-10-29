@@ -33,6 +33,11 @@ namespace SpartanBoosting.Controllers
 			return View();
 		}
 
+		public IActionResult Overwatch()
+		{
+			return View("~/Views/Overwatch/Index.cshtml");
+		}
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
