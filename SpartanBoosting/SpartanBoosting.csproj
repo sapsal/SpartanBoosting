@@ -40,6 +40,12 @@
     <ProjectReference Include="..\SpartanBoosting.BuisnessLogic\SpartanBoosting.BuisnessLogic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\ClientTheme\css\main.css.min.css">
+      <DependentUpon>main.css.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
