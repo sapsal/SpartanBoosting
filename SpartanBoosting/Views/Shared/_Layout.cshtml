@@ -24,7 +24,7 @@
 				<header id="site-header" class="transparent-header effect-one clr" data-height="74" itemscope="itemscope" itemtype="https://schema.org/WPHeader" role="banner">
 					<div id="site-header-inner" class="clr ">
 						<div class="oceanwp-mobile-menu-icon clr mobile-right">
-							<a href="#" onclick="$('#site-navigation-wrap').toggle();" class="mobile-menu" aria-label="Mobile Menu">
+							<a href="#" onclick="MobileHeader();" class="mobile-menu" aria-label="Mobile Menu">
 								<i class="fa fa-2x fa-bars" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -153,6 +153,17 @@
 	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
 	@RenderSection("Scripts", required: false)
-
+	<script type="text/javascript">
+		function MobileHeader() {
+			debugger;
+			if (!$('#site-navigation-wrap').hasClass('mobile-nav-show')) {
+				$('#site-navigation-wrap').addClass('mobile-nav-show');
+			} else {
+				$('#site-navigation-wrap').removeClass('mobile-nav-show')
+			}
+		}
+	</script>
 </body>
 </html>
+
+
