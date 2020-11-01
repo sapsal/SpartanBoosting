@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace SpartanBoosting.Models.Repositorys
 {
-	public class SqlUserRolesRepository : IUserRolesRepository
+	public class SqlUserRepository : IUserRepository
 	{
 		private readonly ApplicationDbContext context;
 		private readonly UserManager<ApplicationUser> _userManager;
-		public SqlUserRolesRepository(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+		public SqlUserRepository(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
 		{
 			this.context = context;
 			_userManager = userManager;

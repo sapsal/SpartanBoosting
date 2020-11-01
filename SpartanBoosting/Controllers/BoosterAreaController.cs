@@ -16,15 +16,15 @@ namespace SpartanBoosting.Controllers
 		private readonly UserManager<ApplicationUser> _userManager;
 		private IPurchaseOrderRepository PurchaseOrderRepository;
 		private IChatModelRepository ChatModelRepository;
-		private IUserRolesRepository UserRolesRepository;
+		private IUserRepository UserRepository;
 		private IAuditRepository AuditRepository;
-		public BoosterAreaController(IAuditRepository auditRepository, IPurchaseOrderRepository purchaseOrderRepository, IChatModelRepository chatModelRepository, UserManager<ApplicationUser> userManager, IUserRolesRepository userRolesRepository)
+		public BoosterAreaController(IAuditRepository auditRepository, IPurchaseOrderRepository purchaseOrderRepository, IChatModelRepository chatModelRepository, UserManager<ApplicationUser> userManager, IUserRepository userRolesRepository)
 		{
 			AuditRepository = auditRepository;
 			PurchaseOrderRepository = purchaseOrderRepository;
 			ChatModelRepository = chatModelRepository;
 			_userManager = userManager;
-			UserRolesRepository = userRolesRepository;
+			UserRepository = userRolesRepository;
 		}
 
 		public IActionResult Dashboard()

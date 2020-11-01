@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SpartanBoosting.Repositorys
 {
-	public interface IUserRolesRepository
+	public interface IUserRepository
 	{
 		ApplicationUser GetUserById(long id);
 		ApplicationUser UpdateUser(ApplicationUser user);

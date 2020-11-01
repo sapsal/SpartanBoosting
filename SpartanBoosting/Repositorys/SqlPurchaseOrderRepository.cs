@@ -39,6 +39,11 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.WinBoostModel); 
 		}
 
+		public IEnumerable<PurchaseForm> GetBasicPurchaseOrder()
+		{
+			return context.PurchaseForm;
+		}
+
 		public IEnumerable<PurchaseForm> GetAllPurchaseOrderWithBooster()
 		{
 			return context.PurchaseForm.Include(p => p.BoostingModel)

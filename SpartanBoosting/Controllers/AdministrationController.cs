@@ -15,10 +15,10 @@ namespace SpartanBoosting.Controllers
 	[Authorize(Roles = "Superuser")]
 	public class AdministrationController : Controller
 	{
-		private IUserRolesRepository UserRolesRepository;
+		private IUserRepository UserRolesRepository;
 		private IPurchaseOrderRepository PurchaseOrderRepository;
 		private readonly UserManager<ApplicationUser> _userManager;
-		public AdministrationController(IUserRolesRepository userRolesRepository, IPurchaseOrderRepository purchaseOrderRepository, UserManager<ApplicationUser> userManager)
+		public AdministrationController(IUserRepository userRolesRepository, IPurchaseOrderRepository purchaseOrderRepository, UserManager<ApplicationUser> userManager)
 		{
 			UserRolesRepository = userRolesRepository;
 			PurchaseOrderRepository = purchaseOrderRepository;
