@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SpartanBoosting.Models.Pricing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SpartanBoosting.Extensions
 {
-	public static class PricingExtensions
+	public static class LolPricingExtensions
 	{
 		private static Dictionary<string, int> DiscountCodes = new Dictionary<string, int> { { "SiteLaunch15", 15 }, { "ByeS10", 20 } };
 		public static double RoundUp(double input, int places)
@@ -13,11 +14,43 @@ namespace SpartanBoosting.Extensions
 			double multiplier = Math.Pow(10, Convert.ToDouble(places));
 			return Math.Ceiling(input * multiplier) / multiplier;
 		}
-		public static double BoosterPay(string Pricing)
+		public static double BoosterPay(PurchaseForm PurchaseForm)
 		{
-			decimal price = decimal.Parse(Pricing);
-			price = (price / 100) * ObjectFactory.BoosterPercentage;
+			string pricing = PurchaseForm.Pricing;
+			string discountCode = string.Empty;
+			switch (PurchaseForm.PurchaseType)
+			{
+				case Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
+				case Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
+					discountCode = PurchaseForm.BoostingModel.DiscountCode;
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
+					discountCode = PurchaseForm.WinBoostModel.Discount;
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
+					discountCode = PurchaseForm.PlacementMatchesModel.Discount;
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
+					discountCode = PurchaseForm.TFTPlacementModel.DiscountCode;
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting:
+					discountCode = PurchaseForm.TFTBoostingModel.DiscountCode;
+					break;
+			}
+
+			decimal price = decimal.Parse(pricing);
+
+			if (DiscountCodes.Where(x => x.Key == discountCode).Count() > 0)
+			{
+				//80% if discount code is applied
+				price = (price / 100) * ObjectFactory.BoosterPercentage + 10;
+			}
+			else
+			{
+				price = (price / 100) * ObjectFactory.BoosterPercentage;
+			}
 			return RoundUp((double)price, 2);
+
 		}
 
 		public static decimal PriceDiscount(string discountCode, decimal Pricing)

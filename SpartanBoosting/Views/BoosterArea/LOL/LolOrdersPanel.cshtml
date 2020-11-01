@@ -86,7 +86,7 @@
 											<td>Normal</td>
 											<td>@($"{item.BoostingModel.YourCurrentLeague} {item.BoostingModel.CurrentDivision} {item.BoostingModel.CurrentLP} to {item.BoostingModel.DesiredCurrentLeague} {item.BoostingModel.DesiredCurrentDivision}")</td>
 											<td>@item.PurchaseType</td>
-											<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+											<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 											<td>
 												<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 											</td>
@@ -100,7 +100,7 @@
 											<td>Normal</td>
 											<td>@($"{item.WinBoostModel.YourCurrentLeague} {item.WinBoostModel.CurrentDivision} With {item.WinBoostModel.NumOfGames} Games")</td>
 											<td>@item.PurchaseType</td>
-											<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+											<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 											<td>
 												<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 											</td>
@@ -114,7 +114,7 @@
 											<td>Normal</td>
 											<td>@($"{item.PlacementMatchesModel.LastSeasonStanding} With {item.PlacementMatchesModel.NumOfGames} Games")</td>
 											<td>@item.PurchaseType</td>
-											<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+											<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 											<td>
 												<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 											</td>
@@ -149,7 +149,7 @@
 									<td>@(item.BoostingModel.TypeOfQueue)</td>
 									<td>Normal</td>
 									<td>@($"{item.BoostingModel.YourCurrentLeague} {item.BoostingModel.CurrentDivision} {item.BoostingModel.CurrentLP} to {item.BoostingModel.DesiredCurrentLeague} {item.BoostingModel.DesiredCurrentDivision}")</td>
-									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+									<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 									<td>
 										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
@@ -180,7 +180,7 @@
 									<td>@(item.BoostingModel.TypeOfQueue)</td>
 									<td>Normal</td>
 									<td>@($"{item.BoostingModel.YourCurrentLeague} {item.BoostingModel.CurrentDivision} {item.BoostingModel.CurrentLP} to {item.BoostingModel.DesiredCurrentLeague} {item.BoostingModel.DesiredCurrentDivision}")</td>
-									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+									<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 									<td>
 										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
@@ -211,7 +211,7 @@
 									<td>@(item.WinBoostModel.TypeOfQueue)</td>
 									<td>Normal</td>
 									<td>@($"{item.WinBoostModel.YourCurrentLeague} {item.WinBoostModel.CurrentDivision} With {item.WinBoostModel.NumOfGames} Games")</td>
-									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+									<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 									<td>
 										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
@@ -242,7 +242,7 @@
 									<td>@(item.PlacementMatchesModel.TypeOfQueue)</td>
 									<td>Normal</td>
 									<td>@($"{item.PlacementMatchesModel.LastSeasonStanding} With {item.PlacementMatchesModel.NumOfGames} Games")</td>
-									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+									<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 									<td>
 										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>

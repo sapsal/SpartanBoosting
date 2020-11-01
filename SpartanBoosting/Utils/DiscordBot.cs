@@ -48,14 +48,14 @@ namespace SpartanBoosting.Utils
 							$"**Job : { Model.BoostingModel.YourCurrentLeague}{ Model.BoostingModel.CurrentDivision} { Model.BoostingModel.CurrentLP} to { Model.BoostingModel.DesiredCurrentLeague} { Model.BoostingModel.DesiredCurrentDivision}**\n" +
 							$"**Queue : {Model.BoostingModel.TypeOfQueue}**\n" +
 							$"**Server : {Model.BoostingModel.Server}**\n" +
-							$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 				case PurchaseTypeEnum.PurchaseType.DuoBoosting:
 					return DiscordServerTagMessage(Model.BoostingModel.Server) + "**New Division Duo**\n" +
 							$"**Job : { Model.BoostingModel.YourCurrentLeague}{ Model.BoostingModel.CurrentDivision} { Model.BoostingModel.CurrentLP} to { Model.BoostingModel.DesiredCurrentLeague} { Model.BoostingModel.DesiredCurrentDivision}**\n" +
 							$"**Queue : {Model.BoostingModel.TypeOfQueue}**\n" +
 							$"**Server : {Model.BoostingModel.Server}**\n" +
 							$"**Type : {(Model.BoostingModel.TypeOfDuoRegular != "false" ? Model.BoostingModel.TypeOfDuoRegular : Model.BoostingModel.TypeOfDuoPremium)}**\n" +
-							$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 				case PurchaseTypeEnum.PurchaseType.WinBoosting:
 					if (Model.WinBoostModel.TypeOfService == "Duo")
 						return DiscordServerTagMessage(Model.WinBoostModel.Server) + "**Win Boosting**\n" +
@@ -63,13 +63,13 @@ namespace SpartanBoosting.Utils
 							$"**Queue : {Model.WinBoostModel.TypeOfQueue}**\n" +
 							$"**Server : {Model.WinBoostModel.Server}**\n" +
 							$"**Type : Duo {(Model.WinBoostModel.TypeOfDuoRegular != "false" ? Model.WinBoostModel.TypeOfDuoRegular : Model.WinBoostModel.TypeOfDuoPremium)}**\n" +
-							$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 					else
 						return DiscordServerTagMessage(Model.WinBoostModel.Server) + $"**Job : {Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} with {Model.WinBoostModel.NumOfGames} games**\n" +
 								$"**Queue : {Model.WinBoostModel.TypeOfQueue}**\n" +
 								$"**Server : {Model.WinBoostModel.Server}**\n" +
 								$"**Type : Solo**\n" +
-								$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+								$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 				case PurchaseTypeEnum.PurchaseType.PlacementMatches:
 					if (Model.PlacementMatchesModel.TypeOfService == "Duo")
 						return DiscordServerTagMessage(Model.PlacementMatchesModel.Server) + "**Placement Matches**\n" +
@@ -77,25 +77,25 @@ namespace SpartanBoosting.Utils
 								$"**Queue : {Model.PlacementMatchesModel.TypeOfQueue}**\n" +
 								$"**Server : {Model.PlacementMatchesModel.Server}**\n" +
 								$"**Type : Duo {(Model.PlacementMatchesModel.TypeOfDuoRegular != "false" ? Model.PlacementMatchesModel.TypeOfDuoRegular : Model.PlacementMatchesModel.TypeOfDuoPremium)}**\n" +
-								$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+								$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 					else
 						return DiscordServerTagMessage(Model.PlacementMatchesModel.Server) + "**Placement Matches**\n" +
 								$"**Job : {Model.PlacementMatchesModel.LastSeasonStanding} with {Model.PlacementMatchesModel.NumOfGames} games**\n" +
 								$"**Queue : {Model.PlacementMatchesModel.TypeOfQueue}**\n" +
 								$"**Server : {Model.PlacementMatchesModel.Server}**\n" +
 								$"**Type : Solo**\n" +
-								$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+								$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 
 				case PurchaseTypeEnum.PurchaseType.TFTPlacement:
 					return DiscordServerTagMessage(Model.TFTPlacementModel.Server) + "**TFT Placement**\n" +
 							$"**Job : {Model.TFTPlacementModel.LastSeasonStanding} with {Model.TFTPlacementModel.NumberOfGames} games**\n" +
 							$"**Server : {Model.TFTPlacementModel.Server}**\n" +
-							$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 				case PurchaseTypeEnum.PurchaseType.TFTBoosting:
 					return DiscordServerTagMessage(Model.TFTBoostingModel.Server) + "**TFT Solo Boosting**\n" +
 							$"**Job : {Model.TFTBoostingModel.YourCurrentLeague} {Model.TFTBoostingModel.CurrentDivision} {Model.TFTBoostingModel.CurrentLP} to {Model.TFTBoostingModel.DesiredCurrentLeague} {Model.TFTBoostingModel.DesiredCurrentDivision}**\n" +
 							$"**Server : {Model.TFTBoostingModel.Server}**\n" +
-							$"**Price : €{PricingExtensions.BoosterPay(Model.Pricing)}**";
+							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 
 				case PurchaseTypeEnum.PurchaseType.Coaching:
 					break;

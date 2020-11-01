@@ -70,7 +70,7 @@
 									<td>@(item.TFTPlacementModel.Server)</td>
 									<td>Normal</td>
 									<td>@($"{item.TFTPlacementModel.LastSeasonStanding} With {item.TFTPlacementModel.NumberOfGames} Games")</td>
-									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+									<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 									<td>
 										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
@@ -99,7 +99,7 @@
 									<td>@(item.TFTBoostingModel.Server)</td>
 									<td>Normal</td>
 									<td>@($"{item.TFTBoostingModel.YourCurrentLeague} {item.TFTBoostingModel.CurrentDivision} {item.TFTBoostingModel.CurrentLP} to {item.TFTBoostingModel.DesiredCurrentLeague} {item.TFTBoostingModel.DesiredCurrentDivision}")</td>
-									<td><span style="color: #51dc55 !important;">€@PricingExtensions.BoosterPay(item.Pricing)</span></td>
+									<td><span style="color: #51dc55 !important;">€@LolPricingExtensions.BoosterPay(item)</span></td>
 									<td>
 										<button class="btn-success btn accept-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Accept</button>
 									</td>
