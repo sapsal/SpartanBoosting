@@ -14,4 +14,8 @@
 	-webkit-transition: background-image .2s ease-in-out;
 	transition: background-image .2s ease-in-out;
 	margin-bottom: 30px;
+	opacity: .4;
+}
+.league-link:hover {
+	opacity: 1;
 }
