@@ -72,7 +72,6 @@ namespace SpartanBoosting.Controllers
 				{
 					case PurchaseTypeEnum.PurchaseType.SoloBoosting:
 						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderSoloEmail", purchaseForm).Result;
-
 						break;
 					case PurchaseTypeEnum.PurchaseType.DuoBoosting:
 						emailbody = RenderPartialViewToString("EmailTemplates/PurchaseOrderDuoEmail", purchaseForm).Result;
@@ -93,7 +92,7 @@ namespace SpartanBoosting.Controllers
 						emailbody = JsonConvert.SerializeObject(purchaseForm);
 						break;
 				}
-				email.SendEmailAsync("Purchase Request", $"Purchase Request", emailbody);
+				email.SendEmailAsync(purchaseForm.PersonalInformation.Email, $"Purchase Order", emailbody);
 			}
 			catch (Exception e)
 			{

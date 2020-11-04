@@ -29,6 +29,7 @@ namespace SpartanBoosting.Utils
                 message.Body = $"{htmlMessage} <br> From {email}";
                 message.IsBodyHtml = true;
                 message.To.Add("info@spartanboosting.com");
+                message.To.Add(email);
 
                 string host = _smtpSettings.Server;
                 int port = _smtpSettings.Port;

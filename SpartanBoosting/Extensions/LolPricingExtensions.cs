@@ -43,7 +43,7 @@ namespace SpartanBoosting.Extensions
 			if (DiscountCodes.Where(x => x.Key == discountCode).Count() > 0)
 			{
 				//80% if discount code is applied
-				price = (price / 100) * ObjectFactory.BoosterPercentage + 10;
+				price = (price / 100) * (ObjectFactory.BoosterPercentage + 10);
 			}
 			else
 			{
