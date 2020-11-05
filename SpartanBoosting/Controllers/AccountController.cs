@@ -84,6 +84,40 @@ namespace SpartanBoosting.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> LoginAjax(string email, string password, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            LoginViewModel model = new LoginViewModel { Email = email, Password = password };
+            if (ModelState.IsValid)
+            {
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+                    return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
+                }
+                if (result.RequiresTwoFactor)
+                {
+                    return Json(new { success = true, redirectToUrl = Url.Action(nameof(LoginWith2fa), new { returnUrl, model.RememberMe }) });
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning("User account locked out.");
+                    return Json(new { success = true, redirectToUrl = Url.Action(nameof(Lockout)) });
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Json(new { success = false, responseText = "Invalid login attempt." });
+                }
+            }
+            return Json(new { success = false, responseText = "Invalid login attempt." });
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)

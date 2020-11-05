@@ -28,7 +28,7 @@ namespace SpartanBoosting.Controllers
 			LolHomePageViewModel LolHomePageViewModel = new LolHomePageViewModel();
 			LolHomePageViewModel.CompletedBoost = PurchaseOrderRepository.GetBasicPurchaseOrder().Count() * 3;
 			LolHomePageViewModel.Boosters = UserRepository.GetUsers().Count();
-			return View(LolHomePageViewModel);
+			return View();
 		}
 
 		public IActionResult Privacy()

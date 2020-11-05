@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using SpartanBoosting.ViewModel; 
+@model MainLayoutViewModel
+<!DOCTYPE html>
 @{
 	Layout = "";
 }
@@ -81,15 +83,15 @@
 		<nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-transparent nk-navbar-autohide">
 			<div class="container">
 				<div class="nk-nav-table">
-					<a href="index.html" class="nk-nav-logo">
+					<a href="../" class="nk-nav-logo">
 						<img src="~/img/logo.png" alt="" width="200">
 					</a>
 					<ul class="nk-nav nk-nav-right d-none d-lg-block" data-nav-mobile="#nk-nav-mobile">
 						<li class="active  nk-drop-item">
-							<a href="/"> Home</a>
+							<a href="../"> Home</a>
 						</li>
 						<li class="  nk-drop-item">
-							<a href="adhoc/faq"> FAQs</a>
+							<a href="../adhoc/faq"> FAQs</a>
 						</li>
 					</ul>
 					<ul class="nk-nav nk-nav-right nk-nav-icons">
@@ -261,17 +263,19 @@
 						</div>
 						<div class="nk-gap-2"></div>
 						<!-- START: Login Form -->
-						<form class="nk-sign-form-login active" action="#">
-							<input class="form-control" type="text" placeholder="Username or Email">
+						<form class="nk-sign-form-login active" onsubmit="event.preventDefault(); ">
+
+							<input class="form-control login-username" type="text" asp-for="@Model.LoginModel.Email" placeholder="Username or Email" required>
 							<div class="nk-gap-2"></div>
-							<input class="form-control" type="password" placeholder="Password">
+							<input class="form-control login-password" asp-for="@Model.LoginModel.Password" type="password" placeholder="Password" required>
+							<div id="LoginModel_loginattempt-error" class="nk-error" style="display:none">Invalid Login Attempt.</div>
 							<div class="nk-gap-2"></div>
-							<div class="form-check float-left">
+							<div class="form-check float-left" style="display:none">
 								<label class="form-check-label">
 									<input type="checkbox" class="form-check-input"> Remember Me
 								</label>
 							</div>
-							<button class="nk-btn nk-btn-color-white link-effect-4 float-right">Log In</button>
+							<button class="nk-btn nk-btn-color-white link-effect-4 float-right login-button">Log In</button>
 							<div class="clearfix"></div>
 							<div class="nk-gap-1"></div>
 							<a class="nk-sign-form-lost-toggle float-right" href="#">Lost Password?</a>
@@ -358,6 +362,26 @@
 	<script type="text/javascript">
 		var tpj = jQuery;
 		var revapi50;
+		$(".login-button").click(function () {
+			$('#LoginModel_loginattempt-error').hide()
+			$.ajax({
+				url: '/Account/LoginAjax',
+				data: {
+					Email: $('.login-username').val(),
+					Password: $('.login-password').val()
+				},
+				type: 'POST',
+				success: function (response) {
+					debugger;
+					if (!response.success) {
+						$('#LoginModel_loginattempt-error').text('Invalid Login Attempt').show()
+					}
+					else {
+						window.location.href = response.redirectToUrl;
+					}
+				}
+			});
+		});
 		tpj(document).ready(function () {
 			if (tpj("#rev_slider_50_1").revolution == undefined) {
 				revslider_showDoubleJqueryError("#rev_slider_50_1");
