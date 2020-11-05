@@ -6,21 +6,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpartanBoosting.Models;
-
+using SpartanBoosting.Models.Repositorys;
+using SpartanBoosting.Repositorys;
+using SpartanBoosting.ViewModel;
 namespace SpartanBoosting.Controllers
 {
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
-
-		public HomeController(ILogger<HomeController> logger)
+		private IUserRepository UserRepository;
+		private IPurchaseOrderRepository PurchaseOrderRepository;
+		public HomeController(IPurchaseOrderRepository purchaseOrderRepository,	ILogger<HomeController> logger, IUserRepository userRepository)
 		{
+			PurchaseOrderRepository = purchaseOrderRepository;
 			_logger = logger;
+			UserRepository = userRepository;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			LolHomePageViewModel LolHomePageViewModel = new LolHomePageViewModel();
+			LolHomePageViewModel.CompletedBoost = PurchaseOrderRepository.GetBasicPurchaseOrder().Count() * 3;
+			LolHomePageViewModel.Boosters = UserRepository.GetUsers().Count();
+			return View(LolHomePageViewModel);
 		}
 
 		public IActionResult Privacy()

@@ -1,4 +1,6 @@
-﻿@{ string Spartan = "";}
+﻿@using SpartanBoosting.ViewModel
+@model LolHomePageViewModel
+@{ string Spartan = "";}
 
 <!DOCTYPE html>
 <html class="html" lang="en-US">
@@ -450,7 +452,7 @@
 				<div class="elementor-background-overlay"></div>
 				<div class="elementor-container elementor-column-gap-default">
 					<div class="elementor-row">
-						<div class="elementor-element elementor-element-bfe54dd elementor-column elementor-col-16 elementor-top-column" data-id="bfe54dd" data-element_type="column">
+						<div class="col-md-3 elementor-element elementor-element-bfe54dd elementor-column elementor-col-16 elementor-top-column" data-id="bfe54dd" data-element_type="column">
 							<div class="elementor-column-wrap  elementor-element-populated">
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-cba0a0e elementor-widget elementor-widget-counter" data-id="cba0a0e" data-element_type="widget" data-widget_type="counter.default">
@@ -458,7 +460,7 @@
 											<div class="elementor-counter">
 												<div class="elementor-counter-number-wrapper">
 													<span class="elementor-counter-number-prefix"></span>
-													<span class="elementor-counter-number" data-duration="3000" data-to-value="89" data-from-value="1" data-delimiter=",">1</span>
+													<span class="elementor-counter-number" data-duration="3000" data-to-value="89" data-from-value="1" data-delimiter=",">@Model.CompletedBoost</span>
 													<span class="elementor-counter-number-suffix"></span>
 												</div>
 												<div class="elementor-counter-title">Completed Boosts</div>
@@ -468,25 +470,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="elementor-element elementor-element-39c35f1 elementor-column elementor-col-16 elementor-top-column" data-id="39c35f1" data-element_type="column">
-							<div class="elementor-column-wrap  elementor-element-populated">
-								<div class="elementor-widget-wrap">
-									<div class="elementor-element elementor-element-5e9a398 elementor-widget elementor-widget-counter" data-id="5e9a398" data-element_type="widget" data-widget_type="counter.default">
-										<div class="elementor-widget-container">
-											<div class="elementor-counter">
-												<div class="elementor-counter-number-wrapper">
-													<span class="elementor-counter-number-prefix"></span>
-													<span class="elementor-counter-number" data-duration="3000" data-to-value="348" data-from-value="1" data-delimiter=",">1</span>
-													<span class="elementor-counter-number-suffix"></span>
-												</div>
-												<div class="elementor-counter-title">Divisions boosted</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="elementor-element elementor-element-8b9a0a1 elementor-column elementor-col-16 elementor-top-column" data-id="8b9a0a1" data-element_type="column">
+						<div class="col-md-3 elementor-element elementor-element-8b9a0a1 elementor-column elementor-col-16 elementor-top-column" data-id="8b9a0a1" data-element_type="column">
 							<div class="elementor-column-wrap  elementor-element-populated">
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-e21ff29  elementor-widget elementor-widget-counter" data-id="e21ff29" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;none&quot;}" data-widget_type="counter.default">
@@ -494,7 +478,7 @@
 											<div class="elementor-counter">
 												<div class="elementor-counter-number-wrapper">
 													<span class="elementor-counter-number-prefix"></span>
-													<span class="elementor-counter-number" data-duration="3000" data-to-value="59" data-from-value="1" data-delimiter=",">1</span>
+													<span class="elementor-counter-number" data-duration="3000" data-to-value="59" data-from-value="1" data-delimiter=",">@Model.Boosters</span>
 													<span class="elementor-counter-number-suffix"></span>
 												</div>
 												<div class="elementor-counter-title">Boosters</div>
@@ -504,25 +488,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="elementor-element elementor-element-6eba39b elementor-column elementor-col-16 elementor-top-column" data-id="6eba39b" data-element_type="column">
-							<div class="elementor-column-wrap  elementor-element-populated">
-								<div class="elementor-widget-wrap">
-									<div class="elementor-element elementor-element-61d5cfc elementor-widget elementor-widget-counter" data-id="61d5cfc" data-element_type="widget" data-widget_type="counter.default">
-										<div class="elementor-widget-container">
-											<div class="elementor-counter">
-												<div class="elementor-counter-number-wrapper">
-													<span class="elementor-counter-number-prefix"></span>
-													<span class="elementor-counter-number" data-duration="2000" data-to-value="9999" data-from-value="1" data-delimiter=",">1</span>
-													<span class="elementor-counter-number-suffix"></span>
-												</div>
-												<div class="elementor-counter-title">Friend Requests After Solo Carrying</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="elementor-element elementor-element-dfdbdec elementor-column elementor-col-16 elementor-top-column" data-id="dfdbdec" data-element_type="column">
+						<div class="col-md-3 elementor-element elementor-element-dfdbdec elementor-column elementor-col-16 elementor-top-column" data-id="dfdbdec" data-element_type="column">
 							<div class="elementor-column-wrap  elementor-element-populated">
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-7d54704 elementor-widget elementor-widget-counter" data-id="7d54704" data-element_type="widget" data-widget_type="counter.default">
@@ -530,7 +496,7 @@
 											<div class="elementor-counter">
 												<div class="elementor-counter-number-wrapper">
 													<span class="elementor-counter-number-prefix"></span>
-													<span class="elementor-counter-number" data-duration="2000" data-to-value="21" data-from-value="1" data-delimiter=",">1</span>
+													<span class="elementor-counter-number" data-duration="2000" data-to-value="21" data-from-value="1" data-delimiter=",">5</span>
 													<span class="elementor-counter-number-suffix"></span>
 												</div>
 												<div class="elementor-counter-title">Coaches</div>
@@ -540,7 +506,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="elementor-element elementor-element-913ccde elementor-column elementor-col-16 elementor-top-column" data-id="913ccde" data-element_type="column">
+						<div class="col-md-3 elementor-element elementor-element-913ccde elementor-column elementor-col-16 elementor-top-column" data-id="913ccde" data-element_type="column">
 							<div class="elementor-column-wrap  elementor-element-populated">
 								<div class="elementor-widget-wrap">
 									<div class="elementor-element elementor-element-bfb663e elementor-widget elementor-widget-counter" data-id="bfb663e" data-element_type="widget" data-widget_type="counter.default">

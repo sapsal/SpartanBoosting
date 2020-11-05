@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace SpartanBoosting.Models.Repositorys
 {
-	public class SqlUserRolesRepository : IUserRolesRepository
+	public class SqlUserRepository : IUserRepository
 	{
 		private readonly ApplicationDbContext context;
 		private readonly UserManager<ApplicationUser> _userManager;
-		public SqlUserRolesRepository(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+		public SqlUserRepository(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
 		{
 			this.context = context;
 			_userManager = userManager;
@@ -30,6 +30,17 @@ namespace SpartanBoosting.Models.Repositorys
 		public ApplicationUser GetUserById(long id )
 		{
 			return context.Users.Where(x => x.Id == id).AsNoTracking().FirstOrDefault();
+		}
+
+		public ApplicationUser UpdateUser(ApplicationUser user) {
+			var result = context.Users.Where(x => x.Id == user.Id).FirstOrDefault();
+			result = user;
+			context.SaveChanges();
+			return result;
+		}
+
+		public List<ApplicationUser> GetUsers() {
+			return context.Users.ToList();
 		}
 
 		public EntityEntry<IdentityUserRole<long>> AddUserRoles(int roleId, int userId)

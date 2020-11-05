@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace SpartanBoosting.Repositorys
 {
-	public interface IUserRolesRepository
+	public interface IUserRepository
 	{
 		ApplicationUser GetUserById(long id);
+		ApplicationUser UpdateUser(ApplicationUser user);
+		List<ApplicationUser> GetUsers();
 		List<IdentityUserRole<long>> GetUserRoles();
 		List<UsersWithRolesAggregate> GetUsersWithRoles();
 		EntityEntry<IdentityUserRole<long>> AddUserRoles(int roleId, int userId);

@@ -21558,3 +21558,10 @@ button.swiper-pagination-bullet {
 	}
 }
 
+.tooltip {
+	font-size: 1.875rem;
+}
+
+.mobile-nav-show {
+	display: block !important;
+}

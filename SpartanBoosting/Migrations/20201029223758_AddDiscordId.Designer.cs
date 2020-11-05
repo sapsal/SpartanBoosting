@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpartanBoosting.Data;
 
 namespace SpartanBoosting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201029223758_AddDiscordId")]
+    partial class AddDiscordId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -355,29 +357,6 @@ namespace SpartanBoosting.Migrations
                     b.ToTable("CoachingModel");
                 });
 
-            modelBuilder.Entity("SpartanBoosting.Models.LeagueOfLegends_Models.LeagueOfLegendsAuditModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LeagueOfLegendsAuditModel");
-                });
-
             modelBuilder.Entity("SpartanBoosting.Models.PersonalInformation", b =>
                 {
                     b.Property<int>("Id")
@@ -682,13 +661,6 @@ namespace SpartanBoosting.Migrations
                     b.HasOne("SpartanBoosting.Models.ApplicationUser", "Sender")
                         .WithMany()
                         .HasForeignKey("SenderId");
-                });
-
-            modelBuilder.Entity("SpartanBoosting.Models.LeagueOfLegends_Models.LeagueOfLegendsAuditModel", b =>
-                {
-                    b.HasOne("SpartanBoosting.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SpartanBoosting.Models.Pricing.PurchaseForm", b =>

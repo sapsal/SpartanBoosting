@@ -23,7 +23,7 @@ namespace SpartanBoosting.Controllers
 		public JsonResult ApplyDiscountCode(string DiscountCode, string Price)
 		{
 			decimal price = decimal.Parse(Price.Replace(" €", ""));
-			price = PricingExtensions.PriceDiscount(DiscountCode, price);
+			price = LolPricingExtensions.PriceDiscount(DiscountCode, price);
 			price = (System.Math.Ceiling(price * 100) / 100);
 			return Json(price);
 		}
@@ -139,7 +139,7 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurRegularPrice) * 100) / 100);
-				price = PricingExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = LolPricingExtensions.PriceDiscount(Model.DiscountCode, price);
 				return Json(price);
 			}
 
@@ -154,7 +154,7 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
-				price = PricingExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = LolPricingExtensions.PriceDiscount(Model.DiscountCode, price);
 				return Json(price);
 			}
 

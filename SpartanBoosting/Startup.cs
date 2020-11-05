@@ -76,9 +76,9 @@ namespace SpartanBoosting
 			services.AddTransient<SpartanBoosting.Services.IEmailSender, SpartanBoosting.Services.EmailSender>();
 
 			services.AddScoped<IPurchaseOrderRepository, SqlPurchaseOrderRepository>();
-			services.AddScoped<IUserRolesRepository, SqlUserRolesRepository>();
+			services.AddScoped<IUserRepository, SqlUserRepository>();
 			services.AddScoped<IChatModelRepository, SqlChatModelRepository>();
-
+			services.AddScoped<IAuditRepository, SqlAuditRepository>();
 			ObjectFactory.LoadPricing();
 		}
 
