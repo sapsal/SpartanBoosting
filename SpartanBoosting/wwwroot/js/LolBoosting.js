@@ -1,6 +1,17 @@
 ﻿$(document).ready(function () {
 	$('[data-toggle="tooltip"]').tooltip({ html: true });
 });
+var chkBoxBorderStyling = $('.checkbox-border-styling');
+
+$(document).on('change click', '.checkbox-border-styling', function () {
+	debugger;
+	if (this.checked) {
+		$(this).closest('li').addClass('wpforms-selected')
+	}
+	else {
+		$(this).closest('li').removeClass('wpforms-selected')
+	}
+});
 $('#type-of-service').on('change', function () {
 	if (this.value == "Duo") {
 		$('#specific-roles-content').show();
@@ -42,18 +53,19 @@ $('.gfield-quote').on('change', function () {
 	$('#current-rank-logo').attr('src', imageCurrentRank);
 	$('#desired-rank-logo').attr('src', imageDesiredRank);
 });
+
 $('.gfield-quote').on('keyup change paste', function () {
-	if (this.name == "DiscountCode") {
-		//ignore for apply button
-		return;
-	}
 	var myform = $(this.closest('form')).serialize();
 	$.ajax({
 		url: '/Pricing/' + $(this.closest('form')).data('pricing'),
 		data: myform,
 		type: 'POST',
-		success: function (dataofconfirm) {
-			$('.ginput_total_10').text(dataofconfirm + ' €')
+		success: function (result) {
+			if (result.success) {
+				$('#total_price').text(result.price.toFixed(2))
+				$('#subtotal_price').text(result.price.toFixed(2))
+			}
+			
 		}
 	});
 });
@@ -80,17 +92,20 @@ $('#submit-quote').on('click', function () {
 		}
 	});
 });
-$('.apply-discount-btn').on('click', function () {
+$('#apply-coupon').on('click', function () {
 	$.ajax({
 		url: '/Pricing/ApplyDiscountCode',
 		data: {
-			DiscountCode: $('#discount-text').val(),
-			Price: $('.ginput_total_10').text()
+			DiscountCode: $('#coupon-code').val(),
+			Price: $('#subtotal_price').text()
 		},
 		type: 'POST',
-		success: function (dataofconfirm) {
-			$('.ginput_total_10').text(dataofconfirm + ' €')
-			$('.apply-discount-btn').prop('disabled', true);
+		success: function (result) {
+			if (result.success) {
+				$('#total_price').text(result.price.toFixed(2))
+				$('#discount_amount').text(result.discount)
+				$('#apply-coupon').prop('disabled', true);
+			}
 		}
 	});
 });

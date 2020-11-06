@@ -1,4 +1,5 @@
-﻿using SpartanBoosting.Models.Pricing;
+﻿using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
+using SpartanBoosting.Models.Pricing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,13 +54,13 @@ namespace SpartanBoosting.Extensions
 
 		}
 
-		public static decimal PriceDiscount(string discountCode, decimal Pricing)
+		public static DiscountModel PriceDiscount(string discountCode, decimal Pricing)
 		{
 			var discountCodeValue = DiscountCodes.Where(x => x.Key == discountCode).SingleOrDefault();
 			if (!discountCodeValue.Equals(new KeyValuePair<string, int>()))
-				return Pricing = Pricing - (Pricing * discountCodeValue.Value / 100);
+				return new DiscountModel { Price = Pricing - (Pricing * discountCodeValue.Value / 100), DicountPercentage = discountCodeValue.Value };
 			else
-				return Pricing;
+				return new DiscountModel { Price = Pricing};
 		}
 
 		public static decimal PriceIncreaseLolNA(string Server, decimal Pricing, int percentage)
