@@ -21,7 +21,7 @@
 		opacity: 1;
 	}
 
-.checkbox-border-styling {
+.checkbox-border-styling input, .single-select-checkbox {
 	display: none;
 }
 
@@ -62,9 +62,11 @@
 		max-width: 100%;
 	}
 
-.wpforms-selected label {
+.wpforms-selected .roles-field-label-inline, .duo-status.wpforms-selected {
+	border: 1px solid #fd941f;
 	border-color: #fd941f !important;
 }
+
 
 .wpforms-selected .wpforms-image-choices-image:after {
 	opacity: 1 !important;

@@ -1,262 +1,185 @@
 ﻿@using SpartanBoosting.Models
 @using System.Threading.Tasks
 @model BoostingModel
-	<head>
+@{
+	ViewData["Title"] = "SoloBoosting";
+}
+<div class="container">
 
-		<meta charset="UTF-8">
-		<link rel="profile" href="https://gmpg.org/xfn/11">
-		<title>Spartan Boosting &#8211;Boosting and Coaching Service for League of Legends</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<style type="text/css"></style>
-		<link href="~/css/PostCopy.css" rel="stylesheet" />
-		<link href="~/css/site.css" rel="stylesheet" />
-		<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-	</head>
-
-<div data-elementor-type="wp-page" data-elementor-id="3628" class="elementor elementor-3628" data-elementor-settings="[]">
-	<div class="elementor-inner">
-		<div class="elementor-section-wrap">
-			<section class="elementor-element elementor-element-440f3f9 elementor-section-height-min-height elementor-section-items-bottom elementor-section-boxed elementor-section-height-default elementor-section elementor-top-section" data-id="440f3f9" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_bottom&quot;:&quot;mountains&quot;}">
-				<div class="elementor-shape elementor-shape-bottom" data-negative="false">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
-						<path class="elementor-shape-fill" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
-						<path class="elementor-shape-fill" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
-						<path class="elementor-shape-fill" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
-					</svg>
-				</div>
-				<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-row">
-						<div class="elementor-element elementor-element-841a541 elementor-column elementor-col-100 elementor-top-column" data-id="841a541" data-element_type="column">
-							<div class="elementor-column-wrap  elementor-element-populated">
-								<div class="elementor-widget-wrap">
-									<div class="elementor-element elementor-element-33c305c elementor-widget elementor-widget-heading animated fadeInDown" data-id="33c305c" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
-										<div class="elementor-widget-container">
-											<h1 class="elementor-heading-title elementor-size-default">Duo Boost</h1>
-										</div>
-									</div>
+	<div class="row vertical-gap">
+		<div class="col-lg-12">
+			<form asp-action="CreateSolo" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
+				  data-ajax-success="Bindgrid"
+				  data-ajax="true"
+				  data-ajax-method="POST" data-pricing="SoloPricing" class="wpforms-validate wpforms-form wpforms-ajax-form">
+				<div class="gfield-pricing-quote-personal-information"></div>
+				<div class="gfield-pricing-quote">
+					<div class="nk-gap-4"></div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="pb-4">
+								<div class="">
+									<label class="pb-3" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
+									<select name="YourCurrentLeague" asp-for="YourCurrentLeague" id="current-rank" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+										<option value="Iron">Iron</option>
+										<option value="Bronze">Bronze</option>
+										<option value="Silver">Silver</option>
+										<option value="Gold">Gold</option>
+										<option value="Platinum">Platinum</option>
+										<option value="Diamond">Diamond</option>
+									</select>
+								</div>
+							</div>
+							<div class="pb-4">
+								<div class="">
+									<select name="CurrentDivision" asp-for="CurrentDivision" id="current-div" class="form-control gfield-quote" aria-required="true" aria-invalid="false">
+										<option value="IV">Division IV</option>
+										<option value="III">Division III</option>
+										<option value="II">Division II</option>
+										<option value="I">Division I</option>
+									</select>
+								</div>
+							</div>
+							<div class="pb-4">
+								<div class="">
+									<select name="CurrentLP" id="input_10_279" asp-for="CurrentLP" class="form-control gfield-quote" aria-required="true" aria-invalid="false">
+										<option value="LP 0-20">LP 0-20</option>
+										<option value="LP 21-40">LP 21-40</option>
+										<option value="LP 41-60">LP 41-60</option>
+										<option value="LP 61-80">LP 61-80</option>
+										<option value="LP 81-100">LP 81-100</option>
+									</select>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</section>
-			<section class="elementor-element elementor-element-baabb8d elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="baabb8d" data-element_type="section">
-				<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-row">
-						<div class="elementor-element elementor-element-c6f3b69 elementor-column elementor-col-100 elementor-top-column" data-id="c6f3b69" data-element_type="column">
-							<div class="elementor-column-wrap  elementor-element-populated">
-								<div class="elementor-widget-wrap">
-									<div class="elementor-element elementor-element-d34f6c6 elementor-widget elementor-widget-text-editor" data-id="d34f6c6" data-element_type="widget" data-widget_type="text-editor.default">
-										<div class="elementor-widget-container">
-											<div class="elementor-text-editor elementor-clearfix pb-4">
-												<p style="color: #fff; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
-													70%+ winrate guaranteed. Your assigned booster will attempt to play and adapt to your time schedule. Please bear in mind however that Duo boosting takes on average twice as long as it relies on schedules matching! Once purchased, please join our discord to discuss your order.<br>You will play with one of our boosters in duo queue until we rank your account up to your desired division. Duo&nbsp;<span style="font-family: &quot;Open Sans&quot;, muli; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;">queue boosting involves playing alongside a booster (who will add you in-game) </span>
-													<span style="font-family: &quot;Open Sans&quot;, muli; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;">
-														until&nbsp; your desired division is reached.
-													</span>
-												</p>												</p>
-											</div>
-										</div>
-										<div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e809cc9d39b0d0001af5692" data-style-height="24px" data-style-width="100%" data-theme="dark">
-											<a href="https://uk.trustpilot.com/review/spartanboosting.com" target="_blank" rel="noopener">Trustpilot</a>
-										</div>
-									</div>
+						<div class="col-md-3"><img id="current-rank-logo" style="height: 12rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
+						<div class="col-md-3">
+							<div class="pb-4">
+								<div class="">
+									<label class="pb-3" for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
+									<select name="DesiredCurrentLeague" asp-for="DesiredCurrentLeague" id="desired-rank" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+										<option value="Iron">Iron</option>
+										<option value="Bronze">Bronze</option>
+										<option value="Silver">Silver</option>
+										<option value="Gold">Gold</option>
+										<option value="Platinum">Platinum</option>
+										<option value="Diamond">Diamond</option>
+										<option value="Master">Master</option>
+									</select>
+									<label id="master-rank-notification" style="display:none" for="desired-rank" class="gfield note gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible font-weight-normal">For divisions higher than Master please contact us!</label>
+								</div>
+							</div>
+							<div class="pb-4">
+								<div class="">
+									<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision" id="desired-div" class="form-control gfield-quote" aria-required="true" aria-invalid="false">
+										<option value="IV">Division IV</option>
+										<option value="III">Division III</option>
+										<option value="II">Division II</option>
+										<option value="I">Division I</option>
+									</select>
 								</div>
 							</div>
 						</div>
+						<div class="col-md-3"><img id="desired-rank-logo" style="height: 12rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
 					</div>
-				</div>
-			</section>
-			<section class="elementor-element elementor-element-5d457d5 elementor-section-height-min-height elementor-section-items-top elementor-section-content-top elementor-section-boxed elementor-section-height-default elementor-section elementor-top-section" data-id="5d457d5" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;none&quot;}">
-				<div class="elementor-background-overlay"></div>
-				<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-row">
-						<div class="elementor-element elementor-element-5442bf3 elementor-column elementor-col-100 elementor-top-column" data-id="5442bf3" data-element_type="column">
-							<div class="elementor-column-wrap  elementor-element-populated">
-								<div class="elementor-widget-wrap">
-									<div class="elementor-element elementor-element-f27e73c eael-gravity-form-button-custom elementor-widget elementor-widget-eael-gravity-form" data-id="f27e73c" data-element_type="widget" data-widget_type="eael-gravity-form.default">
-										<div class="elementor-widget-container">
-											<div class="eael-contact-form eael-gravity-form title-description-hide eael-contact-form-align-default">
-												<div class="eael-gravity-form-heading">
-													<h3 class="eael-contact-form-title eael-gravity-form-title">
-														Duo BOOST
-													</h3>
-													<p style="color: red; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
-														@TempData["StripePayment"]
-													</p>
-												</div>
 
-												<form asp-action="CreateDuo" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
-													  data-ajax-success="Bindgrid"
-													  data-ajax="true"
-													  data-ajax-method="POST" data-pricing="DuoPricing" >
-													<div class="gfield-pricing-quote-personal-information"></div>
-													<div class="gfield-pricing-quote">
-														<div class="row">
-															<div class="col-md-3">
-																<div class="pb-4">
-																	<div class="ginput_container ginput_container_select">
-																		<label class="pb-3 gfield_label" for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-																		<select name="YourCurrentLeague" asp-for="YourCurrentLeague" id="current-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
-																			<option value="Iron">Iron</option>
-																			<option value="Bronze">Bronze</option>
-																			<option value="Silver">Silver</option>
-																			<option value="Gold">Gold</option>
-																			<option value="Platinum">Platinum</option>
-																			<option value="Diamond">Diamond</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="pb-4">
-																	<div class="ginput_container ginput_container_select">
-																		<select name="CurrentDivision" asp-for="CurrentDivision" id="current-div" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																			<option value="IV">Division IV</option>
-																			<option value="III">Division III</option>
-																			<option value="II">Division II</option>
-																			<option value="I">Division I</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="pb-4">
-																	<div class="ginput_container ginput_container_select">
-																		<select name="CurrentLP" id="input_10_279" asp-for="CurrentLP" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																			<option value="LP 0-20">LP 0-20</option>
-																			<option value="LP 21-40">LP 21-40</option>
-																			<option value="LP 41-60">LP 41-60</option>
-																			<option value="LP 61-80">LP 61-80</option>
-																			<option value="LP 81-100">LP 81-100</option>
-																		</select>
-																	</div>
-																</div>
-															</div>
-															<div class="col-md-3"><img id="current-rank-logo" style="padding-left: 6rem;height: 18rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
-															<div class="col-md-3">
-																<div class="pb-4">
-																	<div class="ginput_container ginput_container_select">
-																		<label class="pb-3 gfield_label" for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
-																		<select name="DesiredCurrentLeague" asp-for="DesiredCurrentLeague" id="desired-rank" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
-																			<option value="Iron">Iron</option>
-																			<option value="Bronze">Bronze</option>
-																			<option value="Silver">Silver</option>
-																			<option value="Gold">Gold</option>
-																			<option value="Platinum">Platinum</option>
-																			<option value="Diamond">Diamond</option>
-																			<option value="Master">Master</option>
-																		</select>
-																		<label id="master-rank-notification" style="display:none" for="desired-rank" class="gfield note gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible font-weight-normal">For divisions higher than Master please contact us!</label>
-																	</div>
-																</div>
-																<div class="pb-4">
-																	<div class="ginput_container ginput_container_select">
-																		<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision" id="desired-div" class="medium gfield_select gfield-quote" aria-required="true" aria-invalid="false">
-																			<option value="IV">Division IV</option>
-																			<option value="III">Division III</option>
-																			<option value="II">Division II</option>
-																			<option value="I">Division I</option>
-																		</select>
-																	</div>
-																</div>
-															</div>
-															<div class="col-md-3"><img id="desired-rank-logo" style="padding-left: 6rem;height: 18rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
-														</div>
-														<div class="row pb-4">
-															<div class="col-md-6 pr-3">
-																<div class="ginput_container ginput_container_select">
-																	<label class="pb-3 gfield_label" for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-																	<select asp-for="Server" name="Server" id="your-server" class="large gfield_select gfield-quote" aria-required="true" aria-invalid="false" required="">
-																		<option value="Europe West">Europe West</option>
-																		<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
-																		<option value="North America">North America</option>
-																		<option value="Oceania">Oceania</option>
-																		<option value="Russia">Russia</option>
-																		<option value="Turkey">Turkey</option>
-																		<option value="Latin America North">Latin America North</option>
-																		<option value="Latin America South">Latin America South</option>
-																		<option value="Brazil">Brazil</option>
-																		<option value="Japan">Japan</option>
-																		<option value="Korea">Korea</option>
-																	</select>
-																</div>
-															</div>
-															<div class="col-md-6">
-																<div class="ginput_container ginput_container_select">
-																	<label class="pb-3 gfield_label" for="queue-type">
-																		TYPE OF QUEUE:<span class="gfield_required">*</span>
-																	</label>
-																	<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="large gfield_select" aria-required="true" aria-invalid="false" required="">
-																		<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
-																		<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-
-														<div class="row pb-4">
-															<label class="col-12 gfield_label">Type of Duo:<span class="gfield_required">*</span></label>
-															<div class="ginput_container row pt-4 pb-4 one-checkbox-minimum">
-																<div class="col-1"></div>
-																<div class="col-4 regular-duo" data-toggle="tooltip" data-placement="top" title="Our standard boosting package, regular order pick-up time with limited coaching provided by your booster">
-																	<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoRegular" name="TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2" required="">
-																	<label for="choice_10_93_2" id="label_12_287_0">
-																		<span data-bg="url(../img/Wordpress Icons/duo-regular.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-regular.png');" data-was-processed="true">
-																			<img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" src="../img/Wordpress Icons/duo-regular.png"><noscript><img src="../img/Wordpress Icons/duo-regular.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" /></noscript>
-																		</span><label class="image-choices-choice-text">Regular</label>
-																	</label>
-																</div>
-																@*<span rel="tooltip"
-																	  data-toggle="tooltip"
-																	  data-html="true"
-																	  data-title='<div class="regular-duo-popover"><p>What is inside?</p><ul><li>Private discord</li><li>Voice communication</li><li>Experienced booster</li><li class="not-included">Tips</li><li class="not-included">Elements of Coaching</li></ul></div>'>
-																	hover over me to see HTML
-																</span>*@
-																<div class="col-4" data-toggle="tooltip" data-placement="top" title="Priority boosting with a quicker allocation time of your order to a booster. Your booster will provide commentary in-game whilst playing with you on aspects such as the macro game and offer ad-hoc tips about your gameplay.">
-																	<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoPremium" name="TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1" required="">
-																	<label for="choice_10_93_1" id="label_12_287_1">
-																		<span data-bg="url(../img/Wordpress Icons/duo-premium.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-premium.png');" data-was-processed="true"><img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" src="../img/Wordpress Icons/duo-premium.png"><noscript><img src="../img/Wordpress Icons/duo-premium.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" /></noscript></span>
-																		<label class="image-choices-choice-text">Premium</label>
-																	</label>
-																</div>
-															</div>
-														</div>
-
-														<div class="row pl-4 pr-4  pb-4">
-															<label class=" gfield_label" for="discount-text">DISCOUNT COUPON:</label>
-															<input class=" large " asp-for="DiscountCode" name="DiscountCode" id="discount-text" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
-														</div>
-
-														<div class="row pb-4 d-flex justify-content-center">
-															<button type="button" class="btn btn-primary apply-discount-btn">APPLY</button>
-														</div>
-
-														<div class="row pb-4 d-flex justify-content-center">
-															<label class="gfield_label total-label" for="input_10_95">TOTAL</label>
-														</div>
-														<div class="row pb-4 d-flex justify-content-center">
-															<div class="ginput_container ginput_container_total ">
-																<span class="ginput_total ginput_total_10" aria-live="polite">0,00 €</span>
-																<input type="hidden" name="input_95" id="input_10_95" class="gform_hidden">
-															</div>
-														</div>
-
-														<div class="row pt-4 d-flex justify-content-center">
-															<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
-														</div>
-													</div>
-												</form>
-
-												<script type="text/javascript" data-eqcss-read="true">jQuery(document).ready(function () { jQuery(document).trigger('gform_post_render', [10, 1]) });</script>
-											</div>
-										</div>
-									</div>
-								</div>
+					<div class="row pb-4">
+						<div class="col-md-6 pr-3">
+							<div class=" ">
+								<label class="pb-3 " for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
+								<select name="Server" asp-for="Server" id="your-server" class="form-control  gfield-quote" aria-required="true" aria-invalid="false" required="">
+									<option value="Europe West">Europe West</option>
+									<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
+									<option value="North America">North America</option>
+									<option value="Oceania">Oceania</option>
+									<option value="Russia">Russia</option>
+									<option value="Turkey">Turkey</option>
+									<option value="Latin America North">Latin America North</option>
+									<option value="Latin America South">Latin America South</option>
+									<option value="Brazil">Brazil</option>
+									<option value="Japan">Japan</option>
+									<option value="Korea">Korea</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class=" ">
+								<label class="pb-3 gfield_label" for="queue-type">
+									TYPE OF QUEUE:<span class="gfield_required">*</span>
+								</label>
+								<select name="TypeOfQueue" asp-for="TypeOfQueue" id="queue-type" class="form-control  gfield-quote" aria-required="true" aria-invalid="false" required="">
+									<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
+									<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
+								</select>
 							</div>
 						</div>
 					</div>
+
+					<div class="row pb-4">
+						<label class="col-12 gfield_label">Type of Duo:<span class="gfield_required">*</span></label>
+						<div class="ginput_container row pt-4 pb-4 one-checkbox-minimum">
+							<div class="col-1"></div>
+							<div class="col-4 regular-duo" data-toggle="tooltip" data-placement="top" title="Our standard boosting package, regular order pick-up time with limited coaching provided by your booster">
+								<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoRegular" name="TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2" required="">
+								<label for="choice_10_93_2" id="label_12_287_0" class="duo-status">
+									<span data-bg="url(../img/Wordpress Icons/duo-regular.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-regular.png');" data-was-processed="true">
+										<img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" src="../img/Wordpress Icons/duo-regular.png"><noscript><img src="../img/Wordpress Icons/duo-regular.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" /></noscript>
+									</span><label class="w-100 d-flex justify-content-center">Regular</label>
+								</label>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-4" data-toggle="tooltip" data-placement="top" title="Priority boosting with a quicker allocation time of your order to a booster. Your booster will provide commentary in-game whilst playing with you on aspects such as the macro game and offer ad-hoc tips about your gameplay.">
+								<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoPremium" name="TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1" required="">
+								<label for="choice_10_93_1" id="label_12_287_1" class="duo-status">
+									<span data-bg="url(../img/Wordpress Icons/duo-premium.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-premium.png');" data-was-processed="true"><img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" src="../img/Wordpress Icons/duo-premium.png"><noscript><img src="../img/Wordpress Icons/duo-premium.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" /></noscript></span>
+									<label class="w-100 d-flex justify-content-center">Premium</label>
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row pb-4">
+						<label class="" for="discount-text">DISCOUNT COUPON:</label>
+						<input class=" form-control " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="">
+					</div>
+
+					<div class="row pb-4 d-flex justify-content-center">
+						<button type="button" class="btn btn-primary apply-discount-btn">APPLY</button>
+					</div>
+
+					<div class="row pb-4 d-flex justify-content-center">
+						<label class="gfield_label total-label" for="input_10_95">TOTAL</label>
+					</div>
+					<div class="row pb-4 d-flex justify-content-center">
+						<div class="">
+							<span class="ginput_total ginput_total_10" aria-live="polite">0,00 €</span>
+							<input type="hidden" name="input_95" id="input_10_95" class="gform_hidden">
+						</div>
+					</div>
+
+					<div class="row pt-4 d-flex justify-content-center">
+						<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
+					</div>
 				</div>
-			</section>
+			</form>
 		</div>
 	</div>
+	<div class="nk-gap-4"></div>
+	<div class="nk-gap-3"></div>
 </div>
+<script type="text/javascript">
+	var chkBoxBorderStyling = $('.checkbox-border-styling');
 
+	$(document).on('change', '.checkbox-border-styling', function () {
+		debugger;
+		if (this.checked) {
+			$(this).closest('li').addClass('wpforms-selected')
+		}
+		else {
+			$(this).closest('li').removeClass('wpforms-selected')
+		}
+	});
+
+</script>
 <script src="~/js/LolBoosting.js"></script>
