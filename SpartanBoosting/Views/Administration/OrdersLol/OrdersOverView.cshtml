@@ -122,8 +122,9 @@
 													<td>
 														@if (item.BoosterCompletionConfirmed)
 														{
-															<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
+															<button class="btn btn-warning btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
 														}
+														<button class="btn btn-danger btn-delete-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Delete Order</button>
 													</td>
 
 												</tr>
@@ -163,6 +164,22 @@
 			}
 		});
 	});
+	$(document).on("click", '.btn-delete-job', function () {
+		var data = $(this).data('booster-information')
+		var element = $(this);
+		$.ajax({
+			url: '/Administration/DeleteBoosterJobSuperUser',
+			data: { id: data },
+			context: this,
+			type: 'POST',
+			success: function (dataofconfirm) {
+				if (dataofconfirm) {
+					(this).closest('tr').remove()
+				}
+			}
+		});
+	});
+	
 	$(document).ready(function () {
 		RenderDT($('.lol-datatable'))
 		function RenderDT(element) {

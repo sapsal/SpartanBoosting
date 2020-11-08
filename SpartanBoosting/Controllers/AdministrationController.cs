@@ -72,5 +72,13 @@ namespace SpartanBoosting.Controllers
 			PurchaseOrderRepository.Update(result);
 			return Json(true);
 		}
+
+		[HttpPost]
+		public IActionResult DeleteBoosterJobSuperUser(int Id)
+		{
+			var result = PurchaseOrderRepository.GetPurchaseFormWithBooster(Id);
+			PurchaseOrderRepository.Delete(result);
+			return Json(true);
+		}
 	}
 }

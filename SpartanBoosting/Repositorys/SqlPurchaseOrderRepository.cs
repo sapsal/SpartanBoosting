@@ -27,6 +27,7 @@ namespace SpartanBoosting.Models.Repositorys
 		public void Delete(PurchaseForm purchaseForm)
 		{
 			context.PurchaseForm.Remove(purchaseForm);
+			context.SaveChanges();
 		}
 
 		public IEnumerable<PurchaseForm> GetAllPurchaseOrder()
