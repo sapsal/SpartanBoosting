@@ -2,7 +2,7 @@
 @using System.Threading.Tasks
 @model BoostingModel
 @{
-	ViewData["Title"] = "SoloBoosting";
+	ViewData["Title"] = "Solo Boosting";
 }
 <div class="container">
 
@@ -186,7 +186,7 @@
 					<div class=" container boost-info mb-5">
 						<div class="">
 							<div class="row ">
-								<input type="text" class=" col-7 form-control" id="coupon-code" name="discount-code" placeholder="Promo Code"><div class="col-1 ">
+								<input type="text" class=" col-7 form-control" asp-for="DiscountCode" name="Discount" id="coupon-code" placeholder="Promo Code"><div class="col-1 ">
 								</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
 							</div>
 							<div class="col-sm-12 text-danger">

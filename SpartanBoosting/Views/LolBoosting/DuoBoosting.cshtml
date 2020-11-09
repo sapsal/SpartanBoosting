@@ -2,16 +2,16 @@
 @using System.Threading.Tasks
 @model BoostingModel
 @{
-	ViewData["Title"] = "SoloBoosting";
+	ViewData["Title"] = "Duo Boosting";
 }
 <div class="container">
 
 	<div class="row vertical-gap">
 		<div class="col-lg-12">
-			<form asp-action="CreateSolo" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
+			<form asp-action="CreateDuo" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
 				  data-ajax-success="Bindgrid"
 				  data-ajax="true"
-				  data-ajax-method="POST" data-pricing="SoloPricing" class="wpforms-validate wpforms-form wpforms-ajax-form">
+				  data-ajax-method="POST" data-pricing="DuoPricing">
 				<div class="gfield-pricing-quote-personal-information"></div>
 				<div class="gfield-pricing-quote">
 					<div class="nk-gap-4"></div>
@@ -82,7 +82,7 @@
 						</div>
 						<div class="col-md-3"><img id="desired-rank-logo" style="height: 12rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
 					</div>
-
+					<div class="nk-gap-2"></div>
 					<div class="row pb-4">
 						<div class="col-md-6 pr-3">
 							<div class=" ">
@@ -114,7 +114,7 @@
 							</div>
 						</div>
 					</div>
-
+					<div class="nk-gap-2"></div>
 					<div class="row pb-4">
 						<label class="col-12 gfield_label">Type of Duo:<span class="gfield_required">*</span></label>
 						<div class="ginput_container row pt-4 pb-4 one-checkbox-minimum">
@@ -141,7 +141,7 @@
 					<div class=" container boost-info mb-5">
 						<div class="">
 							<div class="row ">
-								<input type="text" class=" col-7 form-control" id="coupon-code" name="discount-code" placeholder="Promo Code"><div class="col-1 ">
+								<input type="text" class=" col-7 form-control" asp-for="DiscountCode" name="Discount" id="coupon-code"  placeholder="Promo Code"><div class="col-1 ">
 								</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
 							</div>
 							<div class="col-sm-12 text-danger">
@@ -150,10 +150,6 @@
 						</div>
 
 						<div class="nk-gap-2"></div>
-
-
-
-
 
 						<div class="row">
 							<div class="col-sm-6 my-auto" style="line-height: 2;">
