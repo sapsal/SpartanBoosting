@@ -86,7 +86,7 @@
 														Region = Model.PurchaseForm.BoostingModel.Server;
 														Queue = Model.PurchaseForm.BoostingModel.TypeOfQueue;
 														if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting)
-															DuoType = Model.PurchaseForm.BoostingModel.TypeOfDuoPremium != null ? Model.PurchaseForm.BoostingModel.TypeOfDuoPremium : "Regular";
+															DuoType = Model.PurchaseForm.BoostingModel.TypeOfDuoPremium != "false" ? Model.PurchaseForm.BoostingModel.TypeOfDuoPremium : "Regular";
 														Champions = Model.PurchaseForm.BoostingModel.SpecificChampions;
 														SpecificRoles = Model.PurchaseForm.BoostingModel.SpecificRolesTop == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesTop + "," + Model.PurchaseForm.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesSupport + ","
 														+ Model.PurchaseForm.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesMiddle + "," + Model.PurchaseForm.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesJungle + ","
@@ -262,10 +262,13 @@
 													<span class="card-title pr-title font-weight-bold-900">@Queue</span>
 												</p>
 											}
-											<p class="card-title pr-title font-weight-bolder">
-												Duo Type :
-												<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
-											</p>
+											@if (!string.IsNullOrEmpty(DuoType))
+											{
+												<p class="card-title pr-title font-weight-bolder">
+													Duo Type :
+													<span class="card-title pr-title font-weight-bold-900">@DuoType</span>
+												</p>
+											}
 											@if (!string.IsNullOrEmpty(Champions))
 											{
 												<p class="card-title pr-title font-weight-bolder">
