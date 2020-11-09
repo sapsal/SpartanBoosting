@@ -137,30 +137,55 @@
 							</div>
 						</div>
 					</div>
-
-
-					<div class="row pb-4">
-						<label class="" for="discount-text">DISCOUNT COUPON:</label>
-						<input class=" form-control " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="">
-					</div>
-
-					<div class="row pb-4 d-flex justify-content-center">
-						<button type="button" class="btn btn-primary apply-discount-btn">APPLY</button>
-					</div>
-
-					<div class="row pb-4 d-flex justify-content-center">
-						<label class="gfield_label total-label" for="input_10_95">TOTAL</label>
-					</div>
-					<div class="row pb-4 d-flex justify-content-center">
+					<div class="nk-gap-2"></div>
+					<div class=" container boost-info mb-5">
 						<div class="">
-							<span class="ginput_total ginput_total_10" aria-live="polite">0,00 €</span>
-							<input type="hidden" name="input_95" id="input_10_95" class="gform_hidden">
+							<div class="row ">
+								<input type="text" class=" col-7 form-control" id="coupon-code" name="discount-code" placeholder="Promo Code"><div class="col-1 ">
+								</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
+							</div>
+							<div class="col-sm-12 text-danger">
+								<span id="coupon-alert"></span>
+							</div>
 						</div>
+
+						<div class="nk-gap-2"></div>
+
+
+
+
+
+						<div class="row">
+							<div class="col-sm-6 my-auto" style="line-height: 2;">
+								<b class="bold-tgray">Subtotal</b><br>
+							</div>
+							<div class="col-sm-6 custom-right" style="text-align: right!important;line-height: 2;">
+								<b class="price"><b id="subtotal_price" style="font-weight: 500!important;">12.00</b>€</b><br>
+							</div>
+						</div>
+						<div class="nk-gap-2"></div>
+						<div class="row">
+							<div class="col-sm-6 my-auto" style="line-height: 2;">
+								<b class="bold-tgray">Discount</b><br>
+							</div>
+							<div class="col-sm-6 custom-right" style="line-height: 2;text-align: right!important;">
+								<b class="price">-<b id="discount_amount" style="font-weight: 500!important;">0</b>%</b><br>
+							</div>
+						</div>
+
+						<div class="nk-gap-2"></div>
+
+						<div class="row">
+							<div class="col-sm-6 my-auto pb-4">
+								<b class="total">Total</b>
+							</div>
+							<div class="col-sm-6 custom-right" style="text-align: right!important;">
+								<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price">12.00</span>€</b>
+							</div>
+						</div> <br><br>
+
 					</div>
 
-					<div class="row pt-4 d-flex justify-content-center">
-						<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
-					</div>
 				</div>
 			</form>
 		</div>

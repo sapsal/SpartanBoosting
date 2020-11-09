@@ -3,15 +3,15 @@
 });
 var chkBoxBorderStyling = $('.checkbox-border-styling');
 
-$(document).on('change click', '.checkbox-border-styling', function () {
-	debugger;
-	if (this.checked) {
-		$(this).closest('li').addClass('wpforms-selected')
-	}
-	else {
-		$(this).closest('li').removeClass('wpforms-selected')
-	}
-});
+//$(document).on('change click', '.checkbox-border-styling', function () {
+//	debugger;
+//	if (this.checked) {
+//		$(this).closest('li').addClass('wpforms-selected')
+//	}
+//	else {
+//		$(this).closest('li').removeClass('wpforms-selected')
+//	}
+//});
 $('#type-of-service').on('change', function () {
 	if (this.value == "Duo") {
 		$('#specific-roles-content').show();

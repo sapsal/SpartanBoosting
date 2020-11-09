@@ -263,4 +263,20 @@
 	<div class="nk-gap-2"></div>
 	<div class="nk-gap-3"></div>
 </div>
+<script type="text/javascript">
+	var chkBoxBorderStyling = $('.checkbox-border-styling');
+
+	$(document).on('click', '.checkbox-border-styling', function () {
+		debugger;
+		if (!$(this).find('input').prop("checked")) {
+			$(this).addClass('wpforms-selected')
+			$(this).find('input').prop('checked', true);
+		}
+		else {
+			$(this).removeClass('wpforms-selected')
+			$(this).find('input').prop('checked', false);
+		}
+	});
+
+</script>
 <script src="~/js/LolBoosting.js"></script>
