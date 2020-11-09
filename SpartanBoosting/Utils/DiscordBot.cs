@@ -45,43 +45,44 @@ namespace SpartanBoosting.Utils
 			{
 				case PurchaseTypeEnum.PurchaseType.SoloBoosting:
 					return DiscordServerTagMessage(Model.BoostingModel.Server) + "**New Division Solo**\n" +
+							$"**Job Number : {Model.Id}**\n" +
 							$"**Job : { Model.BoostingModel.YourCurrentLeague}{ Model.BoostingModel.CurrentDivision} { Model.BoostingModel.CurrentLP} to { Model.BoostingModel.DesiredCurrentLeague} { Model.BoostingModel.DesiredCurrentDivision}**\n" +
-							$"**Queue : {Model.BoostingModel.TypeOfQueue}**\n" +
 							$"**Server : {Model.BoostingModel.Server}**\n" +
 							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 				case PurchaseTypeEnum.PurchaseType.DuoBoosting:
 					return DiscordServerTagMessage(Model.BoostingModel.Server) + "**New Division Duo**\n" +
+							$"**Job Number : {Model.Id}**\n" +
 							$"**Job : { Model.BoostingModel.YourCurrentLeague}{ Model.BoostingModel.CurrentDivision} { Model.BoostingModel.CurrentLP} to { Model.BoostingModel.DesiredCurrentLeague} { Model.BoostingModel.DesiredCurrentDivision}**\n" +
-							$"**Queue : {Model.BoostingModel.TypeOfQueue}**\n" +
 							$"**Server : {Model.BoostingModel.Server}**\n" +
 							$"**Type : {(Model.BoostingModel.TypeOfDuoRegular != "false" ? Model.BoostingModel.TypeOfDuoRegular : Model.BoostingModel.TypeOfDuoPremium)}**\n" +
 							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 				case PurchaseTypeEnum.PurchaseType.WinBoosting:
 					if (Model.WinBoostModel.TypeOfService == "Duo")
 						return DiscordServerTagMessage(Model.WinBoostModel.Server) + "**Win Boosting**\n" +
+							$"**Job Number : {Model.Id}**\n" +
 							$"**Job : {Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} with {Model.WinBoostModel.NumOfGames} games**\n" +
-							$"**Queue : {Model.WinBoostModel.TypeOfQueue}**\n" +
 							$"**Server : {Model.WinBoostModel.Server}**\n" +
 							$"**Type : Duo {(Model.WinBoostModel.TypeOfDuoRegular != "false" ? Model.WinBoostModel.TypeOfDuoRegular : Model.WinBoostModel.TypeOfDuoPremium)}**\n" +
 							$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 					else
-						return DiscordServerTagMessage(Model.WinBoostModel.Server) + $"**Job : {Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} with {Model.WinBoostModel.NumOfGames} games**\n" +
-								$"**Queue : {Model.WinBoostModel.TypeOfQueue}**\n" +
+						return DiscordServerTagMessage(Model.WinBoostModel.Server) + "**Win Boosting**\n" +
+								$"**Job Number : {Model.Id}**\n" +
+								$"**Job : {Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} with {Model.WinBoostModel.NumOfGames} games**\n" +
 								$"**Server : {Model.WinBoostModel.Server}**\n" +
 								$"**Type : Solo**\n" +
 								$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 				case PurchaseTypeEnum.PurchaseType.PlacementMatches:
 					if (Model.PlacementMatchesModel.TypeOfService == "Duo")
 						return DiscordServerTagMessage(Model.PlacementMatchesModel.Server) + "**Placement Matches**\n" +
+								$"**Job Number : {Model.Id}**\n" +
 								$"**Job : {Model.PlacementMatchesModel.LastSeasonStanding} with {Model.PlacementMatchesModel.NumOfGames} games**\n" +
-								$"**Queue : {Model.PlacementMatchesModel.TypeOfQueue}**\n" +
 								$"**Server : {Model.PlacementMatchesModel.Server}**\n" +
 								$"**Type : Duo {(Model.PlacementMatchesModel.TypeOfDuoRegular != "false" ? Model.PlacementMatchesModel.TypeOfDuoRegular : Model.PlacementMatchesModel.TypeOfDuoPremium)}**\n" +
 								$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 					else
 						return DiscordServerTagMessage(Model.PlacementMatchesModel.Server) + "**Placement Matches**\n" +
+								$"**Job Number : {Model.Id}**\n" +
 								$"**Job : {Model.PlacementMatchesModel.LastSeasonStanding} with {Model.PlacementMatchesModel.NumOfGames} games**\n" +
-								$"**Queue : {Model.PlacementMatchesModel.TypeOfQueue}**\n" +
 								$"**Server : {Model.PlacementMatchesModel.Server}**\n" +
 								$"**Type : Solo**\n" +
 								$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";

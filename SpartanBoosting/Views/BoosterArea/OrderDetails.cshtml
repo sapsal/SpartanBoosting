@@ -85,7 +85,8 @@
 														DivisionBoost = $"{Model.PurchaseForm.BoostingModel.YourCurrentLeague} {Model.PurchaseForm.BoostingModel.CurrentDivision} ({Model.PurchaseForm.BoostingModel.CurrentLP}) <span> <i class='fas fa-angle-right'></i> </span> {Model.PurchaseForm.BoostingModel.DesiredCurrentLeague} {Model.PurchaseForm.BoostingModel.DesiredCurrentDivision}";
 														Region = Model.PurchaseForm.BoostingModel.Server;
 														Queue = Model.PurchaseForm.BoostingModel.TypeOfQueue;
-														DuoType = Model.PurchaseForm.BoostingModel.TypeOfDuoPremium != null ? Model.PurchaseForm.BoostingModel.TypeOfDuoPremium : "Regular";
+														if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting)
+															DuoType = Model.PurchaseForm.BoostingModel.TypeOfDuoPremium != null ? Model.PurchaseForm.BoostingModel.TypeOfDuoPremium : "Regular";
 														Champions = Model.PurchaseForm.BoostingModel.SpecificChampions;
 														SpecificRoles = Model.PurchaseForm.BoostingModel.SpecificRolesTop == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesTop + "," + Model.PurchaseForm.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesSupport + ","
 														+ Model.PurchaseForm.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesMiddle + "," + Model.PurchaseForm.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesJungle + ","
@@ -94,10 +95,6 @@
 															<span class="card-title pr-title font-weight-bolder">Start</span><br>
 															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
 														</div>
-														@*<div class="rank current">
-																<span class="card-title pr-title font-weight-bolder">Current</span><br>
-																<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Gold 4 (  				0 LP 			 ) " data-original-title="" title="">
-															</div>*@
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Desired</span><br>
 															<img src="~/img/Lol Ranks/@(DesiredDivisionImage).png" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@DesiredDivisionImage" data-original-title="" title="">
@@ -121,7 +118,6 @@
 														break;
 													case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
 														StartDivisionImage = $"{Model.PurchaseForm.PlacementMatchesModel.LastSeasonStanding}";
-														//DesiredDivisionImage = $"{Model.PurchaseForm.WinBoostModel.PurchaseForm.DesiredCurrentLeague}{Model.PurchaseForm.WinBoostModel.PurchaseForm.DesiredCurrentDivision}";//maybe render html in switch instead of variables
 														DivisionBoost = $"{Model.PurchaseForm.PlacementMatchesModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {Model.PurchaseForm.PlacementMatchesModel.NumOfGames}";
 														Region = Model.PurchaseForm.PlacementMatchesModel.Server;
 														Queue = Model.PurchaseForm.PlacementMatchesModel.TypeOfQueue;
