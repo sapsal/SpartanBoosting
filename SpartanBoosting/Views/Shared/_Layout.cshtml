@@ -50,6 +50,7 @@
 	<!-- jQuery -->
 	<script src="~/Client/assets/vendor/jquery/dist/jquery.min.js"></script>
 	<script src="~/js/site.js"></script>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <!--
 	Additional Classes:
@@ -94,7 +95,6 @@
 			data-audio-loop - loop audio (true/false)
 			data-audio-pause-on-page-leave - pause video when the page not in focus (true/false)
 	-->
-	<div class="nk-page-background-audio d-none" data-audio="~/Client/assets/mp3/purpleplanetmusic-desolation.mp3" data-audio-volume="100" data-audio-autoplay="true" data-audio-loop="true" data-audio-pause-on-page-leave="true"></div>
 	<!-- END: Page Background -->
 	<!-- START: Page Border -->
 	<div class="nk-page-border">
@@ -148,326 +148,26 @@
 					</a>
 					<ul class="nk-nav nk-nav-right d-none d-lg-block" data-nav-mobile="#nk-nav-mobile">
 						<li class="active  nk-drop-item">
-							<a href="index.html"> Home</a>
+							<a href="../lolboosting/soloboosting"> Home</a>
 						</li>
 						<li class="  nk-drop-item">
-							<a href="page-contact.html"> Features</a>
+							<a href="../lolboosting/soloboosting"> Choose Your Boost</a>
 							<ul class="dropdown">
-								<li class="  nk-drop-item">
-									<a href="page-contact.html"> Pages</a>
-									<ul class="dropdown">
-										<li class="  ">
-											<a href="forum.html"> Forum</a>
-										</li>
-										<li class="  ">
-											<a href="page-contact.html"> Contact</a>
-										</li>
-										<li class="  ">
-											<a href="page-coming-soon.html"> Coming Soon</a>
-										</li>
-										<li class="  ">
-											<a href="page-404.html"> 404</a>
-										</li>
-										<li class="  ">
-											<a href="page-age-check.html"> Age Check</a>
-										</li>
-									</ul>
-								</li>
-								<li class="  nk-drop-item">
-									<a href="layout-nav-default.html"> Navigations</a>
-									<ul class="dropdown">
-										<li class="  ">
-											<a href="layout-nav-default.html"> Default</a>
-										</li>
-										<li class="  ">
-											<a href="layout-nav-default-transparent.html"> Default Transparent</a>
-										</li>
-										<li class="  ">
-											<a href="layout-nav-main-top.html"> Main Top Only</a>
-										</li>
-										<li class="  ">
-											<a href="layout-nav-main-side.html"> Main Side</a>
-										</li>
-										<li class="  ">
-											<a href="layout-nav-main-top-fullscreen.html"> Main Top + Fullscreen</a>
-										</li>
-										<li class="  ">
-											<a href="layout-nav-fullscreen-side.html"> Fullscreen + Side</a>
-										</li>
-									</ul>
-								</li>
-								<li class="  nk-drop-item">
-									<a href="layout-page-header.html"> Headers</a>
-									<ul class="dropdown">
-										<li class="  ">
-											<a href="layout-header.html"> Size Default</a>
-										</li>
-										<li class="  ">
-											<a href="layout-header-sm.html"> Size Small</a>
-										</li>
-										<li class="  ">
-											<a href="layout-header-md.html"> Size Mid</a>
-										</li>
-										<li class="  ">
-											<a href="layout-header-lg.html"> Size Large</a>
-										</li>
-										<li class="  ">
-											<a href="layout-header-full.html"> Size Full</a>
-										</li>
-										<li class="  ">
-											<a href="layout-header-video.html"> Video</a>
-										</li>
-										<li class="  ">
-											<a href="layout-header-video-plain.html"> Video Plain</a>
-										</li>
-										<li class="  ">
-											<a href="layout-header-no.html"> NO Header</a>
-										</li>
-									</ul>
+								<li class="  ">
+									<a href="/lolboosting/soloboosting"> Solo Boost</a>
 								</li>
 								<li class="  ">
-									<a href="widgets.html"> Widgets</a>
+									<a href="/lolboosting/duoboosting"> Duo Boost</a>
 								</li>
 								<li class="  ">
-									<a href="https://nkdev.info/docs/godlike-html/"> Documentation</a>
+									<a href="/lolboosting/winboosting"> Win Boost</a>
+								</li>
+								<li class="  ">
+									<a href="/lolboosting/PlacementMatches"> Placement Matches</a>
 								</li>
 							</ul>
 						</li>
-						<li class=" nk-mega-item nk-drop-item">
-							<a href="#"> Elements</a>
-							<div class="dropdown">
-								<div class="bg-image">
-									<img src="~/Client/assets/images/bg-menu.jpg" alt="" class="jarallax-img">
-								</div>
-								<ul>
-									<li>
-										<ul>
-											<li class="  ">
-												<a href="element-carousels.html"> Carousels</a>
-											</li>
-											<li class="  ">
-												<a href="element-image-boxes.html"> Image Boxes</a>
-											</li>
-											<li class="  ">
-												<a href="element-icon-boxes.html"> Icon Boxes</a>
-											</li>
-											<li class="  ">
-												<a href="element-counters.html"> Counters</a>
-											</li>
-											<li class="  ">
-												<a href="element-blockquotes.html"> Block Quotes</a>
-											</li>
-											<li class="  ">
-												<a href="element-testimonials.html"> Testimonials</a>
-											</li>
-											<li class="  ">
-												<a href="element-team-members.html"> Team Members</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<ul>
-											<li class="  ">
-												<a href="element-video-blocks.html"> Video Blocks</a>
-											</li>
-											<li class="  ">
-												<a href="element-gif.html"> Gif Animations</a>
-											</li>
-											<li class="  ">
-												<a href="element-forms.html"> AJAX Forms</a>
-											</li>
-											<li class="  ">
-												<a href="element-countdown.html"> Countdown</a>
-											</li>
-											<li class="  ">
-												<a href="element-text-typed.html"> Typed Text</a>
-											</li>
-											<li class="  ">
-												<a href="element-tabs.html"> Tabs</a>
-											</li>
-											<li class="  ">
-												<a href="element-accordions.html"> Accordions</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<ul>
-											<li class="  ">
-												<a href="element-info-boxes.html"> Info Boxes / Alerts</a>
-											</li>
-											<li class="  ">
-												<a href="element-call-to-action.html"> Call to Action Blocks</a>
-											</li>
-											<li class="  ">
-												<a href="element-progress.html"> Progress Bars</a>
-											</li>
-											<li class="  ">
-												<a href="element-pagination.html"> Pagination</a>
-											</li>
-											<li class="  ">
-												<a href="element-pricing-tables.html"> Pricing Tables</a>
-											</li>
-											<li class="  ">
-												<a href="element-modals.html"> Modals</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<ul>
-											<li class="  ">
-												<a href="element-typography.html"> Typography</a>
-											</li>
-											<li class="  ">
-												<a href="element-titles.html"> Titles [headings]</a>
-											</li>
-											<li class="  ">
-												<a href="element-dropcaps.html"> Dropcaps</a>
-											</li>
-											<li class="  ">
-												<a href="element-colors.html"> Colors</a>
-											</li>
-											<li class="  ">
-												<a href="element-buttons.html"> Buttons</a>
-											</li>
-											<li class="  ">
-												<a href="element-breadcrumbs.html"> Breadcrumbs</a>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="  nk-drop-item">
-							<a href="news-list.html"> News</a>
-							<ul class="dropdown">
-								<li class="  ">
-									<a href="news-list.html"> List</a>
-								</li>
-								<li class="  ">
-									<a href="news-list-classic.html"> Classic List</a>
-								</li>
-								<li class="  ">
-									<a href="news-grid-2.html"> Grid 2 Columns</a>
-								</li>
-								<li class="  ">
-									<a href="news-grid-3.html"> Grid 3 Columns</a>
-								</li>
-								<li class="  nk-drop-item">
-									<a href="news-single-image.html"> Single Post</a>
-									<ul class="dropdown">
-										<li class="  ">
-											<a href="news-single-image.html"> Single Image</a>
-										</li>
-										<li class="  ">
-											<a href="news-single-video.html"> Single Video</a>
-										</li>
-										<li class="  ">
-											<a href="news-single-audio.html"> Single Audio</a>
-										</li>
-										<li class="  ">
-											<a href="news-single-gallery.html"> Single Gallery</a>
-										</li>
-										<li class="  ">
-											<a href="news-single-quote.html"> Single Block Quote</a>
-										</li>
-										<li class="  ">
-											<a href="news-single-standard.html"> Single Standard</a>
-										</li>
-										<li class="  ">
-											<a href="news-single-big-content.html"> Single Big Content Example</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li class="  nk-drop-item">
-							<a href="social-user-activity.html"> Social</a>
-							<ul class="dropdown">
-								<li class="  nk-drop-item">
-									<a href="social-user-activity.html"> User</a>
-									<ul class="dropdown">
-										<li class="  ">
-											<a href="social-user-activity.html"> Activity</a>
-										</li>
-										<li class="  ">
-											<a href="social-user-notifications.html"> Notifications</a>
-										</li>
-										<li class="  ">
-											<a href="social-user-messages.html"> Messages</a>
-										</li>
-										<li class="  ">
-											<a href="social-user-messages-single.html"> Messages Single</a>
-										</li>
-										<li class="  ">
-											<a href="social-user-messages-compose.html"> Messages Compose</a>
-										</li>
-										<li class="  ">
-											<a href="social-user-friends.html"> Friends</a>
-										</li>
-										<li class="  ">
-											<a href="social-user-settings.html"> Settings</a>
-										</li>
-										<li class="  ">
-											<a href="social-user-settings-email.html"> Settings Email</a>
-										</li>
-									</ul>
-								</li>
-								<li class="  nk-drop-item">
-									<a href="social-group-activity.html"> Group</a>
-									<ul class="dropdown">
-										<li class="  ">
-											<a href="social-group-activity.html"> Activity</a>
-										</li>
-										<li class="  ">
-											<a href="social-group-members.html"> Members</a>
-										</li>
-										<li class="  ">
-											<a href="social-group-manage.html"> Manage</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li class="  nk-drop-item">
-							<a href="store.html"> Store</a>
-							<ul class="dropdown">
-								<li class="  ">
-									<a href="store.html"> Store</a>
-								</li>
-								<li class="  ">
-									<a href="store-product.html"> Single Product</a>
-								</li>
-								<li class="  ">
-									<a href="store-cart.html"> Cart</a>
-								</li>
-								<li class="  ">
-									<a href="store-checkout.html"> Checkout</a>
-								</li>
-								<li class="  ">
-									<a href="store-account.html"> Account</a>
-								</li>
-							</ul>
-						</li>
-						<li class="  nk-drop-item">
-							<a href="gallery.html"> Media</a>
-							<ul class="dropdown">
-								<li class="  ">
-									<a href="gallery.html"> Gallery 1 Column</a>
-								</li>
-								<li class="  ">
-									<a href="gallery-2-col.html"> Gallery 2 Columns</a>
-								</li>
-								<li class="  ">
-									<a href="gallery-3-col.html"> Gallery 3 Columns</a>
-								</li>
-								<li class="  ">
-									<a href="videos.html"> Videos 1 Column</a>
-								</li>
-								<li class="  ">
-									<a href="videos-2-col.html"> Videos 2 Columns</a>
-								</li>
-							</ul>
-						</li>
+
 					</ul>
 					<ul class="nk-nav nk-nav-right nk-nav-icons">
 						<li class="single-icon d-lg-none">

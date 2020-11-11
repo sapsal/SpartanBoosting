@@ -88,3 +88,7 @@
 	border-radius: 50%;
 	transition: all 0.5s;
 }
+
+.gfield_required {
+	color: red;
+}

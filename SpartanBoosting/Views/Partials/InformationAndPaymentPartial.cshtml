@@ -1,17 +1,18 @@
 ﻿@using SpartanBoosting.Models
 @using System.Threading.Tasks
 @model PersonalInformation
+	<div class="nk-gap-2"></div>
 <div class="row pb-4">
 	<div class="col-md-6 pr-3">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">LEAGUE OF LEGENDS USERNAME:<span class="gfield_required">*</span></label>
-			<input class="large " name="UserName" id="" asp-for="UserName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+			<input class="form-control " name="UserName" id="" asp-for="UserName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="desired-rank">LEAGUE OF LEGENDS PASSWORD:<span class="gfield_required">*</span></label>
-			<input class="large " name="Password" id="" asp-for="Password" type="password" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+			<input class="form-control " name="Password" id="" asp-for="Password" type="password" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 		</div>
 	</div>
 </div>
@@ -20,13 +21,13 @@
 	<div class="col-md-6 pr-3">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">First Name:</label>
-			<input class="large " name="FirstName" id="" asp-for="FirstName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="form-control " name="FirstName" id="" asp-for="FirstName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="desired-rank">Last Name:</label>
-			<input class="large " name="LastName" id="" asp-for="LastName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+			<input class="form-control " name="LastName" id="" asp-for="LastName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
 		</div>
 	</div>
 </div>
@@ -35,13 +36,13 @@
 	<div class="col-md-6 pr-3">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">Email:<span class="gfield_required">*</span></label>
-			<input class="large " name="Email" id="" asp-for="Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+			<input class="form-control " name="Email" id="" asp-for="Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="desired-rank">Discord:<span class="gfield_required">*</span></label>
-			<input class="large " name="Discord" id="" asp-for="Discord" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+			<input class="form-control " name="Discord" id="" asp-for="Discord" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
 		</div>
 	</div>
 </div>
@@ -50,7 +51,7 @@
 	<div class="col-md-12">
 		<div class="ginput_container ginput_container_select">
 			<label class="pb-3 gfield_label" for="current-rank">PAYMENT METHOD:<span class="gfield_required">*</span></label>
-			<select asp-for="PaymentMethod" name="PaymentMethod" id="input_10_243" class="large gfield_select" aria-required="true" aria-invalid="false" required="">
+			<select asp-for="PaymentMethod" name="PaymentMethod" id="input_10_243" class="form-control gfield_select" aria-required="true" aria-invalid="false" required="">
 				<option value="Stripe" selected="selected">Stripe</option>
 				<option value="Paypal">Paypal</option>
 			</select>
@@ -66,7 +67,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">Card Number</span>
-					<input type="text" data-stripe="number">
+					<input type="text" class="form-control" data-stripe="number">
 				</label>
 			</div>
 		</div>
@@ -77,7 +78,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">CVC</span>
-					<input type="text" data-stripe="cvc">
+					<input type="text" class="form-control" data-stripe="cvc">
 				</label>
 			</div>
 		</div>
@@ -85,7 +86,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">Expiration (MM)</span>
-					<input type="text" data-stripe="exp-month">
+					<input type="text" class="form-control" data-stripe="exp-month">
 				</label>
 			</div>
 		</div>
@@ -93,7 +94,7 @@
 			<div class="ginput_container ginput_container_select">
 				<label class="w-100">
 					<span class="pb-3">Expiration (YYYY)</span>
-					<input type="text" data-stripe="exp-year">
+					<input type="text" class="form-control" data-stripe="exp-year">
 				</label>
 			</div>
 		</div>
