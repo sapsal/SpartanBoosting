@@ -1,4 +1,4 @@
-﻿@using SpartanBoosting.ViewModel; 
+﻿@using SpartanBoosting.ViewModel;
 @model MainLayoutViewModel
 <!DOCTYPE html>
 @{
@@ -53,7 +53,6 @@
 
 		<div class="nk-preloader-skip">Skip</div>
 	</div>
-	<div class="nk-page-background-audio d-none" data-audio="Client/assets/mp3/purpleplanetmusic-desolation.mp3" data-audio-volume="100" data-audio-autoplay="true" data-audio-loop="true" data-audio-pause-on-page-leave="true"></div>
 	<!-- END: Page Background -->
 	<!-- START: Page Border -->
 	<div class="nk-page-border">
@@ -70,10 +69,10 @@
 				<div class="nk-contacts-right">
 					<div class="nk-navbar">
 						<ul class="nk-nav">
-							<li><a href="https://twitter.com/nkdevv" target="_blank"><span class="ion-social-twitter"></span></a></li>
-							<li><a href="https://dribbble.com/_nK" target="_blank"><span class="ion-social-dribbble-outline"></span></a></li>
-							<li><a href="#"><span class="ion-social-instagram-outline"></span></a></li>
-							<li><a href="#"><span class="ion-social-pinterest"></span></a></li>
+							@*<li><a href="https://twitter.com/nkdevv" target="_blank"><span class="ion-social-twitter"></span></a></li>*@
+							<li><a href="https://discord.gg/ZvYeNrA" target="_blank"><span class="fab fa-discord fa-lg"></span></a></li>
+							@*<li><a href="#"><span class="ion-social-instagram-outline"></span></a></li>
+		<li><a href="#"><span class="ion-social-pinterest"></span></a></li>*@
 						</ul>
 					</div>
 				</div>
@@ -92,6 +91,9 @@
 						</li>
 						<li class="  nk-drop-item">
 							<a href="../adhoc/faq"> FAQs</a>
+						</li>
+						<li class="  nk-drop-item">
+							<a href="../adhoc/ContactUs"> Contact Us</a>
 						</li>
 					</ul>
 					<ul class="nk-nav nk-nav-right nk-nav-icons">
@@ -200,7 +202,7 @@
 		<div class="nano">
 			<div class="nano-content">
 				<a href="index.html" class="nk-nav-logo">
-					<img src="~/Client/assets/images/logo.svg" alt="" width="90">
+					<img src="~/img/logo.png" alt="" width="150">
 				</a>
 				<div class="nk-navbar-mobile-content">
 					<ul class="nk-nav">
@@ -212,7 +214,7 @@
 	</div>
 	<!-- END: Navbar Mobile -->
 	<div class="nk-main">
-	@RenderBody()
+		@RenderBody()
 	</div>
 	<!--
 		START: Share Buttons
@@ -221,23 +223,11 @@
 	<div class="nk-share-buttons nk-share-buttons-left d-none d-md-flex">
 		<ul>
 			<li>
-				<span class="nk-share-icon" title="Share page on Facebook" data-share="facebook">
-					<span class="icon fa fa-facebook"></span>
-				</span>
-				<span class="nk-share-name">Facebook</span>
-			</li>
+				<a target="_blank" href="https://discord.gg/ZvYeNrA" class="nk-share-icon" title="Join our Discord" data-share="Discord">
+					<span class="fab fa-discord fa-lg"></span>
+				</a>
+				<span class="nk-share-name">Discord</span>
 			<li>
-				<span class="nk-share-icon" title="Share page on Twitter" data-share="twitter">
-					<span class="icon fa fa-twitter"></span>
-				</span>
-				<span class="nk-share-name">Twitter</span>
-			</li>
-			<li>
-				<span class="nk-share-icon" title="Share page on Google+" data-share="google-plus">
-					<span class="icon fa fa-google-plus"></span>
-				</span>
-				<span class="nk-share-name">Google Plus</span>
-			</li>
 		</ul>
 	</div>
 

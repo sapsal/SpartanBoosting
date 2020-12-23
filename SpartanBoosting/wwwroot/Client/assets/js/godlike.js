@@ -1986,7 +1986,7 @@ function initNavbar() {
       var $nav = Object(_utility__WEBPACK_IMPORTED_MODULE_0__["$"])(Object(_utility__WEBPACK_IMPORTED_MODULE_0__["$"])(this).html());
       var $mobileNav = Object(_utility__WEBPACK_IMPORTED_MODULE_0__["$"])(Object(_utility__WEBPACK_IMPORTED_MODULE_0__["$"])(this).attr('data-nav-mobile')); // insert into mobile nav
 
-      $mobileNav.find('.nk-navbar-mobile-content > ul.nk-nav').append($nav);
+      //$mobileNav.find('.nk-navbar-mobile-content > ul.nk-nav').append($nav);
     });
     var $nav = Object(_utility__WEBPACK_IMPORTED_MODULE_0__["$"])('.nk-navbar-mobile-content > ul.nk-nav'); // remove background images
 
