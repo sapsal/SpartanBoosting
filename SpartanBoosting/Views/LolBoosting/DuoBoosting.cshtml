@@ -5,7 +5,12 @@
 	ViewData["Title"] = "Duo Boosting";
 }
 <div class="container">
-
+	<div class="nk-gap-1"></div>
+	<div class="col-md-12 d-flex justify-content-center">
+		<p style="color: green; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
+			@TempData["Result"]
+		</p>
+	</div>
 	<div class="row vertical-gap">
 		<div class="col-lg-12">
 			<form asp-action="CreateDuo" role="form" asp-controller="LolBoosting" asp-antiforgery="true"

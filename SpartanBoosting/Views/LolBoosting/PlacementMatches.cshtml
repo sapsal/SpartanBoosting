@@ -4,180 +4,185 @@
 @{
 	ViewData["Title"] = "Placement Matches";
 }
-<div class="container">
-
-	<div class="row vertical-gap">
-		<div class="col-lg-12">
-			<form asp-action="CreatePlacementMatches" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
-				  data-ajax-success="Bindgrid"
-				  data-ajax="true"
-				  data-ajax-method="POST" data-pricing="PlacementBoostPricing">
-				<div class="gfield-pricing-quote-personal-information"></div>
-				<div class="gfield-pricing-quote">
-					<div class="nk-gap-4"></div>
-					<div class="row pb-4">
-						<div class="col-md-12">
-							<div class="">
-								<label class="pb-3" for="last-season-standing">LAST SEASON STANDING:<span class="gfield_required">*</span></label>
-								<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-									<option value="Unranked">Unranked</option>
-									<option value="Iron">Iron</option>
-									<option value="Bronze">Bronze</option>
-									<option value="Silver">Silver</option>
-									<option value="Gold">Gold</option>
-									<option value="Platinum">Platinum</option>
-									<option value="Diamond">Diamond</option>
-									<option value="Master">Master</option>
-									<option value="Grand Master">Grand Master</option>
-									<option value="Challenger">Challenger</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="nk-gap-2"></div>
-					<div class="row pb-4">
-						<div class="col-md-6 pr-3">
-							<div class="">
-								<label class="pb-3 " for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-								<select asp-for="Server" name="Server" id="your-server" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-									<option value="Europe West">Europe West</option>
-									<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
-									<option value="North America">North America</option>
-									<option value="Oceania">Oceania</option>
-									<option value="Russia">Russia</option>
-									<option value="Turkey">Turkey</option>
-									<option value="Latin America North">Latin America North</option>
-									<option value="Latin America South">Latin America South</option>
-									<option value="Brazil">Brazil</option>
-									<option value="Japan">Japan</option>
-									<option value="Korea">Korea</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="">
-								<label class="pb-3" for="queue-type">
-									TYPE OF QUEUE:<span class="gfield_required">*</span>
-								</label>
-								<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-									<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
-									<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="nk-gap-2"></div>
-					<div class="row pb-4">
-						<div class="col-md-12">
-							<div class="">
-								<label class="pb-3" for="type-of-service">TYPE OF SERVICE:<span class="gfield_required">*</span></label>
-								<select asp-for="TypeOfService" name="TypeOfService" id="type-of-service" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-									<option value="Solo">Solo</option>
-									<option value="Duo">Duo</option>
-								</select>
-							</div>
-						</div>
-					</div>
-
-					@*//needed to show on duo select list*@
-					<div class="row pb-4" id="specific-roles-content" style="display:none">
-						<label class="col-12 ">SPECIFIC ROLES:</label>
-						<div class="col-12 " id="gfield_description_10_93">Extra charge for special offer is 15% (select at least two)</div>
-						<div class="ginput_container row pt-4 pb-4 one-checkbox-minimum">
-							<div class="col-1"></div>
-							<div class="col-4 regular-duo" data-toggle="tooltip" data-placement="top" title="Our standard boosting package, regular order pick-up time with limited coaching provided by your booster">
-								<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoRegular" name="TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2" >
-								<label for="choice_10_93_2" id="label_12_287_0" class="duo-status">
-									<span data-bg="url(../img/Wordpress Icons/duo-regular.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-regular.png');" data-was-processed="true">
-										<img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" src="../img/Wordpress Icons/duo-regular.png"><noscript><img src="../img/Wordpress Icons/duo-regular.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" /></noscript>
-									</span><label class="w-100 d-flex justify-content-center">Regular</label>
-								</label>
-							</div>
-							<div class="col-1"></div>
-							<div class="col-4" data-toggle="tooltip" data-placement="top" title="Priority boosting with a quicker allocation time of your order to a booster. Your booster will provide commentary in-game whilst playing with you on aspects such as the macro game and offer ad-hoc tips about your gameplay.">
-								<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoPremium" name="TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1" >
-								<label for="choice_10_93_1" id="label_12_287_1" class="duo-status">
-									<span data-bg="url(../img/Wordpress Icons/duo-premium.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-premium.png');" data-was-processed="true"><img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" src="../img/Wordpress Icons/duo-premium.png"><noscript><img src="../img/Wordpress Icons/duo-premium.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" /></noscript></span>
-									<label class="w-100 d-flex justify-content-center">Premium</label>
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="nk-gap-2"></div>
-					<div class="row ">
-						<div class="col-md-12">
-							<label class="" for="num-games">NUMBER OF GAMES:<span class="gfield_required">*</span></label>
-							<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-								<option value="1" selected="selected">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">
-									10
-								</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="nk-gap-2"></div>
-					<div class=" container boost-info mb-5">
-						<div class="">
-							<div class="row ">
-								<input type="text" class=" col-7 form-control" asp-for="Discount" name="Discount" id="coupon-code" placeholder="Promo Code"><div class="col-1 ">
-								</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
-							</div>
-							<div class="col-sm-12 text-danger">
-								<span id="coupon-alert"></span>
-							</div>
-						</div>
-
-						<div class="nk-gap-2"></div>
-
-						<div class="row">
-							<div class="col-sm-6 my-auto" style="line-height: 2;">
-								<b class="bold-tgray">Subtotal</b><br>
-							</div>
-							<div class="col-sm-6 custom-right" style="text-align: right!important;line-height: 2;">
-								<b class="price"><b id="subtotal_price" style="font-weight: 500!important;">12.00</b>€</b><br>
-							</div>
-						</div>
-						<div class="nk-gap-2"></div>
-						<div class="row">
-							<div class="col-sm-6 my-auto" style="line-height: 2;">
-								<b class="bold-tgray">Discount</b><br>
-							</div>
-							<div class="col-sm-6 custom-right" style="line-height: 2;text-align: right!important;">
-								<b class="price">-<b id="discount_amount" style="font-weight: 500!important;">0</b>%</b><br>
-							</div>
-						</div>
-
-						<div class="nk-gap-2"></div>
-
-						<div class="row">
-							<div class="col-sm-6 my-auto pb-4">
-								<b class="total">Total</b>
-							</div>
-							<div class="col-sm-6 custom-right" style="text-align: right!important;">
-								<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price">12.00</span>€</b>
-							</div>
-						</div> <br><br>
-						<div class="row pt-4 d-flex justify-content-center">
-							<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
-						</div>
-					</div>
-
-				</div>
-			</form>
+	<div class="container">
+		<div class="nk-gap-1"></div>
+		<div class="col-md-12 d-flex justify-content-center">
+			<p style="color: green; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
+				@TempData["Result"]
+			</p>
 		</div>
+		<div class="row vertical-gap">
+			<div class="col-lg-12">
+				<form asp-action="CreatePlacementMatches" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
+					  data-ajax-success="Bindgrid"
+					  data-ajax="true"
+					  data-ajax-method="POST" data-pricing="PlacementBoostPricing">
+					<div class="gfield-pricing-quote-personal-information"></div>
+					<div class="gfield-pricing-quote">
+						<div class="nk-gap-4"></div>
+						<div class="row pb-4">
+							<div class="col-md-12">
+								<div class="">
+									<label class="pb-3" for="last-season-standing">LAST SEASON STANDING:<span class="gfield_required">*</span></label>
+									<select asp-for="LastSeasonStanding" name="LastSeasonStanding" id="last-season-standing" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+										<option value="Unranked">Unranked</option>
+										<option value="Iron">Iron</option>
+										<option value="Bronze">Bronze</option>
+										<option value="Silver">Silver</option>
+										<option value="Gold">Gold</option>
+										<option value="Platinum">Platinum</option>
+										<option value="Diamond">Diamond</option>
+										<option value="Master">Master</option>
+										<option value="Grand Master">Grand Master</option>
+										<option value="Challenger">Challenger</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="nk-gap-2"></div>
+						<div class="row pb-4">
+							<div class="col-md-6 pr-3">
+								<div class="">
+									<label class="pb-3 " for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
+									<select asp-for="Server" name="Server" id="your-server" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+										<option value="Europe West">Europe West</option>
+										<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
+										<option value="North America">North America</option>
+										<option value="Oceania">Oceania</option>
+										<option value="Russia">Russia</option>
+										<option value="Turkey">Turkey</option>
+										<option value="Latin America North">Latin America North</option>
+										<option value="Latin America South">Latin America South</option>
+										<option value="Brazil">Brazil</option>
+										<option value="Japan">Japan</option>
+										<option value="Korea">Korea</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="">
+									<label class="pb-3" for="queue-type">
+										TYPE OF QUEUE:<span class="gfield_required">*</span>
+									</label>
+									<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+										<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
+										<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="nk-gap-2"></div>
+						<div class="row pb-4">
+							<div class="col-md-12">
+								<div class="">
+									<label class="pb-3" for="type-of-service">TYPE OF SERVICE:<span class="gfield_required">*</span></label>
+									<select asp-for="TypeOfService" name="TypeOfService" id="type-of-service" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+										<option value="Solo">Solo</option>
+										<option value="Duo">Duo</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						@*//needed to show on duo select list*@
+						<div class="row pb-4" id="specific-roles-content" style="display:none">
+							<label class="col-12 ">SPECIFIC ROLES:</label>
+							<div class="col-12 " id="gfield_description_10_93">Extra charge for special offer is 15% (select at least two)</div>
+							<div class="ginput_container row pt-4 pb-4 one-checkbox-minimum">
+								<div class="col-1"></div>
+								<div class="col-4 regular-duo" data-toggle="tooltip" data-placement="top" title="Our standard boosting package, regular order pick-up time with limited coaching provided by your booster">
+									<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoRegular" name="TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2">
+									<label for="choice_10_93_2" id="label_12_287_0" class="duo-status">
+										<span data-bg="url(../img/Wordpress Icons/duo-regular.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-regular.png');" data-was-processed="true">
+											<img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" src="../img/Wordpress Icons/duo-regular.png"><noscript><img src="../img/Wordpress Icons/duo-regular.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" /></noscript>
+										</span><label class="w-100 d-flex justify-content-center">Regular</label>
+									</label>
+								</div>
+								<div class="col-1"></div>
+								<div class="col-4" data-toggle="tooltip" data-placement="top" title="Priority boosting with a quicker allocation time of your order to a booster. Your booster will provide commentary in-game whilst playing with you on aspects such as the macro game and offer ad-hoc tips about your gameplay.">
+									<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoPremium" name="TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1">
+									<label for="choice_10_93_1" id="label_12_287_1" class="duo-status">
+										<span data-bg="url(../img/Wordpress Icons/duo-premium.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-premium.png');" data-was-processed="true"><img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" src="../img/Wordpress Icons/duo-premium.png"><noscript><img src="../img/Wordpress Icons/duo-premium.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" /></noscript></span>
+										<label class="w-100 d-flex justify-content-center">Premium</label>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="nk-gap-2"></div>
+						<div class="row ">
+							<div class="col-md-12">
+								<label class="" for="num-games">NUMBER OF GAMES:<span class="gfield_required">*</span></label>
+								<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+									<option value="1" selected="selected">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">
+										10
+									</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="nk-gap-2"></div>
+						<div class=" container boost-info mb-5">
+							<div class="">
+								<div class="row ">
+									<input type="text" class=" col-7 form-control" asp-for="Discount" name="Discount" id="coupon-code" placeholder="Promo Code"><div class="col-1 ">
+									</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
+								</div>
+								<div class="col-sm-12 text-danger">
+									<span id="coupon-alert"></span>
+								</div>
+							</div>
+
+							<div class="nk-gap-2"></div>
+
+							<div class="row">
+								<div class="col-sm-6 my-auto" style="line-height: 2;">
+									<b class="bold-tgray">Subtotal</b><br>
+								</div>
+								<div class="col-sm-6 custom-right" style="text-align: right!important;line-height: 2;">
+									<b class="price"><b id="subtotal_price" style="font-weight: 500!important;">12.00</b>€</b><br>
+								</div>
+							</div>
+							<div class="nk-gap-2"></div>
+							<div class="row">
+								<div class="col-sm-6 my-auto" style="line-height: 2;">
+									<b class="bold-tgray">Discount</b><br>
+								</div>
+								<div class="col-sm-6 custom-right" style="line-height: 2;text-align: right!important;">
+									<b class="price">-<b id="discount_amount" style="font-weight: 500!important;">0</b>%</b><br>
+								</div>
+							</div>
+
+							<div class="nk-gap-2"></div>
+
+							<div class="row">
+								<div class="col-sm-6 my-auto pb-4">
+									<b class="total">Total</b>
+								</div>
+								<div class="col-sm-6 custom-right" style="text-align: right!important;">
+									<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price">12.00</span>€</b>
+								</div>
+							</div> <br><br>
+							<div class="row pt-4 d-flex justify-content-center">
+								<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
+							</div>
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="nk-gap-4"></div>
+		<div class="nk-gap-3"></div>
 	</div>
-	<div class="nk-gap-4"></div>
-	<div class="nk-gap-3"></div>
-</div>
 <script type="text/javascript">
 	var chkBoxBorderStyling = $('.checkbox-border-styling');
 
