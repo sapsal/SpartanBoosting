@@ -1,7 +1,7 @@
 ﻿@using SpartanBoosting.Models
 @using System.Threading.Tasks
 @model PersonalInformation
-	<div class="nk-gap-2"></div>
+<div class="nk-gap-2"></div>
 <div class="row pb-4">
 	<div class="col-md-6 pr-3">
 		<div class="ginput_container ginput_container_select">
@@ -153,7 +153,7 @@
 				// Prevent the form from submitting with the default action
 				return false;
 			}
-			else { $('form').submit(); }
+			else { $($(this).parents('form:first')).submit(); }
 		});
 	})
 </script>
@@ -169,6 +169,6 @@
 			$('[name ="UserName"]').hide();
 			$('[name ="Password"]').parent().hide();
 			$('[name ="UserName"]').parent().hide();
-		} 
+		}
 	});
 </script>

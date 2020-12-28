@@ -15,6 +15,7 @@ namespace SpartanBoosting.Models.Repositorys
 		PurchaseForm GetPurchaseFormModelsIncludedByIdAndUser(int Id, ApplicationUser applicationUser);
 		IEnumerable<PurchaseForm> GetAllPurchaseOrder();
 		IEnumerable<PurchaseForm> GetAllPurchaseOrderWithBooster();
+		IEnumerable<PurchaseForm> GetAllUnCompletedPurchaseOrderWithBooster();
 		IEnumerable<PurchaseForm> GetAllPurchaseOrderAvailable();
 		PurchaseForm Add(PurchaseForm purchaseForm);
 		PurchaseForm Update(PurchaseForm purchaseFormChanges);

@@ -20,6 +20,7 @@ namespace SpartanBoosting.Models.Pricing
 		public ApplicationUser BoosterAssignedTo { get; set; }
 		public bool BoosterCompletionConfirmed { get; set; }
 		public bool CustomerCompletionConfirmed { get; set; }
+		public bool AdminCompletionConfirmed { get; set; }
 		public string Pricing { get; set; }
 		public string BoosterPricing { get; set; }
 		public bool JobAvailable { get; set; } = true;
