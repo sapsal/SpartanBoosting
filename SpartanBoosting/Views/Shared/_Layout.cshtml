@@ -566,6 +566,7 @@
 		var tpj = jQuery;
 		var revapi50;
 		$(".login-button").click(function () {
+			e.preventdefault()
 			$('#LoginModel_loginattempt-error').hide()
 			$.ajax({
 				url: '/Account/LoginAjax',
@@ -575,7 +576,6 @@
 				},
 				type: 'POST',
 				success: function (response) {
-					debugger;
 					if (!response.success) {
 						$('#LoginModel_loginattempt-error').text('Invalid Login Attempt').show()
 					}
