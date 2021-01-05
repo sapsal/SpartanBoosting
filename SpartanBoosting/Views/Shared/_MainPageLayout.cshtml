@@ -352,8 +352,9 @@
 	<script type="text/javascript">
 		var tpj = jQuery;
 		var revapi50;
-		$(".login-button").click(function () {
-			e.preventdefault()
+		$(".login-button").click(function (event) {
+			debugger;
+			event.preventDefault();
 			$('#LoginModel_loginattempt-error').hide()
 			$.ajax({
 				url: '/Account/LoginAjax',
