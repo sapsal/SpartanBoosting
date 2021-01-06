@@ -6,6 +6,10 @@
 	display: flex;
 }
 
+.w-95 {
+	width: 95%;
+}
+
 img {
 	max-width: 100%;
 }

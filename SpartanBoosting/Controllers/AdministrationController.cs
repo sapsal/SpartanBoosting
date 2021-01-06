@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SpartanBoosting.Extensions;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Repositorys;
@@ -69,6 +70,15 @@ namespace SpartanBoosting.Controllers
 			result.BoosterCompletionConfirmed = false;
 			result.BoosterAssignedTo = null;
 			result.JobAvailable = true;
+			PurchaseOrderRepository.Update(result);
+			return Json(true);
+		}
+		[HttpPost]
+		public IActionResult CompleteBoosterJobSuperUser(int Id)
+		{
+			var result = PurchaseOrderRepository.GetPurchaseFormModelsIncludedById(Id);
+			result.AdminCompletionConfirmed = true;
+			result.BoosterAssignedTo.Balance = result.BoosterAssignedTo.Balance + (decimal)LolPricingExtensions.BoosterPay(result);
 			PurchaseOrderRepository.Update(result);
 			return Json(true);
 		}

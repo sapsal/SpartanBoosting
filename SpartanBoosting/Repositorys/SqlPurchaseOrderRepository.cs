@@ -117,6 +117,7 @@ namespace SpartanBoosting.Models.Repositorys
 						.Include(p => p.TFTBoostingModel)
 						.Include(p => p.TFTPlacementModel)
 						.Include(p => p.WinBoostModel)
+						.Include(p => p.BoosterAssignedTo)
 						.FirstOrDefault(item => item.Id == Id);
 		}
 

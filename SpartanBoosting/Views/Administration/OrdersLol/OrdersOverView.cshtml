@@ -122,7 +122,15 @@
 													<td>
 														@if (item.BoosterCompletionConfirmed)
 														{
-															<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
+															<div class="row">
+																<button class="btn btn-danger btn-cancel-job w-95" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
+															</div>
+														}
+														@if (!item.AdminCompletionConfirmed)
+														{
+															<div class="row">
+																<button class="btn btn-success btn-complete-job w-95" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Complete Order</button>
+															</div>
 														}
 													</td>
 
@@ -159,6 +167,21 @@
 			success: function (dataofconfirm) {
 				if (dataofconfirm) {
 					$(this).remove()
+				}
+			}
+		});
+	});
+	$(document).on("click", '.btn-complete-job', function () {
+		var data = $(this).data('booster-information')
+		var element = $(this);
+		$.ajax({
+			url: '/Administration/CompleteBoosterJobSuperUser',
+			data: { id: data },
+			context: this,
+			type: 'POST',
+			success: function (dataofconfirm) {
+				if (dataofconfirm) {
+					$(this).closest('tr').remove()
 				}
 			}
 		});
