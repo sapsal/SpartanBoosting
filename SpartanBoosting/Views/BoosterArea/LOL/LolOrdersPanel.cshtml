@@ -110,7 +110,7 @@
 										<tr title="@item.PurchaseType">
 											<th scope="row">@item.Id</th>
 											<td>@(item.PlacementMatchesModel.Server)</td>
-											<td>@(item.PlacementMatchesModel.TypeOfQueue)</td>
+											<td>@($"{item.PlacementMatchesModel.TypeOfQueue}") <b><u>@($"{item.PlacementMatchesModel.TypeOfService}")</u></b></td>
 											<td>Normal</td>
 											<td>@($"{item.PlacementMatchesModel.LastSeasonStanding} With {item.PlacementMatchesModel.NumOfGames} Games")</td>
 											<td>@item.PurchaseType</td>

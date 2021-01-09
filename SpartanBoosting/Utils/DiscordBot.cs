@@ -79,7 +79,7 @@ namespace SpartanBoosting.Utils
 								$"**Type : Duo {(Model.PlacementMatchesModel.TypeOfDuoRegular != "false" ? Model.PlacementMatchesModel.TypeOfDuoRegular : Model.PlacementMatchesModel.TypeOfDuoPremium)}**\n" +
 								$"**Price : €{LolPricingExtensions.BoosterPay(Model)}**";
 					else
-						return DiscordServerTagMessage(Model.PlacementMatchesModel.Server) + "**Placement Matches**\n" +
+						return DiscordServerTagMessage(Model.PlacementMatchesModel.Server) + $"**Placement Matches {Model.PlacementMatchesModel.TypeOfService}**\n" +
 								$"**Job : {Model.PlacementMatchesModel.LastSeasonStanding} with {Model.PlacementMatchesModel.NumOfGames} games**\n" +
 								$"**Queue : {Model.PlacementMatchesModel.TypeOfQueue}**\n" +
 								$"**Server : {Model.PlacementMatchesModel.Server}**\n" +
