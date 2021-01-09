@@ -9,6 +9,7 @@
 	string Region = string.Empty;
 	string Queue = string.Empty;
 	string DuoType = string.Empty;
+	string ServiceType = string.Empty;
 	string Champions = string.Empty;
 	string SpecificRoles = string.Empty;
 }
@@ -126,6 +127,7 @@
 														Region = Model.PurchaseForm.PlacementMatchesModel.Server;
 														Queue = Model.PurchaseForm.PlacementMatchesModel.TypeOfQueue;
 														DuoType = Model.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
+														ServiceType = $"{Model.PurchaseForm.PlacementMatchesModel.TypeOfService}";
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Start</span><br>
 															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
@@ -284,7 +286,14 @@
 													<span class="card-title pr-title font-weight-bold-900">@SpecificRoles.TrimEnd(',')</span>
 												</p>
 											}
-
+											@if (!string.IsNullOrEmpty(ServiceType))
+											{
+										<p class="card-title pr-title font-weight-bolder">
+											Service Type :
+											<span class="card-title pr-title font-weight-bold-900">@ServiceType</span>
+										</p>
+											}
+											
 										</div>
 										<!--end::Tablet-->
 									</div>
