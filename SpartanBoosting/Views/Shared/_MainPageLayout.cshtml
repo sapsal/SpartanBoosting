@@ -273,9 +273,10 @@
 						<!-- END: Login Form -->
 						<!-- START: Lost Password Form -->
 						<form class="nk-sign-form-lost" action="#">
-							<input class="form-control" type="text" placeholder="Username or Email">
+							<input class="forgot-password-email form-control" type="text" placeholder="Username or Email">
+							<div id="forgottenattempt-error" class="nk-error" style="display:none"></div>
 							<div class="nk-gap-2"></div>
-							<button class="nk-btn nk-btn-color-white link-effect-4 float-right">Get New Password</button>
+							<button class="nk-btn nk-btn-color-white link-effect-4 float-right forgot-password">Get New Password</button>
 						</form>
 						<!-- END: Lost Password Form -->
 						<!-- START: Register Form -->
@@ -369,6 +370,28 @@
 					}
 					else {
 						window.location.href = response.redirectToUrl;
+					}
+				}
+			});
+		});
+		$(".forgot-password").click(function (event) {
+			debugger;
+			event.preventDefault();
+			$('#forgottenattempt-error').hide()
+			$.ajax({
+				url: '/Account/ForgotPasswordAjax',
+				data: {
+					Email: $('.forgot-password-email').val(),
+				},
+				type: 'POST',
+				success: function (response) {
+					if (!response.success) {
+						$('#forgottenattempt-error').addClass('nk-error').removeClass('nk-success')
+						$('#forgottenattempt-error').text(response.message).show()
+					}
+					else {
+						$('#forgottenattempt-error').removeClass('nk-error').addClass('nk-success')
+						$('#forgottenattempt-error').text(response.message).show()
 					}
 				}
 			});
