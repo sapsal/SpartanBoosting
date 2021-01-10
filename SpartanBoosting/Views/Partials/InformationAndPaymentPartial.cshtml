@@ -160,7 +160,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		debugger;
-		if (window.location.href.toLowerCase().indexOf("duoboosting") > -1 || window.location.href.toLowerCase().indexOf("winboosting") > -1 || window.location.href.toLowerCase().indexOf("placementmatches") > -1) {
+		if (window.location.href.toLowerCase().indexOf("duoboosting") > -1 || window.location.href.toLowerCase().indexOf("winboosting") > -1 || (window.location.href.toLowerCase().indexOf("placementmatches") > -1 && $('#type-of-service').val() == "Duo")) {
 			$('[name ="UserName"]').parent().find('.gfield_required').remove();
 			$('[name ="UserName"]').removeAttr('required');
 			$('[name ="Password"]').parent().find('.gfield_required').remove();
