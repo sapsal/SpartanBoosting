@@ -1,0 +1,2 @@
+ALTER TABLE purchaseform
+ADD CreatedDate DATETIME NOT NULL DEFAULT (GETDATE());

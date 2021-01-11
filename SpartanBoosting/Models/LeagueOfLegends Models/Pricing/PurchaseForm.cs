@@ -27,5 +27,6 @@ namespace SpartanBoosting.Models.Pricing
 		public string PayPalApproval { get; set; }
 		public string PayPalCapture{ get; set; }
 		public PurchaseTypeEnum.PurchaseType PurchaseType { get; set; }
+		public DateTime CreatedDate { get; set; }
 	}
 }

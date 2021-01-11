@@ -229,7 +229,7 @@
 			</div>
 			<div class="col-md-12 col-lg-5 col-xl-4">
 				<div class="card pr-card">
-					<div class="card-header pr-header">
+					<div class="card-header pr-header font-weight-bolder">
 						Recent Orders
 					</div>
 					<div class="card-body pr-body" style="min-height: 450px">
@@ -249,6 +249,7 @@
 												@displayLolLolActivityViewModel.OrderInformation
 												<a href="../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(Model.PurchaseForm[i].Id.ToString())">@displayLolLolActivityViewModel.OrderNumber</a>
 											</p>
+											<span class="font-weight-light font-14 text-muted">@displayLolLolActivityViewModel.DaysAgo days ago</span>
 										</div>
 									</div>
 								}

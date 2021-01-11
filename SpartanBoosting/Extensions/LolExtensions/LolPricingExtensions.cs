@@ -105,6 +105,7 @@ namespace SpartanBoosting.Extensions
 		{
 			LolActivityViewModel LolActivityViewModel = new LolActivityViewModel();
 			LolActivityViewModel.OrderNumber = $"#LOL-{purchaseForm.Id}";
+			LolActivityViewModel.DaysAgo = (int)Math.Abs(Math.Round((DateTime.Now - purchaseForm.CreatedDate).TotalDays));
 			switch (purchaseForm.PurchaseType)
 			{
 				case Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:

@@ -11,6 +11,6 @@ namespace SpartanBoosting.ViewModel.Lol_ViewModels
 		public string OrderInformation { get; set; }
 		public string OrderNumber { get; set; }
 		public string RankUrl { get; set; }
-		public TimeSpan DaysAgo { get; set; }
+		public double DaysAgo { get; set; }
 	}
 }
