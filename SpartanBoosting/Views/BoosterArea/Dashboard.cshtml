@@ -39,9 +39,55 @@
 	<!--begin::Container-->
 	<div class=" container ">
 		<!--begin::Dashboard-->
+		<!--begin::Balance and order stats-->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card-group">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-md-block align-items-center text-center">
+								<div>
+									<div class="d-inline-flex align-items-center">
+										<h2 class="card-label font-weight-bolder font-size-h4 text-dark-75">@Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed).Count()</h2>
+									</div>
+									<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Current Orders</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="d-md-block align-items-center text-center  border-right  border-left">
+
+								<div>
+									<h2 class="card-label font-weight-bolder font-size-h4 text-dark-75">
+										@Model.Booster.Balance	€
+									</h2>
+									<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">
+										Current Balance
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="d-md-block align-items-center text-center">
+								<div>
+									<div class="d-inline-flex align-items-center">
+										<h2 class="card-label font-weight-bolder font-size-h4 text-dark-75">@Model.PurchaseForm.Count()</h2>
+									</div>
+									<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Orders</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--begin::Row-->
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-md-12 col-lg-7 col-xl-8">
 				<!--begin::Tables Widget 1-->
 				<div class="card card-custom card-stretch gutter-b">
 					<!--begin::Header-->
@@ -84,37 +130,37 @@
 										<tbody>
 											@foreach (var item in Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed))
 											{
-											<tr>
-												<td class="py-5 pl-0">
-													<span class="text-muted font-weight-bold d-block text-nowrap">
-														<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
-													</span>
-												</td>
-												<td class="pl-0">
-													<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-bold d-block">
-														Price
-													</span>
-													<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-														€@LolPricingExtensions.BoosterPay(item)
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-500">
-														@item.PurchaseType.ToString()
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="label label-lg label-light-warning label-inline">In Progress</span>
-												</td>
-												<td class="text-right">
-													<button class="btn btn-success btn-completed-job" data-booster-information="@item.Id">Completed</button>
-													<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
-												</td>
+												<tr>
+													<td class="py-5 pl-0">
+														<span class="text-muted font-weight-bold d-block text-nowrap">
+															<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+														</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-bold d-block">
+															Price
+														</span>
+														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+															€@LolPricingExtensions.BoosterPay(item)
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-500">
+															@item.PurchaseType.ToString()
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="label label-lg label-light-warning label-inline">In Progress</span>
+													</td>
+													<td class="text-right">
+														<button class="btn btn-success btn-completed-job" data-booster-information="@item.Id">Completed</button>
+														<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
+													</td>
 
-											</tr>
+												</tr>
 											}
 										</tbody>
 									</table>
@@ -140,33 +186,33 @@
 										<tbody>
 											@foreach (var item in Model.PurchaseForm.Where(x => x.BoosterCompletionConfirmed))
 											{
-											<tr>
-												<td class="py-5 pl-0">
-													<span class="text-muted font-weight-bold d-block text-nowrap">
-														<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
-													</span>
-												</td>
-												<td class="pl-0">
-													<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-bold d-block">
-														Price
-													</span>
-													<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-														€@LolPricingExtensions.BoosterPay(item)
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-500">
-														@item.PurchaseType.ToString()
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="label label-lg label-light-primary label-inline">Success</span>
-													@*<span class="label label-lg label-light-info label-inline">Approved</span>*@
-												</td>
-											</tr>
+												<tr>
+													<td class="py-5 pl-0">
+														<span class="text-muted font-weight-bold d-block text-nowrap">
+															<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+														</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-bold d-block">
+															Price
+														</span>
+														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+															€@LolPricingExtensions.BoosterPay(item)
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-500">
+															@item.PurchaseType.ToString()
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="label label-lg label-light-primary label-inline">Success</span>
+														@*<span class="label label-lg label-light-info label-inline">Approved</span>*@
+													</td>
+												</tr>
 											}
 										</tbody>
 									</table>
@@ -179,6 +225,59 @@
 					<!--end::Body-->
 				</div>
 				<!--end::Tables Widget 1-->
+			</div>
+			<div class="col-md-12 col-lg-5 col-xl-4">
+				<div class="card pr-card">
+					<div class="card-header pr-header">
+						Recent Orders
+					</div>
+					<div class="card-body pr-body" style="min-height: 450px">
+						<div class=" activity">
+							<div class="d-flex align-items-start border-left-line pb-3">
+								<div>
+									<img class="btn-item" src="https://www.gameboost.eu/gb-assets/placement.png?1" width="58px" style="margin-left: -29px">
+								</div>
+								<div class="ml-3 mt-2" style="margin-left: 25.5px!important;">
+									<h5 class="text-light font-weight-medium mb-2">New Placements Duo!</h5>
+									<p class="font-14 mb-2 text-muted">
+										Platinum&nbsp;I                                      <i class="fas fa-angle-right"></i>&nbsp;
+										6&nbsp;Games                                                                              <br> <a href="https://www.gameboost.eu/booster-area/claim-order/?session=BOOSTER-5ffc836c32ca6&amp;order=LOL-F81EE8968C2">#LOL-F81EE8968C2</a>
+									</p>
+									<span class="font-weight-light font-14 text-muted">3 days ago</span>
+								</div>
+							</div>
+							<div class="d-flex align-items-start border-left-line pb-3">
+								<div>
+									<img class="btn-item" src="https://www.gameboost.eu/gb-assets/placement.png?1" width="58px" style="margin-left: -29px">
+								</div>
+								<div class="ml-3 mt-2" style="margin-left: 25.5px!important;">
+									<h5 class="text-light font-weight-medium mb-2">New Placements Solo!</h5>
+									<p class="font-14 mb-2 text-muted">
+										Diamond&nbsp;I                                      <i class="fas fa-angle-right"></i>&nbsp;
+										10&nbsp;Games                                                                              <br> <a href="https://www.gameboost.eu/booster-area/claim-order/?session=BOOSTER-5ffc836c32ca6&amp;order=LOL-F86A6DBBAB0">#LOL-F86A6DBBAB0</a>
+									</p>
+									<span class="font-weight-light font-14 text-muted">3 days ago</span>
+								</div>
+							</div>
+							<div class="d-flex align-items-start border-left-line pb-3">
+								<div>
+									<img class="btn-item" src="https://www.gameboost.eu/gb-assets/duo.png?1" width="80px">
+								</div>
+								<div class="ml-3 mt-2">
+									<h5 class="text-light font-weight-medium mb-2">New Division Duo!</h5>
+									<p class="font-14 mb-2 text-muted">
+										Platinum IV&nbsp;(41-60)&nbsp;
+										<i class="fas fa-angle-right"></i>&nbsp;
+										Platinum III                                                                              <br> <a href="https://www.gameboost.eu/booster-area/claim-order/?session=BOOSTER-5ffc836c32ca6&amp;order=LOL-F913AFCD66C">#LOL-F913AFCD66C</a>
+									</p>
+									<span class="font-weight-light font-14 text-muted">2 days ago</span>
+								</div>
+							</div>
+
+						</div>
+						<div class="d-block text-center"><a href="https://www.gameboost.eu/booster-area/orders-panel/?session=BOOSTER-5ffc836c32ca6&amp;reg=EU" class="font-14 border-bottom pb-1 border-info">Load More</a></div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!--end::Row-->

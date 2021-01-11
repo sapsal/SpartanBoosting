@@ -219,3 +219,7 @@ img {
 	height: 516px;
 	overflow-y: auto;
 }
+
+.card-group {
+	margin-bottom: 30px;
+}
