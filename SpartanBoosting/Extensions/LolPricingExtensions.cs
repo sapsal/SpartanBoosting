@@ -1,5 +1,6 @@
 ﻿using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
 using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.ViewModel.Lol_ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace SpartanBoosting.Extensions
 			if (!discountCodeValue.Equals(new KeyValuePair<string, int>()))
 				return new DiscountModel { Price = Pricing - (Pricing * discountCodeValue.Value / 100), DicountPercentage = discountCodeValue.Value };
 			else
-				return new DiscountModel { Price = Pricing};
+				return new DiscountModel { Price = Pricing };
 		}
 
 		public static decimal PriceIncreaseLolNA(string Server, decimal Pricing, int percentage)
@@ -98,6 +99,50 @@ namespace SpartanBoosting.Extensions
 					break;
 			}
 			return "";
+		}
+
+		public static LolActivityViewModel DisplayLolActivityViewModel(SpartanBoosting.Models.Pricing.PurchaseForm purchaseForm)
+		{
+			LolActivityViewModel LolActivityViewModel = new LolActivityViewModel();
+			LolActivityViewModel.OrderNumber = $"#LOL-{purchaseForm.Id}";
+			switch (purchaseForm.PurchaseType)
+			{
+				case Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
+					LolActivityViewModel.RankUrl = $"solo";
+					LolActivityViewModel.OrderTitle = "New Division Solo!";
+					LolActivityViewModel.OrderInformation = $"{purchaseForm.BoostingModel.YourCurrentLeague} {purchaseForm.BoostingModel.CurrentDivision} {purchaseForm.BoostingModel.CurrentLP} to {purchaseForm.BoostingModel.DesiredCurrentLeague} {purchaseForm.BoostingModel.DesiredCurrentDivision}";
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
+					LolActivityViewModel.RankUrl = $"duo";
+					LolActivityViewModel.OrderTitle = "New Division Duo!";
+					LolActivityViewModel.OrderInformation = $"{purchaseForm.BoostingModel.YourCurrentLeague} {purchaseForm.BoostingModel.CurrentDivision} {purchaseForm.BoostingModel.CurrentLP} to {purchaseForm.BoostingModel.DesiredCurrentLeague} {purchaseForm.BoostingModel.DesiredCurrentDivision}";
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
+					LolActivityViewModel.RankUrl = $"win";
+					LolActivityViewModel.OrderTitle = $"New Win Boost {purchaseForm.WinBoostModel.TypeOfService}!";
+					LolActivityViewModel.OrderInformation = $"{purchaseForm.WinBoostModel.YourCurrentLeague} {purchaseForm.WinBoostModel.CurrentDivision} With {purchaseForm.WinBoostModel.NumOfGames} Games";
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
+					LolActivityViewModel.RankUrl = $"placement";
+					LolActivityViewModel.OrderTitle = $"New Placement {purchaseForm.PlacementMatchesModel.TypeOfService}!";
+					LolActivityViewModel.OrderInformation = $"{purchaseForm.PlacementMatchesModel.LastSeasonStanding} With {purchaseForm.PlacementMatchesModel.NumOfGames} Games";
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
+					LolActivityViewModel.RankUrl = $"placement";
+					LolActivityViewModel.OrderTitle = $"New Placement {purchaseForm.PlacementMatchesModel.TypeOfService}!";
+					LolActivityViewModel.OrderInformation = $"{purchaseForm.TFTPlacementModel.LastSeasonStanding} With {purchaseForm.TFTPlacementModel.NumberOfGames} Games";
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting:
+					LolActivityViewModel.RankUrl = $"solo";
+					LolActivityViewModel.OrderTitle = $"New TFT Boost Solo!";
+					LolActivityViewModel.OrderInformation = $"{purchaseForm.TFTBoostingModel.YourCurrentLeague} {purchaseForm.TFTBoostingModel.CurrentDivision} {purchaseForm.TFTBoostingModel.CurrentLP} to {purchaseForm.TFTBoostingModel.DesiredCurrentLeague} {purchaseForm.TFTBoostingModel.DesiredCurrentDivision}";
+					break;
+				case Utils.PurchaseTypeEnum.PurchaseType.Coaching:
+					break;
+				default:
+					break;
+			}
+			return LolActivityViewModel;
 		}
 	}
 }

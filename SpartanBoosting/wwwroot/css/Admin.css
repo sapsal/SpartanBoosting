@@ -10,10 +10,6 @@
 	width: 95%;
 }
 
-img {
-	max-width: 100%;
-}
-
 .inbox_people {
 	background: #f8f8f8 none repeat scroll 0 0;
 	float: left;
@@ -222,4 +218,9 @@ img {
 
 .card-group {
 	margin-bottom: 30px;
+}
+
+.activity {
+	position: relative;
+	margin-left: 17px;
 }

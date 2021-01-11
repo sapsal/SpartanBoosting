@@ -1,4 +1,5 @@
 ﻿@using SpartanBoosting.ViewModel
+@using SpartanBoosting.ViewModel.Lol_ViewModels
 @model BoosterDashboardViewModel
 @{
 	Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
@@ -27,7 +28,7 @@
 				<!--begin::Daterange-->
 				<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
 					<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
-					<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+					<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date"></span>
 				</a>
 				<!--end::Daterange-->
 			</div>
@@ -89,7 +90,7 @@
 		<div class="row">
 			<div class="col-md-12 col-lg-7 col-xl-8">
 				<!--begin::Tables Widget 1-->
-				<div class="card card-custom card-stretch gutter-b">
+				<div class="card card-custom card-stretch gutter-b h-100">
 					<!--begin::Header-->
 					<div class="card-header border-0 pt-7">
 						<h3 class="card-title align-items-start flex-column">
@@ -233,49 +234,26 @@
 					</div>
 					<div class="card-body pr-body" style="min-height: 450px">
 						<div class=" activity">
-							<div class="d-flex align-items-start border-left-line pb-3">
-								<div>
-									<img class="btn-item" src="https://www.gameboost.eu/gb-assets/placement.png?1" width="58px" style="margin-left: -29px">
-								</div>
-								<div class="ml-3 mt-2" style="margin-left: 25.5px!important;">
-									<h5 class="text-light font-weight-medium mb-2">New Placements Duo!</h5>
-									<p class="font-14 mb-2 text-muted">
-										Platinum&nbsp;I                                      <i class="fas fa-angle-right"></i>&nbsp;
-										6&nbsp;Games                                                                              <br> <a href="https://www.gameboost.eu/booster-area/claim-order/?session=BOOSTER-5ffc836c32ca6&amp;order=LOL-F81EE8968C2">#LOL-F81EE8968C2</a>
-									</p>
-									<span class="font-weight-light font-14 text-muted">3 days ago</span>
-								</div>
-							</div>
-							<div class="d-flex align-items-start border-left-line pb-3">
-								<div>
-									<img class="btn-item" src="https://www.gameboost.eu/gb-assets/placement.png?1" width="58px" style="margin-left: -29px">
-								</div>
-								<div class="ml-3 mt-2" style="margin-left: 25.5px!important;">
-									<h5 class="text-light font-weight-medium mb-2">New Placements Solo!</h5>
-									<p class="font-14 mb-2 text-muted">
-										Diamond&nbsp;I                                      <i class="fas fa-angle-right"></i>&nbsp;
-										10&nbsp;Games                                                                              <br> <a href="https://www.gameboost.eu/booster-area/claim-order/?session=BOOSTER-5ffc836c32ca6&amp;order=LOL-F86A6DBBAB0">#LOL-F86A6DBBAB0</a>
-									</p>
-									<span class="font-weight-light font-14 text-muted">3 days ago</span>
-								</div>
-							</div>
-							<div class="d-flex align-items-start border-left-line pb-3">
-								<div>
-									<img class="btn-item" src="https://www.gameboost.eu/gb-assets/duo.png?1" width="80px">
-								</div>
-								<div class="ml-3 mt-2">
-									<h5 class="text-light font-weight-medium mb-2">New Division Duo!</h5>
-									<p class="font-14 mb-2 text-muted">
-										Platinum IV&nbsp;(41-60)&nbsp;
-										<i class="fas fa-angle-right"></i>&nbsp;
-										Platinum III                                                                              <br> <a href="https://www.gameboost.eu/booster-area/claim-order/?session=BOOSTER-5ffc836c32ca6&amp;order=LOL-F913AFCD66C">#LOL-F913AFCD66C</a>
-									</p>
-									<span class="font-weight-light font-14 text-muted">2 days ago</span>
-								</div>
-							</div>
-
+							@for (int i = 0; i < 3; i++)
+							{
+								if (i < Model.PurchaseForm.Count())
+								{
+									LolActivityViewModel displayLolLolActivityViewModel = LolPricingExtensions.DisplayLolActivityViewModel(Model.PurchaseForm[i]);
+									<div class="d-flex align-items-start border-left-line pb-3">
+										<div>
+											<img class="btn-item" src="~/Client/assets/images/LeagueOfLegends/@(displayLolLolActivityViewModel.RankUrl).png" width="58px" style="margin-left: -29px">
+										</div>
+										<div class="ml-3" style="margin-left: 25.5px!important;">
+											<h5 class="card-label font-weight-bolder text-dark-75">@displayLolLolActivityViewModel.OrderTitle</h5>
+											<p class="font-14 mb-2 text-muted">
+												@displayLolLolActivityViewModel.OrderInformation
+												<a href="../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(Model.PurchaseForm[i].Id.ToString())">@displayLolLolActivityViewModel.OrderNumber</a>
+											</p>
+										</div>
+									</div>
+								}
+							}
 						</div>
-						<div class="d-block text-center"><a href="https://www.gameboost.eu/booster-area/orders-panel/?session=BOOSTER-5ffc836c32ca6&amp;reg=EU" class="font-14 border-bottom pb-1 border-info">Load More</a></div>
 					</div>
 				</div>
 			</div>
