@@ -495,12 +495,14 @@
 						<!-- END: Lost Password Form -->
 						<!-- START: Register Form -->
 						<form class="nk-sign-form-register" action="#">
-							<input class="form-control" type="text" placeholder="Username">
+							<input class="form-control register-email" type="text" placeholder="Email">
 							<div class="nk-gap-2"></div>
-							<input class="form-control" type="email" placeholder="Email">
+							<input class="form-control register-password" type="password" placeholder="Password">
+							<div class="nk-gap-2"></div>
+							<input class="form-control register-confirm-password" type="password" placeholder="Confirm Password">
 							<div class="nk-gap-2"></div>
 							<div class="float-left">A password will be emailed to you.</div>
-							<button class="nk-btn nk-btn-color-white link-effect-4 float-right">Register</button>
+							<button class="nk-btn nk-btn-color-white link-effect-4 float-right register-button">Register</button>
 						</form>
 						<!-- END: Register Form -->
 					</div>
@@ -585,6 +587,24 @@
 					else {
 						window.location.href = response.redirectToUrl;
 					}
+				}
+			});
+		});
+		$(".register-button").click(function (event) {
+			debugger;
+			event.preventDefault();
+			var model = {
+				Email: $('.register-email').val(),
+				Password: $('.register-password').val(),
+				ConfirmPassword: $('.register-confirm-password').val()
+			};
+			$.ajax({
+				url: '/Account/RegisterAjax',
+				data: JSON.stringify(model),
+				type: 'POST',
+				contentType: "application/json",
+				success: function (response) {
+					debugger;
 				}
 			});
 		});

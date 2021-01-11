@@ -273,6 +273,33 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
+		[AllowAnonymous]
+		public async Task<IActionResult> RegisterAjax(RegisterViewModel model, string returnUrl = null)
+		{
+			if (ModelState.IsValid)
+			{
+				ViewData["ReturnUrl"] = returnUrl;
+				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+				var result = await _userManager.CreateAsync(user, model.Password);
+				if (result.Succeeded)
+				{
+					_logger.LogInformation("User created a new account with password.");
+
+					var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+					var callbackUrl = Url.EmailConfirmationLink(user.Id.ToString(), code, Request.Scheme);
+					await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+					await _signInManager.SignInAsync(user, isPersistent: false);
+					_logger.LogInformation("User created a new account with password.");
+					AddErrors(result);
+					return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
+				}
+			}
+			// If we got this far, something failed, redisplay form
+			return Json(new { success = false, responseText = "Invalid register attempt." });
+		}
+
+		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Logout()
 		{
