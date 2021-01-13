@@ -18,6 +18,7 @@ namespace SpartanBoosting.Models.Pricing
 		public TFTPlacementModel TFTPlacementModel { get; set; }
 		public TFTBoostingModel TFTBoostingModel { get; set; }
 		public ApplicationUser BoosterAssignedTo { get; set; }
+		public DiscountModel Discount { get; set; }
 		public bool BoosterCompletionConfirmed { get; set; }
 		public bool CustomerCompletionConfirmed { get; set; }
 		public bool AdminCompletionConfirmed { get; set; }

@@ -1,5 +1,8 @@
-﻿using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
+﻿using SpartanBoosting.Models;
+using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
 using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.Models.Repositorys;
+using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.ViewModel.Lol_ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,7 +13,7 @@ namespace SpartanBoosting.Extensions
 {
 	public static class LolPricingExtensions
 	{
-		private static Dictionary<string, int> DiscountCodes = new Dictionary<string, int> { { "SiteLaunch15", 15 }, { "ByeS10", 20 } };
+
 		public static double RoundUp(double input, int places)
 		{
 			double multiplier = Math.Pow(10, Convert.ToDouble(places));
@@ -42,7 +45,7 @@ namespace SpartanBoosting.Extensions
 
 			decimal price = decimal.Parse(pricing);
 
-			if (DiscountCodes.Where(x => x.Key == discountCode).Count() > 0)
+			if (PurchaseForm.Discount != null)
 			{
 				//80% if discount code is applied
 				price = (price / 100) * (ObjectFactory.BoosterPercentage + 10);
@@ -53,15 +56,6 @@ namespace SpartanBoosting.Extensions
 			}
 			return RoundUp((double)price, 2);
 
-		}
-
-		public static DiscountModel PriceDiscount(string discountCode, decimal Pricing)
-		{
-			var discountCodeValue = DiscountCodes.Where(x => x.Key == discountCode).SingleOrDefault();
-			if (!discountCodeValue.Equals(new KeyValuePair<string, int>()))
-				return new DiscountModel { Price = Pricing - (Pricing * discountCodeValue.Value / 100), DicountPercentage = discountCodeValue.Value };
-			else
-				return new DiscountModel { Price = Pricing };
 		}
 
 		public static decimal PriceIncreaseLolNA(string Server, decimal Pricing, int percentage)
@@ -144,6 +138,31 @@ namespace SpartanBoosting.Extensions
 					break;
 			}
 			return LolActivityViewModel;
+		}
+	}
+
+	public class LolDiscountExtensions
+	{
+		private readonly IDiscountModelRepository _DiscountModelRepository;
+		private List<Models.DiscountModel> DiscountModel;
+		public LolDiscountExtensions(IDiscountModelRepository discountModelRepository)
+		{
+			_DiscountModelRepository = discountModelRepository;
+			DiscountModel = _DiscountModelRepository.GetDiscountModels();
+		}
+		public double RoundUp(double input, int places)
+		{
+			double multiplier = Math.Pow(10, Convert.ToDouble(places));
+			return Math.Ceiling(input * multiplier) / multiplier;
+		}
+	
+		public DiscountViewModel PriceDiscount(string discountCode, decimal Pricing)
+		{
+			var discountCodeValue = DiscountModel.Where(x => x.DiscountCode == discountCode).SingleOrDefault();
+			if (discountCodeValue != null)
+				return new DiscountViewModel { Price = Pricing - (Pricing * discountCodeValue.DiscountPercentage / 100), DicountPercentage = discountCodeValue.DiscountPercentage, DiscountId = discountCodeValue.Id };
+			else
+				return new DiscountViewModel { Price = Pricing };
 		}
 	}
 }

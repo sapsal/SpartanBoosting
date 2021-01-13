@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using SpartanBoosting.Extensions;
 using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
+using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.Utils;
 
 namespace SpartanBoosting.Controllers
@@ -14,9 +16,10 @@ namespace SpartanBoosting.Controllers
 	{
 		private PricingController PricingController { get; set; }
 		private readonly ILogger<TFTBoostingController> _logger;
-		public TFTBoostingController(ILogger<PricingController> logger)
+		private readonly LolDiscountExtensions LolDiscountExtensions;
+		public TFTBoostingController(ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository)
 		{
-			this.PricingController = new PricingController(logger);
+			this.PricingController = new PricingController(logger, discountModelRepository);
 		}
 		public IActionResult TFTPlacementMatches()
 		{

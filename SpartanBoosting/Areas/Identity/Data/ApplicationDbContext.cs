@@ -18,6 +18,7 @@ namespace SpartanBoosting.Data
         {
         }
         public DbSet<PurchaseForm> PurchaseForm { get; set; }
+        public DbSet<DiscountModel> Discount { get; set; }
         public DbSet<ChatModel> ChatModel { get; set; }
         public DbSet<LeagueOfLegendsAuditModel> LeagueOfLegendsAuditModel { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)

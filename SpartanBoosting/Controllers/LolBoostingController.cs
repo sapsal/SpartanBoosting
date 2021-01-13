@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using SpartanBoosting.Extensions;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
 using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.Utils;
 using Stripe;
 using System;
@@ -15,9 +17,9 @@ namespace SpartanBoosting.Controllers
 	{
 		private PricingController PricingController { get; set; }
 		private readonly ILogger<LolBoostingController> _logger;
-		public LolBoostingController(ILogger<PricingController> logger)
+		public LolBoostingController(ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository)
 		{
-			this.PricingController = new PricingController(logger);
+			this.PricingController = new PricingController(logger, discountModelRepository);
 		}
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
