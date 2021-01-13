@@ -20,6 +20,7 @@ namespace SpartanBoosting.Models.Repositorys
 		public PurchaseForm Add(PurchaseForm purchaseForm)
 		{
 			context.PurchaseForm.Add(purchaseForm);
+			context.Entry(purchaseForm.Discount).State = EntityState.Unchanged;
 			context.SaveChanges();
 			return purchaseForm;
 		}

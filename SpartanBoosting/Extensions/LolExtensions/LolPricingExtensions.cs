@@ -160,7 +160,7 @@ namespace SpartanBoosting.Extensions
 		{
 			var discountCodeValue = DiscountModel.Where(x => x.DiscountCode == discountCode).SingleOrDefault();
 			if (discountCodeValue != null)
-				return new DiscountViewModel { Price = Pricing - (Pricing * discountCodeValue.DiscountPercentage / 100), DicountPercentage = discountCodeValue.DiscountPercentage, DiscountId = discountCodeValue.Id };
+				return new DiscountViewModel { Price = Pricing - (Pricing * discountCodeValue.DiscountPercentage / 100), DicountPercentage = discountCodeValue.DiscountPercentage, Discount = discountCodeValue };
 			else
 				return new DiscountViewModel { Price = Pricing };
 		}

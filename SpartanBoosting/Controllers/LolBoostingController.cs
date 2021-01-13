@@ -16,7 +16,6 @@ namespace SpartanBoosting.Controllers
 	public class LolBoostingController : Controller
 	{
 		private PricingController PricingController { get; set; }
-		private readonly ILogger<LolBoostingController> _logger;
 		public LolBoostingController(ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository)
 		{
 			this.PricingController = new PricingController(logger, discountModelRepository);
@@ -27,11 +26,14 @@ namespace SpartanBoosting.Controllers
 		{
 			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.SoloPricing(BoostingModel).Value));
 
-
+			PurchaseForm purchaseForm = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
+				purchaseForm.PayPalCapture = paypalResult.CaptureURL;
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -41,7 +43,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation));
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
@@ -61,12 +63,15 @@ namespace SpartanBoosting.Controllers
 		{
 			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.DuoPricing(BoostingModel).Value));
 
+			PurchaseForm purchaseForm = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			purchaseForm.Discount = Pricing.DiscountModel;
+			purchaseForm.PurchaseType = PurchaseType.DuoBoosting;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
-				var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL);
-				purchaseFormObject.PurchaseType = PurchaseType.DuoBoosting;
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseFormObject);
+				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
+				purchaseForm.PayPalCapture = paypalResult.CaptureURL;
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -76,9 +81,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						var purchaseFormObject = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
-						purchaseFormObject.PurchaseType = PurchaseType.DuoBoosting;
-						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseFormObject);
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
@@ -98,11 +101,14 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreatePlacementMatches(Models.PlacementMatchesModel PlacementMatchesModel, Models.PersonalInformation PersonalInformation)
 		{
 			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.PlacementBoostPricing(PlacementMatchesModel).Value));
-
+			PurchaseForm purchaseForm = Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Price.ToString(), PersonalInformation);
+			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Price.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
+				purchaseForm.PayPalCapture = paypalResult.CaptureURL;
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -112,7 +118,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Price.ToString(), PersonalInformation));
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
@@ -133,11 +139,14 @@ namespace SpartanBoosting.Controllers
 		public IActionResult CreateWinBoost(Models.WinBoostModel WinBoostModel, Models.PersonalInformation PersonalInformation)
 		{
 			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.WinBoostPricing(WinBoostModel).Value));
-
+			PurchaseForm purchaseForm = Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Price.ToString(), PersonalInformation);
+			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Price.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
+				purchaseForm.PayPalCapture = paypalResult.CaptureURL;
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -147,7 +156,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Price.ToString(), PersonalInformation));
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
