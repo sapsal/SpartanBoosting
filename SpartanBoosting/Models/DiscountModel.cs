@@ -13,5 +13,6 @@ namespace SpartanBoosting.Models
 		public string DiscountCode { get; set; }
 		public bool SingleUse { get; set; }
 		public int DiscountPercentage { get; set; }
+		public bool InUse { get; set; }
 	}
 }

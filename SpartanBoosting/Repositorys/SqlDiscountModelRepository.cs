@@ -19,7 +19,37 @@ namespace SpartanBoosting.Repositorys
 		}
 		public List<DiscountModel> GetDiscountModels()
 		{
-			return context.Discount.ToList();
+			return context.Discount.Where(x => x.InUse).ToList();
+		}
+		public DiscountModel Update(DiscountModel discountModel)
+		{
+			var entity = context.Discount.FirstOrDefault(item => item.Id == discountModel.Id);
+
+			// Validate entity is not null
+			if (entity != null)
+			{
+				entity = discountModel;
+
+				// Save changes in database
+				context.SaveChanges();
+			}
+			return discountModel;
+		}
+
+		public DiscountModel SetNotInUse(DiscountModel discountModel)
+		{
+			var entity = context.Discount.FirstOrDefault(item => item.Id == discountModel.Id);
+
+			// Validate entity is not null
+			if (entity != null)
+			{
+				discountModel.InUse = false;
+				entity = discountModel;
+
+				// Save changes in database
+				context.SaveChanges();
+			}
+			return discountModel;
 		}
 		public void Delete(DiscountModel discountModel) {
 			context.Discount.Remove(discountModel);

@@ -10,6 +10,8 @@ namespace SpartanBoosting.Repositorys.Interfaces
 	public interface IDiscountModelRepository
 	{
 		List<DiscountModel> GetDiscountModels();
+		DiscountModel Update(DiscountModel discountModel);
+		DiscountModel SetNotInUse(DiscountModel discountModel);
 		void Delete(DiscountModel discountModel);
 	}
 }

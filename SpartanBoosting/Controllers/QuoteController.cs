@@ -70,7 +70,7 @@ namespace SpartanBoosting.Controllers
 				PurchaseOrderRepository.Add(purchaseForm);
 				if (purchaseForm.Discount != null && purchaseForm.Discount.SingleUse)
 				{
-					DiscountModelRepository.Delete(purchaseForm.Discount);
+					DiscountModelRepository.SetNotInUse(purchaseForm.Discount);
 				}
 
 				var bot = new DiscordBot();
