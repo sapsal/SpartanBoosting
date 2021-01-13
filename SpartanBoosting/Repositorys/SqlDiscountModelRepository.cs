@@ -19,8 +19,11 @@ namespace SpartanBoosting.Repositorys
 		}
 		public List<DiscountModel> GetDiscountModels()
 		{
-			return context.Discount.Where(x => !x.SingleUse).ToList();
+			return context.Discount.ToList();
 		}
-		
+		public void Delete(DiscountModel discountModel) {
+			context.Discount.Remove(discountModel);
+			context.SaveChanges();
+		}
 	}
 }

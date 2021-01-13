@@ -20,7 +20,9 @@ namespace SpartanBoosting.Models.Repositorys
 		public PurchaseForm Add(PurchaseForm purchaseForm)
 		{
 			context.PurchaseForm.Add(purchaseForm);
-			context.Entry(purchaseForm.Discount).State = EntityState.Unchanged;
+			purchaseForm.CreatedDate = DateTime.UtcNow;
+			if (purchaseForm.Discount != null)
+				context.Entry(purchaseForm.Discount).State = EntityState.Unchanged;
 			context.SaveChanges();
 			return purchaseForm;
 		}
@@ -37,7 +39,7 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.PlacementMatchesModel)
 			.Include(p => p.TFTBoostingModel)
 			.Include(p => p.TFTPlacementModel)
-			.Include(p => p.WinBoostModel); 
+			.Include(p => p.WinBoostModel);
 		}
 
 		public IEnumerable<PurchaseForm> GetBasicPurchaseOrder()
@@ -73,7 +75,8 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.PlacementMatchesModel)
 			.Include(p => p.TFTBoostingModel)
 			.Include(p => p.TFTPlacementModel)
-			.Include(p => p.WinBoostModel);
+			.Include(p => p.WinBoostModel)
+			.Include(p => p.Discount);
 		}
 
 		public IEnumerable<PurchaseForm> GetAllPurchaseOrdersByUser(ApplicationUser applicationUser)
