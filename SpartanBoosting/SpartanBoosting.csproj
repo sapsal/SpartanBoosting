@@ -34,7 +34,6 @@
   <ItemGroup>
     <Folder Include="Views\BoosterArea\BoosterAreaPartial\" />
     <Folder Include="wwwroot\img\Lol Ranks\" />
-    <Folder Include="wwwroot\Client\" />
   </ItemGroup>
 
   <ItemGroup>
