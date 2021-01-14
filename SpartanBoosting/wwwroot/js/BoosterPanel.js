@@ -1,5 +1,22 @@
 ﻿var dataTable;
 $(document).on("click", '.accept-job', function () {
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-top-right",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "1000",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	};
 	var data = $(this).data('booster-information')
 	var element = $(this);
 	$.ajax({
@@ -8,11 +25,18 @@ $(document).on("click", '.accept-job', function () {
 		context: this,
 		type: 'POST',
 		success: function (dataofconfirm) {
-			$('#lol-username').text(dataofconfirm.Username)
-			$('#lol-password').text(dataofconfirm.Password)
-			$('#lol-discord').text(dataofconfirm.Discord)
-			$('#lol-details-modal').modal('show');
-			$(this).parent().parent().remove()
+			debugger;
+			if (dataofconfirm.success) {
+				$('#lol-username').text(dataofconfirm.username)
+				$('#lol-password').text(dataofconfirm.password)
+				$('#lol-discord').text(dataofconfirm.discord)
+				$('#lol-details-modal').modal('show');
+				$(this).parent().parent().remove()
+			}
+			else {
+
+				toastr.error(dataofconfirm.message);
+			}
 		}
 	});
 });

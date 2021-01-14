@@ -54,10 +54,11 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult UpdateUserProfileDiscordId(string discordId, int Id)
+		public IActionResult UpdateUserProfile(string discordId, int Id, decimal balance)
 		{
 			var user = _userManager.FindByIdAsync(Id.ToString()).Result;
 			user.DiscordId = discordId;
+			user.Balance = balance;
 			UserRolesRepository.UpdateUser(user);
 			return Json(true);
 		}

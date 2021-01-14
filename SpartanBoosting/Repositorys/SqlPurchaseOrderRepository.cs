@@ -100,6 +100,11 @@ namespace SpartanBoosting.Models.Repositorys
 			return context.PurchaseForm.Include(x => x.BoosterAssignedTo).FirstOrDefault(item => item.Id == Id);
 		}
 
+		public int GetPurchaseFormWithBoosterCount(ApplicationUser applicationUser)
+		{
+			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser).Count();
+		}
+
 		public PurchaseForm GetPurchaseFormModelsIncludedByIdAndUser(int Id, ApplicationUser applicationUser)
 		{
 			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser).Include(p => p.PersonalInformation)

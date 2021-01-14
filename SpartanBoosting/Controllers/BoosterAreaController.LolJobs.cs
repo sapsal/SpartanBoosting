@@ -63,7 +63,9 @@ namespace SpartanBoosting.Controllers
 				}
 				else
 					return Json(false);
-			} catch {
+			}
+			catch
+			{
 				return Json(false);
 			}
 		}
@@ -77,11 +79,19 @@ namespace SpartanBoosting.Controllers
 			{
 				var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 				var user = _userManager.FindByIdAsync(id).Result;
-				result.BoosterAssignedTo = user;
-				result.JobAvailable = false;
-				PurchaseOrderRepository.Update(result);
-				AuditRepository.Add(new LeagueOfLegendsAuditModel { User = user, DateTime = DateTime.UtcNow, Action = $"Accepted Job By Booster [{JsonConvert.SerializeObject(result)}]" });
-				return Json(new Dictionary<string, string> { { "Username", result.PersonalInformation.UserName }, { "Password", result.PersonalInformation.Password }, { "Discord", result.PersonalInformation.Discord } });
+				if (!(PurchaseOrderRepository.GetPurchaseFormWithBoosterCount(user) > user.MaxAssignedBoostsAllowed))
+				{
+					result.BoosterAssignedTo = user;
+					result.JobAvailable = false;
+					PurchaseOrderRepository.Update(result);
+					AuditRepository.Add(new LeagueOfLegendsAuditModel { User = user, DateTime = DateTime.UtcNow, Action = $"Accepted Job By Booster [{JsonConvert.SerializeObject(result)}]" });
+					return Json(new { Username = result.PersonalInformation.UserName, Password = result.PersonalInformation.Password, Discord = result.PersonalInformation.Discord, success = true });
+				}
+				else
+				{
+					return Json(new { success = false, Message = $"You currently have {user.MaxAssignedBoostsAllowed} jobs, please complete the ones you have before accepting more." });
+
+				}
 			}
 
 			return Json(null);

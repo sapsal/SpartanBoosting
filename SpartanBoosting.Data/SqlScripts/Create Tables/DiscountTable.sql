@@ -12,3 +12,5 @@ ADD Discount int NULL
 FOREIGN KEY (Discount) REFERENCES Discount(ID);
 
 ALTER TABLE Discount ADD InUse bit not null default (0)
+
+ALTER TABLE AspNetUsers ADD MaxAssignedBoostsAllowed TINYINT not null default (2)
