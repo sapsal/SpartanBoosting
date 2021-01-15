@@ -14,10 +14,12 @@ var chkBoxBorderStyling = $('.checkbox-border-styling');
 //});
 $('#type-of-service').on('change', function () {
 	if (this.value == "Duo") {
-		$('#specific-roles-content').show();
+		$('.type-of-duo-div').show();
+		$('.type-of-duo-div').find('input').prop('required', true);
 	}
 	else {
-		$('#specific-roles-content').hide();
+		$('.type-of-duo-div').hide();
+		$('.type-of-duo-div').find('input').removeAttr('required')
 	}
 });
 
