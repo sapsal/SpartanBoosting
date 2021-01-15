@@ -155,14 +155,20 @@ namespace SpartanBoosting.Extensions
 			double multiplier = Math.Pow(10, Convert.ToDouble(places));
 			return Math.Ceiling(input * multiplier) / multiplier;
 		}
-	
+
 		public DiscountViewModel PriceDiscount(string discountCode, decimal Pricing)
 		{
-			var discountCodeValue = DiscountModel.Where(x => x.DiscountCode == discountCode).SingleOrDefault();
-			if (discountCodeValue != null)
-				return new DiscountViewModel { Price = Pricing - (Pricing * discountCodeValue.DiscountPercentage / 100), DicountPercentage = discountCodeValue.DiscountPercentage, Discount = discountCodeValue };
-			else
-				return new DiscountViewModel { Price = Pricing };
+			if (discountCode != null)
+			{
+				var discountCodeValue = DiscountModel.Where(x => x.DiscountCode.TrimEnd() == discountCode.TrimEnd()).SingleOrDefault();
+				if (discountCodeValue != null)
+					return new DiscountViewModel { Price = Pricing - (Pricing * discountCodeValue.DiscountPercentage / 100), DicountPercentage = discountCodeValue.DiscountPercentage, Discount = discountCodeValue, Success = true };
+				else
+					return new DiscountViewModel { Price = Pricing, Success = false };
+			}
+			else {
+				return new DiscountViewModel { Price = Pricing, Success = false };
+			}
 		}
 	}
 }
