@@ -45,7 +45,7 @@ namespace SpartanBoosting.Controllers
 			await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
 			ViewData["ReturnUrl"] = returnUrl;
-			return View();
+			return Redirect(Url.Content("~/"));
 		}
 
 		[HttpPost]
@@ -97,6 +97,7 @@ namespace SpartanBoosting.Controllers
 				var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 				if (result.Succeeded)
 				{
+					var user = await _userManager.FindByEmailAsync(model.Email);
 					_logger.LogInformation("User logged in.");
 					return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
 				}
