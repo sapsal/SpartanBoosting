@@ -86,3 +86,10 @@
 .gfield_required {
 	color: red;
 }
+
+.nk-count-style {
+	font-size: 3rem;
+	line-height: 3;
+	font-family: "Marcellus SC", serif;
+	font-weight: 600;
+}

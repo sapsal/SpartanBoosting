@@ -80,7 +80,7 @@ namespace SpartanBoosting.Controllers
 					price = decimal.Parse(result.OurRegularPrice);
 				}
 
-				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 40);
+				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 60);
 				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
 				price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
 				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
