@@ -122,17 +122,18 @@
 													<td>
 														@if (item.BoosterCompletionConfirmed)
 														{
-															<div class="row">
-																<button class="btn btn-danger btn-cancel-job w-95" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
+															<div class="row pb-2">
+																<button class="btn btn-warning  btn-cancel-job w-95" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
 															</div>
 														}
 														@if (!item.AdminCompletionConfirmed)
 														{
-															<div class="row">
+															<div class="row pb-2">
 																<button class="btn btn-success btn-complete-job w-95" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Complete Order</button>
 															</div>
-														}
-														<button class="btn btn-danger btn-delete-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Delete Order</button>
+														}<div class="row">
+															<button class="btn btn-danger btn-delete-job w-95" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Delete Order</button>
+														</div>
 													</td>
 
 												</tr>
@@ -202,7 +203,7 @@
 			}
 		});
 	});
-	
+
 	$(document).ready(function () {
 		RenderDT($('.lol-datatable'))
 		function RenderDT(element) {
