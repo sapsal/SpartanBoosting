@@ -6,8 +6,8 @@
 	display: flex;
 }
 
-img {
-	max-width: 100%;
+.w-95 {
+	width: 95%;
 }
 
 .inbox_people {
@@ -214,4 +214,13 @@ img {
 .msg_history {
 	height: 516px;
 	overflow-y: auto;
+}
+
+.card-group {
+	margin-bottom: 30px;
+}
+
+.activity {
+	position: relative;
+	margin-left: 17px;
 }

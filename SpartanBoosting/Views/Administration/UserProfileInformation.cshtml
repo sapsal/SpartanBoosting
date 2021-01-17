@@ -2,7 +2,7 @@
 @model List<ApplicationUser>
 @{
 	Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
-	ViewData["Title"] = "AssignLolUserRoles";
+	ViewData["Title"] = "User Profiles";
 }
 
 <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
@@ -16,7 +16,7 @@
 				<div class="d-flex align-items-baseline flex-wrap mr-5">
 					<!--begin::Page Title-->
 					<h5 class="text-dark font-weight-bold my-1 mr-5">
-						Assign Lol Roles
+						User Profiles
 					</h5>
 					<!--end::Page Title-->
 
@@ -51,12 +51,12 @@
 						<div class="card-header border-0 pt-7">
 							<h3 class="card-title align-items-start flex-column">
 								<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Users</span>
-								<span class="text-muted mt-3 font-weight-bold font-size-lg">Assign Lol Roles</span>
+								<span class="text-muted mt-3 font-weight-bold font-size-lg">User Profiles</span>
 							</h3>
 							<div class="card-toolbar">
 								<ul class="nav nav-pills nav-pills-sm nav-dark">
 									<li class="nav-item ml-0">
-										<a class="nav-link py-2 px-4 font-weight-bolder font-size-sm active" data-toggle="tab" href="#kt_tab_table_1_1">Lol Roles</a>
+										<a class="nav-link py-2 px-4 font-weight-bolder font-size-sm active" data-toggle="tab" href="#kt_tab_table_1_1">User Profiles</a>
 									</li>
 								</ul>
 							</div>
@@ -75,6 +75,7 @@
 													<th class="p-0"></th>
 													<th class="p-0">Id</th>
 													<th class="p-0">Username</th>
+													<th class="p-0">Balance</th>
 													<th class="p-0">DiscordId</th>
 													<th class="p-0">Actions</th>
 												</tr>
@@ -83,23 +84,26 @@
 											<tbody>
 												@foreach (var item in Model)
 												{
-													<tr>
-														<td class="py-5 pl-0">
-														</td>
-														<td class="pl-0">
-															<span class="text-muted font-weight-bold d-block">@item.Id</span>
-														</td>
-														<td class="">
-															<span class="text-muted font-weight-bold d-block">@item.UserName</span>
-														</td>
-														<td class="">
-															<span class="text-muted font-weight-bold d-block"><input class="form-control discord-id-text" value="@item.DiscordId" /></span>
-														</td>
-														<td class="">
-															<button class="btn btn-success btn-booster-details" data-booster-id="@item.Id">Save User Details</button>
-														</td>
+												<tr>
+													<td class="py-5 pl-0">
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-bold d-block">@item.Id</span>
+													</td>
+													<td class="">
+														<span class="text-muted font-weight-bold d-block">@item.UserName</span>
+													</td>
+													<td class="">
+														<span class="text-muted font-weight-bold d-block"><input type="number" class="form-control balance-text" value="@item.Balance" /></span>
+													</td>
+													<td class="">
+														<span class="text-muted font-weight-bold d-block"><input class="form-control discord-id-text" value="@item.DiscordId" /></span>
+													</td>
+													<td class="">
+														<button class="btn btn-success btn-booster-details" data-booster-id="@item.Id">Save User Details</button>
+													</td>
 
-													</tr>
+												</tr>
 												}
 											</tbody>
 										</table>
@@ -125,9 +129,10 @@
 		debugger;
 		var data = $(this).data('booster-id')
 		var discordId = $(this).closest('tr').find('.discord-id-text').val()
+		var balance = $(this).closest('tr').find('.balance-text').val()
 		$.ajax({
-			url: '/Administration/UpdateUserProfileDiscordId',
-			data: { discordId: discordId, id: data },
+			url: '/Administration/UpdateUserProfile',
+			data: { discordId: discordId, id: data, balance: balance },
 			context: this,
 			type: 'POST',
 			success: function (dataofconfirm) {

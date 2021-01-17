@@ -1,4 +1,5 @@
 ﻿@using SpartanBoosting.ViewModel
+@using SpartanBoosting.ViewModel.Lol_ViewModels
 @model BoosterDashboardViewModel
 @{
 	Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
@@ -27,7 +28,7 @@
 				<!--begin::Daterange-->
 				<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
 					<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
-					<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+					<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date"></span>
 				</a>
 				<!--end::Daterange-->
 			</div>
@@ -39,11 +40,57 @@
 	<!--begin::Container-->
 	<div class=" container ">
 		<!--begin::Dashboard-->
+		<!--begin::Balance and order stats-->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card-group">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-md-block align-items-center text-center">
+								<div>
+									<div class="d-inline-flex align-items-center">
+										<h2 class="card-label font-weight-bolder font-size-h4 text-dark-75">@Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed).Count()</h2>
+									</div>
+									<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Current Orders</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="d-md-block align-items-center text-center  border-right  border-left">
+
+								<div>
+									<h2 class="card-label font-weight-bolder font-size-h4 text-dark-75">
+										@Model.Booster.Balance	€
+									</h2>
+									<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">
+										Current Balance
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="d-md-block align-items-center text-center">
+								<div>
+									<div class="d-inline-flex align-items-center">
+										<h2 class="card-label font-weight-bolder font-size-h4 text-dark-75">@Model.PurchaseForm.Count()</h2>
+									</div>
+									<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Orders</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--begin::Row-->
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-md-12 col-lg-7 col-xl-8">
 				<!--begin::Tables Widget 1-->
-				<div class="card card-custom card-stretch gutter-b">
+				<div class="card card-custom card-stretch gutter-b h-100">
 					<!--begin::Header-->
 					<div class="card-header border-0 pt-7">
 						<h3 class="card-title align-items-start flex-column">
@@ -84,37 +131,37 @@
 										<tbody>
 											@foreach (var item in Model.PurchaseForm.Where(x => !x.BoosterCompletionConfirmed))
 											{
-											<tr>
-												<td class="py-5 pl-0">
-													<span class="text-muted font-weight-bold d-block text-nowrap">
-														<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
-													</span>
-												</td>
-												<td class="pl-0">
-													<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-bold d-block">
-														Price
-													</span>
-													<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-														€@LolPricingExtensions.BoosterPay(item)
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-500">
-														@item.PurchaseType.ToString()
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="label label-lg label-light-warning label-inline">In Progress</span>
-												</td>
-												<td class="text-right">
-													<button class="btn btn-success btn-completed-job" data-booster-information="@item.Id">Completed</button>
-													<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
-												</td>
+												<tr>
+													<td class="py-5 pl-0">
+														<span class="text-muted font-weight-bold d-block text-nowrap">
+															<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+														</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-bold d-block">
+															Price
+														</span>
+														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+															€@LolPricingExtensions.BoosterPay(item)
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-500">
+															@item.PurchaseType.ToString()
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="label label-lg label-light-warning label-inline">In Progress</span>
+													</td>
+													<td class="text-right">
+														<button class="btn btn-success btn-completed-job" data-booster-information="@item.Id">Completed</button>
+														<button class="btn btn-danger btn-cancel-job" data-booster-information="@Newtonsoft.Json.JsonConvert.SerializeObject(item.Id)">Cancel Order</button>
+													</td>
 
-											</tr>
+												</tr>
 											}
 										</tbody>
 									</table>
@@ -140,33 +187,33 @@
 										<tbody>
 											@foreach (var item in Model.PurchaseForm.Where(x => x.BoosterCompletionConfirmed))
 											{
-											<tr>
-												<td class="py-5 pl-0">
-													<span class="text-muted font-weight-bold d-block text-nowrap">
-														<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
-													</span>
-												</td>
-												<td class="pl-0">
-													<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-bold d-block">
-														Price
-													</span>
-													<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-														€@LolPricingExtensions.BoosterPay(item)
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="text-muted font-weight-500">
-														@item.PurchaseType.ToString()
-													</span>
-												</td>
-												<td class="text-right">
-													<span class="label label-lg label-light-primary label-inline">Success</span>
-													@*<span class="label label-lg label-light-info label-inline">Approved</span>*@
-												</td>
-											</tr>
+												<tr>
+													<td class="py-5 pl-0">
+														<span class="text-muted font-weight-bold d-block text-nowrap">
+															<a href='../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+														</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-bold d-block">
+															Price
+														</span>
+														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+															€@LolPricingExtensions.BoosterPay(item)
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="text-muted font-weight-500">
+															@item.PurchaseType.ToString()
+														</span>
+													</td>
+													<td class="text-right">
+														<span class="label label-lg label-light-primary label-inline">Success</span>
+														@*<span class="label label-lg label-light-info label-inline">Approved</span>*@
+													</td>
+												</tr>
 											}
 										</tbody>
 									</table>
@@ -179,6 +226,37 @@
 					<!--end::Body-->
 				</div>
 				<!--end::Tables Widget 1-->
+			</div>
+			<div class="col-md-12 col-lg-5 col-xl-4">
+				<div class="card pr-card">
+					<div class="card-header pr-header font-weight-bolder">
+						Recent Orders
+					</div>
+					<div class="card-body pr-body" style="min-height: 450px">
+						<div class=" activity">
+							@for (int i = 0; i < 3; i++)
+							{
+								if (i < Model.PurchaseForm.Count())
+								{
+									LolActivityViewModel displayLolLolActivityViewModel = LolPricingExtensions.DisplayLolActivityViewModel(Model.PurchaseForm[i]);
+									<div class="d-flex align-items-start border-left-line pb-3">
+										<div>
+											<img class="btn-item" src="~/Client/assets/images/LeagueOfLegends/@(displayLolLolActivityViewModel.RankUrl).png" width="58px" style="margin-left: -29px">
+										</div>
+										<div class="ml-3" style="margin-left: 25.5px!important;">
+											<h5 class="card-label font-weight-bolder text-dark-75">@displayLolLolActivityViewModel.OrderTitle</h5>
+											<p class="font-14 mb-2 text-muted">
+												@displayLolLolActivityViewModel.OrderInformation
+												<a href="../BoosterArea/OrderDetails?hash=@EncryptionHelper.Encrypt(Model.PurchaseForm[i].Id.ToString())">@displayLolLolActivityViewModel.OrderNumber</a>
+											</p>
+											<span class="font-weight-light font-14 text-muted">@displayLolLolActivityViewModel.DaysAgo days ago</span>
+										</div>
+									</div>
+								}
+							}
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!--end::Row-->

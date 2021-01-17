@@ -8,14 +8,17 @@ using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
 using Microsoft.AspNetCore.HttpOverrides;
 using SpartanBoosting.Extensions;
+using SpartanBoosting.Repositorys.Interfaces;
 
 namespace SpartanBoosting.Controllers
 {
 	public class PricingController : Controller
 	{
 		private readonly ILogger<PricingController> _logger;
-		public PricingController(ILogger<PricingController> logger)
+		private readonly LolDiscountExtensions LolDiscountExtensions;
+		public PricingController(ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository)
 		{
+			LolDiscountExtensions = new LolDiscountExtensions(discountModelRepository);
 			_logger = logger;
 		}
 
@@ -23,9 +26,10 @@ namespace SpartanBoosting.Controllers
 		public JsonResult ApplyDiscountCode(string DiscountCode, string Price)
 		{
 			decimal price = decimal.Parse(Price.Replace(" €", ""));
-			price = LolPricingExtensions.PriceDiscount(DiscountCode, price);
-			price = (System.Math.Ceiling(price * 100) / 100);
-			return Json(price);
+			var priceDiscountResult = LolDiscountExtensions.PriceDiscount(DiscountCode, price);
+
+			price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
+			return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 		}
 
 		[HttpPost]
@@ -49,9 +53,9 @@ namespace SpartanBoosting.Controllers
 					price = price + (price / 100) * 15;
 				}
 				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 20);
-				price = LolPricingExtensions.PriceDiscount(Model.DiscountCode, price);
-				price = (System.Math.Ceiling(price * 100) / 100);
-				return Json(price);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
+				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 		}
 
@@ -76,10 +80,10 @@ namespace SpartanBoosting.Controllers
 					price = decimal.Parse(result.OurRegularPrice);
 				}
 
-				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 40);
-				price = LolPricingExtensions.PriceDiscount(Model.DiscountCode, price);
-				price = (System.Math.Ceiling(price * 100) / 100);
-				return Json(price);
+				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 60);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
+				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 		}
 
@@ -104,8 +108,9 @@ namespace SpartanBoosting.Controllers
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
 				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 40);
-				price = LolPricingExtensions.PriceDiscount(Model.Discount, price);
-				return Json(price);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.Discount, price);
+				price = priceDiscountResult.Price;
+				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 		}
 
@@ -123,8 +128,9 @@ namespace SpartanBoosting.Controllers
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
 				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 40);
-				price = LolPricingExtensions.PriceDiscount(Model.Discount, price);
-				return Json(price);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.Discount, price);
+				price = priceDiscountResult.Price;
+				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 		}
 
@@ -139,8 +145,9 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurRegularPrice) * 100) / 100);
-				price = LolPricingExtensions.PriceDiscount(Model.DiscountCode, price);
-				return Json(price);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = priceDiscountResult.Price;
+				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 
 		}
@@ -154,8 +161,9 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
-				price = LolPricingExtensions.PriceDiscount(Model.DiscountCode, price);
-				return Json(price);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = priceDiscountResult.Price;
+				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 
 		}

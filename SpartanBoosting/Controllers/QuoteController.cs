@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Threading.Tasks;
 using System;
 using SpartanBoosting.Models.Repositorys;
+using SpartanBoosting.Repositorys.Interfaces;
 
 namespace SpartanBoosting.Controllers
 {
@@ -18,11 +19,13 @@ namespace SpartanBoosting.Controllers
 		private readonly IOptions<SmtpSettings> _smtpSettings;
 		private ICompositeViewEngine _viewEngine;
 		private IPurchaseOrderRepository PurchaseOrderRepository;
-		public QuoteController(IOptions<SmtpSettings> smtpSettings, ICompositeViewEngine viewEngine, IPurchaseOrderRepository purchaseOrderRepository)
+		private IDiscountModelRepository DiscountModelRepository;
+		public QuoteController(IOptions<SmtpSettings> smtpSettings, ICompositeViewEngine viewEngine, IPurchaseOrderRepository purchaseOrderRepository, IDiscountModelRepository discountModelRepository)
 		{
 			_smtpSettings = smtpSettings;
 			_viewEngine = viewEngine;
 			PurchaseOrderRepository = purchaseOrderRepository;
+			DiscountModelRepository = discountModelRepository;
 		}
 
 		public async Task<string> RenderPartialViewToString(string viewName, object model)
@@ -63,10 +66,17 @@ namespace SpartanBoosting.Controllers
 				{
 					PayPalV2.captureOrder(purchaseForm.PayPalCapture);
 				}
+
 				PurchaseOrderRepository.Add(purchaseForm);
+				if (purchaseForm.Discount != null && purchaseForm.Discount.SingleUse)
+				{
+					DiscountModelRepository.SetNotInUse(purchaseForm.Discount);
+				}
 
 				var bot = new DiscordBot();
 				bot.RunAsync(purchaseForm).GetAwaiter().GetResult();
+
+
 				string emailbody = string.Empty;
 				switch (purchaseForm.PurchaseType)
 				{

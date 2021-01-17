@@ -78,6 +78,7 @@ namespace SpartanBoosting
 			services.AddScoped<IPurchaseOrderRepository, SqlPurchaseOrderRepository>();
 			services.AddScoped<IUserRepository, SqlUserRepository>();
 			services.AddScoped<IChatModelRepository, SqlChatModelRepository>();
+			services.AddScoped<IDiscountModelRepository, SqlDiscountModelRepository>();
 			services.AddScoped<IAuditRepository, SqlAuditRepository>();
 			ObjectFactory.LoadPricing();
 		}

@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using SpartanBoosting.Extensions;
+using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
+using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.Utils;
 
 namespace SpartanBoosting.Controllers
@@ -12,10 +16,9 @@ namespace SpartanBoosting.Controllers
 	public class TFTBoostingController : Controller
 	{
 		private PricingController PricingController { get; set; }
-		private readonly ILogger<TFTBoostingController> _logger;
-		public TFTBoostingController(ILogger<PricingController> logger)
+		public TFTBoostingController(ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository)
 		{
-			this.PricingController = new PricingController(logger);
+			this.PricingController = new PricingController(logger, discountModelRepository);
 		}
 		public IActionResult TFTPlacementMatches()
 		{
@@ -30,22 +33,25 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public IActionResult CreateTFTSoloBoost(Models.TFTBoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
-			JsonResult Pricing = PricingController.TFTSoloBoostPricing(BoostingModel);
-
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.TFTSoloBoostPricing(BoostingModel).Value));
+			PurchaseForm purchaseForm = Models.TFTBoostingModel.TFTBoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
-				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTBoostingModel.TFTBoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
+				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
+				purchaseForm.PayPalCapture = paypalResult.CaptureURL;
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
 			{
 				try
 				{
-					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTBoostingModel.TFTBoostingModelToPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation));
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
@@ -64,22 +70,25 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public IActionResult CreateTFTPlacementBoost(Models.TFTPlacementModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
-			JsonResult Pricing = PricingController.TFTPlacementBoostPricing(BoostingModel);
-
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.TFTPlacementBoostPricing(BoostingModel).Value));
+			PurchaseForm purchaseForm = Models.TFTPlacementModel.TFTPlacementModelPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
-				var paypalResult = PayPalV2.createOrder(Pricing.Value.ToString());
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTPlacementModel.TFTPlacementModelPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation, paypalResult.ApprovalURL , paypalResult.CaptureURL));
+				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
+				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
+				purchaseForm.PayPalCapture = paypalResult.CaptureURL;
+				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
 			{
 				try
 				{
-					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Value.ToString());
+					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(Models.TFTPlacementModel.TFTPlacementModelPurchaseForm(BoostingModel, Pricing.Value.ToString(), PersonalInformation));
+						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}

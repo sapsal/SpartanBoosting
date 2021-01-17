@@ -11,5 +11,6 @@ namespace SpartanBoosting.Models
 	{
 		public decimal Balance { get; set; }
 		public string DiscordId { get; set; }
+		public byte MaxAssignedBoostsAllowed { get; set; }
 	}
 }

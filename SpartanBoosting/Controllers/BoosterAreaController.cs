@@ -31,6 +31,7 @@ namespace SpartanBoosting.Controllers
 		{
 			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
 			BoosterDashboardViewModel BoosterDashboardViewModel = new BoosterDashboardViewModel();
+			BoosterDashboardViewModel.Booster = user;
 			BoosterDashboardViewModel.PurchaseForm = PurchaseOrderRepository.GetAllPurchaseOrdersByUser(user).ToList();
 			return View(BoosterDashboardViewModel);
 		}

@@ -20,6 +20,9 @@ namespace SpartanBoosting.Models.Repositorys
 		public PurchaseForm Add(PurchaseForm purchaseForm)
 		{
 			context.PurchaseForm.Add(purchaseForm);
+			purchaseForm.CreatedDate = DateTime.UtcNow;
+			if (purchaseForm.Discount != null)
+				context.Entry(purchaseForm.Discount).State = EntityState.Unchanged;
 			context.SaveChanges();
 			return purchaseForm;
 		}
@@ -37,7 +40,7 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.PlacementMatchesModel)
 			.Include(p => p.TFTBoostingModel)
 			.Include(p => p.TFTPlacementModel)
-			.Include(p => p.WinBoostModel); 
+			.Include(p => p.WinBoostModel);
 		}
 
 		public IEnumerable<PurchaseForm> GetBasicPurchaseOrder()
@@ -55,6 +58,16 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.WinBoostModel).Include(p => p.BoosterAssignedTo);
 		}
 
+		public IEnumerable<PurchaseForm> GetAllUnCompletedPurchaseOrderWithBooster()
+		{
+			return context.PurchaseForm.Include(p => p.BoostingModel)
+			.Include(p => p.CoachingModel)
+			.Include(p => p.PlacementMatchesModel)
+			.Include(p => p.TFTBoostingModel)
+			.Include(p => p.TFTPlacementModel)
+			.Include(p => p.WinBoostModel).Include(p => p.BoosterAssignedTo).Where(x => !x.AdminCompletionConfirmed);
+		}
+
 		public IEnumerable<PurchaseForm> GetAllPurchaseOrderAvailable()
 		{
 			return context.PurchaseForm.Where(x => x.JobAvailable)
@@ -63,7 +76,8 @@ namespace SpartanBoosting.Models.Repositorys
 			.Include(p => p.PlacementMatchesModel)
 			.Include(p => p.TFTBoostingModel)
 			.Include(p => p.TFTPlacementModel)
-			.Include(p => p.WinBoostModel);
+			.Include(p => p.WinBoostModel)
+			.Include(p => p.Discount);
 		}
 
 		public IEnumerable<PurchaseForm> GetAllPurchaseOrdersByUser(ApplicationUser applicationUser)
@@ -87,6 +101,11 @@ namespace SpartanBoosting.Models.Repositorys
 			return context.PurchaseForm.Include(x => x.BoosterAssignedTo).FirstOrDefault(item => item.Id == Id);
 		}
 
+		public int GetPurchaseFormWithBoosterCount(ApplicationUser applicationUser)
+		{
+			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser).Count();
+		}
+
 		public PurchaseForm GetPurchaseFormModelsIncludedByIdAndUser(int Id, ApplicationUser applicationUser)
 		{
 			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser).Include(p => p.PersonalInformation)
@@ -108,6 +127,7 @@ namespace SpartanBoosting.Models.Repositorys
 						.Include(p => p.TFTBoostingModel)
 						.Include(p => p.TFTPlacementModel)
 						.Include(p => p.WinBoostModel)
+						.Include(p => p.BoosterAssignedTo)
 						.FirstOrDefault(item => item.Id == Id);
 		}
 
