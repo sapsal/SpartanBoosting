@@ -98,8 +98,17 @@ namespace SpartanBoosting.Controllers
 				if (result.Succeeded)
 				{
 					var user = await _userManager.FindByEmailAsync(model.Email);
-					_logger.LogInformation("User logged in.");
-					return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
+					if (await _userManager.IsInRoleAsync(user, "Superuser"))
+					{
+						_logger.LogInformation("User logged in.");
+						return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
+					}
+					else
+					{
+						//client 
+
+						return Json(new { success = true, Username = user.UserName });
+					}
 				}
 				if (result.RequiresTwoFactor)
 				{
@@ -275,8 +284,9 @@ namespace SpartanBoosting.Controllers
 
 		[HttpPost]
 		[AllowAnonymous]
-		public async Task<IActionResult> RegisterAjax(RegisterViewModel model, string returnUrl = null)
+		public async Task<IActionResult> RegisterAjax(string email, string username, string password, string confirmPassword, string returnUrl = null)
 		{
+			RegisterViewModel model = new RegisterViewModel { Email = email, UserName = username, Password = password, ConfirmPassword = confirmPassword };
 			if (ModelState.IsValid)
 			{
 				ViewData["ReturnUrl"] = returnUrl;
@@ -293,11 +303,19 @@ namespace SpartanBoosting.Controllers
 					await _signInManager.SignInAsync(user, isPersistent: false);
 					_logger.LogInformation("User created a new account with password.");
 					AddErrors(result);
-					return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
+
+					//only client until given permissions for booster
+					return Json(new { success = true, Username = user.UserName, message = "Account created with password, please check your confirmation link in your email." });
 				}
+				string errorResult = "";
+				foreach (var error in result.Errors)
+				{
+					errorResult = $"{errorResult} {error.Description}";
+				}
+				return Json(new { success = false, message = $"Invalid register attempt. {errorResult}" });
 			}
 			// If we got this far, something failed, redisplay form
-			return Json(new { success = false, responseText = "Invalid register attempt." });
+			return Json(new { success = false, message = $"Invalid register attempt." });
 		}
 
 		[HttpPost]
