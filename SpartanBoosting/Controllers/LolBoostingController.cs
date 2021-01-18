@@ -22,11 +22,21 @@ namespace SpartanBoosting.Controllers
 		}
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
+		public IActionResult SubmitSoloToOrder(PurchaseForm purchaseForm)
+		{
+			TempData.Put("purchaseForm", purchaseForm);
+			TempData.Put("purchaseType", PurchaseType.SoloBoosting.ToString());
+			return RedirectToAction("Details", "Invoice");
+		}
+
+		[ValidateAntiForgeryToken()]
+		[HttpPost]
 		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, PersonalInformation PersonalInformation)
 		{
-			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.SoloPricing(BoostingModel).Value));
+			PurchaseForm purchaseForm = new PurchaseForm { BoostingModel = BoostingModel, PersonalInformation = PersonalInformation };
+				PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.SoloPricing(purchaseForm).Value));
 
-			PurchaseForm purchaseForm = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			purchaseForm.Pricing = Pricing.Price.ToString();
 			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
@@ -174,7 +184,7 @@ namespace SpartanBoosting.Controllers
 
 		public IActionResult SoloBoosting()
 		{
-			Models.BoostingModel model = new Models.BoostingModel();
+			PurchaseForm model = new PurchaseForm();
 
 			return View(model);
 		}

@@ -33,27 +33,27 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult SoloPricing(Models.BoostingModel Model)
+		public JsonResult SoloPricing(PurchaseForm Model)
 		{
-			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
-			SoloBoostPricing result = ObjectFactory.SoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
+			string requiredDivision = Model.BoostingModel.DesiredCurrentLeague == "Master" ? Model.BoostingModel.DesiredCurrentLeague : $"{Model.BoostingModel.DesiredCurrentLeague} {Model.BoostingModel.DesiredCurrentDivision}";
+			SoloBoostPricing result = ObjectFactory.SoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.BoostingModel.YourCurrentLeague} {Model.BoostingModel.CurrentDivision}" && x.CurrentLP == Model.BoostingModel.CurrentLP.Replace("LP ", "")
 			&& x.RequiredDivision == requiredDivision).FirstOrDefault();
 			if (result == null)
 				return Json(0);
 			else
 			{
 				decimal price = decimal.Parse(result.OurPrice);
-				if (Model.SpecificRolesADC != "false" || Model.SpecificRolesTop != "false" || Model.SpecificRolesJungle != "false" || Model.SpecificRolesMiddle != "false" || Model.SpecificRolesSupport != "false")
+				if (Model.BoostingModel.SpecificRolesADC != "false" || Model.BoostingModel.SpecificRolesTop != "false" || Model.BoostingModel.SpecificRolesJungle != "false" || Model.BoostingModel.SpecificRolesMiddle != "false" || Model.BoostingModel.SpecificRolesSupport != "false")
 				{
 					// Add 15%
 					price = price + (price / 100) * 15;
 				}
-				if (Model.SpecificChampions != null)
+				if (Model.BoostingModel.SpecificChampions != null)
 				{
 					price = price + (price / 100) * 15;
 				}
-				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 20);
-				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = LolPricingExtensions.PriceIncreaseLolNA(Model.BoostingModel.Server, price, 20);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.BoostingModel.DiscountCode, price);
 				price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
 				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
