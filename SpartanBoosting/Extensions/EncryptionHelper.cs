@@ -10,7 +10,7 @@ namespace SpartanBoosting.Extensions
 	{
         public static string Encrypt(string clearText)
         {
-            string EncryptionKey = "Sp4rt4nB00st1ng";
+            string EncryptionKey = "*?//*[*Sp4rt4n/<>.B00st1ng%;%*?//";
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
             using (Aes encryptor = Aes.Create())
             {
@@ -33,7 +33,7 @@ namespace SpartanBoosting.Extensions
         public static string Encrypt(object encrypObject)
         {
             string clearText = JsonConvert.SerializeObject(encrypObject);
-            string EncryptionKey = "Sp4rt4nB00st1ng";
+            string EncryptionKey = "*?//*[*Sp4rt4n/<>.B00st1ng%;%*?//";
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
             using (Aes encryptor = Aes.Create())
             {
@@ -54,7 +54,7 @@ namespace SpartanBoosting.Extensions
         }
         public static string Decrypt(string cipherText)
         {
-            string EncryptionKey = "Sp4rt4nB00st1ng";
+            string EncryptionKey = "*?//*[*Sp4rt4n/<>.B00st1ng%;%*?//";
             cipherText = cipherText.Replace(" ", "+");
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             using (Aes encryptor = Aes.Create())

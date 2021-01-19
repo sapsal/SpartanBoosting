@@ -60,18 +60,18 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult DuoPricing(Models.BoostingModel Model)
+		public JsonResult DuoPricing(PurchaseForm Model)
 		{
 			decimal price;
-			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
-			DuoBoostPricing result = ObjectFactory.DuoBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
+			string requiredDivision = Model.BoostingModel.DesiredCurrentLeague == "Master" ? Model.BoostingModel.DesiredCurrentLeague : $"{Model.BoostingModel.DesiredCurrentLeague} {Model.BoostingModel.DesiredCurrentDivision}";
+			DuoBoostPricing result = ObjectFactory.DuoBoostPricing.Where(x => x.CurrentDivision == $"{Model.BoostingModel.YourCurrentLeague} {Model.BoostingModel.CurrentDivision}" && x.CurrentLP == Model.BoostingModel.CurrentLP.Replace("LP ", "")
 			&& x.RequiredDivision == requiredDivision).FirstOrDefault();
 			if (result == null)
 				return Json(0);
 			else
 			{
 
-				if (Model.TypeOfDuoPremium != "false")
+				if (Model.BoostingModel.TypeOfDuoPremium != "false")
 				{
 					price = decimal.Parse(result.OurPremiumPrice);
 				}
@@ -80,72 +80,72 @@ namespace SpartanBoosting.Controllers
 					price = decimal.Parse(result.OurRegularPrice);
 				}
 
-				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 60);
-				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				price = LolPricingExtensions.PriceIncreaseLolNA(Model.BoostingModel.Server, price, 60);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.BoostingModel.DiscountCode, price);
 				price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
 				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 		}
 
 		[HttpPost]
-		public JsonResult WinBoostPricing(Models.WinBoostModel Model)
+		public JsonResult WinBoostPricing(PurchaseForm Model)
 		{
 			decimal price;
-			string premiumOrRegular = Model.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
-			string lastSeason = Model.TypeOfService == "Duo" ? $"{Model.YourCurrentLeague} {Model.CurrentDivision} ({Model.TypeOfService}) ({premiumOrRegular})"
-			: $"{Model.YourCurrentLeague} {Model.CurrentDivision} ({Model.TypeOfService})";
+			string premiumOrRegular = Model.WinBoostModel.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
+			string lastSeason = Model.WinBoostModel.TypeOfService == "Duo" ? $"{Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} ({Model.WinBoostModel.TypeOfService}) ({premiumOrRegular})"
+			: $"{Model.WinBoostModel.YourCurrentLeague} {Model.WinBoostModel.CurrentDivision} ({Model.WinBoostModel.TypeOfService})";
 
-			if (Model.YourCurrentLeague == "Master" || Model.YourCurrentLeague == "Grandmaster" || Model.YourCurrentLeague == "Challenger")
+			if (Model.WinBoostModel.YourCurrentLeague == "Master" || Model.WinBoostModel.YourCurrentLeague == "Grandmaster" || Model.WinBoostModel.YourCurrentLeague == "Challenger")
 			{
-				lastSeason = Model.TypeOfService == "Duo" ? $"{Model.YourCurrentLeague} ({Model.TypeOfService}) ({premiumOrRegular})"
-				: $"{Model.YourCurrentLeague} ({Model.TypeOfService})";
+				lastSeason = Model.WinBoostModel.TypeOfService == "Duo" ? $"{Model.WinBoostModel.YourCurrentLeague} ({Model.WinBoostModel.TypeOfService}) ({premiumOrRegular})"
+				: $"{Model.WinBoostModel.YourCurrentLeague} ({Model.WinBoostModel.TypeOfService})";
 			}
 
-			WinBoostPricing result = ObjectFactory.WinBoostPricing.Where(x => x.LastSeasonStanding == lastSeason && x.NumberOfGames == Model.NumOfGames).FirstOrDefault();
+			WinBoostPricing result = ObjectFactory.WinBoostPricing.Where(x => x.LastSeasonStanding == lastSeason && x.NumberOfGames == Model.WinBoostModel.NumOfGames).FirstOrDefault();
 			if (result == null)
 				return Json(1.50);
 			else
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
-				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 40);
-				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.Discount, price);
+				price = LolPricingExtensions.PriceIncreaseLolNA(Model.WinBoostModel.Server, price, 40);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.WinBoostModel.Discount, price);
 				price = priceDiscountResult.Price;
 				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 		}
 
 		[HttpPost]
-		public JsonResult PlacementBoostPricing(Models.PlacementMatchesModel Model)
+		public JsonResult PlacementBoostPricing(PurchaseForm Model)
 		{
 			decimal price;
-			string premiumOrRegular = Model.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
-			string lastSeason = Model.TypeOfService == "Duo" ? $"{Model.LastSeasonStanding} ({Model.TypeOfService}) ({premiumOrRegular})"
-			: $"{Model.LastSeasonStanding} ({Model.TypeOfService})";
-			WinBoostPricing result = ObjectFactory.PlacementBoostPricing.Where(x => x.LastSeasonStanding == lastSeason && x.NumberOfGames == Model.NumOfGames).FirstOrDefault();
+			string premiumOrRegular = Model.PlacementMatchesModel.TypeOfDuoPremium != "false" ? "Premium" : "Regular";
+			string lastSeason = Model.PlacementMatchesModel.TypeOfService == "Duo" ? $"{Model.PlacementMatchesModel.LastSeasonStanding} ({Model.PlacementMatchesModel.TypeOfService}) ({premiumOrRegular})"
+			: $"{Model.PlacementMatchesModel.LastSeasonStanding} ({Model.PlacementMatchesModel.TypeOfService})";
+			WinBoostPricing result = ObjectFactory.PlacementBoostPricing.Where(x => x.LastSeasonStanding == lastSeason && x.NumberOfGames == Model.PlacementMatchesModel.NumOfGames).FirstOrDefault();
 			if (result == null)
 				return Json(1.50);
 			else
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
-				price = LolPricingExtensions.PriceIncreaseLolNA(Model.Server, price, 40);
-				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.Discount, price);
+				price = LolPricingExtensions.PriceIncreaseLolNA(Model.PlacementMatchesModel.Server, price, 40);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.PlacementMatchesModel.Discount, price);
 				price = priceDiscountResult.Price;
 				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
 		}
 
 		[HttpPost]
-		public JsonResult TFTSoloBoostPricing(Models.TFTBoostingModel Model)
+		public JsonResult TFTSoloBoostPricing(PurchaseForm Model)
 		{
-			string requiredDivision = Model.DesiredCurrentLeague == "Master" ? Model.DesiredCurrentLeague : $"{Model.DesiredCurrentLeague} {Model.DesiredCurrentDivision}";
-			TFTSoloBoostPricing result = ObjectFactory.TFTSoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.YourCurrentLeague} {Model.CurrentDivision}" && x.CurrentLP == Model.CurrentLP.Replace("LP ", "")
+			string requiredDivision = Model.TFTBoostingModel.DesiredCurrentLeague == "Master" ? Model.TFTBoostingModel.DesiredCurrentLeague : $"{Model.TFTBoostingModel.DesiredCurrentLeague} {Model.TFTBoostingModel.DesiredCurrentDivision}";
+			TFTSoloBoostPricing result = ObjectFactory.TFTSoloBoostPricing.Where(x => x.CurrentDivision == $"{Model.TFTBoostingModel.YourCurrentLeague} {Model.TFTBoostingModel.CurrentDivision}" && x.CurrentLP == Model.TFTBoostingModel.CurrentLP.Replace("LP ", "")
 			&& x.RequiredDivision == requiredDivision).FirstOrDefault();
 			if (result == null)
 				return Json(0);
 			else
 			{
 				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurRegularPrice) * 100) / 100);
-				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.TFTBoostingModel.DiscountCode, price);
 				price = priceDiscountResult.Price;
 				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}
@@ -153,15 +153,15 @@ namespace SpartanBoosting.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult TFTPlacementBoostPricing(Models.TFTPlacementModel Model)
+		public JsonResult TFTPlacementBoostPricing(PurchaseForm Model)
 		{
-			WinBoostPricing result = ObjectFactory.TFTPlacementBoostPricing.Where(x => x.LastSeasonStanding == Model.LastSeasonStanding && x.NumberOfGames == Model.NumberOfGames).FirstOrDefault();
+			WinBoostPricing result = ObjectFactory.TFTPlacementBoostPricing.Where(x => x.LastSeasonStanding == Model.TFTPlacementModel.LastSeasonStanding && x.NumberOfGames == Model.TFTPlacementModel.NumberOfGames).FirstOrDefault();
 			if (result == null)
 				return Json(0);
 			else
 			{
 				decimal price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
-				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.DiscountCode, price);
+				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.TFTPlacementModel.DiscountCode, price);
 				price = priceDiscountResult.Price;
 				return Json(new { success = true, Price = price, Discount = priceDiscountResult.DicountPercentage, DiscountModel = priceDiscountResult.Discount });
 			}

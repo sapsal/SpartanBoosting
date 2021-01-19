@@ -9,7 +9,6 @@ namespace SpartanBoosting.ViewModel
 {
 	public class InvoiceViewModel
 	{
-		public PurchaseType PurchaseType { get; set; }
-		public PurchaseForm PurchaseForm = new PurchaseForm(); //{ get; set; }
+		public PurchaseForm PurchaseForm { get; set; }
 	}
 }

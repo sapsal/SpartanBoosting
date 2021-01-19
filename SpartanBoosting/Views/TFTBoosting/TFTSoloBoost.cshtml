@@ -1,175 +1,182 @@
-﻿@using SpartanBoosting.Models
-@using System.Threading.Tasks
-@model TFTBoostingModel
+﻿@using SpartanBoosting.Models.Pricing
+@model PurchaseForm
 @{
 	ViewData["Title"] = "TFT Solo Boosting";
 }
-	<div class="container">
-		<div class="nk-gap-1"></div>
-		<div class="col-md-12 d-flex justify-content-center">
-			<p style="color: green; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
-				@TempData["Result"]
-			</p>
-			<p style="color: red; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
-				@TempData["StripePayment"]
-			</p>
-		</div>
-		<a href="https://uk.trustpilot.com/review/spartanboosting.com">
-			<span class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e809cc9d39b0d0001af5692" data-style-height="24px" data-style-width="100%" data-theme="dark">
-			</span>
-		</a>
-		<div class="row vertical-gap">
-			<div class="col-lg-12">
-				<form asp-action="CreateTFTSoloBoost" role="form" asp-controller="TFTBoosting" asp-antiforgery="true"
-					  data-ajax-success="Bindgrid"
-					  data-ajax="true"
-					  data-ajax-method="POST" data-pricing="TFTSoloBoostPricing">
-					<div class="gfield-pricing-quote-personal-information"></div>
-					<div class="gfield-pricing-quote">
-						<div class="">
-							<div class="nk-gap-4"></div>
-							<div class="row pb-4">
-								<div class="col-md-3">
-									<div class="pb-4">
-										<div class="">
-											<label class="pb-3 " for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-											<select name="YourCurrentLeague" asp-for="YourCurrentLeague" id="current-rank" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-												<option value="Iron">Iron</option>
-												<option value="Bronze">Bronze</option>
-												<option value="Silver">Silver</option>
-												<option value="Gold">Gold</option>
-												<option value="Platinum">Platinum</option>
-												<option value="Diamond">Diamond</option>
-											</select>
-										</div>
-									</div>
-									<div class="pb-4">
-										<div class="">
-											<select name="CurrentDivision" asp-for="CurrentDivision" id="current-div" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false">
-												<option value="IV">Division IV</option>
-												<option value="III">Division III</option>
-												<option value="II">Division II</option>
-												<option value="I">Division I</option>
-											</select>
-										</div>
-									</div>
-									<div class="pb-4">
-										<div class="">
-											<select name="CurrentLP" id="input_10_279" asp-for="CurrentLP" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false">
-												<option value="LP 0-20">LP 0-20</option>
-												<option value="LP 21-40">LP 21-40</option>
-												<option value="LP 41-60">LP 41-60</option>
-												<option value="LP 61-80">LP 61-80</option>
-												<option value="LP 81-100">LP 81-100</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3"><img id="current-rank-logo" style="height: 10rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
-								<div class="col-md-3">
-									<div class="pb-4">
-										<div class="">
-											<label class="pb-3 " for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
-											<select name="DesiredCurrentLeague" asp-for="DesiredCurrentLeague" id="desired-rank" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-												<option value="Iron">Iron</option>
-												<option value="Bronze">Bronze</option>
-												<option value="Silver">Silver</option>
-												<option value="Gold">Gold</option>
-												<option value="Platinum">Platinum</option>
-												<option value="Diamond">Diamond</option>
-												<option value="Master">Master</option>
-											</select>
-											<label id="master-rank-notification" style="display:none" for="desired-rank" class="gfield note gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible font-weight-normal">For divisions higher than Master please contact us!</label>
-										</div>
-									</div>
-									<div class="pb-4">
-										<div class="">
-											<select name="DesiredCurrentDivision" asp-for="DesiredCurrentDivision" id="desired-div" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false">
-												<option value="IV">Division IV</option>
-												<option value="III">Division III</option>
-												<option value="II">Division II</option>
-												<option value="I">Division I</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3"><img id="desired-rank-logo" style="height: 10rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
-							</div>
-							<div class="nk-gap-2"></div>
-							<div class="row pb-4">
-								<div class="col-md-12">
+<div class="container">
+	<div class="nk-gap-1"></div>
+	<div class="col-md-12 d-flex justify-content-center">
+		<p style="color: green; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
+			@TempData["Result"]
+		</p>
+		<p style="color: red; letter-spacing: 1px; font-family:'Open Sans',muli;font-size: 16px;line-height: 1.4em;">
+			@TempData["StripePayment"]
+		</p>
+	</div>
+	<a href="https://uk.trustpilot.com/review/spartanboosting.com">
+		<span class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e809cc9d39b0d0001af5692" data-style-height="24px" data-style-width="100%" data-theme="dark">
+		</span>
+	</a>
+	<div class="row vertical-gap">
+		<div class="col-lg-12">
+			<form asp-action="SubmitToOrder" role="form" asp-controller="TFTBoosting" asp-antiforgery="true"
+				  data-ajax-success="Bindgrid"
+				  data-ajax="true"
+				  data-ajax-method="POST" data-pricing="TFTSoloBoostPricing">
+				<div class="gfield-pricing-quote-personal-information"></div>
+				<div class="gfield-pricing-quote">
+					<div class="">
+						<div class="nk-gap-4"></div>
+						<div class="row pb-4">
+							<div class="col-md-3">
+								<div class="pb-4">
 									<div class="">
-										<label class="pb-3 " for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-										<select asp-for="Server" name="Server" id="your-server" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
-											<option value="Europe West">Europe West</option>
-											<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
-											<option value="North America">North America</option>
-											<option value="Oceania">Oceania</option>
-											<option value="Russia">Russia</option>
-											<option value="Turkey">Turkey</option>
-											<option value="Latin America North">Latin America North</option>
-											<option value="Latin America South">Latin America South</option>
-											<option value="Brazil">Brazil</option>
-											<option value="Japan">Japan</option>
-											<option value="Korea">Korea</option>
+										<label class="pb-3 " for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
+										<select name="TFTBoostingModel.YourCurrentLeague" asp-for="TFTBoostingModel.YourCurrentLeague" id="current-rank" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+											<option value="Iron">Iron</option>
+											<option value="Bronze">Bronze</option>
+											<option value="Silver">Silver</option>
+											<option value="Gold">Gold</option>
+											<option value="Platinum">Platinum</option>
+											<option value="Diamond">Diamond</option>
+										</select>
+									</div>
+								</div>
+								<div class="pb-4">
+									<div class="">
+										<select name="TFTBoostingModel.CurrentDivision" asp-for="TFTBoostingModel.CurrentDivision" id="current-div" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false">
+											<option value="IV">Division IV</option>
+											<option value="III">Division III</option>
+											<option value="II">Division II</option>
+											<option value="I">Division I</option>
+										</select>
+									</div>
+								</div>
+								<div class="pb-4">
+									<div class="">
+										<select name="TFTBoostingModel.CurrentLP" id="input_10_279" asp-for="TFTBoostingModel.CurrentLP" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false">
+											<option value="LP 0-20">LP 0-20</option>
+											<option value="LP 21-40">LP 21-40</option>
+											<option value="LP 41-60">LP 41-60</option>
+											<option value="LP 61-80">LP 61-80</option>
+											<option value="LP 81-100">LP 81-100</option>
 										</select>
 									</div>
 								</div>
 							</div>
-							<div class="nk-gap-2"></div>
-							<div class=" container boost-info mb-5">
+							<div class="col-md-3"><img id="current-rank-logo" style="height: 10rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
+							<div class="col-md-3">
+								<div class="pb-4">
+									<div class="">
+										<label class="pb-3 " for="desired-rank">YOUR DESIRED LEAGUE:<span class="gfield_required">*</span></label>
+										<select name="TFTBoostingModel.DesiredCurrentLeague" asp-for="TFTBoostingModel.DesiredCurrentLeague" id="desired-rank" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+											<option value="Iron">Iron</option>
+											<option value="Bronze">Bronze</option>
+											<option value="Silver">Silver</option>
+											<option value="Gold">Gold</option>
+											<option value="Platinum">Platinum</option>
+											<option value="Diamond">Diamond</option>
+											<option value="Master">Master</option>
+										</select>
+										<label id="master-rank-notification" style="display:none" for="desired-rank" class="gfield note gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible font-weight-normal">For divisions higher than Master please contact us!</label>
+									</div>
+								</div>
+								<div class="pb-4">
+									<div class="">
+										<select name="TFTBoostingModel.DesiredCurrentDivision" asp-for="TFTBoostingModel.DesiredCurrentDivision" id="desired-div" class="medium form-control gfield-quote" aria-required="true" aria-invalid="false">
+											<option value="IV">Division IV</option>
+											<option value="III">Division III</option>
+											<option value="II">Division II</option>
+											<option value="I">Division I</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3"><img id="desired-rank-logo" style="height: 10rem;" src='~/img/Lol Ranks/IronIV.png' /></div>
+						</div>
+						<div class="nk-gap-2"></div>
+						<div class="row pb-4">
+							<div class="col-md-12">
 								<div class="">
-									<div class="row ">
-										<input type="text" class=" col-7 form-control" asp-for="DiscountCode" name="Discount" id="coupon-code" placeholder="Promo Code"><div class="col-1 ">
-										</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
-									</div>
-									<div class="col-sm-12 text-danger">
-										<span id="coupon-alert"></span>
-									</div>
-								</div>
-
-								<div class="nk-gap-2"></div>
-
-								<div class="row">
-									<div class="col-sm-6 my-auto" style="line-height: 2;">
-										<b class="bold-tgray">Subtotal</b><br>
-									</div>
-									<div class="col-sm-6 custom-right" style="text-align: right!important;line-height: 2;">
-										<b class="price"><b id="subtotal_price" style="font-weight: 500!important;">12.00</b>€</b><br>
-									</div>
-								</div>
-								<div class="nk-gap-2"></div>
-								<div class="row">
-									<div class="col-sm-6 my-auto" style="line-height: 2;">
-										<b class="bold-tgray">Discount</b><br>
-									</div>
-									<div class="col-sm-6 custom-right" style="line-height: 2;text-align: right!important;">
-										<b class="price">-<b id="discount_amount" style="font-weight: 500!important;">0</b>%</b><br>
-									</div>
-								</div>
-
-								<div class="nk-gap-2"></div>
-
-								<div class="row">
-									<div class="col-sm-6 my-auto pb-4">
-										<b class="total">Total</b>
-									</div>
-									<div class="col-sm-6 custom-right" style="text-align: right!important;">
-										<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price">12.00</span>€</b>
-									</div>
-								</div> <br><br>
-								<div class="row pt-4 d-flex justify-content-center">
-									<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
+									<label class="pb-3 " for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
+									<select asp-for="TFTBoostingModel.Server" name="TFTBoostingModel.Server" id="your-server" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+										<option value="Europe West">Europe West</option>
+										<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
+										<option value="North America">North America</option>
+										<option value="Oceania">Oceania</option>
+										<option value="Russia">Russia</option>
+										<option value="Turkey">Turkey</option>
+										<option value="Latin America North">Latin America North</option>
+										<option value="Latin America South">Latin America South</option>
+										<option value="Brazil">Brazil</option>
+										<option value="Japan">Japan</option>
+										<option value="Korea">Korea</option>
+									</select>
 								</div>
 							</div>
 						</div>
+						<div class="nk-gap-2"></div>
+						<div class=" container boost-info mb-5">
+							<div class="">
+								<div class="row ">
+									<input type="text" class=" col-7 form-control" asp-for="TFTBoostingModel.DiscountCode" name="TFTBoostingModel.Discount" id="coupon-code" placeholder="Promo Code"><div class="col-1 ">
+									</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
+								</div>
+								<div class="col-sm-12 text-danger">
+									<span id="coupon-alert"></span>
+								</div>
+							</div>
+
+							<div class="nk-gap-2"></div>
+
+							<div class="row">
+								<div class="col-sm-6 my-auto" style="line-height: 2;">
+									<b class="bold-tgray">Subtotal</b><br>
+								</div>
+								<div class="col-sm-6 custom-right" style="text-align: right!important;line-height: 2;">
+									<b class="price"><b id="subtotal_price" style="font-weight: 500!important;">12.00</b>€</b><br>
+								</div>
+							</div>
+							<div class="nk-gap-2"></div>
+							<div class="row">
+								<div class="col-sm-6 my-auto" style="line-height: 2;">
+									<b class="bold-tgray">Discount</b><br>
+								</div>
+								<div class="col-sm-6 custom-right" style="line-height: 2;text-align: right!important;">
+									<b class="price">-<b id="discount_amount" style="font-weight: 500!important;">0</b>%</b><br>
+								</div>
+							</div>
+
+							<div class="nk-gap-2"></div>
+							<input asp-for="Pricing" type="hidden" id="pricing-hid" name="Pricing" value="@Model.Pricing">
+							<input asp-for="Discount.DiscountPercentage" type="hidden" id="discountper-hid" name="Discount.DiscountPercentage" value="@Model.Discount.DiscountPercentage">
+							<input asp-for="Discount.DiscountCode" type="hidden" id="discountcode-hid" name="Discount.DiscountCode" value="@Model.Discount.DiscountCode">
+							<div class="row">
+								<div class="col-sm-6 my-auto pb-4">
+									<b class="total">Total</b>
+								</div>
+								<div class="col-sm-6 custom-right" style="text-align: right!important;">
+									<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price"></span>€</b>
+								</div>
+							</div> <br><br>
+							<div class="row pt-4 d-flex justify-content-center">
+								<button type="submit" class="nk-btn nk-btn-lg link-effect-4 float-right ready">
+									<span class="link-effect-inner">
+										<span class="link-effect-l"><span>CONTINUE TO CHECKOUT</span></span><span class="link-effect-r">
+											<span>CONTINUE TO CHECKOUT</span>
+										</span><span class="link-effect-shade"><span>CONTINUE TO CHECKOUT</span></span>
+									</span>
+								</button>
+							</div>
+						</div>
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
-		<div class="nk-gap-4"></div>
-		<div class="nk-gap-3"></div>
 	</div>
+	<div class="nk-gap-4"></div>
+	<div class="nk-gap-3"></div>
+</div>
 <script type="text/javascript">
 	var chkBoxBorderStyling = $('.checkbox-border-styling');
 

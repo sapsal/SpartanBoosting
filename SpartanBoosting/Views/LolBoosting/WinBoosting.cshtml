@@ -1,6 +1,6 @@
-﻿@using SpartanBoosting.Models
+﻿@using SpartanBoosting.Models.Pricing
 @using System.Threading.Tasks
-@model WinBoostModel
+@model PurchaseForm
 @{
 	ViewData["Title"] = "Win Boost";
 }
@@ -20,10 +20,11 @@
 	</a>
 	<div class="row vertical-gap">
 		<div class="col-lg-12">
-			<form asp-action="CreateWinBoost" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
+			<form asp-action="SubmitToOrder" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
 				  data-ajax-success="Bindgrid"
 				  data-ajax="true"
 				  data-ajax-method="POST" data-pricing="WinBoostPricing">
+				<input asp-for="PurchaseType" type="hidden" id="custId" name="PurchaseType" value="@Model.PurchaseType">
 				<div class="gfield-pricing-quote-personal-information"></div>
 				<div class="gfield-pricing-quote">
 					<div class="nk-gap-4"></div>
@@ -31,7 +32,7 @@
 						<div class="col-md-12">
 							<div class="">
 								<label class="pb-3 " for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-								<select asp-for="YourCurrentLeague" name="YourCurrentLeague" id="current-rank" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+								<select asp-for="WinBoostModel.YourCurrentLeague" name="WinBoostModel.YourCurrentLeague" id="current-rank" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
 									<option value="Iron">Iron</option>
 									<option value="Bronze">Bronze</option>
 									<option value="Silver">Silver</option>
@@ -49,7 +50,7 @@
 					<div class="row pb-4">
 						<div class="col-md-12">
 							<div class="">
-								<select asp-for="CurrentDivision" name="CurrentDivision" id="current-div" class="form-control gfield-quote" aria-required="true" aria-invalid="false">
+								<select asp-for="WinBoostModel.CurrentDivision" name="WinBoostModel.CurrentDivision" id="current-div" class="form-control gfield-quote" aria-required="true" aria-invalid="false">
 									<option value="IV">Division IV</option>
 									<option value="III">Division III</option>
 									<option value="II">Division II</option>
@@ -67,7 +68,7 @@
 						<div class="col-md-6 pr-3">
 							<div class="">
 								<label class="pb-3 " for="your-server">YOUR SERVER:<span class="gfield_required">*</span></label>
-								<select asp-for="Server" name="Server" id="your-server" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+								<select asp-for="WinBoostModel.Server" name="WinBoostModel.Server" id="your-server" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
 									<option value="Europe West">Europe West</option>
 									<option value="Europe Nordic &amp; East">Europe Nordic &amp; East</option>
 									<option value="North America">North America</option>
@@ -87,7 +88,7 @@
 								<label class="pb-3" for="queue-type">
 									TYPE OF QUEUE:<span class="gfield_required">*</span>
 								</label>
-								<select asp-for="TypeOfQueue" name="TypeOfQueue" id="queue-type" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+								<select asp-for="WinBoostModel.TypeOfQueue" name="WinBoostModel.TypeOfQueue" id="queue-type" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
 									<option value="Solo/Duo (5v5)">Solo/Duo (5v5)</option>
 									<option value="Flex Summoners Rift (5v5)">Flex Summoners Rift (5v5)</option>
 								</select>
@@ -99,7 +100,7 @@
 						<div class="col-md-12">
 							<div class="">
 								<label class="pb-3 gfield_label" for="type-of-service">TYPE OF SERVICE:<span class="gfield_required">*</span></label>
-								<select asp-for="TypeOfService" name="TypeOfService" id="type-of-service" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+								<select asp-for="WinBoostModel.TypeOfService" name="WinBoostModel.TypeOfService" id="type-of-service" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
 									<option value="Solo">Solo</option>
 									<option value="Duo">Duo</option>
 								</select>
@@ -113,7 +114,7 @@
 						<div class="ginput_container row pt-4 pb-4 one-checkbox-minimum">
 							<div class="col-1"></div>
 							<div class="col-4 regular-duo" data-toggle="tooltip" data-placement="top" title="Our standard boosting package, regular order pick-up time with limited coaching provided by your booster">
-								<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoRegular" name="TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2">
+								<input class="single-select-checkbox gfield-quote" asp-for="WinBoostModel.TypeOfDuoRegular" name="WinBoostModel.TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2">
 								<label for="choice_10_93_2" id="label_12_287_0" class="duo-status">
 									<span data-bg="url(../img/Wordpress Icons/duo-regular.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-regular.png');" data-was-processed="true">
 										<img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" src="../img/Wordpress Icons/duo-regular.png"><noscript><img src="../img/Wordpress Icons/duo-regular.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" /></noscript>
@@ -122,7 +123,7 @@
 							</div>
 							<div class="col-1"></div>
 							<div class="col-4" data-toggle="tooltip" data-placement="top" title="Priority boosting with a quicker allocation time of your order to a booster. Your booster will provide commentary in-game whilst playing with you on aspects such as the macro game and offer ad-hoc tips about your gameplay.">
-								<input class="single-select-checkbox gfield-quote" asp-for="TypeOfDuoPremium" name="TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1">
+								<input class="single-select-checkbox gfield-quote" asp-for="WinBoostModel.TypeOfDuoPremium" name="WinBoostModel.TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1">
 								<label for="choice_10_93_1" id="label_12_287_1" class="duo-status">
 									<span data-bg="url(../img/Wordpress Icons/duo-premium.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-premium.png');" data-was-processed="true"><img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" src="../img/Wordpress Icons/duo-premium.png"><noscript><img src="../img/Wordpress Icons/duo-premium.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" /></noscript></span>
 									<label class="w-100 d-flex justify-content-center">Premium</label>
@@ -133,7 +134,7 @@
 					<div class="nk-gap-2"></div>
 					<div class="row pl-4 pr-4 pb-4">
 						<label class="" for="num-games">NUMBER OF GAMES:<span class="gfield_required">*</span></label>
-						<select asp-for="NumOfGames" name="NumOfGames" id="num-games" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+						<select asp-for="WinBoostModel.NumOfGames" name="WinBoostModel.NumOfGames" id="num-games" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
 							<option value="1" selected="selected">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -153,7 +154,7 @@
 					<div class=" container boost-info mb-5">
 						<div class="">
 							<div class="row ">
-								<input type="text" class=" col-7 form-control" asp-for="Discount" name="Discount" id="coupon-code" placeholder="Promo Code"><div class="col-1 ">
+								<input type="text" class=" col-7 form-control" asp-for="WinBoostModel.Discount" name="WinBoostModel.Discount" id="coupon-code" placeholder="Promo Code"><div class="col-1 ">
 								</div><input class="apply col-4" name="apply-coupon" id="apply-coupon" type="button" value="APPLY">
 							</div>
 							<div class="col-sm-12 text-danger">
@@ -182,17 +183,26 @@
 						</div>
 
 						<div class="nk-gap-2"></div>
-
+						<input asp-for="Pricing" type="hidden" id="pricing-hid" name="Pricing" value="@Model.Pricing">
+						<input asp-for="Discount.DiscountPercentage" type="hidden" id="discountper-hid" name="Discount.DiscountPercentage" value="@Model.Discount.DiscountPercentage">
+						<input asp-for="Discount.DiscountCode" type="hidden" id="discountcode-hid" name="Discount.DiscountCode" value="@Model.Discount.DiscountCode">
 						<div class="row">
 							<div class="col-sm-6 my-auto pb-4">
 								<b class="total">Total</b>
 							</div>
 							<div class="col-sm-6 custom-right" style="text-align: right!important;">
-								<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price">12.00</span>€</b>
+								<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price"></span>€</b>
 							</div>
 						</div> <br><br>
+
 						<div class="row pt-4 d-flex justify-content-center">
-							<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
+							<button type="submit" class="nk-btn nk-btn-lg link-effect-4 float-right ready">
+								<span class="link-effect-inner">
+									<span class="link-effect-l"><span>CONTINUE TO CHECKOUT</span></span><span class="link-effect-r">
+										<span>CONTINUE TO CHECKOUT</span>
+									</span><span class="link-effect-shade"><span>CONTINUE TO CHECKOUT</span></span>
+								</span>
+							</button>
 						</div>
 					</div>
 

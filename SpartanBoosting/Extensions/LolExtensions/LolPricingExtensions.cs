@@ -19,6 +19,11 @@ namespace SpartanBoosting.Extensions
 			double multiplier = Math.Pow(10, Convert.ToDouble(places));
 			return Math.Ceiling(input * multiplier) / multiplier;
 		}
+
+		public static double PercentageOfNumber(double number, int percentage)
+		{
+			return number * percentage / 100;
+		}
 		public static double BoosterPay(PurchaseForm PurchaseForm)
 		{
 			string pricing = PurchaseForm.Pricing;

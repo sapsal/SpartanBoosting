@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SpartanBoosting.Extensions;
+using SpartanBoosting.Models;
 using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
 using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.Utils;
+using static SpartanBoosting.Utils.PurchaseTypeEnum;
 
 namespace SpartanBoosting.Controllers
 {
@@ -20,21 +22,36 @@ namespace SpartanBoosting.Controllers
 		{
 			this.PricingController = new PricingController(logger, discountModelRepository);
 		}
+		[ValidateAntiForgeryToken()]
+		[HttpPost]
+		public IActionResult SubmitToOrder(PurchaseForm purchaseForm)
+		{
+			TempData.Put("purchaseForm", purchaseForm);
+
+			return RedirectToAction("Details", "Invoice", new { data = EncryptionHelper.Encrypt(purchaseForm.PurchaseType.ToString()), dest = EncryptionHelper.Encrypt("LolBoosting") });
+		}
 		public IActionResult TFTPlacementMatches()
 		{
-			return View();
+			PurchaseForm model = new PurchaseForm();
+			model.Discount = new DiscountModel();
+			model.PurchaseType = PurchaseType.TFTPlacement;
+			return View(model);
 		}
 		public IActionResult TFTSoloBoost()
 		{
-			return View();
+			PurchaseForm model = new PurchaseForm();
+			model.Discount = new DiscountModel();
+			model.PurchaseType = PurchaseType.TFTBoosting;
+			return View(model);
 		}
 
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
 		public IActionResult CreateTFTSoloBoost(Models.TFTBoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
-			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.TFTSoloBoostPricing(BoostingModel).Value));
-			PurchaseForm purchaseForm = Models.TFTBoostingModel.TFTBoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			PurchaseForm purchaseForm = new PurchaseForm { TFTBoostingModel = BoostingModel, PersonalInformation = PersonalInformation };
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.TFTSoloBoostPricing(purchaseForm).Value));
+			purchaseForm.Pricing = Pricing.Price;
 			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
@@ -70,8 +87,9 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public IActionResult CreateTFTPlacementBoost(Models.TFTPlacementModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
-			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.TFTPlacementBoostPricing(BoostingModel).Value));
-			PurchaseForm purchaseForm = Models.TFTPlacementModel.TFTPlacementModelPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			PurchaseForm purchaseForm = new PurchaseForm { TFTPlacementModel = BoostingModel, PersonalInformation = PersonalInformation };
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.TFTPlacementBoostPricing(purchaseForm).Value));
+			purchaseForm.Pricing = Pricing.Price;
 			purchaseForm.Discount = Pricing.DiscountModel;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{

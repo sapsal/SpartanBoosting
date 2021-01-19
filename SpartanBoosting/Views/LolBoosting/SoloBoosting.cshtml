@@ -21,7 +21,7 @@
 	<div class="nk-store nk-store-checkout">
 		<div class="row vertical-gap">
 			<div class="col-lg-12">
-				<form asp-action="SubmitSoloToOrder" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
+				<form asp-action="SubmitToOrder" role="form" asp-controller="LolBoosting" asp-antiforgery="true"
 					  data-ajax-success="Bindgrid"
 					  data-ajax="true"
 					  data-ajax-method="POST" data-pricing="SoloPricing" class="wpforms-validate wpforms-form wpforms-ajax-form">
@@ -218,7 +218,7 @@
 									<b class="bold-tgray">Subtotal</b><br>
 								</div>
 								<div class="col-sm-6 custom-right" style="text-align: right!important;line-height: 2;">
-									<b class="price"><b id="subtotal_price" style="font-weight: 500!important;">12.00</b>€</b><br>
+									<b class="price"><b id="subtotal_price" style="font-weight: 500!important;"></b>€</b><br>
 								</div>
 							</div>
 							<div class="nk-gap-2"></div>
@@ -232,13 +232,15 @@
 							</div>
 
 							<div class="nk-gap-2"></div>
-
+							<input asp-for="Pricing" type="hidden" id="pricing-hid" name="Pricing" value="@Model.Pricing">
+							<input asp-for="Discount.DiscountPercentage" type="hidden" id="discountper-hid" name="Discount.DiscountPercentage" value="@Model.Discount.DiscountPercentage">
+							<input asp-for="Discount.DiscountCode" type="hidden" id="discountcode-hid" name="Discount.DiscountCode" value="@Model.Discount.DiscountCode">
 							<div class="row">
 								<div class="col-sm-6 my-auto pb-4">
 									<b class="total">Total</b>
 								</div>
 								<div class="col-sm-6 custom-right" style="text-align: right!important;">
-									<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price">12.00</span>€</b>
+									<b class="bold-gray">EUR</b> <b class="total-cost"><span id="total_price"></span>€</b>
 								</div>
 							</div> <br><br>
 
@@ -250,36 +252,9 @@
 										</span><span class="link-effect-shade"><span>CONTINUE TO CHECKOUT</span></span>
 									</span>
 								</button>
-								@*<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>*@
 							</div>
 
 						</div>
-
-
-
-
-						@*<div class="row pb-4">
-								<label class="" for="discount-text">DISCOUNT COUPON:</label>
-								<input class=" form-control " name="DiscountCode" id="discount-text" asp-for="DiscountCode" type="text" value="" >
-							</div>
-
-							<div class="row pb-4 d-flex justify-content-center">
-								<button type="button" class="btn btn-primary apply-discount-btn">APPLY</button>
-							</div>
-
-							<div class="row pb-4 d-flex justify-content-center">
-								<label class="gfield_label total-label" for="input_10_95">TOTAL</label>
-							</div>
-							<div class="row pb-4 d-flex justify-content-center">
-								<div class="">
-									<span class="ginput_total ginput_total_10" aria-live="polite">0,00 €</span>
-									<input type="hidden" name="input_95" id="input_10_95" class="gform_hidden">
-								</div>
-							</div>
-
-							<div class="row pt-4 d-flex justify-content-center">
-								<button type="button" id="submit-quote" class="btn btn-primary proceed-checkout-btn">CONTINUE TO CHECKOUT</button>
-							</div>*@
 					</div>
 				</form>
 			</div>

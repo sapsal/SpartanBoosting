@@ -77,7 +77,8 @@
 										</div>
 										<div role="tabpanel" class="tab-pane fade" id="tabs-1-3">
 											<div class="nk-gap-1"></div>
-											@if (!(Model.PurchaseType == PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseType == PurchaseTypeEnum.PurchaseType.WinBoosting || (Model.PurchaseForm.PlacementMatchesModel != null && Model.PurchaseType == PurchaseTypeEnum.PurchaseType.PlacementMatches && Model.PurchaseForm.PlacementMatchesModel.TypeOfService == "Duo")))
+											@if (!(Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.WinBoosting ||
+										   (Model.PurchaseForm.PlacementMatchesModel != null && Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.PlacementMatches && Model.PurchaseForm.PlacementMatchesModel.TypeOfService == "Duo")))
 											{
 												<div class="row pb-4">
 													<div class="col-md-6 pr-3">
@@ -148,24 +149,26 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td class="nk-product-cart-title"> Men Tshirt × 1 </td>
-													<td class="nk-product-cart-total"> $67.00 </td>
+													<td class="nk-product-cart-title"> @LolPricingExtensions.DisplayLolTFTBoostJobDescription(Model.PurchaseForm) </td>
+													<td class="nk-product-cart-total">
+														€@Model.PurchaseForm.Pricing
+													</td>
 												</tr>
 												<tr>
-													<td class="nk-product-cart-title"> Men Hoodie × 2 </td>
-													<td class="nk-product-cart-total"> $250.00 </td>
+													<td class="nk-product-cart-title"> Discount Code </td>
+													<td class="nk-product-cart-total"> @Model.PurchaseForm.Discount.DiscountPercentage </td>
+												</tr>
+												<tr>
+													<td class="nk-product-cart-title"> Discount Code </td>
+													<td class="nk-product-cart-total"> @Model.PurchaseForm.Discount.DiscountCode </td>
 												</tr>
 												<tr class="nk-store-cart-totals-subtotal">
 													<td> Subtotal </td>
-													<td> $317.00 </td>
-												</tr>
-												<tr class="nk-store-cart-totals-shipping">
-													<td> Shipping </td>
-													<td> Free Shipping </td>
+													<td> €@Model.PurchaseForm.Pricing </td>
 												</tr>
 												<tr class="nk-store-cart-totals-total">
 													<td> Total </td>
-													<td> $317.00 </td>
+													<td> €@Model.PurchaseForm.Pricing </td>
 												</tr>
 											</tbody>
 										</table>

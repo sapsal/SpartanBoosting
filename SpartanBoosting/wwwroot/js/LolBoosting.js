@@ -64,6 +64,8 @@ $('.gfield-quote').on('keyup change paste', function () {
 		type: 'POST',
 		success: function (result) {
 			if (result.success) {
+				$('#pricing-hid').val(result.price.toFixed(2))
+				$('#discount-hid').val(result.discountModel)
 				$('#total_price').text(result.price.toFixed(2))
 				$('#subtotal_price').text(result.price.toFixed(2))
 			}
@@ -104,9 +106,14 @@ $('#apply-coupon').on('click', function () {
 		type: 'POST',
 		success: function (result) {
 			if (result.success) {
+				$('#pricing-hid').val(result.price.toFixed(2))
 				$('#total_price').text(result.price.toFixed(2))
 				$('#discount_amount').text(result.discount)
 				$('#apply-coupon').prop('disabled', true);
+				if (result.discountModel != null) {
+					$('#discountper-hid').val(result.discountModel.discountPercentage)
+					$('#discountcode-hid').val(result.discountModel.discountCode)
+				}
 			}
 		}
 	});

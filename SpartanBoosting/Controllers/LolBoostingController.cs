@@ -22,11 +22,11 @@ namespace SpartanBoosting.Controllers
 		}
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
-		public IActionResult SubmitSoloToOrder(PurchaseForm purchaseForm)
+		public IActionResult SubmitToOrder(PurchaseForm purchaseForm)
 		{
 			TempData.Put("purchaseForm", purchaseForm);
-			TempData.Put("purchaseType", PurchaseType.SoloBoosting.ToString());
-			return RedirectToAction("Details", "Invoice");
+
+			return RedirectToAction("Details", "Invoice", new { data = EncryptionHelper.Encrypt(purchaseForm.PurchaseType.ToString()), dest = EncryptionHelper.Encrypt("LolBoosting") });
 		}
 
 		[ValidateAntiForgeryToken()]
@@ -71,9 +71,9 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public IActionResult CreateDuo(Models.BoostingModel BoostingModel, Models.PersonalInformation PersonalInformation)
 		{
-			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.DuoPricing(BoostingModel).Value));
-
-			PurchaseForm purchaseForm = Models.BoostingModel.BoostingModelToPurchaseForm(BoostingModel, Pricing.Price.ToString(), PersonalInformation);
+			PurchaseForm purchaseForm = new PurchaseForm { BoostingModel = BoostingModel, PersonalInformation = PersonalInformation };
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.DuoPricing(purchaseForm).Value));
+			purchaseForm.Pricing = Pricing.Price;
 			purchaseForm.Discount = Pricing.DiscountModel;
 			purchaseForm.PurchaseType = PurchaseType.DuoBoosting;
 			if (PersonalInformation.PaymentMethod == "Paypal")
@@ -110,9 +110,10 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public IActionResult CreatePlacementMatches(Models.PlacementMatchesModel PlacementMatchesModel, Models.PersonalInformation PersonalInformation)
 		{
-			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.PlacementBoostPricing(PlacementMatchesModel).Value));
-			PurchaseForm purchaseForm = Models.PlacementMatchesModel.PlacementMatchesModelToPurchaseForm(PlacementMatchesModel, Pricing.Price.ToString(), PersonalInformation);
+			PurchaseForm purchaseForm = new PurchaseForm { PlacementMatchesModel = PlacementMatchesModel, PersonalInformation = PersonalInformation };
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.PlacementBoostPricing(purchaseForm).Value));
 			purchaseForm.Discount = Pricing.DiscountModel;
+			purchaseForm.Pricing = Pricing.Price;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
@@ -148,9 +149,10 @@ namespace SpartanBoosting.Controllers
 		[HttpPost]
 		public IActionResult CreateWinBoost(Models.WinBoostModel WinBoostModel, Models.PersonalInformation PersonalInformation)
 		{
-			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.WinBoostPricing(WinBoostModel).Value));
-			PurchaseForm purchaseForm = Models.WinBoostModel.WinBoostModelToPurchaseForm(WinBoostModel, Pricing.Price.ToString(), PersonalInformation);
+			PurchaseForm purchaseForm = new PurchaseForm { WinBoostModel = WinBoostModel, PersonalInformation = PersonalInformation };
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.WinBoostPricing(purchaseForm).Value));
 			purchaseForm.Discount = Pricing.DiscountModel;
+			purchaseForm.Pricing = Pricing.Price;
 			if (PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
@@ -185,25 +187,32 @@ namespace SpartanBoosting.Controllers
 		public IActionResult SoloBoosting()
 		{
 			PurchaseForm model = new PurchaseForm();
-
+			model.Discount = new DiscountModel();
+			model.PurchaseType = PurchaseType.SoloBoosting;
 			return View(model);
 		}
 
 		public IActionResult DuoBoosting()
 		{
-			Models.BoostingModel model = new Models.BoostingModel();
+			PurchaseForm model = new PurchaseForm();
+			model.Discount = new DiscountModel();
+			model.PurchaseType = PurchaseType.DuoBoosting;
 			return View(model);
 		}
 
 		public IActionResult WinBoosting()
 		{
-			Models.WinBoostModel model = new Models.WinBoostModel();
+			PurchaseForm model = new PurchaseForm();
+			model.Discount = new DiscountModel();
+			model.PurchaseType = PurchaseType.WinBoosting;
 			return View(model);
 		}
 
 		public IActionResult PlacementMatches()
 		{
-			Models.PlacementMatchesModel model = new Models.PlacementMatchesModel();
+			PurchaseForm model = new PurchaseForm();
+			model.Discount = new DiscountModel();
+			model.PurchaseType = PurchaseType.PlacementMatches;
 			return View(model);
 		}
 
