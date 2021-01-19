@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SpartanBoosting.Extensions;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.LeagueOfLegends_Models.Pricing;
 using SpartanBoosting.Models.Pricing;
+using SpartanBoosting.Repositorys;
 using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.Utils;
 using Stripe;
@@ -16,8 +18,10 @@ namespace SpartanBoosting.Controllers
 	public class LolBoostingController : Controller
 	{
 		private PricingController PricingController { get; set; }
-		public LolBoostingController(ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository)
+		private readonly UserManager<ApplicationUser> _userManager;
+		public LolBoostingController(ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository, UserManager<ApplicationUser> userManager)
 		{
+			_userManager = userManager;
 			this.PricingController = new PricingController(logger, discountModelRepository);
 		}
 		[ValidateAntiForgeryToken()]
@@ -31,14 +35,15 @@ namespace SpartanBoosting.Controllers
 
 		[ValidateAntiForgeryToken()]
 		[HttpPost]
-		public IActionResult CreateSolo(Models.BoostingModel BoostingModel, PersonalInformation PersonalInformation)
+		public IActionResult CreateLolOrder(PurchaseForm purchaseForm)
 		{
-			PurchaseForm purchaseForm = new PurchaseForm { BoostingModel = BoostingModel, PersonalInformation = PersonalInformation };
-				PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.SoloPricing(purchaseForm).Value));
-
+			//recheck price because they could edit the request
+			PricingResponse Pricing = JsonConvert.DeserializeObject<PricingResponse>(JsonConvert.SerializeObject(PricingController.SoloPricing(purchaseForm).Value));
 			purchaseForm.Pricing = Pricing.Price.ToString();
 			purchaseForm.Discount = Pricing.DiscountModel;
-			if (PersonalInformation.PaymentMethod == "Paypal")
+
+
+			if (purchaseForm.PersonalInformation.PaymentMethod == "Paypal")
 			{
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
 				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
@@ -50,7 +55,13 @@ namespace SpartanBoosting.Controllers
 			{
 				try
 				{
-					var result = StripePayments.StripePaymentsForm(PersonalInformation, Pricing.Price.ToString());
+					string email = string.Empty;
+					if (User.Identity.IsAuthenticated)
+						email = User.Identity.Name;
+					else
+						email = purchaseForm.PersonalInformation.Email;
+
+					var result = StripePayments.StripePaymentsForm(email, purchaseForm.PersonalInformation.stripeToken, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
 						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
