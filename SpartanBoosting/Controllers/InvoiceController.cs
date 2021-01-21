@@ -70,7 +70,7 @@ namespace SpartanBoosting.Controllers
 				var paypalResult = PayPalV2.createOrder(Pricing.Price.ToString());
 				purchaseForm.PayPalApproval = paypalResult.ApprovalURL;
 				purchaseForm.PayPalCapture = paypalResult.CaptureURL;
-				TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
+				TempData.Put("purchaseForm", purchaseForm);
 				return Redirect(paypalResult.ApprovalURL);
 			}
 			else
@@ -80,7 +80,7 @@ namespace SpartanBoosting.Controllers
 					var result = StripePayments.StripePaymentsForm(purchaseForm.PersonalInformation.Email, purchaseForm.PersonalInformation.stripeToken, Pricing.Price.ToString());
 					if (result.Status == "succeeded" && result.Paid)
 					{
-						TempData["purchaseFormlData"] = JsonConvert.SerializeObject(purchaseForm);
+						TempData.Put("purchaseForm", purchaseForm);
 						return RedirectToAction("PurchaseQuote", "Quote");
 					}
 				}
@@ -106,7 +106,7 @@ namespace SpartanBoosting.Controllers
 										  (purchaseForm.PlacementMatchesModel != null && purchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.PlacementMatches && purchaseForm.PlacementMatchesModel.TypeOfService == "Duo")))
 				{
 					if (string.IsNullOrEmpty(purchaseForm.PersonalInformation.UserName) || string.IsNullOrEmpty(purchaseForm.PersonalInformation.Password))
-						return "Lol Username and Password is needed for this type of boost!";
+						return "Lol Username and Password is needed for this type of boost alternatively you can Login/Register!";
 				}
 				if (string.IsNullOrEmpty(purchaseForm.PersonalInformation.Email))
 					return "Please Login/Register or provide an Email under Guest Account!";
