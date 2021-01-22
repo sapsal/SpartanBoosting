@@ -36,15 +36,11 @@ VALUES (N'20200824204616_AddBoosterInformation', N'3.1.7');
 
 GO
 
-ALTER TABLE [PurchaseForm] ADD [ClientAssignedTo] bigint NULL;
+ALTER TABLE [PurchaseForm] ADD [ClientAssignedToId] bigint NULL;
+CREATE INDEX [IX_PurchaseForm_ClientAssignedToId] ON [PurchaseForm] ([ClientAssignedToId]);
 
 GO
-
-CREATE INDEX [IX_PurchaseForm_ClientAssignedTo] ON [PurchaseForm] ([ClientAssignedTo]);
-
-GO
-
-ALTER TABLE [PurchaseForm] ADD CONSTRAINT [FK_PurchaseForm_AspNetUsers_ClientAssignedTo] FOREIGN KEY ([ClientAssignedTo]) REFERENCES [AspNetUsers] ([Id]) ON DELETE NO ACTION;
+ALTER TABLE [PurchaseForm] ADD CONSTRAINT [FK_PurchaseForm_AspNetUsers_ClientAssignedToId] FOREIGN KEY ([ClientAssignedToId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE NO ACTION;
 
 GO
 
