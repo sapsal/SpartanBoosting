@@ -1,56 +1,75 @@
-﻿@using SpartanBoosting.ViewModel 
+﻿@using SpartanBoosting.ViewModel
 @model LolOrderDetailsViewModel
 @{
 	Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
 
 }
-	<link href="~/Client/assets/css/ClientArea.css" rel="stylesheet" />
+<link href="~/Client/assets/css/ClientArea.css" rel="stylesheet" />
 <div class="container-fluid order-details">
 	<div class="alert alert-info text-center" role="alert">
 		<i class="dripicons-info mr-2"></i>
 		Choose one of the checkout methods bellow &amp; proceed with the payment in order to finalize your purchase.
 	</div>
 
-	<div class="row mt-5">
-		<div class="col-lg-4 col-md-6 text-center">
+	<div class="row" style="margin-top:4rem;">
+		<div class="@(Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting ? "col-lg-4 col-md-6" : "col-lg-6 col-md-12") text-center order-details-content">
 			<h5 class="font-weight-bold">CURRENT RANK</h5>
 
-			<div class="silver flag current-flag" id="current-flag">
+			<div class="@Model.StartDivision.Split(' ')?[0].ToLower() flag current-flag" id="current-flag">
 				<div class="rank-icon mb-3">
-					<img id="current-image" src="https://www.gameboost.eu/divisions/silveri.png">
+					<img id="current-image" src="/img/Lol Ranks/@(Model.StartDivision.Replace(" ", String.Empty)).png">
 				</div>
-				<h4 class="league-info font-weight-bold mb-0" id="current-tier">Silver</h4>
-				<p class="division-info font-weight-normal" id="current-division">Divison I</p>
+				<h4 class="league-info font-weight-bold mb-0" id="current-tier">@Model.StartDivision.Split(' ')?[0]</h4>
+				@if (Model.StartDivision.Split(' ').Length > 1)
+				{
+					<p class="division-info font-weight-normal" id="current-division">Divison @Model.StartDivision.Split(' ')[1]</p>
+				}
 			</div>
 		</div>
-		<div class="col-lg-4 col-md-6 text-center">
-			<h5 class="font-weight-bold">DESIRED RANK</h5>
-			<div class="gold flag desired-flag" id="desired-flag">
-				<div class="rank-icon mb-3">
-					<img id="desired-image" src="https://www.gameboost.eu/divisions/goldiv.png">
+		@if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting)
+		{
+			<div class="col-lg-4 col-md-6 text-center order-details-content">
+				<h5 class="font-weight-bold">DESIRED RANK</h5>
+				<div class="@Model.DesiredDivision.Split(' ')?[0].ToLower() flag desired-flag" id="desired-flag">
+					<div class="rank-icon mb-3">
+						<img id="desired-image" src="/img/Lol Ranks/@(Model.DesiredDivision.Replace(" ", String.Empty)).png">
+					</div>
+					<h4 class="league-info font-weight-bold mb-0" id="desired-tier">@Model.DesiredDivision.Split(' ')?[0]</h4>
+					<p class="division-info font-weight-normal" id="desired-division">Divison @Model.DesiredDivision.Split(' ')?[1]</p>
 				</div>
-				<h4 class="league-info font-weight-bold mb-0" id="desired-tier">Gold</h4>
-				<p class="division-info font-weight-normal" id="desired-division">Divison IV</p>
 			</div>
-		</div>
-		<div class="col-lg-4 col-md-12 text-center">
+		}
+		<div class="@(Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting ? "col-lg-4 col-md-6" : "col-lg-6 col-md-12") text-center order-details-content">
 			<h5 class="font-weight-bold">OTHER INFO</h5>
 			<div class="row mt-4">
-				<div class="col-lg-6 col-md-4">
-					<div class="card">
-						<div class="card-body ">
-							Current LP : <br><span class="text-primary">@Model.LP</span>
+				@if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting)
+				{
+					<div class="col-lg-6 col-md-4">
+						<div class="card">
+							<div class="card-body ">
+								Current LP : <br><span class="text-primary">@Model.LP</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-6 col-md-4">
+				}
+				else
+				{
+					<div class="col-lg-6 col-md-4 order-details-content">
+						<div class="card">
+							<div class="card-body ">
+								Amount Of Games : <br><span class="text-primary">@Model.NumOfGames Games</span>
+							</div>
+						</div>
+					</div>
+				}
+				<div class="col-lg-6 col-md-4 order-details-content">
 					<div class="card">
 						<div class="card-body ">
 							Server : <br><span class="text-primary">@Model.Region</span>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-12 col-md-4">
+				<div class="col-lg-12 col-md-4 order-details-content">
 					<div class="card">
 						<div class="card-body ">
 							Queue Type : <span class="text-primary">@Model.Queue</span>
@@ -59,7 +78,7 @@
 				</div>
 			</div>
 			<h5 class="font-weight-bold">CUSTOMIZATIONS</h5>
-			<div class="row mt-4 text-center">
+			<div class="row mt-4 text-center order-details-content">
 				<div class="col-lg-6 col-md-4">
 					<div class="card">
 						<div class="card-body ">
@@ -71,21 +90,36 @@
 					<div class="card">
 						<div class="card-body ">
 							Roles : <br>
-							<span data-toggle="tooltip" data-placement="top" title="" data-original-title=" MidLane">
-								<img src="https://www.gameboost.eu/booster-area/assets/images/roles/mid.png?1.0" width="22px">
-							</span>
-							<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Jungle">
-								<img src="https://www.gameboost.eu/booster-area/assets/images/roles/jungle.png?1.0" width="22px">
-							</span>
-							<span data-toggle="tooltip" data-placement="top" title="" data-original-title="TopLane">
-								<img src="https://www.gameboost.eu/booster-area/assets/images/roles/top.png?1.0" width="22px">
-							</span>
-							<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Support">
-								<img src="https://www.gameboost.eu/booster-area/assets/images/roles/supp.png?1.0" width="22px">
-							</span>
-							<span data-toggle="tooltip" data-placement="top" title="" data-original-title="AdCarry">
-								<img src="https://www.gameboost.eu/booster-area/assets/images/roles/adc.png?1.0" width="22px">
-							</span>
+							@if (Model.SpecificRoles != null && Model.SpecificRoles.Contains("mid"))
+							{
+								<span data-toggle="tooltip" data-placement="top" title="" data-original-title=" MidLane">
+									<img src="~/Client/assets/images/LeagueOfLegends/mid.png?1.0" width="22px">
+								</span>
+							}
+							@if (Model.SpecificRoles != null && Model.SpecificRoles.Contains("jungle"))
+							{
+								<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Jungle">
+									<img src="~/Client/assets/images/LeagueOfLegends/jungle.png?1.0" width="22px">
+								</span>
+							}
+							@if (Model.SpecificRoles != null && Model.SpecificRoles.Contains("top"))
+							{
+								<span data-toggle="tooltip" data-placement="top" title="" data-original-title="TopLane">
+									<img src="~/Client/assets/images/LeagueOfLegends/top.png?1.0" width="22px">
+								</span>
+							}
+							@if (Model.SpecificRoles != null && Model.SpecificRoles.Contains("support"))
+							{
+								<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Support">
+									<img src="~/Client/assets/images/LeagueOfLegends/supp.png" width="22px">
+								</span>
+							}
+							@if (Model.SpecificRoles != null && Model.SpecificRoles.Contains("adc"))
+							{
+								<span data-toggle="tooltip" data-placement="top" title="" data-original-title="AdCarry">
+									<img src="~/Client/assets/images/LeagueOfLegends/adc.png?1.0" width="22px">
+								</span>
+							}
 						</div>
 					</div>
 				</div>
@@ -109,6 +143,8 @@
 
 			</div>
 		</div>
+
+
 		<div class="col-md-4 offset-md-4">
 			<div style="text-align: center!important;">
 				<h5 class="font-weight-bold">ORDER SUMMARY</h5>
@@ -146,6 +182,4 @@
 			</div>
 		</div>
 	</div>
-	<script>
-	</script>
 </div>

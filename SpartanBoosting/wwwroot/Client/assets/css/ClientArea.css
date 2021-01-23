@@ -1,12 +1,9 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
-.silver.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-silver.svg) !important;
-}
-
-.order-details .card {
+.order-details-content .card {
 	margin-bottom: 30px;
+	height: 8rem;
 }
 
 .bg-blue {
@@ -36,45 +33,45 @@ h5 {
 	max-width: 400px;
 	padding: 100px;
 	margin: 0 auto;
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-iron.svg);
+	background-image: url(../images/LeagueOfLegends/flag-iron.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .iron.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-iron.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-iron.svg) !important;
 }
 
 .bronze.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-bronze.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-bronze.svg) !important;
 }
 
 .silver.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-silver.svg) !important;
+	background-image:url(../images/LeagueOfLegends/flag-silver.svg)
 }
 
 .gold.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-gold.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-gold.svg) !important;
 }
 
 .platinum.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-platinum.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-platinum.svg) !important;
 }
 
 .diamond.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-diamond.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-diamond.svg) !important;
 }
 
 .master.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-master.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-master.svg) !important;
 }
 
 .grandmaster.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-grandmaster.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-grandmaster.svg) !important;
 }
 
 .challenger.flag {
-	background-image: url(https://www.gameboost.eu/gb-assets/boost-forms/flags/flag-challenger.svg) !important;
+	background-image: url(../images/LeagueOfLegends/flag-challenger.svg) !important;
 }
 
 .edit-rank-info {

@@ -13,6 +13,7 @@ namespace SpartanBoosting.Models.Repositorys
 		IEnumerable<PurchaseForm> GetBasicPurchaseOrder();
 		PurchaseForm GetPurchaseFormModelsIncludedById(int Id);
 		PurchaseForm GetPurchaseFormModelsIncludedByIdAndUser(int Id, ApplicationUser applicationUser);
+		PurchaseForm GetPurchaseFormModelsIncludedByClientIdAndUser(int Id, ApplicationUser applicationUser);
 		IEnumerable<PurchaseForm> GetAllPurchaseOrder();
 		IEnumerable<PurchaseForm> GetAllPurchaseOrderWithBooster();
 		IEnumerable<PurchaseForm> GetAllUnCompletedPurchaseOrderWithBooster();

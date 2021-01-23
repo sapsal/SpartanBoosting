@@ -30,14 +30,16 @@ namespace SpartanBoosting.Controllers
 		{
 			LolOrderDetailsViewModel LolOrderDetailsViewModel = new LolOrderDetailsViewModel();
 			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-			LolOrderDetailsViewModel.PurchaseForm = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
+
+			LolOrderDetailsViewModel.PurchaseForm = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByClientIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
 			LolOrderDetailsViewModel.ChatModel = ChatModelRepository.GetChatModelByPurchaseOrder(int.Parse(EncryptionHelper.Decrypt(hash)));
+
 			switch (LolOrderDetailsViewModel.PurchaseForm.PurchaseType)
 			{
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting:
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting:
-					LolOrderDetailsViewModel.StartDivisionImage = $"{LolOrderDetailsViewModel.PurchaseForm.BoostingModel.YourCurrentLeague}{LolOrderDetailsViewModel.PurchaseForm.BoostingModel.CurrentDivision}";
-					LolOrderDetailsViewModel.DesiredDivisionImage = $"{LolOrderDetailsViewModel.PurchaseForm.BoostingModel.DesiredCurrentLeague}{LolOrderDetailsViewModel.PurchaseForm.BoostingModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+					LolOrderDetailsViewModel.StartDivision = $"{LolOrderDetailsViewModel.PurchaseForm.BoostingModel.YourCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.BoostingModel.CurrentDivision}";
+					LolOrderDetailsViewModel.DesiredDivision = $"{LolOrderDetailsViewModel.PurchaseForm.BoostingModel.DesiredCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.BoostingModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
 					LolOrderDetailsViewModel.DivisionBoost = $"{LolOrderDetailsViewModel.PurchaseForm.BoostingModel.YourCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.BoostingModel.CurrentDivision} ({LolOrderDetailsViewModel.PurchaseForm.BoostingModel.CurrentLP}) <span> <i class='fas fa-angle-right'></i> </span> {LolOrderDetailsViewModel.PurchaseForm.BoostingModel.DesiredCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.BoostingModel.DesiredCurrentDivision}";
 					LolOrderDetailsViewModel.Region = LolOrderDetailsViewModel.PurchaseForm.BoostingModel.Server;
 					LolOrderDetailsViewModel.Queue = LolOrderDetailsViewModel.PurchaseForm.BoostingModel.TypeOfQueue;
@@ -51,21 +53,22 @@ namespace SpartanBoosting.Controllers
 					LolOrderDetailsViewModel.LP = LolOrderDetailsViewModel.PurchaseForm.BoostingModel.CurrentLP;
 					break;
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
-					LolOrderDetailsViewModel.StartDivisionImage = $"{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.YourCurrentLeague}{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.CurrentDivision}";
+					LolOrderDetailsViewModel.StartDivision = $"{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.YourCurrentLeague}{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.CurrentDivision}";
 					//LolOrderDetailsViewModel.DesiredDivisionImage = $"{Model.PurchaseForm.WinBoostModel.DesiredCurrentLeague}{Model.PurchaseForm.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
 					LolOrderDetailsViewModel.DivisionBoost = $"{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.YourCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.CurrentDivision} <span> <i class='fas fa-angle-right'></i> </span> {LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.NumOfGames} ";
 					LolOrderDetailsViewModel.Region = LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.Server;
 					LolOrderDetailsViewModel.Queue = LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.TypeOfQueue;
 					LolOrderDetailsViewModel.DuoType = LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.TypeOfDuoPremium != null ? LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.TypeOfDuoPremium : "Regular";
+					LolOrderDetailsViewModel.NumOfGames = LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.NumOfGames;
 					break;
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.PlacementMatches:
-					LolOrderDetailsViewModel.StartDivisionImage = $"{LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.LastSeasonStanding}";
+					LolOrderDetailsViewModel.StartDivision = $"{LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.LastSeasonStanding}";
 					LolOrderDetailsViewModel.DivisionBoost = $"{LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.NumOfGames}";
 					LolOrderDetailsViewModel.Region = LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.Server;
 					LolOrderDetailsViewModel.Queue = LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.TypeOfQueue;
 					LolOrderDetailsViewModel.DuoType = LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium != null ? LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
 					LolOrderDetailsViewModel.ServiceType = $"{LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.TypeOfService}";
-					LolOrderDetailsViewModel.LP = LolOrderDetailsViewModel.PurchaseForm.BoostingModel.CurrentLP;
+					LolOrderDetailsViewModel.NumOfGames = LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.NumOfGames;
 					break;
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
 					break;

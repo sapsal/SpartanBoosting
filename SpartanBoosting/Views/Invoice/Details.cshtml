@@ -40,8 +40,6 @@
 								}
 								<h3 class="nk-title h4 text-center">Order Recipient</h3>
 								<div class="nk-gap"></div>
-								@if (!User.Identity.IsAuthenticated)
-								{
 									<div class="nk-tabs order-recipient-content @(User.Identity.IsAuthenticated ? "d-none" : "")">
 										<ul class="nav nav-tabs" role="tablist">
 											<li class="nav-item">
@@ -143,7 +141,6 @@
 											<div class="float-left invoice-recipient-message"></div>
 										</div>
 									</div>
-								}
 
 								<table class="table table-bordered nk-store-cart-order user-logon-details-table @(User.Identity.IsAuthenticated ? "":"d-none")">
 									<thead class="thead-default">
@@ -159,7 +156,13 @@
 										</tr>
 									</thead>
 								</table>
-
+								<button class="nk-btn nk-btn-lg link-effect-4 float-right ready sign-out-order @(User.Identity.IsAuthenticated ? "d-none" : "")" type="button">
+									<span class="link-effect-inner">
+										<span class="link-effect-l">
+											<span>Not You?</span>
+										</span><span class="link-effect-r"><span>Not You?</span></span><span class="link-effect-shade"><span>Not You?</span></span>
+									</span>
+								</button>
 							</div>
 							<!-- END: Billing Details -->
 						</div>
@@ -296,10 +299,11 @@
 					$('#LoginModel_loginattempt-error').text('Invalid Login Attempt').show()
 				}
 				else {
-					$('.order-recipient-content').hide();
+					$('.order-recipient-content').addClass('d-none')
 					$('.invoice-recipient-message').text(response.username);
-					$('.user-logon-details').text(response.username);
-					$('.user-logon-details-table').show();
+					$('.user-logon-details-table th').text(response.username);
+					$('.user-logon-details-table').removeClass('d-none')
+					$('.sign-out-order').removeClass('d-none')
 				}
 				$(".login-invoice-button").prop('disabled', false);
 			}
@@ -327,14 +331,36 @@
 				}
 				else {
 					$('#register-error').hide();
-					$('.order-recipient-content').hide();
+					$('.order-recipient-content').addClass('d-none')
 					$('.invoice-recipient-message').text(response.message);
-					$('.user-logon-details').text(response.username);
-					$('.user-logon-details-table').show();
-
+					$('.user-logon-details-table th').text(response.username);
+					$('.user-logon-details-table').removeClass('d-none')
+					$('.sign-out-order').removeClass('d-none')
 					//response.username
 				}
 				$(".register-invoice-button").prop('disabled', false);
+			}
+		});
+	});
+
+	$(".sign-out-order").click(function (event) {
+		debugger;
+		$(".sign-out-order").prop('disabled', true);
+		event.preventDefault();
+		$('#LoginModel_loginattempt-error').hide()
+		$.ajax({
+			url: '/Account/LogoutAjax',
+			type: 'POST',
+			success: function (response) {
+
+				if (response.success) {
+					$('.order-recipient-content').removeClass('d-none')
+					$('.invoice-recipient-message').text('');
+					$('.user-logon-details-table th').text('');
+					$('.user-logon-details-table').addClass('d-none')
+					$('.sign-out-order').addClass('d-none')
+				}
+				$(".sign-out-order").prop('disabled', false);
 			}
 		});
 	});

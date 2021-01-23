@@ -102,7 +102,7 @@ namespace SpartanBoosting.Controllers
 					if (result.Status == "succeeded" && result.Paid)
 					{
 						TempData.Put("purchaseForm", purchaseForm);
-						return RedirectToAction("PurchaseQuote", "Quote");
+						return RedirectToAction("InvoiceComplete", "Invoice");
 					}
 				}
 				catch (Exception e)
@@ -154,7 +154,7 @@ namespace SpartanBoosting.Controllers
 					PayPalV2.captureOrder(purchaseForm.PayPalCapture);
 				}
 
-				PurchaseOrderRepository.Add(purchaseForm);
+				purchaseForm = PurchaseOrderRepository.Add(purchaseForm);
 				if (purchaseForm.Discount != null && purchaseForm.Discount.SingleUse)
 				{
 					DiscountModelRepository.SetNotInUse(purchaseForm.Discount);
@@ -190,6 +190,7 @@ namespace SpartanBoosting.Controllers
 						break;
 				}
 				email.SendEmailAsync(purchaseForm.PersonalInformation.Email, $"Purchase Order", emailbody);
+				return RedirectToAction("OrderDetails", "ClientArea", new { hash = EncryptionHelper.Encrypt(purchaseForm.Id) });
 			}
 			catch (Exception e)
 			{

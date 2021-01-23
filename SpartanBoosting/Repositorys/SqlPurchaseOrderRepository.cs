@@ -23,6 +23,8 @@ namespace SpartanBoosting.Models.Repositorys
 			purchaseForm.CreatedDate = DateTime.UtcNow;
 			if (purchaseForm.Discount != null)
 				context.Entry(purchaseForm.Discount).State = EntityState.Unchanged;
+			if (purchaseForm.ClientAssignedTo != null)
+				context.Entry(purchaseForm.ClientAssignedTo).State = EntityState.Unchanged;
 			context.SaveChanges();
 			return purchaseForm;
 		}
@@ -109,6 +111,18 @@ namespace SpartanBoosting.Models.Repositorys
 		public PurchaseForm GetPurchaseFormModelsIncludedByIdAndUser(int Id, ApplicationUser applicationUser)
 		{
 			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser).Include(p => p.PersonalInformation)
+						.Include(p => p.BoostingModel)
+						.Include(p => p.CoachingModel)
+						.Include(p => p.PlacementMatchesModel)
+						.Include(p => p.TFTBoostingModel)
+						.Include(p => p.TFTPlacementModel)
+						.Include(p => p.WinBoostModel)
+						.FirstOrDefault(item => item.Id == Id);
+		}
+
+		public PurchaseForm GetPurchaseFormModelsIncludedByClientIdAndUser(int Id, ApplicationUser applicationUser)
+		{
+			return context.PurchaseForm.Where(x => x.ClientAssignedTo == applicationUser).Include(p => p.PersonalInformation)
 						.Include(p => p.BoostingModel)
 						.Include(p => p.CoachingModel)
 						.Include(p => p.PlacementMatchesModel)

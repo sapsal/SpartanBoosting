@@ -318,13 +318,19 @@ namespace SpartanBoosting.Controllers
 			return Json(new { success = false, message = $"Invalid register attempt." });
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Logout()
 		{
 			await _signInManager.SignOutAsync();
 			_logger.LogInformation("User logged out.");
 			return RedirectToAction(nameof(HomeController.Index), "Home");
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> LogoutAjax()
+		{
+			await _signInManager.SignOutAsync();
+			_logger.LogInformation("User logged out.");
+			return Json(new { success = true });
 		}
 
 		[HttpPost]
