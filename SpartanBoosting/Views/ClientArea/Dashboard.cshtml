@@ -1,0 +1,132 @@
+﻿@using SpartanBoosting.ViewModel.Lol_ViewModels
+@model LolClientAreaDashboardViewModel
+@{
+	Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+
+<div class="content  " id="kt_content">
+
+	<div class="py-6 py-lg-8  " id="kt_subheader">
+		<div class="row pl-12 ml-0 mr-0 w-100">
+			<!--begin::Info-->
+			<div class="col-12 d-flex align-items-center  mr-1">
+
+				<!--begin::Page Heading-->
+				<div class="d-flex align-items-baseline flex-wrap mr-5">
+					<h4 class="page-title pb-3">
+						MY ORDERS
+					</h4>
+				</div>
+				<!--end::Page Heading-->
+			</div>
+		</div>
+		<div class="row pl-12 ml-0 mr-0 w-100">
+			<!--begin::Info-->
+			<div class="col-5 d-flex align-items-center  mr-1">
+
+				<!--begin::Page Heading-->
+				<div class="d-flex align-items-baseline flex-wrap mr-5">
+					<!--begin::Page Title-->
+					<h5 class="text-dark font-weight-bold my-1 mr-5">
+						Dashboard
+					</h5>
+					<!--end::Page Title-->
+
+				</div>
+				<!--end::Page Heading-->
+			</div>
+			<!--end::Info-->
+			<!--begin::Toolbar-->
+			<!--end::Toolbar-->
+		</div>
+	</div>
+	<div class="container-fluid" style="padding: 35px;">
+		<div class="row">
+			<div class="col-md-12 col-lg-12 col-xl-12">
+				<!--begin::Tables Widget 1-->
+				<div class="card card-custom card-stretch gutter-b h-100">
+					<!--begin::Header-->
+					<div class="card-header border-0 pt-7">
+						<div class="card-toolbar">
+							<ul class="nav nav-pills nav-pills-sm nav-dark">
+								<li class="nav-item ml-0">
+									<a class="nav-link py-2 px-4 font-weight-bolder font-size-sm active" data-toggle="tab" href="#kt_tab_table_1_1">Orders</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--end::Header-->
+					<!--begin::Body-->
+					<div class="card-body pt-1 pb-4">
+						<div class="tab-content mt-5" id="myTabTable1">
+							<!--begin::Tap pane-->
+							<div class="tab-pane fade show active" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+								<!--begin::Table-->
+								<div class="table-responsive">
+									<table class="table table-borderless table-vertical-center">
+										<thead>
+											<tr>
+												<th class="p-0 ">Id</th>
+												<th class="p-0 ">Description</th>
+												<th class="p-0 ">Price</th>
+												<th class="p-0 ">Date</th>
+												<th class="p-0 ">Type</th>
+												<th class="p-0 ">Status</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											@foreach (var item in Model.PurchaseForm)
+											{
+												<tr>
+													<td class="py-5 pl-0">
+														<span class="text-muted font-weight-bold d-block text-nowrap">
+															<a href='../ClientArea/OrderDetails?hash=@EncryptionHelper.Encrypt(item.Id.ToString())'>#LOL-@(item.Id)</a>
+														</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-bold d-block">@LolPricingExtensions.DisplayLolTFTBoostJobDescription(item)</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+															€@item.Pricing
+														</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-500">
+															@item.CreatedDate.ToLongDateString()
+														</span>
+													</td>
+													<td class="pl-0">
+														<span class="text-muted font-weight-500">
+															@item.PurchaseType.ToString()
+														</span>
+													</td>
+													<td class="pl-0">
+														@if (item.BoosterAssignedTo != null)
+														{
+															<span class="label label-lg label-light-success label-inline">In Progress</span>
+														}
+														else
+														{
+															<span class="label label-lg label-light-warning label-inline">Ordered</span>
+														}
+													</td>
+
+												</tr>
+											}
+										</tbody>
+									</table>
+								</div>
+								<!--end::Tablet-->
+							</div>
+							<!--end::Tap pane-->
+						</div>
+					</div>
+					<!--end::Body-->
+				</div>
+				<!--end::Tables Widget 1-->
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,76 @@
+﻿@using SpartanBoosting.Models.Pricing
+@using SpartanBoosting.Utils
+@model PurchaseForm
+
+<div class="container">
+	<div class="nk-gap-1"></div>
+	<a href="https://uk.trustpilot.com/review/spartanboosting.com">
+		<span class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e809cc9d39b0d0001af5692" data-style-height="24px" data-style-width="100%" data-theme="dark">
+		</span>
+	</a>
+	<div class="row vertical-gap">
+		<div class="col-lg-12">
+			<form asp-action="CreateInvoice" id="create-invoice-form" role="form" asp-controller="Invoice" asp-antiforgery="true"
+				  data-ajax-success="Bindgrid"
+				  data-ajax="true"
+				  data-ajax-method="POST">
+				<div class="nk-store nk-store-checkout">
+					<div class="row vertical-gap lg-gap">
+						<div class="col-md-12">
+							<div class="nk-info-box bg-success">
+								<div class="nk-info-box-icon">
+									<i class="ion-alert-circled"></i>
+								</div> Order Has Been Placed. A Booster Will Contact You Shortly
+							</div>
+							<!-- START: Notes -->
+							<div class="bg-dark-1">
+								<div class="nk-box-3 bg-dark-1">
+									<h3 class="nk-title h4 text-center">Your Order</h3>
+									<div class="nk-gap"></div>
+									<div class="table-responsive">
+										<table class="table table-bordered nk-store-cart-order">
+											<thead class="thead-default">
+												<tr>
+													<th class="nk-product-cart-title">Product</th>
+													<th class="nk-product-cart-total">Total</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="nk-product-cart-title"> @LolPricingExtensions.DisplayLolTFTBoostJobDescription(Model) </td>
+													<td class="nk-product-cart-total">
+														€@Model.Pricing
+													</td>
+												</tr>
+												<tr>
+													<td class="nk-product-cart-title"> Discount </td>
+													<td class="nk-product-cart-total"> @Model.Discount?.DiscountPercentage% </td>
+												</tr>
+												<tr>
+													<td class="nk-product-cart-title"> Discount Code </td>
+													<td class="nk-product-cart-total"> @Model.Discount?.DiscountCode </td>
+												</tr>
+												<tr class="nk-store-cart-totals-subtotal">
+													<td> Subtotal </td>
+													<td> €@Model.Pricing </td>
+												</tr>
+												<tr class="nk-store-cart-totals-total">
+													<td> Total </td>
+													<td> €@Model.Pricing </td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- END: Notes -->
+						</div>
+					</div>
+					<div class="nk-gap-1"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="nk-gap-4"></div>
+	<div class="nk-gap-3"></div>
+</div>

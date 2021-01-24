@@ -5,7 +5,17 @@
 	flex-direction: row-reverse;
 	display: flex;
 }
-
+.page-title {
+	font-size: 28px;
+	font-weight: 500;
+	margin-top: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-bottom: 0;
+	color: #000;
+	text-transform: uppercase;
+}
 .w-95 {
 	width: 95%;
 }

@@ -132,6 +132,16 @@ namespace SpartanBoosting.Models.Repositorys
 						.FirstOrDefault(item => item.Id == Id);
 		}
 
+		public List<PurchaseForm> GetPurchaseFormForClient(ApplicationUser applicationUser) {
+			return context.PurchaseForm.Where(x => x.ClientAssignedTo == applicationUser).Include(p => p.PersonalInformation)
+				.Include(p => p.BoostingModel)
+				.Include(p => p.CoachingModel)
+				.Include(p => p.PlacementMatchesModel)
+				.Include(p => p.TFTBoostingModel)
+				.Include(p => p.TFTPlacementModel)
+				.Include(p => p.WinBoostModel).ToList();
+		}
+
 		public PurchaseForm GetPurchaseFormModelsIncludedById(int Id)
 		{
 			return context.PurchaseForm.Include(p => p.PersonalInformation)

@@ -29,7 +29,7 @@ namespace SpartanBoosting.Controllers
 		private IPurchaseOrderRepository PurchaseOrderRepository;
 		private PricingController PricingController { get; set; }
 		private readonly UserManager<ApplicationUser> _userManager;
-				private IDiscountModelRepository DiscountModelRepository;
+		private IDiscountModelRepository DiscountModelRepository;
 		public InvoiceController(IOptions<SmtpSettings> smtpSettings, ICompositeViewEngine viewEngine, IPurchaseOrderRepository purchaseOrderRepository, ILogger<PricingController> logger, IDiscountModelRepository discountModelRepository, UserManager<ApplicationUser> userManager)
 		{
 			_smtpSettings = smtpSettings;
@@ -75,8 +75,8 @@ namespace SpartanBoosting.Controllers
 				var user = await _userManager.FindByEmailAsync(User.Identity.Name);
 				purchaseForm.ClientAssignedTo = user;
 			}
-			 
-			 
+
+
 			//validation
 			string validationResult = ValidatePaymentInformation(purchaseForm);
 			if (!string.IsNullOrEmpty(validationResult))
@@ -142,6 +142,21 @@ namespace SpartanBoosting.Controllers
 			}
 		}
 
+		public IActionResult InvoiceDetails()
+		{
+			try
+			{
+				PurchaseForm purchaseForm = JsonConvert.DeserializeObject<PurchaseForm>(TempData["completePurchaseForm"].ToString());
+				TempData.Put("completePurchaseForm", purchaseForm);
+				return View(purchaseForm);
+			}
+			catch (Exception e)
+			{
+			}
+
+			return View();
+		}
+
 		public IActionResult InvoiceComplete()
 		{
 			try
@@ -190,7 +205,14 @@ namespace SpartanBoosting.Controllers
 						break;
 				}
 				email.SendEmailAsync(purchaseForm.PersonalInformation.Email, $"Purchase Order", emailbody);
-				return RedirectToAction("OrderDetails", "ClientArea", new { hash = EncryptionHelper.Encrypt(purchaseForm.Id) });
+
+				if (User.Identity.IsAuthenticated)
+					return RedirectToAction("OrderDetails", "ClientArea", new { hash = EncryptionHelper.Encrypt(purchaseForm.Id) });
+				else
+				{
+					TempData.Put("completePurchaseForm", purchaseForm);
+					return RedirectToAction("InvoiceDetails", "Invoice");
+				}
 			}
 			catch (Exception e)
 			{

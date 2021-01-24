@@ -9,6 +9,8 @@ using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Repositorys;
 using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.ViewModel;
+using SpartanBoosting.ViewModel.Lol_ViewModels;
+
 namespace SpartanBoosting.Controllers
 {
 	public partial class ClientAreaController : Controller
@@ -25,6 +27,14 @@ namespace SpartanBoosting.Controllers
 			ChatModelRepository = chatModelRepository;
 			_userManager = userManager;
 			UserRepository = userRolesRepository;
+		}
+		public IActionResult Dashboard()
+		{
+			LolClientAreaDashboardViewModel LolClientAreaDashboardViewModel = new LolClientAreaDashboardViewModel();
+			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
+
+			LolClientAreaDashboardViewModel.PurchaseForm = PurchaseOrderRepository.GetPurchaseFormForClient(user);
+			return View(LolClientAreaDashboardViewModel);
 		}
 		public IActionResult OrderDetails([FromQuery(Name = "hash")] string hash)
 		{

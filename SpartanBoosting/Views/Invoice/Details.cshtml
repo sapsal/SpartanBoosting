@@ -25,6 +25,7 @@
 				  data-ajax-success="Bindgrid"
 				  data-ajax="true"
 				  data-ajax-method="POST">
+				<input asp-for="PurchaseForm.PurchaseType" type="hidden" id="custId" name="PurchaseForm.PurchaseType" value="@Model.PurchaseForm.PurchaseType">
 				<div class="nk-store nk-store-checkout">
 					<div class="row vertical-gap lg-gap">
 						<div class="col-md-6">
@@ -40,107 +41,102 @@
 								}
 								<h3 class="nk-title h4 text-center">Order Recipient</h3>
 								<div class="nk-gap"></div>
-									<div class="nk-tabs order-recipient-content @(User.Identity.IsAuthenticated ? "d-none" : "")">
-										<ul class="nav nav-tabs" role="tablist">
-											<li class="nav-item">
-												<a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab" aria-selected="true">Login</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab" aria-selected="false">Register</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="#tabs-1-3" id="guest-account-order" role="tab" data-toggle="tab" aria-selected="false">Guest Account</a>
-											</li>
-										</ul>
-										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane fade active show" id="tabs-1-1">
-												<div class="nk-gap-1"></div>
-												<div>
-													<input class="form-control login-username" type="text" placeholder="Username or Email" required>
-													<div class="nk-gap-2"></div>
-													<input class="form-control login-password" type="password" placeholder="Password" required>
-													<div id="LoginModel_loginattempt-error" class="nk-error" style="display:none">Invalid Login Attempt.</div>
-													<div class="nk-gap-2"></div>
-													<div class="form-check float-left">
-														<label class="form-check-label">
-															<input type="checkbox" class="form-check-input"> Remember Me
-														</label>
-													</div>
-													<button class="nk-btn nk-btn-color-white link-effect-4 float-right login-invoice-button" type="button">Log In</button>
-												</div>
-												<div class="nk-gap-1"></div>
+								<div class="nk-tabs order-recipient-content @(User.Identity.IsAuthenticated ? "d-none" : "")">
+									<ul class="nav nav-tabs" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab" aria-selected="true">Login</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab" aria-selected="false">Register</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#tabs-1-3" id="guest-account-order" role="tab" data-toggle="tab" aria-selected="false">Guest Account</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<div role="tabpanel" class="tab-pane fade active show" id="tabs-1-1">
+											<div class="nk-gap-1"></div>
+											<div>
+												<input class="form-control login-username" type="text" placeholder="Username or Email" required>
+												<div class="nk-gap-2"></div>
+												<input class="form-control login-password" type="password" placeholder="Password" required>
+												<div id="LoginModel_loginattempt-error" class="nk-error" style="display:none">Invalid Login Attempt.</div>
+												<div class="nk-gap-2"></div>
+												<button class="nk-btn nk-btn-color-white link-effect-4 float-right login-invoice-button" type="button">Log In</button>
 											</div>
-											<div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
-												<div class="nk-gap-1"></div>
-												<div>
-													<input class="form-control register-email" type="text" placeholder="Email">
-													<div class="nk-gap-2"></div>
-													<input class="form-control register-username" type="text" placeholder="Username">
-													<div class="nk-gap-2"></div>
-													<input class="form-control register-password" type="password" placeholder="Password">
-													<div class="nk-gap-2"></div>
-													<input class="form-control register-confirm-password" type="password" placeholder="Confirm Password">
-													<div class="nk-gap-2"></div>
-													<button class="nk-btn nk-btn-color-white link-effect-4 float-right register-invoice-button" type="button">Register</button>
-												</div>
-												<div id="register-error" class="nk-error" style="display:none"></div>
-												<div class="nk-gap-1"></div>
-											</div>
-											<div role="tabpanel" class="tab-pane fade" id="tabs-1-3">
-												<div class="nk-gap-1"></div>
-												@if (!(Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.WinBoosting ||
-(Model.PurchaseForm.PlacementMatchesModel != null && Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.PlacementMatches && Model.PurchaseForm.PlacementMatchesModel.TypeOfService == "Duo")))
-												{
-													<div class="row pb-4">
-														<div class="col-md-6 pr-3">
-															<div class="ginput_container ginput_container_select">
-																<label class="pb-3 gfield_label" for="current-rank">LEAGUE OF LEGENDS USERNAME:<span class="gfield_required">*</span></label>
-																<input class="form-control " name="PurchaseForm.PersonalInformation.UserName" id="" asp-for="PurchaseForm.PersonalInformation.UserName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="ginput_container ginput_container_select">
-																<label class="pb-3 gfield_label" for="desired-rank">LEAGUE OF LEGENDS PASSWORD:<span class="gfield_required">*</span></label>
-																<input class="form-control " name="PurchaseForm.PersonalInformation.Password" id="" asp-for="PurchaseForm.PersonalInformation.Password" type="password" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
-															</div>
-														</div>
-													</div>
-												}
-
-												<div class="row pb-4">
-													<div class="col-md-6 pr-3">
-														<div class="ginput_container ginput_container_select">
-															<label class="pb-3 gfield_label" for="current-rank">First Name:</label>
-															<input class="form-control " name="PurchaseForm.PersonalInformation.FirstName" id="" asp-for="PurchaseForm.PersonalInformation.FirstName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="ginput_container ginput_container_select">
-															<label class="pb-3 gfield_label" for="desired-rank">Last Name:</label>
-															<input class="form-control " name="PurchaseForm.PersonalInformation.LastName" id="" asp-for="PurchaseForm.PersonalInformation.LastName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
-														</div>
-													</div>
-												</div>
-
-												<div class="row pb-4">
-													<div class="col-md-6 pr-3">
-														<div class="ginput_container ginput_container_select">
-															<label class="pb-3 gfield_label" for="current-rank">Email:<span class="gfield_required">*</span></label>
-															<input class="form-control " name="PurchaseForm.PersonalInformation.Email" id="" asp-for="PurchaseForm.PersonalInformation.Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="ginput_container ginput_container_select">
-															<label class="pb-3 gfield_label" for="desired-rank">Discord:<span class="gfield_required">*</span></label>
-															<input class="form-control " name="PurchaseForm.PersonalInformation.Discord" id="" asp-for="PurchaseForm.PersonalInformation.Discord" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
-														</div>
-													</div>
-												</div>
-												<div class="nk-gap-1"></div>
-											</div>
-											<div class="float-left invoice-recipient-message"></div>
+											<div class="nk-gap-1"></div>
 										</div>
+										<div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
+											<div class="nk-gap-1"></div>
+											<div>
+												<input class="form-control register-email" type="text" placeholder="Email">
+												<div class="nk-gap-2"></div>
+												<input class="form-control register-username" type="text" placeholder="Username">
+												<div class="nk-gap-2"></div>
+												<input class="form-control register-password" type="password" placeholder="Password">
+												<div class="nk-gap-2"></div>
+												<input class="form-control register-confirm-password" type="password" placeholder="Confirm Password">
+												<div class="nk-gap-2"></div>
+												<button class="nk-btn nk-btn-color-white link-effect-4 float-right register-invoice-button" type="button">Register</button>
+											</div>
+											<div id="register-error" class="nk-error" style="display:none"></div>
+											<div class="nk-gap-1"></div>
+										</div>
+										<div role="tabpanel" class="tab-pane fade" id="tabs-1-3">
+											<div class="nk-gap-1"></div>
+											@if (!(Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.WinBoosting ||
+(Model.PurchaseForm.PlacementMatchesModel != null && Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.PlacementMatches && Model.PurchaseForm.PlacementMatchesModel.TypeOfService == "Duo")))
+											{
+												<div class="row pb-4">
+													<div class="col-md-6 pr-3">
+														<div class="ginput_container ginput_container_select">
+															<label class="pb-3 gfield_label" for="current-rank">LEAGUE OF LEGENDS USERNAME:<span class="gfield_required">*</span></label>
+															<input class="form-control " name="PurchaseForm.PersonalInformation.UserName" id="" asp-for="PurchaseForm.PersonalInformation.UserName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="ginput_container ginput_container_select">
+															<label class="pb-3 gfield_label" for="desired-rank">LEAGUE OF LEGENDS PASSWORD:<span class="gfield_required">*</span></label>
+															<input class="form-control " name="PurchaseForm.PersonalInformation.Password" id="" asp-for="PurchaseForm.PersonalInformation.Password" type="password" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+														</div>
+													</div>
+												</div>
+											}
+
+											<div class="row pb-4">
+												<div class="col-md-6 pr-3">
+													<div class="ginput_container ginput_container_select">
+														<label class="pb-3 gfield_label" for="current-rank">First Name:</label>
+														<input class="form-control " name="PurchaseForm.PersonalInformation.FirstName" id="" asp-for="PurchaseForm.PersonalInformation.FirstName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="ginput_container ginput_container_select">
+														<label class="pb-3 gfield_label" for="desired-rank">Last Name:</label>
+														<input class="form-control " name="PurchaseForm.PersonalInformation.LastName" id="" asp-for="PurchaseForm.PersonalInformation.LastName" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false">
+													</div>
+												</div>
+											</div>
+
+											<div class="row pb-4">
+												<div class="col-md-6 pr-3">
+													<div class="ginput_container ginput_container_select">
+														<label class="pb-3 gfield_label" for="current-rank">Email:<span class="gfield_required">*</span></label>
+														<input class="form-control " name="PurchaseForm.PersonalInformation.Email" id="" asp-for="PurchaseForm.PersonalInformation.Email" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="ginput_container ginput_container_select">
+														<label class="pb-3 gfield_label" for="desired-rank">Discord:<span class="gfield_required">*</span></label>
+														<input class="form-control " name="PurchaseForm.PersonalInformation.Discord" id="" asp-for="PurchaseForm.PersonalInformation.Discord" type="text" value="" aria-describedby="gfield_description_10_286" aria-invalid="false" required="">
+													</div>
+												</div>
+											</div>
+											<div class="nk-gap-1"></div>
+										</div>
+										<div class="float-left invoice-recipient-message"></div>
 									</div>
+								</div>
 
 								<table class="table table-bordered nk-store-cart-order user-logon-details-table @(User.Identity.IsAuthenticated ? "":"d-none")">
 									<thead class="thead-default">
@@ -156,7 +152,7 @@
 										</tr>
 									</thead>
 								</table>
-								<button class="nk-btn nk-btn-lg link-effect-4 float-right ready sign-out-order @(User.Identity.IsAuthenticated ? "d-none" : "")" type="button">
+								<button class="nk-btn nk-btn-lg link-effect-4 float-right ready sign-out-order @(!User.Identity.IsAuthenticated ? "d-none" : "")" type="button">
 									<span class="link-effect-inner">
 										<span class="link-effect-l">
 											<span>Not You?</span>
@@ -370,25 +366,34 @@
 <script type="text/javascript">
 	Stripe.setPublishableKey('pk_live_u9ZDiEA4MATglICKYobFNb0S00v6iolLzi');
 	var stripeResponseHandler = function (status, response) {
-		var $form = $('.stripe-form');
-		$('form').validate();
-		if (response.error) {
-			// Show the errors on the form
-			$form.find('.payment-errors').text(response.error.message);
-		} else {
-			// token contains id, last4, and card type
-			var token = response.id;
-			// Insert the token into the form so it gets submitted to the server
-			$form.append($('<input type="hidden" name="PurchaseForm.PersonalInformation.stripeToken" asp-for="PurchaseForm.PersonalInformation.stripeToken" />').val(token));
-			// and re-submit
-			$('#create-invoice-form').submit();
+		debugger;
+		try {
+			var $form = $('.stripe-form');
+			$('form').validate();
+			if (response.error) {
+				// Show the errors on the form
+				$form.find('.payment-errors').text(response.error.message);
+				$('.proceed-invoice-btn').prop('disabled', false);
+			} else {
+				// token contains id, last4, and card type
+				var token = response.id;
+				// Insert the token into the form so it gets submitted to the server
+				$form.append($('<input type="hidden" name="PurchaseForm.PersonalInformation.stripeToken" asp-for="PurchaseForm.PersonalInformation.stripeToken" />').val(token));
+				// and re-submit
+				$('#create-invoice-form').submit();
+			}
 		}
+		catch (err) {
+			$('.proceed-invoice-btn').prop('disabled', false);
+			console.log(err)
+		}
+
 	};
 
-	jQuery(function ($) {
-		$('.proceed-invoice-btn').click(function (e) {
+	$(document).on("click", '.proceed-invoice-btn', function (e) {
+		try {
 			e.preventDefault(); // stop redirection
-
+			debugger;
 			$('[required]:visible').each(function () {
 				if (!$(this)[0].checkValidity()) {
 					$('.toast').toast('show');
@@ -399,7 +404,7 @@
 				}
 			});
 
-			if ($('.order-recipient-content').find('li .active').attr('id') == "guest-account-order" || !$('.order-recipient-content').is(":visible")) {
+			if ($('.order-recipient-content').find('li .active').attr('id') == "guest-account-order" && $('.order-recipient-content').is(":visible")) {
 				if (!$("form")[0].checkValidity()) {
 					return;
 				}
@@ -417,8 +422,12 @@
 				return false;
 			}
 			else { $($(this).parents('form:first')).submit(); }
-		});
-	})
+		}
+		catch (err) {
+			$('.proceed-invoice-btn').prop('disabled', false);
+			console.log(err)
+		}
+	});
 
 	$(document).on("change", '#payment-method', function () {
 		if (this.value == "Paypal")

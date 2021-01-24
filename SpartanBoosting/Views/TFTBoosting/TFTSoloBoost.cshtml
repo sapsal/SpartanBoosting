@@ -23,6 +23,7 @@
 				  data-ajax-success="Bindgrid"
 				  data-ajax="true"
 				  data-ajax-method="POST" data-pricing="TFTSoloBoostPricing">
+				<input asp-for="PurchaseType" type="hidden" id="custId" name="PurchaseType" value="@Model.PurchaseType">
 				<div class="gfield-pricing-quote-personal-information"></div>
 				<div class="gfield-pricing-quote">
 					<div class="">

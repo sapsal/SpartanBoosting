@@ -98,7 +98,7 @@ namespace SpartanBoosting.Controllers
 				if (result.Succeeded)
 				{
 					var user = await _userManager.FindByEmailAsync(model.Email);
-					if (await _userManager.IsInRoleAsync(user, "Superuser"))
+					if (await _userManager.IsInRoleAsync(user, "Superuser") || await _userManager.IsInRoleAsync(user, "Booster"))
 					{
 						_logger.LogInformation("User logged in.");
 						return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
@@ -107,7 +107,7 @@ namespace SpartanBoosting.Controllers
 					{
 						//client 
 
-						return Json(new { success = true, Username = user.UserName });
+						return Json(new { success = true, Username = user.UserName , redirectToUrl = Url.Action("Dashboard", "ClientArea") });
 					}
 				}
 				if (result.RequiresTwoFactor)
