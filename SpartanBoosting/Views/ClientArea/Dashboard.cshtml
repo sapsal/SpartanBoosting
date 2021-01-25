@@ -103,14 +103,19 @@
 														</span>
 													</td>
 													<td class="pl-0">
-														@if (item.BoosterAssignedTo != null)
-														{
-															<span class="label label-lg label-light-success label-inline">In Progress</span>
-														}
-														else
+														@if (item.BoosterAssignedTo == null && !item.BoosterCompletionConfirmed)
 														{
 															<span class="label label-lg label-light-warning label-inline">Ordered</span>
 														}
+														else if (item.BoosterAssignedTo != null && item.BoosterCompletionConfirmed)
+														{
+															<span class="label label-lg label-light-success label-inline">Completed</span>
+														}
+														else
+														{
+															<span class="label label-lg label-outline-info label-inline">In Progress</span>
+														}
+														
 													</td>
 
 												</tr>

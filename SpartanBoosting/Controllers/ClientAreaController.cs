@@ -64,7 +64,6 @@ namespace SpartanBoosting.Controllers
 					break;
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.WinBoosting:
 					LolOrderDetailsViewModel.StartDivision = $"{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.YourCurrentLeague}{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.CurrentDivision}";
-					//LolOrderDetailsViewModel.DesiredDivisionImage = $"{Model.PurchaseForm.WinBoostModel.DesiredCurrentLeague}{Model.PurchaseForm.WinBoostModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
 					LolOrderDetailsViewModel.DivisionBoost = $"{LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.YourCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.CurrentDivision} <span> <i class='fas fa-angle-right'></i> </span> {LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.NumOfGames} ";
 					LolOrderDetailsViewModel.Region = LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.Server;
 					LolOrderDetailsViewModel.Queue = LolOrderDetailsViewModel.PurchaseForm.WinBoostModel.TypeOfQueue;
@@ -81,8 +80,17 @@ namespace SpartanBoosting.Controllers
 					LolOrderDetailsViewModel.NumOfGames = LolOrderDetailsViewModel.PurchaseForm.PlacementMatchesModel.NumOfGames;
 					break;
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTPlacement:
+					LolOrderDetailsViewModel.StartDivision = $"{LolOrderDetailsViewModel.PurchaseForm.TFTPlacementModel.LastSeasonStanding}";
+					LolOrderDetailsViewModel.DivisionBoost = $"{LolOrderDetailsViewModel.PurchaseForm.TFTPlacementModel.LastSeasonStanding} <span> <i class='fas fa-angle-right'></i> </span> {LolOrderDetailsViewModel.PurchaseForm.TFTPlacementModel.NumberOfGames}";
+					LolOrderDetailsViewModel.Region = LolOrderDetailsViewModel.PurchaseForm.TFTPlacementModel.Server;
+					LolOrderDetailsViewModel.NumOfGames = LolOrderDetailsViewModel.PurchaseForm.TFTPlacementModel.NumberOfGames;
 					break;
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting:
+					LolOrderDetailsViewModel.StartDivision = $"{LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.YourCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.CurrentDivision}";
+					LolOrderDetailsViewModel.DesiredDivision = $"{LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.DesiredCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.DesiredCurrentDivision}";//maybe render html in switch instead of variables
+					LolOrderDetailsViewModel.DivisionBoost = $"{LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.YourCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.CurrentDivision} ({LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.CurrentLP}) <span> <i class='fas fa-angle-right'></i> </span> {LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.DesiredCurrentLeague} {LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.DesiredCurrentDivision}";
+					LolOrderDetailsViewModel.Region = LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.Server;
+					LolOrderDetailsViewModel.LP = LolOrderDetailsViewModel.PurchaseForm.TFTBoostingModel.CurrentLP;
 					break;
 				case SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.Coaching:
 					break;

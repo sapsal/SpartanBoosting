@@ -12,7 +12,7 @@
 	</div>
 
 	<div class="row" style="margin-top:4rem;">
-		<div class="@(Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting ? "col-lg-4 col-md-6" : "col-lg-6 col-md-12") text-center order-details-content">
+		<div class="@(Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting ? "col-lg-4 col-md-6" : "col-lg-6 col-md-12") text-center order-details-content">
 			<h5 class="font-weight-bold">CURRENT RANK</h5>
 
 			<div class="@Model.StartDivision.Split(' ')?[0].ToLower() flag current-flag" id="current-flag">
@@ -26,7 +26,7 @@
 				}
 			</div>
 		</div>
-		@if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting)
+		@if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting)
 		{
 			<div class="col-lg-4 col-md-6 text-center order-details-content">
 				<h5 class="font-weight-bold">DESIRED RANK</h5>
@@ -39,10 +39,10 @@
 				</div>
 			</div>
 		}
-		<div class="@(Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting ? "col-lg-4 col-md-6" : "col-lg-6 col-md-12") text-center order-details-content">
+		<div class="@(Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting ? "col-lg-4 col-md-6" : "col-lg-6 col-md-12") text-center order-details-content">
 			<h5 class="font-weight-bold">OTHER INFO</h5>
 			<div class="row mt-4">
-				@if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting)
+				@if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.SoloBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting || Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.TFTBoosting)
 				{
 					<div class="col-lg-6 col-md-4">
 						<div class="card">
