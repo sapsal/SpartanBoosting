@@ -105,7 +105,7 @@ namespace SpartanBoosting.Models.Repositorys
 
 		public int GetPurchaseFormWithBoosterCount(ApplicationUser applicationUser)
 		{
-			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser).Count();
+			return context.PurchaseForm.Where(x => x.BoosterAssignedTo == applicationUser && !x.BoosterCompletionConfirmed).Count();
 		}
 
 		public PurchaseForm GetPurchaseFormModelsIncludedByIdAndUser(int Id, ApplicationUser applicationUser)

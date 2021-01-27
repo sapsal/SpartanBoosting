@@ -74,7 +74,8 @@ $('.gfield-quote').on('keyup change paste', function () {
 	});
 });
 
-$('#submit-quote').on('click', function () {
+$('.submit-quote').on('click', function (e) {
+	e.preventDefault(); // stop redirection
 	$('[required]:visible').each(function () {
 		if (!$(this)[0].checkValidity()) {
 			$('.toast').toast('show');
@@ -87,14 +88,8 @@ $('#submit-quote').on('click', function () {
 	if (!$("form")[0].checkValidity()) {
 		return;
 	}
-	$.ajax({
-		url: '/LolBoosting/DisplayInformationAndPayment',
-		type: 'GET',
-		success: function (dataofconfirm) {
-			$('.gfield-pricing-quote').hide();
-			$('.gfield-pricing-quote-personal-information').html(dataofconfirm)
-		}
-	});
+
+	$(this).closest('form').submit();
 });
 $('#apply-coupon').on('click', function () {
 	$.ajax({

@@ -108,13 +108,12 @@
 						</div>
 					</div>
 					@*//needed to show on duo select list*@
-					<div class="row pb-4" id="specific-roles-content" style="display:none">
-						<label class="col-12 ">SPECIFIC ROLES:</label>
-						<div class="col-12 " id="gfield_description_10_93">Extra charge for special offer is 15% (select at least two)</div>
+					<div class="row pb-4 type-of-duo-div" style="display:none">
+						<label class="col-12 gfield_label">Type of Duo:<span class="gfield_required">*</span></label>
 						<div class="ginput_container row pt-4 pb-4 one-checkbox-minimum">
 							<div class="col-1"></div>
 							<div class="col-4 regular-duo" data-toggle="tooltip" data-placement="top" title="Our standard boosting package, regular order pick-up time with limited coaching provided by your booster">
-								<input class="single-select-checkbox gfield-quote" asp-for="WinBoostModel.TypeOfDuoRegular" name="WinBoostModel.TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2">
+								<input class="single-select-checkbox gfield-quote select-role" asp-for="PlacementMatchesModel.TypeOfDuoRegular" name="PlacementMatchesModel.TypeOfDuoRegular" type="checkbox" value="Regular" id="choice_10_93_2">
 								<label for="choice_10_93_2" id="label_12_287_0" class="duo-status">
 									<span data-bg="url(../img/Wordpress Icons/duo-regular.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-regular.png');" data-was-processed="true">
 										<img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" src="../img/Wordpress Icons/duo-regular.png"><noscript><img src="../img/Wordpress Icons/duo-regular.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-regular.png" /></noscript>
@@ -123,7 +122,7 @@
 							</div>
 							<div class="col-1"></div>
 							<div class="col-4" data-toggle="tooltip" data-placement="top" title="Priority boosting with a quicker allocation time of your order to a booster. Your booster will provide commentary in-game whilst playing with you on aspects such as the macro game and offer ad-hoc tips about your gameplay.">
-								<input class="single-select-checkbox gfield-quote" asp-for="WinBoostModel.TypeOfDuoPremium" name="WinBoostModel.TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1">
+								<input class="single-select-checkbox gfield-quote select-role" asp-for="PlacementMatchesModel.TypeOfDuoPremium" name="PlacementMatchesModel.TypeOfDuoPremium" type="checkbox" value="Premium" id="choice_10_93_1">
 								<label for="choice_10_93_1" id="label_12_287_1" class="duo-status">
 									<span data-bg="url(../img/Wordpress Icons/duo-premium.png)" class="image-choices-choice-image-wrap rocket-lazyload" style="background-image: url('../img/Wordpress Icons/duo-premium.png');" data-was-processed="true"><img alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" src="../img/Wordpress Icons/duo-premium.png"><noscript><img src="../img/Wordpress Icons/duo-premium.png" alt="" class="image-choices-choice-image" data-lightbox-src="../img/Wordpress Icons/duo-premium.png" /></noscript></span>
 									<label class="w-100 d-flex justify-content-center">Premium</label>
@@ -196,7 +195,7 @@
 						</div> <br><br>
 
 						<div class="row pt-4 d-flex justify-content-center">
-							<button type="submit" class="nk-btn nk-btn-lg link-effect-4 float-right ready">
+							<button type="submit" class="nk-btn nk-btn-lg link-effect-4 float-right ready submit-quote">
 								<span class="link-effect-inner">
 									<span class="link-effect-l"><span>CONTINUE TO CHECKOUT</span></span><span class="link-effect-r">
 										<span>CONTINUE TO CHECKOUT</span>
