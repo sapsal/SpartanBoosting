@@ -1,4 +1,5 @@
-﻿using SpartanBoosting.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SpartanBoosting.Data;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Repositorys.Interfaces;
@@ -19,7 +20,7 @@ namespace SpartanBoosting.Repositorys
 		}
 		public List<DiscountModel> GetDiscountModels()
 		{
-			return context.Discount.Where(x => x.InUse).ToList();
+			return context.Discount.AsNoTracking().Where(x => x.InUse).ToList();
 		}
 		public DiscountModel Update(DiscountModel discountModel)
 		{

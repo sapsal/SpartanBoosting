@@ -20,7 +20,9 @@ namespace SpartanBoosting.Models.Repositorys
 		public PurchaseForm Add(PurchaseForm purchaseForm)
 		{
 			if (purchaseForm.Discount != null)
+			{
 				context.Entry(purchaseForm.Discount).State = EntityState.Unchanged;
+			}
 			if (purchaseForm.ClientAssignedTo != null)
 				context.Entry(purchaseForm.ClientAssignedTo).State = EntityState.Unchanged;
 			context.PurchaseForm.Add(purchaseForm);
