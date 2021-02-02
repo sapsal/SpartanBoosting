@@ -40,6 +40,7 @@ $(document).on("click", '.single-select-checkbox', function () {
 		$('.single-select-checkbox').siblings('label').removeClass('wpforms-selected')
 		$(this).siblings('label').addClass('wpforms-selected')
 		$(this).prop("checked", true);
+		$('.single-select-checkbox').removeAttr('required')
 	}
 	else {
 		$('.single-select-checkbox').siblings('label').removeClass('wpforms-selected')
