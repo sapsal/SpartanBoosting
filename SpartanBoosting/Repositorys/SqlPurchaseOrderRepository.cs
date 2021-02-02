@@ -19,12 +19,12 @@ namespace SpartanBoosting.Models.Repositorys
 
 		public PurchaseForm Add(PurchaseForm purchaseForm)
 		{
-			context.PurchaseForm.Add(purchaseForm);
-			purchaseForm.CreatedDate = DateTime.UtcNow;
 			if (purchaseForm.Discount != null)
 				context.Entry(purchaseForm.Discount).State = EntityState.Unchanged;
 			if (purchaseForm.ClientAssignedTo != null)
 				context.Entry(purchaseForm.ClientAssignedTo).State = EntityState.Unchanged;
+			context.PurchaseForm.Add(purchaseForm);
+			purchaseForm.CreatedDate = DateTime.UtcNow;
 			context.SaveChanges();
 			return purchaseForm;
 		}
