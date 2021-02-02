@@ -406,7 +406,7 @@
 			});
 
 			if ($('.order-recipient-content').find('li .active').attr('id') == "guest-account-order" && $('.order-recipient-content').is(":visible")) {
-				if (!$("form")[0].checkValidity()) {
+				if (!$("#create-invoice-form").validate({ ignore: ":hidden" })) {
 					return;
 				}
 			}
@@ -423,6 +423,7 @@
 				return false;
 			}
 			else { $($(this).parents('form:first')).submit(); }
+			$('.proceed-invoice-btn').prop('disabled', false);
 		}
 		catch (err) {
 			$('.proceed-invoice-btn').prop('disabled', false);
