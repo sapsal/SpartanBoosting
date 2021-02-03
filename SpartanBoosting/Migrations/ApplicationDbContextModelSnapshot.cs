@@ -460,6 +460,24 @@ namespace SpartanBoosting.Migrations
                     b.Property<string>("Server")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SpecificChampions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesADC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesJungle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesMiddle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesSupport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesTop")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TypeOfDuoPremium")
                         .HasColumnType("nvarchar(max)");
 
@@ -643,6 +661,21 @@ namespace SpartanBoosting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Server")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesADC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesJungle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesMiddle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesSupport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesTop")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TypeOfDuoPremium")

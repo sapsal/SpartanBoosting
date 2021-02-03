@@ -44,3 +44,46 @@ ALTER TABLE [PurchaseForm] ADD CONSTRAINT [FK_PurchaseForm_AspNetUsers_ClientAss
 
 GO
 
+ALTER TABLE [WinBoostModel] ADD [SpecificRolesADC] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [WinBoostModel] ADD [SpecificRolesJungle] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [WinBoostModel] ADD [SpecificRolesMiddle] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [WinBoostModel] ADD [SpecificRolesSupport] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [WinBoostModel] ADD [SpecificRolesTop] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [PlacementMatchesModel] ADD [SpecificRolesADC] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [PlacementMatchesModel] ADD [SpecificRolesJungle] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [PlacementMatchesModel] ADD [SpecificRolesMiddle] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [PlacementMatchesModel] ADD [SpecificRolesSupport] nvarchar(max) NULL;
+
+GO
+
+ALTER TABLE [PlacementMatchesModel] ADD [SpecificRolesTop] nvarchar(max) NULL;
+
+GO
+ALTER TABLE [PlacementMatchesModel] ADD [SpecificChampions] nvarchar(max) NULL;
+
+GO
+

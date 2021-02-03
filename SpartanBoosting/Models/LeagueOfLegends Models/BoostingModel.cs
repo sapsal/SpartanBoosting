@@ -56,7 +56,12 @@ namespace SpartanBoosting.Models
 		public string TypeOfDuoPremium { get; set; }
 		public string NumOfGames { get; set; }
 		public string Discount { get; set; }
-
+		public string SpecificRolesTop { get; set; }
+		public string SpecificRolesJungle { get; set; }
+		public string SpecificRolesMiddle { get; set; }
+		public string SpecificRolesADC { get; set; }
+		public string SpecificRolesSupport { get; set; }
+		public string SpecificChampions { get; set; }
 		public static PurchaseForm PlacementMatchesModelToPurchaseForm(PlacementMatchesModel placementMatchesModel, string pricing, PersonalInformation PersonalInformation, string ApprovalURL = null, string CaptureURL = null)
 		{
 			return new PurchaseForm
@@ -83,7 +88,11 @@ namespace SpartanBoosting.Models
 		public string TypeOfDuoRegular { get; set; }
 		public string TypeOfDuoPremium { get; set; }
 		public string Discount { get; set; }
-
+		public string SpecificRolesTop { get; set; }
+		public string SpecificRolesJungle { get; set; }
+		public string SpecificRolesMiddle { get; set; }
+		public string SpecificRolesADC { get; set; }
+		public string SpecificRolesSupport { get; set; }
 		public string NumOfGames { get; set; }
 
 		public static PurchaseForm WinBoostModelToPurchaseForm(WinBoostModel winBoostModel, string pricing, PersonalInformation PersonalInformation, string ApprovalURL = null, string CaptureURL = null)
