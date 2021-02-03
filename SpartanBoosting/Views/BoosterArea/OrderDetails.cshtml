@@ -89,9 +89,11 @@
 														if (Model.PurchaseForm.PurchaseType == SpartanBoosting.Utils.PurchaseTypeEnum.PurchaseType.DuoBoosting)
 															DuoType = Model.PurchaseForm.BoostingModel.TypeOfDuoPremium != "false" ? Model.PurchaseForm.BoostingModel.TypeOfDuoPremium : "Regular";
 														Champions = Model.PurchaseForm.BoostingModel.SpecificChampions;
-														SpecificRoles = Model.PurchaseForm.BoostingModel.SpecificRolesTop == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesTop + "," + Model.PurchaseForm.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesSupport + ","
-														+ Model.PurchaseForm.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesMiddle + "," + Model.PurchaseForm.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesJungle + ","
-														 + Model.PurchaseForm.BoostingModel.SpecificRolesADC == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesADC;
+														SpecificRoles = $"{(Model.PurchaseForm.BoostingModel.SpecificRolesTop == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesTop + ",")}" +
+																		$",{(Model.PurchaseForm.BoostingModel.SpecificRolesSupport == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesSupport + ",")}" +
+																		$",{(Model.PurchaseForm.BoostingModel.SpecificRolesMiddle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesMiddle + ",")}" +
+																		$",{(Model.PurchaseForm.BoostingModel.SpecificRolesJungle == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesJungle + ",")}" +
+																		$",{(Model.PurchaseForm.BoostingModel.SpecificRolesADC == "false" ? "" : Model.PurchaseForm.BoostingModel.SpecificRolesADC + ",")}";
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Start</span><br>
 															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">
@@ -124,6 +126,12 @@
 														Queue = Model.PurchaseForm.PlacementMatchesModel.TypeOfQueue;
 														DuoType = Model.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium != null ? Model.PurchaseForm.PlacementMatchesModel.TypeOfDuoPremium : "Regular";
 														ServiceType = $"{Model.PurchaseForm.PlacementMatchesModel.TypeOfService}";
+														SpecificRoles = $"{(Model.PurchaseForm.PlacementMatchesModel.SpecificRolesTop == "false" ? "" : Model.PurchaseForm.PlacementMatchesModel.SpecificRolesTop + ",")}" +
+														$"{(Model.PurchaseForm.PlacementMatchesModel.SpecificRolesSupport == "false" ? "" : Model.PurchaseForm.PlacementMatchesModel.SpecificRolesSupport + ",")}" +
+														$"{(Model.PurchaseForm.PlacementMatchesModel.SpecificRolesMiddle == "false" ? "" : Model.PurchaseForm.PlacementMatchesModel.SpecificRolesMiddle + ",")}" +
+														$"{(Model.PurchaseForm.PlacementMatchesModel.SpecificRolesJungle == "false" ? "" : Model.PurchaseForm.PlacementMatchesModel.SpecificRolesJungle + ",")}" +
+														$"{(Model.PurchaseForm.PlacementMatchesModel.SpecificRolesADC == "false" ? "" : Model.PurchaseForm.PlacementMatchesModel.SpecificRolesADC + ",")}";
+														Champions = Model.PurchaseForm.PlacementMatchesModel.SpecificChampions;
 														<div class="rank col-6">
 															<span class="card-title pr-title font-weight-bolder">Start</span><br>
 															<img src='~/img/Lol Ranks/@(StartDivisionImage).png' data-container="body" data-toggle="popover" data-placement="bottom" data-content="@StartDivisionImage" data-original-title="" title="">

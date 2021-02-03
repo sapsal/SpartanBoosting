@@ -10,8 +10,8 @@ using SpartanBoosting.Data;
 namespace SpartanBoosting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201029230828_LeagueOfLegendsAudit")]
-    partial class LeagueOfLegendsAudit
+    [Migration("20210203002303_placementmodelchange")]
+    partial class placementmodelchange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -183,6 +183,9 @@ namespace SpartanBoosting.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<byte>("MaxAssignedBoostsAllowed")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -357,6 +360,30 @@ namespace SpartanBoosting.Migrations
                     b.ToTable("CoachingModel");
                 });
 
+            modelBuilder.Entity("SpartanBoosting.Models.DiscountModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DiscountCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiscountPercentage")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("InUse")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("SingleUse")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discount");
+                });
+
             modelBuilder.Entity("SpartanBoosting.Models.LeagueOfLegends_Models.LeagueOfLegendsAuditModel", b =>
                 {
                     b.Property<int>("Id")
@@ -435,6 +462,24 @@ namespace SpartanBoosting.Migrations
                     b.Property<string>("Server")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SpecificChampions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesADC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesJungle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesMiddle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesSupport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesTop")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TypeOfDuoPremium")
                         .HasColumnType("nvarchar(max)");
 
@@ -459,6 +504,9 @@ namespace SpartanBoosting.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("AdminCompletionConfirmed")
+                        .HasColumnType("bit");
+
                     b.Property<long?>("BoosterAssignedToId")
                         .HasColumnType("bigint");
 
@@ -471,11 +519,20 @@ namespace SpartanBoosting.Migrations
                     b.Property<int?>("BoostingModelId")
                         .HasColumnType("int");
 
+                    b.Property<long?>("ClientAssignedToId")
+                        .HasColumnType("bigint");
+
                     b.Property<int?>("CoachingModelId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("CustomerCompletionConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("DiscountId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("JobAvailable")
                         .HasColumnType("bit");
@@ -513,7 +570,11 @@ namespace SpartanBoosting.Migrations
 
                     b.HasIndex("BoostingModelId");
 
+                    b.HasIndex("ClientAssignedToId");
+
                     b.HasIndex("CoachingModelId");
+
+                    b.HasIndex("DiscountId");
 
                     b.HasIndex("PersonalInformationId");
 
@@ -602,6 +663,21 @@ namespace SpartanBoosting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Server")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesADC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesJungle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesMiddle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesSupport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificRolesTop")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TypeOfDuoPremium")
@@ -703,9 +779,17 @@ namespace SpartanBoosting.Migrations
                         .WithMany()
                         .HasForeignKey("BoostingModelId");
 
+                    b.HasOne("SpartanBoosting.Models.ApplicationUser", "ClientAssignedTo")
+                        .WithMany()
+                        .HasForeignKey("ClientAssignedToId");
+
                     b.HasOne("SpartanBoosting.Models.CoachingModel", "CoachingModel")
                         .WithMany()
                         .HasForeignKey("CoachingModelId");
+
+                    b.HasOne("SpartanBoosting.Models.DiscountModel", "Discount")
+                        .WithMany()
+                        .HasForeignKey("DiscountId");
 
                     b.HasOne("SpartanBoosting.Models.PersonalInformation", "PersonalInformation")
                         .WithMany()

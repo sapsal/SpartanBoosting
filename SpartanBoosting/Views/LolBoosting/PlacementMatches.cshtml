@@ -81,6 +81,65 @@
 					</div>
 					<div class="nk-gap-2"></div>
 					<div class="row pb-4">
+						<label class="col-12">SPECIFIC ROLES:</label>
+						<div class="col-12" id="">Extra charge for special offer is 15% (select at least two)</div>
+						<div class="row w-100 pt-4 pb-4">
+							<ul id="wpforms-931-field_3" class="w-100 row">
+								<li class="wpforms-image-choices-item checkbox-border-styling" style="width:20%">
+									<label class="roles-field-label-inline" for="" tabindex="0">
+										<span class="wpforms-image-choices-image">
+											<img src="~/img/Wordpress Icons/top-role.png" alt="Top" title="Top" src="~/img/Wordpress Icons/top-role.png" class="lazyloaded" data-was-processed="true">
+											<noscript><img src="~/img/Wordpress Icons/top-role.png" alt="Top" title="Top"></noscript>
+										</span>
+										<input asp-for="PlacementMatchesModel.SpecificRolesTop" name="PlacementMatchesModel.SpecificRolesTop" type="checkbox" id="wpforms-931-field_3_1" class="checkbox-border-styling gfield-quote" value="Top" tabindex="-1"><span class="">Top</span>
+									</label>
+								</li>
+								<li class="wpforms-image-choices-item checkbox-border-styling" style="width:20%">
+									<label class="roles-field-label-inline" for="" tabindex="0">
+										<span class="wpforms-image-choices-image">
+											<img src="~/img/Wordpress Icons/jungle-role.png" alt="Jungle" title="Jungle" src="~/img/Wordpress Icons/jungle-role.png" class="lazyloaded" data-was-processed="true">
+											<noscript><img src="~/img/Wordpress Icons/jungle-role.png" alt="Jungle" title="Jungle"></noscript>
+										</span>
+										<input asp-for="PlacementMatchesModel.SpecificRolesJungle" name="PlacementMatchesModel.SpecificRolesJungle" type="checkbox" id="wpforms-931-field_3_2" class="checkbox-border-styling gfield-quote" value="Jungle" tabindex="-1"><span class="">Jungle</span>
+									</label>
+								</li>
+								<li class="wpforms-image-choices-item checkbox-border-styling" style="width:20%">
+									<label class="roles-field-label-inline" for="" tabindex="0">
+										<span class="wpforms-image-choices-image">
+											<img src="~/img/Wordpress Icons/mid-role.png" alt="Middle" title="Middle" src="~/img/Wordpress Icons/mid-role.png" class="lazyloaded" data-was-processed="true">
+											<noscript><img src="~/img/Wordpress Icons/mid-role.png" alt="Middle" title="Middle"></noscript>
+										</span>
+										<input asp-for="PlacementMatchesModel.SpecificRolesMiddle" name="PlacementMatchesModel.SpecificRolesMiddle" type="checkbox" id="wpforms-931-field_3_3" class="checkbox-border-styling gfield-quote" value="Middle" tabindex="-1"><span class="">Middle</span>
+									</label>
+								</li>
+								<li class="wpforms-image-choices-item checkbox-border-styling" style="width:20%">
+									<label class="roles-field-label-inline" for="" tabindex="0">
+										<span class="wpforms-image-choices-image">
+											<img src="~/img/Wordpress Icons/bottom-role.png" alt="ADC" title="ADC" src="~/img/Wordpress Icons/bottom-role.png" class="lazyloaded" data-was-processed="true">
+											<noscript><img src="~/img/Wordpress Icons/bottom-role.png" alt="ADC" title="ADC"></noscript>
+										</span>
+										<input asp-for="PlacementMatchesModel.SpecificRolesADC" name="PlacementMatchesModel.SpecificRolesADC" type="checkbox" id="wpforms-931-field_3_4" class="checkbox-border-styling gfield-quote" value="ADC" tabindex="-1"><span class="">ADC</span>
+									</label>
+								</li>
+								<li class="wpforms-image-choices-item checkbox-border-styling" style="width:20%">
+									<label class="roles-field-label-inline" for="" tabindex="0">
+										<span class="wpforms-image-choices-image">
+											<img src="~/img/Wordpress Icons/support-role.png" alt="Support" title="Support" src="~/img/Wordpress Icons/support-role.png" class="lazyloaded" data-was-processed="true">
+											<noscript><img src="~/img/Wordpress Icons/support-role.png" alt="Support" title="Support"></noscript>
+										</span>
+										<input asp-for="PlacementMatchesModel.SpecificRolesSupport" name="PlacementMatchesModel.SpecificRolesSupport" type="checkbox" id="wpforms-931-field_3_6" class="checkbox-border-styling gfield-quote" value="Support" tabindex="-1"><span class="">Support</span>
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="nk-gap-2"></div>
+					<div class="row pb-4">
+						<label class=" " for="specific-champions">SPECIFIC CHAMPIONS:</label>
+						<input class=" form-control gfield-quote " name="PlacementMatchesModel.SpecificChampions" id="specific-champions" asp-for="PlacementMatchesModel.SpecificChampions" type="text">
+					</div>
+					<div class="nk-gap-2"></div>
+					<div class="row pb-4">
 						<div class="col-md-12">
 							<div class="">
 								<label class="pb-3" for="type-of-service">TYPE OF SERVICE:<span class="gfield_required">*</span></label>
@@ -213,5 +272,21 @@
 	$(document).on('click', '.select-role', function () {
 		$('.type-of-duo-div').find('input').removeAttr('required')
 	});
+</script>
+<script type="text/javascript">
+	var chkBoxBorderStyling = $('.checkbox-border-styling');
+
+	$(document).on('click', '.checkbox-border-styling', function () {
+		debugger;
+		if ($(this).find('input').is(":checked")) {
+			$(this).closest('li').removeClass('wpforms-selected')
+			$(this).find('input').prop('checked', false);
+		}
+		else {
+			$(this).closest('li').addClass('wpforms-selected')
+			$(this).find('input').prop('checked', true);
+		}
+	});
+
 </script>
 <script src="~/js/LolBoosting.js"></script>
