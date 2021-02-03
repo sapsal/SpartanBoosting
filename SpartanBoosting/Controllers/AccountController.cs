@@ -95,10 +95,17 @@ namespace SpartanBoosting.Controllers
 				// This doesn't count login failures towards account lockout
 				// To enable password failures to trigger account lockout, set lockoutOnFailure: true
 				var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
 				if (result.Succeeded)
 				{
 					var user = await _userManager.FindByEmailAsync(model.Email);
-					if (await _userManager.IsInRoleAsync(user, "Superuser") || await _userManager.IsInRoleAsync(user, "Booster"))
+					if (user == null)
+					{
+						user = await _userManager.FindByNameAsync(model.Email);
+					}
+					var superUserRole = await _userManager.IsInRoleAsync(user, "Superuser");
+					var boosterRole = await _userManager.IsInRoleAsync(user, "Booster");
+					if (superUserRole || boosterRole)
 					{
 						_logger.LogInformation("User logged in.");
 						return Json(new { success = true, redirectToUrl = Url.Action("Dashboard", "BoosterArea") });
@@ -107,7 +114,7 @@ namespace SpartanBoosting.Controllers
 					{
 						//client 
 
-						return Json(new { success = true, Username = user.UserName , redirectToUrl = Url.Action("Dashboard", "ClientArea") });
+						return Json(new { success = true, Username = user.UserName, redirectToUrl = Url.Action("Dashboard", "ClientArea") });
 					}
 				}
 				if (result.RequiresTwoFactor)
@@ -443,8 +450,12 @@ namespace SpartanBoosting.Controllers
 			var user = await _userManager.FindByEmailAsync(Email);
 			if (user == null)
 			{
-				// Don't reveal that the user does not exist or is not confirmed
-				return Json(new { success = true, message = "Please check your email to reset your password." });
+				user = await _userManager.FindByNameAsync(Email);
+				if (user == null)
+				{
+					// Don't reveal that the user does not exist or is not confirmed
+					return Json(new { success = true, message = "Please check your email to reset your password." });
+				}
 			}
 
 			// For more information on how to enable account confirmation and password reset please
