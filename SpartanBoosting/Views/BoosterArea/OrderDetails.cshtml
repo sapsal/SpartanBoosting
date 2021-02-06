@@ -58,7 +58,7 @@
 					<!--rank-->
 					<div class="col-lg-6">
 						<!--begin::Tables Widget 1-->
-						<div class="card card-custom card-stretch gutter-b" style="height: 40vh;">
+						<div class="card card-custom card-stretch gutter-b" >
 							<!--begin::Header-->
 							<div class="card-header border-0 pt-7">
 								<h3 class="card-title align-items-start flex-column">
@@ -170,62 +170,66 @@
 					</div>
 					<!--Chat-->
 					<div class="col-lg-6">
-						<!--begin::Tables Widget 1-->
-						<div class="card card-custom card-stretch gutter-b " id="kt_chat">
-							<!--begin::Header-->
-							<div class="card-header align-items-center px-4 py-3">
-								<div class="text-left flex-grow-1">
-								</div>
-								<div class="flex-grow-1">
-									<div class="text-dark-75 font-weight-bold font-size-h5">Chat</div>
-								</div>
-							</div>
-							<!--end::Header-->
-							<!--begin::Body-->
-							<div class="card-body">
-								<!--begin::Scroll-->
-								<div class="scroll scroll-pull" data-height="375" data-mobile-height="300">
-									<!--begin::Messages-->
-									<div class="messages">
-										@foreach (var item in Model.ChatModel)
-										{
-											if (item.Sender == Model.CurrentUser)
-											{
-												<div class="d-flex flex-column mb-5 align-items-end">
-													<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
-														@item.Message
-													</div>
-												</div>
-											}
-											else
-											{
-												<div class="d-flex flex-column mb-5 align-items-start">
-													<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
-														@item.Message
-													</div>
-												</div>
-											}
-										}
+						<div id="kt_chat_modal">
+							<!--begin::Tables Widget 1-->
+							<div class="card card-custom card-stretch gutter-b " id="kt_chat">
+								<!--begin::Header-->
+								<div class="card-header align-items-center px-4 py-3">
+									<div class="text-left flex-grow-1">
 									</div>
-									<!--end::Messages-->
+									<div class="flex-grow-1">
+										<div class="text-dark-75 font-weight-bold font-size-h5">Chat</div>
+									</div>
 								</div>
-								<!--end::Scroll-->
+								<!--end::Header-->
+								<!--begin::Body-->
+								<div class="card-body">
+									<!--begin::Scroll-->
+									<div class="scroll scroll-pull ps ps--active-y chat-message-scroll h-100" >
+										<!--begin::Messages-->
+										<div class="messages">
+											@foreach (var item in Model.ChatModel)
+											{
+												if (item.Sender == Model.CurrentUser)
+												{
+													<div class="d-flex flex-column mb-5 align-items-end">
+														<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
+															@item.Message
+														</div>
+													</div>
+												}
+												else
+												{
+													<div class="d-flex flex-column mb-5 align-items-start">
+														<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
+															@item.Message
+														</div>
+													</div>
+												}
+											}
+										</div>
+										<div class="ps__rail-x" ><div class="ps__thumb-x" tabindex="0"></div></div>
+										<div class="ps__rail-y" ><div class="ps__thumb-y" tabindex="0"></div></div>
+										<!--end::Messages-->
+									</div>
+									<!--end::Scroll-->
+								</div>
+								<!--end::Body-->
+								<!--begin::Footer-->
+								<div class="card-footer align-items-center">
+									<!--begin::Compose-->
+									<textarea class="form-control border-0 p-0 chat-message" rows="2" placeholder="Type a message"></textarea>
+									<div class="d-flex align-items-end justify-content-end mt-5">
+										<div class="d-flex align-items-end">
+											<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6" data-Model="@EncryptionHelper.Encrypt(Model.PurchaseForm)">Send</button>
+										</div>
+									</div>
+									<!--begin::Compose-->
+								</div>
+								<!--end::Footer-->
 							</div>
 							<!--end::Body-->
-							<!--begin::Footer-->
-							<div class="card-footer align-items-center">
-								<!--begin::Compose-->
-								<textarea class="form-control border-0 p-0 chat-message" rows="2" placeholder="Type a message"></textarea>
-								<div class="d-flex align-items-end justify-content-end mt-5">
-									<div class="d-flex align-items-end">
-										<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6" data-Model="@EncryptionHelper.Encrypt(Model.PurchaseForm)">Send</button>
-									</div>
-								</div>
-								<!--begin::Compose-->
-							</div>
-							<!--end::Footer-->
 						</div>
-						<!--end::Body-->
 					</div>
 					<!--end::Tables Widget 1-->
 				</div>
@@ -295,12 +299,12 @@
 											}
 											@if (!string.IsNullOrEmpty(ServiceType))
 											{
-										<p class="card-title pr-title font-weight-bolder">
-											Service Type :
-											<span class="card-title pr-title font-weight-bold-900">@ServiceType</span>
-										</p>
+												<p class="card-title pr-title font-weight-bolder">
+													Service Type :
+													<span class="card-title pr-title font-weight-bold-900">@ServiceType</span>
+												</p>
 											}
-											
+
 										</div>
 										<!--end::Tablet-->
 									</div>
@@ -385,6 +389,52 @@
 	</div>
 	<!--end::Entry-->
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+<script>
+	(function () {
+		var connection = new signalR.HubConnectionBuilder().withUrl("/ChatHub").build();
+		debugger;
+		connection.start().then(function () {
+			console.log("connected");
+
+			connection.invoke('getConnectionId')
+				.then(function (connectionId) {
+					sessionStorage.setItem('conectionId', connectionId);
+					connection.invoke("AddToGroup", connectionId,"@(EncryptionHelper.Encrypt(Model.PurchaseForm.Id.ToString()))");
+					// Send the connectionId to controller
+				}).catch(err => console.error(err.toString()));;
+		});
+
+		$(".chat-send-message").click(function () {
+			var connectionId = sessionStorage.getItem('conectionId');
+			connection.invoke("SendToGroup", "@(EncryptionHelper.Encrypt(Model.PurchaseForm.Id.ToString()))", $('.chat-message').val(), sessionStorage.getItem('conectionId'));
+		});
+
+		connection.on("ReceiveMessage", function (messageRecieved, connectionId) {
+			debugger;
+			var message = $('.chat-message').val();
+			var messagesEl = $('#kt_chat .messages');
+			var scrollEl = $(".chat-message-scroll")
+			var textarea = $('#kt_chat textarea');
+			var node = document.createElement("DIV");
+			var html = '';
+			if (sessionStorage.getItem('conectionId') == connectionId) {
+				KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
+				html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + messageRecieved + '</div>';
+			}
+			else {
+				KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-start');
+				html += '<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">' + messageRecieved + '</div>';
+			}
+					KTUtil.setHTML(node, html);
+					messagesEl.append(node);
+					textarea.val('');
+			$(".chat-message-scroll").animate({ scrollTop: $(document).height() }, "slow");
+			console.log(message);
+		});
+
+	})();
+</script>
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -401,25 +451,8 @@
 			data: { message: textarea.val(), purchaseForm: $(this).data('model') },
 			type: 'POST',
 			success: function (dataofconfirm) {
-				debugger;
-				if (dataofconfirm) {
-					if (textarea.val().length === 0) {
-						return;
-					}
-
-					var node = document.createElement("DIV");
-					KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
-
-					var html = '';
-					html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + textarea.val() + '</div>';
-
-					KTUtil.setHTML(node, html);
-					messagesEl.append(node);
-					textarea.val('');
-					scrollEl.scrollTop = parseInt($(messagesEl).parent().height());
-				}
+				
 			}
 		});
-		debugger;
 	});
 </script>

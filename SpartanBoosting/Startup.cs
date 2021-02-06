@@ -17,6 +17,7 @@ using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Repositorys;
 using SpartanBoosting.Repositorys.Interfaces;
 using SpartanBoosting.Utils;
+using SpartanBoosting.Utils.Hubs;
 using Stripe;
 
 namespace SpartanBoosting
@@ -33,6 +34,7 @@ namespace SpartanBoosting
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddSignalR();
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
 			services.AddApplicationInsightsTelemetry("e0c40fca-f517-4cc4-92a6-6a8a3923cdae");
 			services.AddSingleton<IEmailSender, EmailSender>();
@@ -107,7 +109,10 @@ namespace SpartanBoosting
 			app.UseAuthentication();
 			app.UseAuthorization();
 
-
+			app.UseSignalR(routes =>
+			{
+				routes.MapHub<ChatHub>("/ChatHub");
+			});
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
