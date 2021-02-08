@@ -405,8 +405,11 @@
 				}).catch(err => console.error(err.toString()));;
 		});
 
+		$(window).on('beforeunload', function () {
+			connection.invoke("RemoveFromGroup", sessionStorage.getItem('conectionId'), "@(EncryptionHelper.Encrypt(Model.PurchaseForm.Id.ToString()))");
+		});
+
 		$(".chat-send-message").click(function () {
-			var connectionId = sessionStorage.getItem('conectionId');
 			connection.invoke("SendToGroup", "@(EncryptionHelper.Encrypt(Model.PurchaseForm.Id.ToString()))", $('.chat-message').val(), sessionStorage.getItem('conectionId'));
 		});
 

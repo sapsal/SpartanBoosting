@@ -19,6 +19,11 @@ namespace SpartanBoosting.Utils.Hubs
 			await Groups.AddToGroupAsync(connectionId, groupName);
 		}
 
+		public async Task RemoveFromGroup(string connectionId, string groupName)
+		{
+			await Groups.RemoveFromGroupAsync(connectionId, groupName);
+		}
+
 		public async Task SendToGroup(string groupName, string message, string connectionId)
 		{
 			await Clients.Group(groupName).SendAsync("ReceiveMessage", message, connectionId);

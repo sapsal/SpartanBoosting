@@ -5,6 +5,28 @@
 
 }
 <link href="~/Client/assets/css/ClientArea.css" rel="stylesheet" />
+@if (Model.PurchaseForm.BoosterAssignedTo != null)
+{
+	<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
+		<!--begin::Item-->
+		<li class="nav-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="" data-placement="left" data-original-title="Chat To Booster">
+			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-info btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal">
+				<span class="svg-icon svg-icon-lg">
+					<!--begin::Svg Icon | path:/keen/theme/demo1/dist/assets/media/svg/icons/Communication/Chat6.svg-->
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+							<rect x="0" y="0" width="24" height="24"></rect>
+							<path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M14.4862 18L12.7975 21.0566C12.5304 21.54 11.922 21.7153 11.4386 21.4483C11.2977 21.3704 11.1777 21.2597 11.0887 21.1255L9.01653 18H5C3.34315 18 2 16.6569 2 15V6C2 4.34315 3.34315 3 5 3H19C20.6569 3 22 4.34315 22 6V15C22 16.6569 20.6569 18 19 18H14.4862Z" fill="black"></path>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M6 7H15C15.5523 7 16 7.44772 16 8C16 8.55228 15.5523 9 15 9H6C5.44772 9 5 8.55228 5 8C5 7.44772 5.44772 7 6 7ZM6 11H11C11.5523 11 12 11.4477 12 12C12 12.5523 11.5523 13 11 13H6C5.44772 13 5 12.5523 5 12C5 11.4477 5.44772 11 6 11Z" fill="black"></path>
+						</g>
+					</svg>
+					<!--end::Svg Icon-->
+				</span>
+			</a>
+		</li>
+		<!--end::Item-->
+	</ul>
+}
 <div class="container-fluid order-details">
 	<div class="alert alert-info text-center" role="alert">
 		<i class="dripicons-info mr-2"></i>
@@ -70,7 +92,7 @@
 					</div>
 				</div>
 				<div class="col-lg-12 col-md-4 order-details-content">
-					<div class="card">
+					<div class="card" style="height:6rem;">
 						<div class="card-body ">
 							Queue Type : <span class="text-primary">@Model.Queue</span>
 						</div>
@@ -182,4 +204,75 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="modal modal-sticky modal-sticky-bottom-right show" id="kt_chat_modal" data-backdrop="false" aria-modal="true" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!--begin::Tables Widget 1-->
+			<div class="card card-custom card-stretch gutter-b " id="kt_chat">
+				<!--begin::Header-->
+				<div class="card-header align-items-center px-4 py-3">
+					<div class="text-left flex-grow-1">
+					</div>
+					<div class="text-center flex-grow-1">
+						<div class="text-dark-75 font-weight-bold font-size-h5">Chat</div>
+					</div>
+					<div class="text-right flex-grow-1">
+						<button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-dismiss="modal">
+							<i class="ki ki-close icon-1x"></i>
+						</button>
+					</div>
+				</div>
+				<!--end::Header-->
+				<!--begin::Body-->
+				<div class="card-body">
+					<!--begin::Scroll-->
+					<div class="scroll scroll-pull ps ps--active-y chat-message-scroll h-100">
+						<!--begin::Messages-->
+						<div class="messages">
+							@foreach (var item in Model.ChatModel)
+							{
+								if (item.Sender == Model.CurrentUser)
+								{
+									<div class="d-flex flex-column mb-5 align-items-end">
+										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
+											@item.Message
+										</div>
+									</div>
+								}
+								else
+								{
+									<div class="d-flex flex-column mb-5 align-items-start">
+										<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
+											@item.Message
+										</div>
+									</div>
+								}
+							}
+						</div>
+						<div class="ps__rail-x"><div class="ps__thumb-x" tabindex="0"></div></div>
+						<div class="ps__rail-y"><div class="ps__thumb-y" tabindex="0"></div></div>
+						<!--end::Messages-->
+					</div>
+					<!--end::Scroll-->
+				</div>
+				<!--end::Body-->
+				<!--begin::Footer-->
+				<div class="card-footer align-items-center">
+					<!--begin::Compose-->
+					<textarea class="form-control border-0 p-0 chat-message" rows="2" placeholder="Type a message"></textarea>
+					<div class="d-flex align-items-end justify-content-end mt-5">
+						<div class="d-flex align-items-end">
+							<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6" data-Model="@EncryptionHelper.Encrypt(Model.PurchaseForm)">Send</button>
+						</div>
+					</div>
+					<!--begin::Compose-->
+				</div>
+				<!--end::Footer-->
+			</div>
+			<!--end::Body-->
+		</div>
+	</div>
+	<!--end::Footer-->
 </div>

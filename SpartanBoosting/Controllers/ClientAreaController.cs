@@ -41,7 +41,8 @@ namespace SpartanBoosting.Controllers
 			LolOrderDetailsViewModel LolOrderDetailsViewModel = new LolOrderDetailsViewModel();
 			var user = _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
 
-			LolOrderDetailsViewModel.PurchaseForm = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByClientIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
+			//LolOrderDetailsViewModel.PurchaseForm = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByClientIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
+			LolOrderDetailsViewModel.PurchaseForm = PurchaseOrderRepository.GetPurchaseFormModelsIncludedByIdAndUser(int.Parse(EncryptionHelper.Decrypt(hash)), user);
 			LolOrderDetailsViewModel.ChatModel = ChatModelRepository.GetChatModelByPurchaseOrder(int.Parse(EncryptionHelper.Decrypt(hash)));
 
 			switch (LolOrderDetailsViewModel.PurchaseForm.PurchaseType)
