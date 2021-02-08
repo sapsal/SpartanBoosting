@@ -276,3 +276,73 @@
 	</div>
 	<!--end::Footer-->
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+<script>
+	(function () {
+		var connection = new signalR.HubConnectionBuilder().withUrl("/ChatHub").build();
+		debugger;
+		connection.start().then(function () {
+			console.log("connected");
+
+			connection.invoke('getConnectionId')
+				.then(function (connectionId) {
+					sessionStorage.setItem('conectionId', connectionId);
+					connection.invoke("AddToGroup", connectionId,"@(EncryptionHelper.Encrypt(Model.PurchaseForm.Id.ToString()))");
+					// Send the connectionId to controller
+				}).catch(err => console.error(err.toString()));;
+		});
+
+		$(window).on('beforeunload', function () {
+			connection.invoke("RemoveFromGroup", sessionStorage.getItem('conectionId'), "@(EncryptionHelper.Encrypt(Model.PurchaseForm.Id.ToString()))");
+		});
+
+		$(".chat-send-message").click(function () {
+			connection.invoke("SendToGroup", "@(EncryptionHelper.Encrypt(Model.PurchaseForm.Id.ToString()))", $('.chat-message').val(), sessionStorage.getItem('conectionId'));
+		});
+
+		connection.on("ReceiveMessage", function (messageRecieved, connectionId) {
+			debugger;
+			var message = $('.chat-message').val();
+			var messagesEl = $('#kt_chat .messages');
+			var scrollEl = $(".chat-message-scroll")
+			var textarea = $('#kt_chat textarea');
+			var node = document.createElement("DIV");
+			var html = '';
+			if (sessionStorage.getItem('conectionId') == connectionId) {
+				KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
+				html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + messageRecieved + '</div>';
+			}
+			else {
+				KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-start');
+				html += '<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">' + messageRecieved + '</div>';
+			}
+					KTUtil.setHTML(node, html);
+					messagesEl.append(node);
+					textarea.val('');
+			$(".chat-message-scroll").animate({ scrollTop: $(document).height() }, "slow");
+			console.log(message);
+		});
+
+	})();
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('[data-toggle="tooltip"]').tooltip({ html: true });
+	});
+	$(document).on("click", '.chat-send-message', function (e) {
+		element = e;
+		var message = $('.chat-message').val();
+		var messagesEl = $('#kt_chat .messages');
+		var scrollEl = $('#kt_chat .scroll');
+		var textarea = $('#kt_chat textarea');
+		$.ajax({
+			url: '/ClientArea/AddChatModel',
+			data: { message: textarea.val(), purchaseForm: $(this).data('model') },
+			type: 'POST',
+			success: function (dataofconfirm) {
+
+			}
+		});
+	});
+</script>

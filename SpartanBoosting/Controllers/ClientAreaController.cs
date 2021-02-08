@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SpartanBoosting.Extensions;
 using SpartanBoosting.Models;
+using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Models.Repositorys;
 using SpartanBoosting.Repositorys;
 using SpartanBoosting.Repositorys.Interfaces;
@@ -99,6 +102,39 @@ namespace SpartanBoosting.Controllers
 					break;
 			}
 			return View(LolOrderDetailsViewModel);
+		}
+
+
+		[HttpPost]
+		public IActionResult AddChatModel(string message, string purchaseForm)
+		{
+			try
+			{
+				var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+				var user = _userManager.FindByIdAsync(id).Result;
+				if (user != null)
+				{
+					int PurchaseFormOrder = JsonConvert.DeserializeObject<PurchaseForm>(EncryptionHelper.Decrypt(purchaseForm)).Id;
+
+					ChatModel chatModel = new ChatModel()
+					{
+						Sender = user,
+						DateTimeSent = DateTime.UtcNow,
+						Message = message,
+						purchaseFormId = PurchaseFormOrder
+					};
+
+					var result = ChatModelRepository.Add(chatModel);
+
+					return Json(true);
+				}
+				else
+					return Json(false);
+			}
+			catch
+			{
+				return Json(false);
+			}
 		}
 	}
 }
