@@ -58,7 +58,7 @@
 					<!--rank-->
 					<div class="col-lg-6">
 						<!--begin::Tables Widget 1-->
-						<div class="card card-custom card-stretch gutter-b" >
+						<div class="card card-custom card-stretch gutter-b">
 							<!--begin::Header-->
 							<div class="card-header border-0 pt-7">
 								<h3 class="card-title align-items-start flex-column">
@@ -171,8 +171,7 @@
 					<!--Chat-->
 					<div class="col-lg-6">
 						<div id="kt_chat_modal">
-							<!--begin::Tables Widget 1-->
-							<div class="card card-custom card-stretch gutter-b " id="kt_chat">
+							<div class="card card-custom card-stretch gutter-b " id="kt_chat" style="height: 50vh;">
 								<!--begin::Header-->
 								<div class="card-header align-items-center px-4 py-3">
 									<div class="text-left flex-grow-1">
@@ -185,9 +184,9 @@
 								<!--begin::Body-->
 								<div class="card-body">
 									<!--begin::Scroll-->
-									<div class="scroll scroll-pull ps ps--active-y chat-message-scroll h-100" >
+									<div class="scroll scroll-pull ps ps--active-y chat-message-scroll h-100">
 										<!--begin::Messages-->
-										<div class="messages">
+										<div class="messages chat-window-messages">
 											@foreach (var item in Model.ChatModel)
 											{
 												if (item.Sender == Model.CurrentUser)
@@ -208,8 +207,8 @@
 												}
 											}
 										</div>
-										<div class="ps__rail-x" ><div class="ps__thumb-x" tabindex="0"></div></div>
-										<div class="ps__rail-y" ><div class="ps__thumb-y" tabindex="0"></div></div>
+										<div class="ps__rail-x"><div class="ps__thumb-x" tabindex="0"></div></div>
+										<div class="ps__rail-y"><div class="ps__thumb-y" tabindex="0"></div></div>
 										<!--end::Messages-->
 									</div>
 									<!--end::Scroll-->
@@ -228,7 +227,6 @@
 								</div>
 								<!--end::Footer-->
 							</div>
-							<!--end::Body-->
 						</div>
 					</div>
 					<!--end::Tables Widget 1-->
@@ -416,9 +414,9 @@
 		connection.on("ReceiveMessage", function (messageRecieved, connectionId) {
 			debugger;
 			var message = $('.chat-message').val();
-			var messagesEl = $('#kt_chat .messages');
+			var messagesEl = $('.chat-window-messages');
 			var scrollEl = $(".chat-message-scroll")
-			var textarea = $('#kt_chat textarea');
+			var textarea = $('.chat-message');
 			var node = document.createElement("DIV");
 			var html = '';
 			if (sessionStorage.getItem('conectionId') == connectionId) {
@@ -429,10 +427,12 @@
 				KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-start');
 				html += '<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">' + messageRecieved + '</div>';
 			}
-					KTUtil.setHTML(node, html);
-					messagesEl.append(node);
-					textarea.val('');
-			$(".chat-message-scroll").animate({ scrollTop: $(document).height() }, "slow");
+			KTUtil.setHTML(node, html);
+			messagesEl.append(node);
+			textarea.val('');
+
+			$(".chat-message-scroll").animate({ scrollTop: $('.chat-window-messages').height() }, "slow");
+
 			console.log(message);
 		});
 
@@ -442,6 +442,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('[data-toggle="tooltip"]').tooltip({ html: true });
+		$(".chat-message-scroll").animate({ scrollTop: $('.chat-window-messages').height() }, "slow");
 	});
 	$(document).on("click", '.chat-send-message', function (e) {
 		element = e;
@@ -451,10 +452,10 @@
 		var textarea = $('#kt_chat textarea');
 		$.ajax({
 			url: '/BoosterArea/AddChatModel',
-			data: { message: textarea.val(), purchaseForm: $(this).data('model') },
+			data: { message: $('.chat-message').val(), purchaseForm: $(this).data('model') },
 			type: 'POST',
 			success: function (dataofconfirm) {
-				
+
 			}
 		});
 	});

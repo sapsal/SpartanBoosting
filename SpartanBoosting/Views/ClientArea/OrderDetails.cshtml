@@ -10,7 +10,7 @@
 	<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
 		<!--begin::Item-->
 		<li class="nav-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="" data-placement="left" data-original-title="Chat To Booster">
-			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-info btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal">
+			<a class="btn btn-sm btn-icon btn-bg-light btn-icon-info btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal" id="chat-model-show">
 				<span class="svg-icon svg-icon-lg">
 					<!--begin::Svg Icon | path:/keen/theme/demo1/dist/assets/media/svg/icons/Communication/Chat6.svg-->
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -206,14 +206,15 @@
 	</div>
 </div>
 
-<div class="modal modal-sticky modal-sticky-bottom-right show" id="kt_chat_modal" data-backdrop="false" aria-modal="true" role="dialog">
+<div class="modal modal-sticky modal-sticky-bottom-right show" id="kt_chat_modal" role="dialog" data-backdrop="false" aria-modal="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<!--begin::Tables Widget 1-->
-			<div class="card card-custom card-stretch gutter-b " id="kt_chat">
+			<!--begin::Card-->
+			<div class="card card-custom">
 				<!--begin::Header-->
 				<div class="card-header align-items-center px-4 py-3">
 					<div class="text-left flex-grow-1">
+
 					</div>
 					<div class="text-center flex-grow-1">
 						<div class="text-dark-75 font-weight-bold font-size-h5">Chat</div>
@@ -228,9 +229,9 @@
 				<!--begin::Body-->
 				<div class="card-body">
 					<!--begin::Scroll-->
-					<div class="scroll scroll-pull ps ps--active-y chat-message-scroll h-100">
+					<div class="chat-message-scroll scroll scroll-pull ps" data-height="375" data-mobile-height="300" style="height: 375px; overflow: hidden;">
 						<!--begin::Messages-->
-						<div class="messages">
+						<div class="messages chat-window-messages">
 							@foreach (var item in Model.ChatModel)
 							{
 								if (item.Sender == Model.CurrentUser)
@@ -251,9 +252,8 @@
 								}
 							}
 						</div>
-						<div class="ps__rail-x"><div class="ps__thumb-x" tabindex="0"></div></div>
-						<div class="ps__rail-y"><div class="ps__thumb-y" tabindex="0"></div></div>
 						<!--end::Messages-->
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: -2px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
 					</div>
 					<!--end::Scroll-->
 				</div>
@@ -262,8 +262,16 @@
 				<div class="card-footer align-items-center">
 					<!--begin::Compose-->
 					<textarea class="form-control border-0 p-0 chat-message" rows="2" placeholder="Type a message"></textarea>
-					<div class="d-flex align-items-end justify-content-end mt-5">
-						<div class="d-flex align-items-end">
+					<div class="d-flex align-items-center justify-content-between mt-5">
+						<div class="mr-3">
+							<a href="#" class="btn btn-clean btn-icon btn-md mr-1">
+								<i class="flaticon2-photograph icon-lg"></i>
+							</a>
+							<a href="#" class="btn btn-clean btn-icon btn-md">
+								<i class="flaticon2-photo-camera icon-lg"></i>
+							</a>
+						</div>
+						<div>
 							<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send-message py-2 px-6" data-Model="@EncryptionHelper.Encrypt(Model.PurchaseForm)">Send</button>
 						</div>
 					</div>
@@ -271,11 +279,11 @@
 				</div>
 				<!--end::Footer-->
 			</div>
-			<!--end::Body-->
+			<!--end::Card-->
 		</div>
 	</div>
-	<!--end::Footer-->
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
 <script>
 	(function () {
@@ -303,9 +311,9 @@
 		connection.on("ReceiveMessage", function (messageRecieved, connectionId) {
 			debugger;
 			var message = $('.chat-message').val();
-			var messagesEl = $('#kt_chat .messages');
+			var messagesEl = $('.chat-window-messages');
 			var scrollEl = $(".chat-message-scroll")
-			var textarea = $('#kt_chat textarea');
+			var textarea = $('.chat-message');
 			var node = document.createElement("DIV");
 			var html = '';
 			if (sessionStorage.getItem('conectionId') == connectionId) {
@@ -318,8 +326,10 @@
 			}
 					KTUtil.setHTML(node, html);
 					messagesEl.append(node);
-					textarea.val('');
-			$(".chat-message-scroll").animate({ scrollTop: $(document).height() }, "slow");
+			textarea.val('');
+
+			$(".chat-message-scroll").animate({ scrollTop: $('.chat-window-messages').height() }, "slow");
+
 			console.log(message);
 		});
 
@@ -329,6 +339,12 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('[data-toggle="tooltip"]').tooltip({ html: true });
+		$(".chat-message-scroll").animate({ scrollTop: $('.chat-window-messages').height() }, "slow");
+	});
+	$(document).on('click', '#chat-model-show', function () {
+		debugger;
+		$('#kt_chat_modal').css("display", "block");
+		$(".chat-message-scroll").animate({ scrollTop: $('.chat-window-messages').height() }, "slow");
 	});
 	$(document).on("click", '.chat-send-message', function (e) {
 		element = e;
@@ -338,10 +354,10 @@
 		var textarea = $('#kt_chat textarea');
 		$.ajax({
 			url: '/ClientArea/AddChatModel',
-			data: { message: textarea.val(), purchaseForm: $(this).data('model') },
+			data: { message: $('.chat-message').val(), purchaseForm: $(this).data('model') },
 			type: 'POST',
 			success: function (dataofconfirm) {
-
+				$('.chat-message').val('')
 			}
 		});
 	});
