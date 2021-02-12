@@ -4,6 +4,7 @@ using SpartanBoosting.Models.Pricing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SpartanBoosting.Extensions.LolExtensions
@@ -33,6 +34,22 @@ namespace SpartanBoosting.Extensions.LolExtensions
 			}
 			return PurchaseForm;
 
+		}
+		public static string ChatModelTime(DateTime start, DateTime end)
+		{
+			TimeSpan span = (start - end);
+
+			StringBuilder time = new StringBuilder();
+
+			if (span.Days > 0)
+				return $"{span.Days} days ago";
+			else if (span.Days == 0)
+				return $"{span.Hours} hours ago";
+			else if (span.Days == 0 && span.Hours == 0)
+				return $"{span.Minutes} minutes ago";
+			else if (span.Days == 0 && span.Hours == 0 && span.Minutes == 0)
+				return $"{span.Seconds} seconds ago";
+			return "";
 		}
 	}
 }

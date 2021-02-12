@@ -1,4 +1,5 @@
 ﻿@using SpartanBoosting.ViewModel
+@using SpartanBoosting.Extensions.LolExtensions 
 @model LolOrderDetailsViewModel
 @{
 	ViewData["Title"] = "OrderDetails";
@@ -189,6 +190,7 @@
 										<div class="messages chat-window-messages">
 											@foreach (var item in Model.ChatModel)
 											{
+												TimeSpan span = (DateTime.Now - DateTime.Now);
 												if (item.Sender == Model.CurrentUser)
 												{
 													<div class="d-flex flex-column mb-5 align-items-end">
@@ -200,6 +202,14 @@
 												else
 												{
 													<div class="d-flex flex-column mb-5 align-items-start">
+														<div class="d-flex align-items-center">
+															<div>
+																<span class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">@item.Sender.Email</span>
+																<span class="text-muted font-size-sm">
+																	@LolModelExtenstion.ChatModelTime(DateTime.UtcNow, item.DateTimeSent)
+																</span>
+															</div>
+														</div>
 														<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">
 															@item.Message
 														</div>

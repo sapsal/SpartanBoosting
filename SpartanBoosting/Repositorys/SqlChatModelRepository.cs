@@ -1,4 +1,5 @@
-﻿using SpartanBoosting.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SpartanBoosting.Data;
 using SpartanBoosting.Models;
 using SpartanBoosting.Models.Pricing;
 using SpartanBoosting.Repositorys.Interfaces;
@@ -19,7 +20,7 @@ namespace SpartanBoosting.Repositorys
 		}
 		public List<ChatModel> GetChatModelByPurchaseOrder(int PurchaseFormid)
 		{
-			return context.ChatModel.Where(x => x.purchaseFormId == PurchaseFormid).ToList();
+			return context.ChatModel.Where(x => x.purchaseFormId == PurchaseFormid).Include(p => p.Sender).ToList();
 		}
 		public ChatModel GetChatModel(int Id)
 		{

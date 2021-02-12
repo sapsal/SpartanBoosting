@@ -85,7 +85,15 @@ namespace SpartanBoosting.Controllers
 					result.JobAvailable = false;
 					PurchaseOrderRepository.Update(result);
 					AuditRepository.Add(new LeagueOfLegendsAuditModel { User = user, DateTime = DateTime.UtcNow, Action = $"Accepted Job By Booster [{JsonConvert.SerializeObject(result)}]" });
-					return Json(new { Username = result.PersonalInformation.UserName, Password = result.PersonalInformation.Password, Discord = result.PersonalInformation.Discord, success = true });
+					return Json(new
+					{
+						Username = result.PersonalInformation.UserName,
+						Password = result.PersonalInformation.Password,
+						Discord = result.PersonalInformation.Discord,
+						success = true,
+						clientLoginPresent = result.ClientAssignedTo != null,
+						message = "Customer can communicate through the chat window on the order details screen"
+					});
 				}
 				else
 				{

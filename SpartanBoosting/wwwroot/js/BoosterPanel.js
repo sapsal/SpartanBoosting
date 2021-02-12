@@ -27,11 +27,22 @@ $(document).on("click", '.accept-job', function () {
 		success: function (dataofconfirm) {
 			debugger;
 			if (dataofconfirm.success) {
-				$('#lol-username').text(dataofconfirm.username)
-				$('#lol-password').text(dataofconfirm.password)
-				$('#lol-discord').text(dataofconfirm.discord)
-				$('#lol-details-modal').modal('show');
-				$(this).parent().parent().remove()
+				if (!dataofconfirm.clientLoginPresent) {
+					$('#client-information').show();
+					$('.lol-details-modal-message-banner').hide();
+					$('#lol-username').text(dataofconfirm.username)
+					$('#lol-password').text(dataofconfirm.password)
+					$('#lol-discord').text(dataofconfirm.discord)
+					$('#lol-details-modal').modal('show');
+					$(this).parent().parent().remove()
+				}
+				else {
+					$('#client-information').hide();
+					$('.lol-details-modal-message-banner').show();
+					$('.lol-details-modal-message-banner').text(dataofconfirm.message);
+					$('#lol-details-modal').modal('show');
+					$(this).parent().parent().remove()
+				}
 			}
 			else {
 
