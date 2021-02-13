@@ -142,7 +142,8 @@ namespace SpartanBoosting.Models.Repositorys
 				.Include(p => p.PlacementMatchesModel)
 				.Include(p => p.TFTBoostingModel)
 				.Include(p => p.TFTPlacementModel)
-				.Include(p => p.WinBoostModel).ToList();
+				.Include(p => p.WinBoostModel)
+				.Include(p => p.BoosterAssignedTo).ToList();
 		}
 
 		public PurchaseForm GetPurchaseFormModelsIncludedById(int Id)
