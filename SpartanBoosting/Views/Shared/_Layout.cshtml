@@ -125,10 +125,7 @@
 				<div class="nk-contacts-right">
 					<div class="nk-navbar">
 						<ul class="nk-nav">
-							@*<li><a href="https://twitter.com/nkdevv" target="_blank"><span class="ion-social-twitter"></span></a></li>*@
-							<li><a href="https://discord.gg/ZvYeNrA" target="_blank"><span class="fab fa-discord fa-lg"></span></a></li>
-							@*<li><a href="#"><span class="ion-social-instagram-outline"></span></a></li>
-								<li><a href="#"><span class="ion-social-pinterest"></span></a></li>*@
+							<li><a href="https://discord.gg/ZvYeNrA" target="_blank"><span>Join Our Discord</span><span class="fab fa-discord fa-lg"></span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -197,9 +194,15 @@
 								</span>
 							</a>
 						</li>
-						<li class="single-icon nk-sign-toggle-li">
+						<li class="single-icon nk-sign-toggle-li @(User.Identity.IsAuthenticated ? "d-none":"") login-nav-btn">
 							<a href="#" class="nk-sign-toggle no-link-effect">
 								<span>Login</span>
+
+							</a>
+						</li>
+						<li class="single-icon nk-sign-toggle-li @(!User.Identity.IsAuthenticated ? "d-none":"")">
+							<a href="#" class=" no-link-effect logout-nav-btn sign-out">
+								<span>Log Out</span>
 
 							</a>
 						</li>
@@ -600,6 +603,28 @@
 				contentType: "application/json",
 				success: function (response) {
 					debugger;
+				}
+			});
+		});
+		$(".sign-out").click(function (event) {
+			debugger;
+			$(".sign-out").prop('disabled', true);
+			event.preventDefault();
+			$('#LoginModel_loginattempt-error').hide()
+			$.ajax({
+				url: '/Account/LogoutAjax',
+				type: 'POST',
+				success: function (response) {
+
+					if (response.success) {
+						$('.order-recipient-content').removeClass('d-none')
+						$('.invoice-recipient-message').text('');
+						$('.user-logon-details-table th').text('');
+						$('.user-logon-details-table').addClass('d-none')
+						$('.logout-nav-btn').addClass('d-none')
+						$(".login-nav-btn").removeClass('d-none')
+					}
+					$(".sign-out").prop('disabled', false);
 				}
 			});
 		});

@@ -100,12 +100,12 @@
 .nk-sign-toggle-li {
 	padding-left: 3rem;
 }
-.nk-sign-toggle {
+.nk-sign-toggle, .logout-nav-btn {
 	border-radius: 25px;
 	border-color: white;
 	background: #ffffff;
 }
-	.nk-sign-toggle span {
+	.nk-sign-toggle span, .logout-nav-btn span{
 		color: #0e0e0e;
 	}
 

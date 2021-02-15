@@ -59,7 +59,6 @@ namespace SpartanBoosting.Controllers
 			}
 		}
 
-		[ValidateAntiForgeryToken()]
 		[HttpPost]
 		public async Task<IActionResult> CreateInvoice(PurchaseForm purchaseForm)
 		{

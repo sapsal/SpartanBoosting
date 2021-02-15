@@ -21,6 +21,8 @@ namespace SpartanBoosting
 		public static List<TFTSoloBoostPricing> TFTSoloBoostPricing = new List<TFTSoloBoostPricing>();
 		private static string fileName = Path.Combine(Environment.CurrentDirectory, @"wwwroot\Gameboost_Prices_22062020_-_TFT_Update.xlsx");
 		private static FileInfo file = new FileInfo(fileName);
+		public static string instanceName { get; set; }
+		
 
 		public static void LoadPricing()
 		{

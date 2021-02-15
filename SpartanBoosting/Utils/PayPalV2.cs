@@ -17,12 +17,20 @@ namespace SpartanBoosting.Utils
 		public static HttpClient client()
 		{
 			// Creating a sandbox environment
-			//var environment = new SandboxEnvironment("ARXuDzN7ArL3ZiTG0_ebn-4u53kqetWWQSkM5UoVk5KZ_ClhTjSueiVJTnDuFvYtf4TnPxxJDRSJryWJ", "EL6FuAA6ocMA6rFtSWg7Ck-mZYMCq4W-G-huZPVsiOIT9zyI9z2Wh_-_Elv9GiiWP00S8fn28I5G-NFm");
-			var environment = new LiveEnvironment("AbsLlwBzsLwTvG-6awsiklgFPeDNWlGctQ9MukFQl-VimUpPwBtTLpR5SX8Wyu0U_R8pg6mGxgrpzYiA", "EIFw-teU8tWyH7UBXgI7UftSXuJoB1aG51jkZMiRb23x39OaTd9kLOcKSVtb6FWK5vj1sSypW1kC9xUB");
-
-			// Creating a client for the environment
-			PayPalHttpClient client = new PayPalHttpClient(environment);
-			return client;
+			if (ObjectFactory.instanceName == "Live")
+			{
+				LiveEnvironment environment = new LiveEnvironment("AbsLlwBzsLwTvG-6awsiklgFPeDNWlGctQ9MukFQl-VimUpPwBtTLpR5SX8Wyu0U_R8pg6mGxgrpzYiA", "EIFw-teU8tWyH7UBXgI7UftSXuJoB1aG51jkZMiRb23x39OaTd9kLOcKSVtb6FWK5vj1sSypW1kC9xUB");
+				// Creating a client for the environment
+				PayPalHttpClient client = new PayPalHttpClient(environment);
+				return client;
+			}
+			else
+			{
+				SandboxEnvironment environment = new SandboxEnvironment("ARXuDzN7ArL3ZiTG0_ebn-4u53kqetWWQSkM5UoVk5KZ_ClhTjSueiVJTnDuFvYtf4TnPxxJDRSJryWJ", "EL6FuAA6ocMA6rFtSWg7Ck-mZYMCq4W-G-huZPVsiOIT9zyI9z2Wh_-_Elv9GiiWP00S8fn28I5G-NFm");
+				// Creating a client for the environment
+				PayPalHttpClient client = new PayPalHttpClient(environment);
+				return client;
+			}
 		}
 
 		public static PayPalV2Response createOrder(string price)
@@ -47,8 +55,7 @@ namespace SpartanBoosting.Utils
 				},
 				ApplicationContext = new ApplicationContext()
 				{
-					//ReturnUrl = "https://localhost:44353/Invoice/InvoiceComplete",
-					ReturnUrl = "https://www.spartanboosting.com/Invoice/InvoiceComplete",
+					ReturnUrl = ObjectFactory.instanceName == "Live" ? "https://www.spartanboosting.com/Invoice/InvoiceComplete" : "https://localhost:44353/Invoice/InvoiceComplete",
 					CancelUrl = "https://www.spartanboosting.com"
 				}
 			};

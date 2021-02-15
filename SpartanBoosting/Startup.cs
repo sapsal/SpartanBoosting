@@ -42,6 +42,8 @@ namespace SpartanBoosting
 			services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			ObjectFactory.BoosterPercentage = Configuration.GetValue<int>("BoosterPercentage");
+			ObjectFactory.instanceName = Configuration.GetValue<string>("Instance");
+
 			services.Configure<IdentityOptions>(options =>
 			{
 				// Password settings.

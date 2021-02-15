@@ -57,9 +57,9 @@
 										<div role="tabpanel" class="tab-pane fade active show" id="tabs-1-1">
 											<div class="nk-gap-1"></div>
 											<div>
-												<input class="form-control login-username" type="text" placeholder="Username or Email" required>
+												<input class="form-control login-username-invoice " type="text" placeholder="Username or Email" required>
 												<div class="nk-gap-2"></div>
-												<input class="form-control login-password" type="password" placeholder="Password" required>
+												<input class="form-control login-password-invoice" type="password" placeholder="Password" required>
 												<div id="LoginModel_loginattempt-error" class="nk-error" style="display:none">Invalid Login Attempt.</div>
 												<div class="nk-gap-2"></div>
 												<button class="nk-btn nk-btn-color-white link-effect-4 float-right login-invoice-button" type="button">Log In</button>
@@ -69,13 +69,13 @@
 										<div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
 											<div class="nk-gap-1"></div>
 											<div>
-												<input class="form-control register-email" type="text" placeholder="Email">
+												<input class="form-control register-email-invoice" type="text" placeholder="Email">
 												<div class="nk-gap-2"></div>
-												<input class="form-control register-username" type="text" placeholder="Username">
+												<input class="form-control register-username-invoice" type="text" placeholder="Username">
 												<div class="nk-gap-2"></div>
-												<input class="form-control register-password" type="password" placeholder="Password">
+												<input class="form-control register-password-invoice" type="password" placeholder="Password">
 												<div class="nk-gap-2"></div>
-												<input class="form-control register-confirm-password" type="password" placeholder="Confirm Password">
+												<input class="form-control register-confirm-password-invoice" type="password" placeholder="Confirm Password">
 												<div class="nk-gap-2"></div>
 												<button class="nk-btn nk-btn-color-white link-effect-4 float-right register-invoice-button" type="button">Register</button>
 											</div>
@@ -85,7 +85,7 @@
 										<div role="tabpanel" class="tab-pane fade" id="tabs-1-3">
 											<div class="nk-gap-1"></div>
 											@if (!(Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.DuoBoosting ||
-										   (Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.WinBoosting && Model.PurchaseForm.WinBoostModel != null && Model.PurchaseForm.WinBoostModel.TypeOfService == "Duo")||
+										  (Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.WinBoosting && Model.PurchaseForm.WinBoostModel != null && Model.PurchaseForm.WinBoostModel.TypeOfService == "Duo") ||
 (Model.PurchaseForm.PlacementMatchesModel != null && Model.PurchaseForm.PurchaseType == PurchaseTypeEnum.PurchaseType.PlacementMatches && Model.PurchaseForm.PlacementMatchesModel.TypeOfService == "Duo")))
 											{
 												<div class="row pb-4">
@@ -287,8 +287,8 @@
 		$.ajax({
 			url: '/Account/LoginAjax',
 			data: {
-				Email: $('.login-username').val(),
-				Password: $('.login-password').val()
+				Email: $('.login-username-invoice').val(),
+				Password: $('.login-password-invoice').val()
 			},
 			type: 'POST',
 			success: function (response) {
@@ -315,10 +315,10 @@
 		$.ajax({
 			url: '/Account/RegisterAjax',
 			data: {
-				Email: $('.register-email').val(),
-				Username: $('.register-username').val(),
-				Password: $('.register-password').val(),
-				ConfirmPassword: $('.register-confirm-password').val()
+				Email: $('.register-email-invoice').val(),
+				Username: $('.register-username-invoice').val(),
+				Password: $('.register-password-invoice').val(),
+				ConfirmPassword: $('.register-confirm-password-invoice').val()
 			},
 			type: 'POST',
 			success: function (response) {
@@ -422,7 +422,9 @@
 				// Prevent the form from submitting with the default action
 				return false;
 			}
-			else { $($(this).parents('form:first')).submit(); }
+			else {
+				$($(this).parents('form:first')).submit();
+			}
 			$('.proceed-invoice-btn').prop('disabled', false);
 		}
 		catch (err) {
