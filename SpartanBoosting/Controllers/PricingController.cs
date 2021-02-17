@@ -52,6 +52,8 @@ namespace SpartanBoosting.Controllers
 				{
 					price = price + (price / 100) * 15;
 				}
+
+				price = LolPricingExtensions.PriceDecreaseCustom(price, 10);
 				price = LolPricingExtensions.PriceIncreaseLolNA(Model.BoostingModel.Server, price, 20);
 				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.BoostingModel.DiscountCode, price);
 				price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
@@ -80,6 +82,7 @@ namespace SpartanBoosting.Controllers
 					price = decimal.Parse(result.OurRegularPrice);
 				}
 
+				price = LolPricingExtensions.PriceDecreaseCustom(price, 10);
 				price = LolPricingExtensions.PriceIncreaseLolNA(Model.BoostingModel.Server, price, 60);
 				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.BoostingModel.DiscountCode, price);
 				price = (System.Math.Ceiling(priceDiscountResult.Price * 100) / 100);
@@ -107,6 +110,7 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
+				price = LolPricingExtensions.PriceDecreaseCustom(price, 10);
 				price = LolPricingExtensions.PriceIncreaseLolNA(Model.WinBoostModel.Server, price, 40);
 				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.WinBoostModel.Discount, price);
 				price = priceDiscountResult.Price;
@@ -127,6 +131,7 @@ namespace SpartanBoosting.Controllers
 			else
 			{
 				price = (System.Math.Ceiling(decimal.Parse(result.OurPrice) * 100) / 100);
+				price = LolPricingExtensions.PriceDecreaseCustom(price, 10);
 				price = LolPricingExtensions.PriceIncreaseLolNA(Model.PlacementMatchesModel.Server, price, 40);
 				var priceDiscountResult = LolDiscountExtensions.PriceDiscount(Model.PlacementMatchesModel.Discount, price);
 				price = priceDiscountResult.Price;

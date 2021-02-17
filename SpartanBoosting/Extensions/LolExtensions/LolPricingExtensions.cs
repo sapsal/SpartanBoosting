@@ -75,6 +75,10 @@ namespace SpartanBoosting.Extensions
 			}
 			return Pricing;
 		}
+		public static decimal PriceDecreaseCustom(decimal Pricing, int percentage)
+		{
+			return Pricing - (Pricing * percentage / 100);
+		}
 
 		public static string DisplayLolTFTBoostJobDescription(SpartanBoosting.Models.Pricing.PurchaseForm purchaseForm)
 		{
@@ -171,7 +175,8 @@ namespace SpartanBoosting.Extensions
 				else
 					return new DiscountViewModel { Price = Pricing, Success = false };
 			}
-			else {
+			else
+			{
 				return new DiscountViewModel { Price = Pricing, Success = false };
 			}
 		}
