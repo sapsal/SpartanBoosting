@@ -19,7 +19,7 @@ namespace SpartanBoosting
 		public static List<WinBoostPricing> PlacementBoostPricing = new List<WinBoostPricing>();
 		public static List<WinBoostPricing> TFTPlacementBoostPricing = new List<WinBoostPricing>();
 		public static List<TFTSoloBoostPricing> TFTSoloBoostPricing = new List<TFTSoloBoostPricing>();
-		private static string fileName = Path.Combine(Environment.CurrentDirectory, @"wwwroot\Gameboost_Prices_22062020_-_TFT_Update.xlsx");
+		private static string fileName = Path.Combine(Environment.CurrentDirectory, @"wwwroot\Prices.xlsx");
 		private static FileInfo file = new FileInfo(fileName);
 		public static string instanceName { get; set; }
 		
