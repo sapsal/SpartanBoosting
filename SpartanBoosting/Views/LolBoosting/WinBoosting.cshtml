@@ -32,7 +32,7 @@
 						<div class="col-md-12">
 							<div class="">
 								<label class="pb-3 " for="current-rank">YOUR CURRENT LEAGUE:<span class="gfield_required">*</span></label>
-								<select asp-for="WinBoostModel.YourCurrentLeague" name="WinBoostModel.YourCurrentLeague" id="current-rank" class="form-control gfield-quote" aria-required="true" aria-invalid="false" required="">
+								<select asp-for="WinBoostModel.YourCurrentLeague" name="WinBoostModel.YourCurrentLeague" id="current-rank" class="form-control gfield-quote league-filter" aria-required="true" aria-invalid="false" required="">
 									<option value="Iron">Iron</option>
 									<option value="Bronze">Bronze</option>
 									<option value="Silver">Silver</option>
@@ -46,11 +46,13 @@
 							</div>
 						</div>
 					</div>
+					<label id="master-rank-notification" style="display:none" for="desired-rank" class="gfield note gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible font-weight-normal">For divisions higher than Master please contact us!</label>
+
 					<div class="nk-gap-2"></div>
 					<div class="row pb-4">
 						<div class="col-md-12">
 							<div class="">
-								<select asp-for="WinBoostModel.CurrentDivision" name="WinBoostModel.CurrentDivision" id="current-div" class="form-control gfield-quote" aria-required="true" aria-invalid="false">
+								<select asp-for="WinBoostModel.CurrentDivision" name="WinBoostModel.CurrentDivision" id="current-div" class="form-control gfield-quote division-filter" aria-required="true" aria-invalid="false">
 									<option value="IV">Division IV</option>
 									<option value="III">Division III</option>
 									<option value="II">Division II</option>
