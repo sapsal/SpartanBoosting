@@ -34,7 +34,12 @@
 
   <ItemGroup>
     <Folder Include="Views\BoosterArea\BoosterAreaPartial\" />
+    <Folder Include="wwwroot\assets\sitemaps\" />
     <Folder Include="wwwroot\img\Lol Ranks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\robots.txt" />
   </ItemGroup>
 
   <ItemGroup>
