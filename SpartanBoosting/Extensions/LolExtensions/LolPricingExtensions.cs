@@ -71,7 +71,8 @@ namespace SpartanBoosting.Extensions
 			}
 			else if (Server == "North America" || Server == "Oceania" || Server == "Latin America North" || Server == "Latin America South" || Server == "Brazil")
 			{
-				return Pricing = Pricing + (Pricing / 100) * percentage;
+				Pricing = Pricing + (Pricing / 100) * percentage;
+				return decimal.Round(Pricing, 2, MidpointRounding.AwayFromZero);
 			}
 			return Pricing;
 		}
