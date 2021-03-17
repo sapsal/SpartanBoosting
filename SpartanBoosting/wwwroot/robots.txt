@@ -1,0 +1,4 @@
+User-agent: * 
+Disallow: 
+
+Sitemap: https://www.spartanboosting.com/assets/sitemaps/sitemap_com.xml

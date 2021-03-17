@@ -23,15 +23,15 @@ $('#type-of-service').on('change', function () {
 	}
 });
 
-$('[name="DesiredCurrentLeague"]').on('change', function () {
-	if (this.value == "Master") {
+$('.league-filter').on('change', function () {
+	if (this.value == "Master" || this.value == "Grandmaster" || this.value == "Challenger") {
 		$('#master-rank-notification').show()
-		$('[name="DesiredCurrentDivision"]').hide()
+		$('.division-filter').hide()
 		$('#desired-rank-logo').hide()
 	}
 	else {
 		$('#master-rank-notification').hide()
-		$('[name="DesiredCurrentDivision"]').show()
+		$('.division-filter').show()
 		$('#desired-rank-logo').show()
 	}
 });
