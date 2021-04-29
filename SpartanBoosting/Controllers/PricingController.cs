@@ -118,7 +118,7 @@ namespace SpartanBoosting.Controllers
 			}
 		}
 
-		[HttpPost]
+		[HttpPost] 
 		public JsonResult PlacementBoostPricing(PurchaseForm Model)
 		{
 			decimal price;
